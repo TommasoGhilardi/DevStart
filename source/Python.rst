@@ -92,8 +92,8 @@ Here it is Spyder in all its glory:
 
 |
 
-Installing packages
-===================
+Installing python packages
+==========================
 
 To preprocess and analyze the data we will need some specific packages. It is easy to intall and manage packages using conda. Open the Anaconda prompt and type "conda install ...". For exaple, if we want to intall pandas (a very useful package to handle dataframes) we woudl write:
 
@@ -132,7 +132,7 @@ Now we want to tell our Anaconda prompt that we want to work on our brand new "t
 
 	conda activate test
 
-Now we would probably want to intall some packages and Spyder in this new enviroment. Follow the tutorials above: `Installing Spyder ide`_, `Installing packages`_.
+Now we would probably want to intall some packages and Spyder in this new enviroment. Follow the tutorials above: `Installing Spyder ide`_, `Installing python packages`_.
 
 Creating an environment from an environment.yml file
 ****************************************************

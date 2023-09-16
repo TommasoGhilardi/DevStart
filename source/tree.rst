@@ -3,23 +3,34 @@ The project structure
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting started:
 
    index
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Getting started:
+
    Python
    R
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Eyetracking:
 
-   Eyetracking basic
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
    :caption: Creating an experiment:
 
    Psychopy
+
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Eyetracking:
+
+   Intro_eyetracking
+   I2MC_tutorial
 
 
 

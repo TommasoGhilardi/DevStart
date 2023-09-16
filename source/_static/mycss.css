@@ -1,0 +1,13 @@
+/* For light theme */
+@media (prefers-color-scheme: light) {
+    .logo {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(270deg) brightness(100%) contrast(100%);
+    }
+}
+
+/* For dark theme */
+@media (prefers-color-scheme: dark) {
+    .logo {
+        filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(270deg) brightness(100%) contrast(100%);
+    }
+}

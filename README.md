@@ -1,14 +1,17 @@
-# PhD-Documentation
-Initial repo for the documentation project
+Welcome to the Docuemntation README!!
+
+When creating a new file please follwo the structure used in the ExampleTextStructure.docx.
+If you follow the ExampleTextStructure file will be easy to convert it from .docx to .rst.
 
 
-We can use [google docs](https://drive.google.com/drive/folders/10-W5TSKCHtv_b4yg36qKRwXG_Ef78wQf?usp=sharing) to keep track of the documents and work toghether.
-Once finished we can convert everythin to restructured text using [Pandoc](https://pandoc.org/).
+Once installed Pandoc you can convert from docx to rst using this simple code.
 
-Once installed Pandoc you can convert from docx to rst using this simple code:
+The conversion is made with pandoc (https://pandoc.org/).
+	- To covert from .docx to .rst launch in the terminal:
+		`pandoc File.docx -f docx --extract-media Path_where_to_store_iamges -t rst -o File.rst`
 
-`pandoc File.docx -f docx --extract-media Path_where_to_store_iamges -t rst -o File.rst`
+	- To convert back to .docx:
+		`pandoc File.rst -f rst -t docx -o File.docx`
 
-You can also do the opposite using:
-
-`pandoc File.rst -f rst  -t docx -o File.docx`
+The Code_blocks_fixer.py is an utulity python script that converts all the codeblocks that are created "general" to python or R specific.
+To launch just pass the file and the code type.
