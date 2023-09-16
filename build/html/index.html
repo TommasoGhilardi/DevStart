@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Welcome &#8212; Dev Start: getting started with developmental science!!</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Starting with Python" href="Python.html" />
+    <link rel="prev" title="The project structure" href="tree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="tree.html">
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/IconB.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/IconW.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Welcome</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Starting with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">Starting with R</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Creating an experiment:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Psychopy.html">Starting with Pschopy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Eyetracking:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro_eyetracking.html">Introduction to eye-tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I2MC_tutorial.html">Using I2MC for robust fix extraction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-created-it">Why we created it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-contribute">How to contribute?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-we-are">Who we are?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tommaso-ghilardi-the-programmer">Tommaso Ghilardi: <em>the programmer</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#francesco-poli-the-deep-thinker">Francesco Poli: <em>the deep thinker</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#giulia-serino-the-immaginative">Giulia Serino: <em>the immaginative</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warnings">Warnings!</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="welcome">
+<h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this heading">#</a></h1>
+<section id="what-is-this">
+<h2>What is this?<a class="headerlink" href="#what-is-this" title="Permalink to this heading">#</a></h2>
+<p>This is a helpline for all the new PhD students in developmental
+psychology and developmental cognitive neuroscience, and everyone who is
+approaching this world for the first time.</p>
+<p>Assuming no apriori knowledge, this website will guide you through your
+first steps as a developmental researcher. You’ll find many examples and
+guidelines on how to grasp the basic principles of developmental
+psychology research, design and set up a study with different research
+methods, analyse data, and start programming.</p>
+</section>
+<section id="why-we-created-it">
+<h2>Why we created it?<a class="headerlink" href="#why-we-created-it" title="Permalink to this heading">#</a></h2>
+<p>There are many resources on the web to learn programming, build
+experiments, and analyse data. However, they often assume basic skills
+in programming, and they don’t tackle the challenges that we encounter
+when testing babies and young children. This knowledge is often handed
+down from Professors and Postdocs to PhD students, or it is acquired
+through hours and hours of despair.</p>
+<p>We tried to summarise all the struggles that we encountered during our
+PhDs and the solutions we came up with. With this website, we aim to
+offer you a solution to overcome these problems and we invite you to do
+better than us and contribute to this open science framework!</p>
+</section>
+<section id="how-to-contribute">
+<h2>How to contribute?<a class="headerlink" href="#how-to-contribute" title="Permalink to this heading">#</a></h2>
+<p>If you’re an expert on a specific topic and you want to change something
+or add something, if you don’t agree with our pipeline, or you spot an
+error in our code, please get in touch!</p>
+<p>You can find us at:</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="mailto:g&#46;serino&#37;&#52;&#48;bbk&#46;ac&#46;uk">g<span>&#46;</span>serino<span>&#64;</span>bbk<span>&#46;</span>ac<span>&#46;</span>uk</a></div>
+<div class="line"><a class="reference external" href="mailto:tommaso&#46;ghilardi&#37;&#52;&#48;donders&#46;ru&#46;nl">tommaso<span>&#46;</span>ghilardi<span>&#64;</span>donders<span>&#46;</span>ru<span>&#46;</span>nl</a></div>
+<div class="line"><a class="reference external" href="mailto:f&#46;poli&#37;&#52;&#48;donders&#46;ru&#46;nl">f<span>&#46;</span>poli<span>&#64;</span>donders<span>&#46;</span>ru<span>&#46;</span>nl</a></div>
+</div>
+</section>
+<section id="who-we-are">
+<h2>Who we are?<a class="headerlink" href="#who-we-are" title="Permalink to this heading">#</a></h2>
+<p>This is a story of bullying and love started in 2018 at the Donders
+Institute in the Netherlands. Tommaso and Francesco were living their
+best PhD life when Giulia bumped into it, looking for data to write her
+master’s thesis.</p>
+<p>United by a strong passion for research and a creepy attraction to
+complex and noisy datasets, they immediately got along well. We haven’t
+stopped collaborating since then.</p>
+<section id="tommaso-ghilardi-the-programmer">
+<h3>Tommaso Ghilardi: <em>the programmer</em><a class="headerlink" href="#tommaso-ghilardi-the-programmer" title="Permalink to this heading">#</a></h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <td style="width: 30%; padding: 10px; vertical-align: middle; text-align: center;">
+            <img src="_static/Welcome/Tommaso.jpg" alt="Image" alt="Tommaso" style="max-width: 100%;">
+        </td>
+        <td style="width: 70%; padding: 10px; text-align: justify">
+            <p>Tommaso Ghilardi is the programmer behind the scenes. He excels in Python and is known for his impeccably clean code. If you explore our website, you're likely to come across his contributions. Tommaso's skills aren't limited to programming—he's capable of setting up a lab in just an hour. He's equally comfortable with research methods and a variety of programming languages. However, be cautious about imperfect code; Tommaso has a short fuse for anything less than perfect. He plays a significant role in shaping this website, making it what it is today. Thank you, Tommaso!
+            </p>
+        </td>
+    </tr>
+</table><p>PostDoc at the Centre for
+Brain and Cognitive Development, Birkbeck, University of London</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.ru.nl/en/people/ghilardi-t">https://www.ru.nl/en/people/ghilardi-t</a></div>
+<div class="line"><a class="reference external" href="mailto:tommaso&#46;ghilardi&#37;&#52;&#48;donders&#46;ru&#46;nl">tommaso<span>&#46;</span>ghilardi<span>&#64;</span>donders<span>&#46;</span>ru<span>&#46;</span>nl</a></div>
+<div class="line"><a class="reference external" href="https://twitter.com/tommasoghi">&#64;TommasoGhi</a></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="francesco-poli-the-deep-thinker">
+<h3>Francesco Poli: <em>the deep thinker</em><a class="headerlink" href="#francesco-poli-the-deep-thinker" title="Permalink to this heading">#</a></h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <td style="width: 30%; padding: 10px; vertical-align: middle; text-align: center;">
+            <img src="_static/Welcome/Francesco.jpeg" alt="Francesco" style="max-width: 100%;">
+        </td>
+        <td style="width: 70%; padding: 10px; text-align: justify">
+            <p>Francesco Poli is the deep thinker among us. He's not just any ordinary thinker; he can build computational models to predict behavior and decipher your thoughts in the blink of an eye. Francesco's abilities extend to creating intricate mathematical theories to explain behavior patterns. He's adept at juggling multiple projects, though he might occasionally forget to reply to emails amidst his busy schedule. With Francesco, expect the extraordinary.
+            </p>
+        </td>
+    </tr>
+</table><p>PostDoc at the Donders Centre for Cognition
+&amp; Donders Institute for Brain, Cognition and Behaviour.</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.ru.nl/en/people/poli-f">https://www.ru.nl/en/people/poli-f</a></div>
+<div class="line"><a class="reference external" href="mailto:f&#46;poli&#37;&#52;&#48;donders&#46;ru&#46;nl">f<span>&#46;</span>poli<span>&#64;</span>donders<span>&#46;</span>ru<span>&#46;</span>nl</a></div>
+<div class="line"><a class="reference external" href="https://twitter.com/FrancescPoli">&#64;FrancescPoli</a></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="giulia-serino-the-immaginative">
+<h3>Giulia Serino: <em>the immaginative</em><a class="headerlink" href="#giulia-serino-the-immaginative" title="Permalink to this heading">#</a></h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <td style="width: 30%; padding: 10px; vertical-align: middle; text-align: center;">
+            <img src="_static/Welcome/Giulia.png" alt="Image" style="max-width: 100%;">
+        </td>
+        <td style="width: 70%; padding: 10px; text-align: justify">
+            <p>Giulia Serino brings imagination to the table. Introduced to programming by Francesco and Tommaso, she has surpassed them to become a skilled programmer herself. Her experiments are a blend of art and science, often resembling graphic masterpieces. However, Giulia tends to get lost in the minutiae of her work. She has a reputation for disappearing, yet her curiosity leads her to explore every corner of Google and various repositories, piecing together her unique theories on attention development.
+            </p>
+        </td>
+    </tr>
+</table><p>PhD student in Developmental Cognitive Neuroscience at the Centre for
+Brain and Cognitive Development, Birkbeck, University of London</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://cbcd.bbk.ac.uk/people/students/giulia-serino">https://cbcd.bbk.ac.uk/people/students/giulia-serino</a></div>
+<div class="line"><a class="reference external" href="mailto:g&#46;serino&#37;&#52;&#48;bbk&#46;ac&#46;uk">g<span>&#46;</span>serino<span>&#64;</span>bbk<span>&#46;</span>ac<span>&#46;</span>uk</a></div>
+<div class="line"><a class="reference external" href="https://twitter.com/GiSerino">&#64;GiSerino</a></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="warnings">
+<h2>Warnings!<a class="headerlink" href="#warnings" title="Permalink to this heading">#</a></h2>
+<p>We tried our best to offer the best and most accurate solutions.
+However, do always check the code and if the outputs make sense. Please
+get in touch if you spot any errors.</p>
+<p>We apologise in advance for our poor coding skills. Our scripts are not
+perfect, and they don’t mean to be. But, as Francesco always says, they
+work! And we hope they will support you during your PhD.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The project structure</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Starting with Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-created-it">Why we created it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-contribute">How to contribute?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-we-are">Who we are?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tommaso-ghilardi-the-programmer">Tommaso Ghilardi: <em>the programmer</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#francesco-poli-the-deep-thinker">Francesco Poli: <em>the deep thinker</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#giulia-serino-the-immaginative">Giulia Serino: <em>the immaginative</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warnings">Warnings!</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tommaso Ghilardi & Francesco Poli & Giulia Serino
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022, Tommaso Ghilardi &amp; Francesco Poli &amp; Giulia Serino.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
