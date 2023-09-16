@@ -3,7 +3,7 @@
   <picture style="text-align: right;">
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/TommasoGhilardi/DevStart/blob/main/source/_static/IconW.svg">
     <source media="(prefers-color-scheme: light)" srcset="https://github.com/TommasoGhilardi/DevStart/blob/main/source/_static/IconB.svg">
-    <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/TommasoGhilardi/DevStart/blob/main/source/_static/IconB.svg" width="25%">
+    <img alt="DevstartLogo" src="https://github.com/TommasoGhilardi/DevStart/blob/main/source/_static/IconB.svg" width="25%">
   </picture>
 </div>
 
