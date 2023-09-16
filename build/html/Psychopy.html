@@ -8,8 +8,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Starting with PsychoPy - DevStart" name="title" />
+<meta content="Tommaso Ghilardi" name="author" />
+<meta content="Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to install PsychoPy, create experiments, and more." name="description" />
+<meta content="PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science" name="keywords" />
 
-    <title>Starting with Pschopy &#8212; Dev Start: getting started with developmental science!!</title>
+    <title>Starting with PsychoPy &#8212; Dev Start: getting started with developmental science!!</title>
   
   
   
@@ -148,7 +152,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Creating an experiment:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Starting with Pschopy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Starting with PsychoPy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Eyetracking:</span></p>
 <ul class="nav bd-sidenav">
@@ -290,7 +294,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Starting with Pschopy</h1>
+    <h1>Starting with PsychoPy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -300,8 +304,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-psychopy">Install psychopy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-create-our-first-experiment-using-psychopy">Let’s create our first experiment using psychopy.</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-psychopy">Install PsychoPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-create-our-first-experiment-using-psychopy">Let’s create our first experiment using PsychoPy.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stimuli">Stimuli:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-a-visual-stimulus">Show a visual stimulus:</a></li>
@@ -322,20 +326,20 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="starting-with-pschopy">
-<h1>Starting with Pschopy<a class="headerlink" href="#starting-with-pschopy" title="Permalink to this heading">#</a></h1>
+  <section id="starting-with-psychopy">
+<h1>Starting with PsychoPy<a class="headerlink" href="#starting-with-psychopy" title="Permalink to this heading">#</a></h1>
 <p>PsychoPy is an open source software package written in the Python
 programming language primarily for use in neuroscience and experimental
 psychology research. It’s one of our favorite ways to create experiments
 and we will use it through our tutorials.</p>
-<p>So, let’s start and install psychopy!!!</p>
+<p>So, let’s start and install PsychoPy!!!</p>
 <section id="install-psychopy">
-<h2>Install psychopy<a class="headerlink" href="#install-psychopy" title="Permalink to this heading">#</a></h2>
-<p>As reported on the psychopy
+<h2>Install PsychoPy<a class="headerlink" href="#install-psychopy" title="Permalink to this heading">#</a></h2>
+<p>As reported on the PsychoPy
 <a class="reference external" href="https://www.psychopy.org/download.html">website</a>, there are multiple
-ways to install psychopy. Our favorite way to install it is using conda
+ways to install PsychoPy. Our favorite way to install it is using conda
 (refer to the <a class="reference internal" href="Python.html#starting-with-python"><span class="std std-ref">Starting with Python</span></a>).</p>
-<p>Psychopy offers a nice .yml file that will install everything that we
+<p>PsychoPy offers a nice .yml file that will install everything that we
 need. Download the
 <a class="reference external" href="https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml">file</a>
 from their website and store it somewhere.</p>
@@ -345,22 +349,22 @@ from their website and store it somewhere.</p>
 </div>
 <p>This will take some time and will ask for confirmation but in the end
 you will have a nice virtual environment containing everything you need
-to run you experiment on psychopy.</p>
+to run your experiment on PsychoPy.</p>
 <p>The virtual environment will be called “psychopy” and you can activate
 it just by typing:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate psychopy</span>
 </pre></div>
 </div>
-<p>From here I suggest also installing Spyder in this new virtual environment. You can do that just by simply typing in:</p>
+<p>We are done!! You now should have a nice conda environment called “psychoPy” with PsychoPy in it. To launch the PsychoPy Gui (also referred to as Builder) you can just type <code class="docutils literal notranslate"><span class="pre">psychopy</span></code> in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let’s be honest, if you want to code your experiment the Gui of Spyder is way better!!</p>
+<p>Thus we suggest to install Spyder in your newly created “psychopy” environment. You can do that just by simply typing in:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda install –c anaconda spyder</span>
 </pre></div>
 </div>
-<p>You can also refer to our getting started with python guide (link).</p>
-<p>Now that you should have both psychopy and Spyder installed let’s see
-how to create a simple experiment with them.</p>
+<p>You can also refer to our guide <a class="reference internal" href="Python.html#installing-spyder-ide"><span class="std std-ref">Installing Spyder ide</span></a>.</p>
+<p>Now that you should have both PsychoPy and Spyder installed let’s see how to create a simple experiment with them.</p>
 </section>
 <section id="lets-create-our-first-experiment-using-psychopy">
-<h2>Let’s create our first experiment using psychopy.<a class="headerlink" href="#lets-create-our-first-experiment-using-psychopy" title="Permalink to this heading">#</a></h2>
+<h2>Let’s create our first experiment using PsychoPy.<a class="headerlink" href="#lets-create-our-first-experiment-using-psychopy" title="Permalink to this heading">#</a></h2>
 <p>We will create a very simple and basic experiment that will be the
 stepping stone for some of the future tutorials. In the future tutorials we
 will show you how to extend and make this tutorial in a real experiment.</p>
@@ -374,14 +378,14 @@ They are very simple and basic stimuli:</p>
 <li><p>a reward (a cute medal)</p></li>
 <li><p>a non-reward (a cartoon of an exploding empty cloud)</p></li>
 <li><p>a sound of winning at an arcade game</p></li>
-<li><p>a sound of loosing at an arcade game</p></li>
+<li><p>a sound of losing at an arcade game</p></li>
 </ul>
 </div>
-<p>In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is  presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the the cued indication you will be able to predict the location of the next stimuli and weather or not it will be rewarding.</p>
+<p>In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is  presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding.</p>
 <section id="preparation">
 <h3>Preparation:<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h3>
 <p>First thing first let’s import the relevant libraries and define the
-path where our stimuli are in. Psychopy has a lot of different modules
+path where our stimuli are in. PsychoPy has a lot of different modules
 that allow us to interface with different type of stimuli and systems.
 For this tutorial we will just import some basic libraries that allow us
 to present visual and auditory stimuli.</p>
@@ -393,7 +397,7 @@ to present visual and auditory stimuli.</p>
 <span class="c1"># Let&#39;s define the path we will work with.</span>
 <span class="c1"># in my case the stimuli that we will use are in here but you will have to adapt</span>
 <span class="c1"># this variable to where you have downloaded the stimuli.</span>
-<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">tomma</span>\<span class="n">surfdrive</span>\<span class="n">Documentation</span>\<span class="n">psychopy</span><span class="o">.</span>
+<span class="n">Path</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">surfdrive</span><span class="se">\\</span><span class="s1">Documentation</span><span class="se">\\</span><span class="s1">psychopy.</span>
 <span class="n">Path</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">surfdrive</span><span class="se">\\</span><span class="s1">Documentation</span><span class="se">\\</span><span class="s1">psychopy</span><span class="se">\\</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
@@ -422,7 +426,7 @@ We have 5 stimuli:</p>
 <p>On top of these visual stimuli we will also import two sounds that will help us signal the type of trials. So:</p>
 <ul class="simple">
 <li><p>a <em>tada!</em> winning sound</p></li>
-<li><p>a <em>papapaaa!</em> loosing sound</p></li>
+<li><p>a <em>papapaaa!</em> losing sound</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -442,13 +446,13 @@ them the “win” window that we just created.</p>
 <span class="n">losing_sound</span> <span class="o">=</span> <span class="n">sound</span><span class="o">.</span><span class="n">Sound</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="s1">&#39;loosing.wav&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that’s why when we import the two rewards we set their <code class="docutils literal notranslate"><span class="pre">pos</span></code> to <code class="docutils literal notranslate"><span class="pre">(250,0)</span></code> and <code class="docutils literal notranslate"><span class="pre">(-250,0)</span></code>. The first value indicate the number of pixel on the x axis and the second the number of pixel on the y axis.</p>
+<p>Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that’s why when we import the two rewards we set their <code class="docutils literal notranslate"><span class="pre">pos</span></code> to <code class="docutils literal notranslate"><span class="pre">(250,0)</span></code> and <code class="docutils literal notranslate"><span class="pre">(-250,0)</span></code>. The first value indicates the number of pixels on the x-axis and the second the number of pixels on the y-axis.</p>
 </section>
 <section id="show-a-visual-stimulus">
 <h3>Show a visual stimulus:<a class="headerlink" href="#show-a-visual-stimulus" title="Permalink to this heading">#</a></h3>
 <p>No we want to show a stimuli in the center of our window. To do so we
 will have to use the function “draw”. As the name suggests this function
-draw the stimulus that we want on the window.</p>
+draws the stimulus that we want on the window.</p>
 <p>Let’s start with displaying the fixation cross in the center.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw the fixation</span>
 <span class="n">fixation</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
@@ -456,7 +460,7 @@ draw the stimulus that we want on the window.</p>
 </div>
 <p>Do you see the fixation cross?????? Probably not!! This is because we
 have drawn the fixation cross but we have not refreshed the window.
-Psychopy allow you to draw as many stimuli as you want on a window but
+Psychopy allows you to draw as many stimuli as you want on a window but
 the changes are only shown when you “refresh” the window. To do so we
 need to use the “flip” function.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flipping the window (refreshing)</span>
@@ -471,20 +475,20 @@ nothing in it. Let’s try!!! flip the window now.</p>
 </div>
 <p>The fixation is gone again! Exactly as predicted. Flipping the window
 allows us to draw and show something new each frame. This means that the
-speed limit of our presentation is the actual frame-rate of our display. <em>If we have a 60Hz display we can present an image 60 time in a second.</em></p>
-<p>So if we want to present our fixation for an entire seconds we would
+speed limit of our presentation is the actual frame rate of our display. <em>If we have a 60Hz display we can present an image 60 times in a second.</em></p>
+<p>So if we want to present our fixation for an entire second we would
 have to draw and flip it 60 times (our display has a refresh rate of
 60Hz)! Let’s try:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">):</span>
     <span class="n">fixation</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
     <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-<span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span> <span class="c1"># we reflip at the end to clean the window</span>
+<span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span> <span class="c1"># we re-flip at the end to clean the window</span>
 </pre></div>
 </div>
 <p>Now we have shown the fixation for 1 second and then it disappeared.
 Nice!! However you probably have already figured out that what we have
-done was unnecessary. If we want to present a static stimuli for 1s we
-we could have just draw it, flip the window and then wait for 1s. But now you have an idea on how to show animated stimuli or even videos!!! <strong>AMAZING!!!</strong>.</p>
+done was unnecessary. If we want to present a static stimulus for 1s we
+could have just drawn it, flip the window and then wait for 1s. But now you have an idea on how to show animated stimuli or even videos!!! <strong>AMAZING!!!</strong>.</p>
 <p>Now let’s try to show the fixation for 1s by just waiting.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">fixation</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
@@ -498,18 +502,18 @@ we could have just draw it, flip the window and then wait for 1s. But now you ha
 <p>We have seen how to show a stimulus let’s now play the sounds that we have imported. This is extremely simple, we can just <code class="docutils literal notranslate"><span class="pre">play()</span></code> them:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">winning_sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 <span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">loosing_sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+<span class="n">losing_sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Great now we have played our two sounds!!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sund will play overlapping. That’s why we have use <code class="docutils literal notranslate"><span class="pre">core.wait(2)</span></code>, this tells psychopy to wait 2 seconds after starting to play the sound.</p>
+<p>When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sounds will play overlapping. That’s why we have used <code class="docutils literal notranslate"><span class="pre">core.wait(2)</span></code>, this tells PsychoPy to wait 2 seconds after starting to play the sound.</p>
 </div>
 </section>
 <section id="create-a-trial">
 <h3>Create a trial:<a class="headerlink" href="#create-a-trial" title="Permalink to this heading">#</a></h3>
-<p>Now let’s try to put everything we have learned in one place and present one rewarding and one non-rewarding trial: - we present the fixation for 1s - we present one of the two cue for 3s - we present the reward or the non-reward depending on the cue for 2s.</p>
+<p>Now let’s try to put everything we have learned in one place and present one rewarding and one non-rewarding trial: - we present the fixation for 1s - we present one of the two cues for 3s - we present the reward or the non-reward depending on the cue for 2s.</p>
 <p>In the end we also close the window.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###### 1st Trial ######</span>
 
@@ -523,7 +527,7 @@ we could have just draw it, flip the window and then wait for 1s. But now you ha
 <span class="c1">### Present the winning cue</span>
 <span class="n">circle</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-<span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 second</span>
+<span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 seconds</span>
 
 <span class="c1">### Present the reward</span>
 <span class="n">winning</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
@@ -544,12 +548,12 @@ we could have just draw it, flip the window and then wait for 1s. But now you ha
 <span class="c1">### Present the non-rewarding cue</span>
 <span class="n">square</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-<span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 second</span>
+<span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 seconds</span>
 
 <span class="c1">### Present the reward</span>
-<span class="n">loosing</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">losing</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-<span class="n">loosing_sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+<span class="n">losing_sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 <span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># wait for 1 second</span>
 <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>    <span class="c1"># we re-flip at the end to clean the window</span>
 
@@ -560,10 +564,10 @@ we could have just draw it, flip the window and then wait for 1s. But now you ha
 </section>
 <section id="create-an-entire-experiment">
 <h3>Create an entire experiment:<a class="headerlink" href="#create-an-entire-experiment" title="Permalink to this heading">#</a></h3>
-<p>In an experiment we want more than 1 trial. Let’s then create an
-experiment with 10 trials. We just need to repeat what we have done above multiple times. However we need to randomize the type of trials, otherwise it would be too easy to learn. To do so we will create a list of <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>. where <code class="docutils literal notranslate"><span class="pre">0</span></code> would identify a rewarding trials and <code class="docutils literal notranslate"><span class="pre">1</span></code> would index a non-rewarding trial.</p>
-<p>To properly utilize this list of <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> we will need to create other list of our stimuli. This will make easier to call the right stimuli depending on the trial. We can do so by:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create list of trials in wich 0 means winning and 1 loosing</span>
+<p>In an experiment, we want more than 1 trial. Let’s then create an
+experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>. where <code class="docutils literal notranslate"><span class="pre">0</span></code> would identify a rewarding trial and <code class="docutils literal notranslate"><span class="pre">1</span></code> would index a non-rewarding trial.</p>
+<p>To properly utilize this list of <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create list of trials in which 0 means winning and 1 means losing</span>
 <span class="n">Trials</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">]</span>
 
 <span class="c1"># List of stimuli</span>
@@ -575,7 +579,7 @@ experiment with 10 trials. We just need to repeat what we have done above multip
 <p>Perfect!! Now we can put all the pieces together and run our experiment.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In this final script we will change the dimension of the window we will use. Since in most of the experiment we will want to use the entire screen to our disposal, we will set <code class="docutils literal notranslate"><span class="pre">fullscr</span> <span class="pre">=</span> <span class="pre">True</span></code> when defining the window. In addition we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.</p>
+<p>In this final script, we will change the dimension of the window we will use. Since in most of the experiments, we will want to use the entire screen to our disposal, we will set <code class="docutils literal notranslate"><span class="pre">fullscr</span> <span class="pre">=</span> <span class="pre">True</span></code> when defining the window. In addition, we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.</p>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import some libraries from PsychoPy</span>
 <span class="kn">from</span> <span class="nn">psychopy</span> <span class="kn">import</span> <span class="n">visual</span>
@@ -607,7 +611,7 @@ experiment with 10 trials. We just need to repeat what we have done above multip
 <span class="n">sounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">winning_sound</span><span class="p">,</span><span class="n">losing_sound</span><span class="p">]</span> <span class="c1"># put both sounds in a list</span>
 
 
-<span class="c1"># Create list of trials in which 0 means winning and 1 loosing</span>
+<span class="c1"># Create list of trials in which 0 means winning and 1 means losing</span>
 <span class="n">Trials</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">]</span>
 
 
@@ -624,7 +628,7 @@ experiment with 10 trials. We just need to repeat what we have done above multip
     <span class="c1">### Present the cue</span>
     <span class="n">cues</span><span class="p">[</span><span class="n">trial</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
     <span class="n">win</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
-    <span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 second</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># wait for 3 seconds</span>
 
 
     <span class="c1">### Present the reward</span>
@@ -644,7 +648,7 @@ experiment with 10 trials. We just need to repeat what we have done above multip
 <section id="end">
 <h3>END<a class="headerlink" href="#end" title="Permalink to this heading">#</a></h3>
 <p>We have our basic experiment and if you have followed up to here you
-should be able to get along with the basic concepts of psychopy!! <strong>Well
+should be able to get along with the basic concepts of PsychoPy!! <strong>Well
 done!!!</strong>.</p>
 </section>
 </section>
@@ -694,8 +698,8 @@ done!!!</strong>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-psychopy">Install psychopy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-create-our-first-experiment-using-psychopy">Let’s create our first experiment using psychopy.</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-psychopy">Install PsychoPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-create-our-first-experiment-using-psychopy">Let’s create our first experiment using PsychoPy.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stimuli">Stimuli:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-a-visual-stimulus">Show a visual stimulus:</a></li>

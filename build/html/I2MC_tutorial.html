@@ -8,6 +8,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Using I2MC for Robust Fix Extraction" name="title" />
+<meta content="Tommaso Ghilardi" name="author" />
+<meta content="Learn how to use I2MC for robust fixation extraction in eye-tracking data analysis." name="description" />
+<meta content="eye-tracking, I2MC, fixation detection, data analysis, tutorial, python, DevStart, developmental science, tutorial, eye fixations" name="keywords" />
 
     <title>Using I2MC for robust fix extraction &#8212; Dev Start: getting started with developmental science!!</title>
   
@@ -147,7 +151,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Creating an experiment:</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Psychopy.html">Starting with Pschopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Psychopy.html">Starting with PsychoPy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Eyetracking:</span></p>
 <ul class="current nav bd-sidenav">
@@ -360,17 +364,18 @@ use it!</p>
 tutorial to install Python, just open the miniconda terminal, activate
 the environment you want to install I2MC in and type
 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">I2MC</span></code>. After a few seconds, you should be ready to go!!</p>
-<div class="alert alert-info docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;b&gt;Info:&lt;/b&gt; I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here:  &lt;a href=&quot;https://github.com/royhessels/I2MC&quot;&gt;I2MC Matlab!&lt;/a&gt;
-</pre></div>
-</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: <a class="reference external" href="https://github.com/royhessels/I2MC">I2MC Matlab!</a></p>
 </div>
 </section>
 <section id="use-i2mc">
 <h2>Use I2MC<a class="headerlink" href="#use-i2mc" title="Permalink to this heading">#</a></h2>
 <p>Let’s start with importing the libraries that we will need</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">I2MC</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">I2MC</span>                         <span class="c1"># I2MC</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>                 <span class="c1"># panda help us read csv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                  <span class="c1"># to handle arrays</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>  <span class="k">as</span> <span class="nn">plt</span>    <span class="c1"># to make plots</span>
 </pre></div>
 </div>
 <p>This was too easy now, let’s start to really get into it.</p>
@@ -387,11 +392,11 @@ LINK.</p>
 <span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PATH_TO_DATA</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>After reading the data we will create a new dataframe that we will fill
+<p>After reading the data we will create a new data-frame that we will fill
 with the information needed from our raw_df. this is the point that
-would change depending on you eye-tracked and data fromat. you will
+would change depending on you eye-tracked and data format. you will
 probably have to change the columns names to be sure to have the 5
-relecant</p>
+relevant ones.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create empty dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
@@ -498,7 +503,7 @@ with I2MC:</p>
 <p>Nice!! we have our import function that we will use to read our data.
 Now, let’s find our data! To do this, we will use the glob library,
 which is a handy tool for finding files in Python. In the code above,
-we’re telling Python to look for files with a “.csv” extension in a
+we are telling Python to look for files with a <em>.csv</em> extension in a
 specific folder on our computer. Let’s import glob and then let’s find
 the files:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
@@ -517,7 +522,7 @@ not just in the immediate subfolders but in all the subfolders within
 subfolders, and so on.</p></li>
 </ul>
 <p>So, when we run this code, Python will find and give us a list of all
-the “.csv” files located in any subfolder within our specified path.
+the <em>.csv</em> files located in any subfolder within our specified path.
 This makes it really convenient to find and work with lots of files at
 once.</p>
 </section>
@@ -526,7 +531,7 @@ once.</p>
 <p>Before doing anything else I would suggest creating a folder where we
 will save the output of I2MC. We will create a folder called
 <em>i2mc_output</em>. Using the <em>os</em> library we make sure the output folder
-dosen’t exist (<code class="docutils literal notranslate"><span class="pre">os.path.isdir(output_fodler)</span></code>) and then we create it
+doesn’t exist (<code class="docutils literal notranslate"><span class="pre">os.path.isdir(output_fodler)</span></code>) and then we create it
 (<code class="docutils literal notranslate"><span class="pre">os.mkdir(output_fodler)</span></code>)</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
@@ -603,6 +608,10 @@ your specific requirements.</p>
 <span class="n">opt</span><span class="p">[</span><span class="s1">&#39;minFixDur&#39;</span><span class="p">]</span>            <span class="o">=</span> <span class="mf">40.0</span>                          <span class="c1"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span>
 </pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As mentioned above these setting should work for most scenarios including this example. However, depending on the population tested, and other factors you should modify the options accordingly. Please read the <a class="reference external" href="https://link.springer.com/article/10.3758/s13428-016-0822-1">I2MC article</a> where everything is explained !!!</p>
+</div>
 </section>
 <section id="run-i2mc">
 <h3>Run I2MC<a class="headerlink" href="#run-i2mc" title="Permalink to this heading">#</a></h3>
@@ -615,21 +624,22 @@ I2MC on the file - save the output file and the plot</p>
 <span class="c1"># =============================================================================</span>
 
 <span class="k">for</span> <span class="n">file_idx</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_files</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing file </span><span class="si">{}</span><span class="s1"> of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_files</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing file </span><span class="si">{}</span><span class="s1"> of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_files</span><span class="p">)))</span>
+
+    <span class="c1"># Extract the name form the file path</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Create the folder the specific subject</span>
     <span class="n">subj_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_fodler</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">subj_folder</span><span class="p">):</span>
        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">subj_folder</span><span class="p">)</span>
 
-    <span class="c1"># Extract the name form the file path</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Import data</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">tobii_TX300</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="p">[</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;xres&#39;</span><span class="p">],</span> <span class="n">opt</span><span class="p">[</span><span class="s1">&#39;yres&#39;</span><span class="p">]])</span>
 
     <span class="c1"># Run I2MC on the data</span>
-    <span class="n">fix</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">I2MC</span><span class="o">.</span><span class="n">I2MC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">log_level</span><span class="o">==</span><span class="mi">2</span><span class="p">,</span><span class="n">logging_offset</span><span class="o">=</span><span class="s2">&quot;      &quot;</span><span class="p">)</span>
+    <span class="n">fix</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">I2MC</span><span class="o">.</span><span class="n">I2MC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">opt</span><span class="p">)</span>
 
     <span class="c1">## Create a plot of the result and save them</span>
     <span class="k">if</span> <span class="n">do_plot_data</span><span class="p">:</span>
@@ -684,33 +694,30 @@ participant was looking at that time. This will be covered in a new
 tutorial. For now, you’ve successfully completed the preprocessing of
 your eye-tracking data, extracting a robust estimation of participants’
 fixations!!</p>
-<div class="alert alert-block alert-danger docutils container">
-<p>Caution: This tutorial is simplified and assumes the following:</p>
-<ul><li><p>Each participant has only one file (1 trial).</p>
-</li><li><p>All files contain data.</p>
-</li><li><p>The data is relatively clean (I2MC won’t throw any errors).</p>
-</li><li><p>And so on.</p>
-</li></ul><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">If</span> <span class="n">your</span> <span class="n">data</span> <span class="n">doesn</span><span class="s1">&#39;t match these assumptions, you may need to modify the script to handle any discrepancies.</span>
-</pre></div>
-</div>
-<p>For a more comprehensive example and in-depth usage, check out the
-<a class="reference external" href="https://github.com/dcnieho/I2MC_Python/tree/master/example">I2MC
-repository</a>.
-It provides a more complete example with data checks for missing data
-and potential errors. Now that you’ve understood the basics here,
-interpreting that example should be much easier. If you encounter any
-issues while running the script, you can give that example a try or
-reach out to us via email!!!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p><strong>Caution</strong>: This tutorial is simplified and assumes the following:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Each participant has only one file (1 trial).</p></li>
+<li><p>All files contain data.</p></li>
+<li><p>The data is relatively clean (I2MC won’t throw any errors).</p></li>
+<li><p>And so on.</p></li>
+</ul>
+<p>If your data doesn’t match these assumptions, you may need to modify the script to handle any discrepancies.</p>
+<p>For a more comprehensive example and in-depth usage, check out the <a class="reference external" href="https://github.com/dcnieho/I2MC_Python/tree/master/example">I2MC repository</a>. It provides a more complete example with data checks for missing data and potential errors. Now that you’ve understood the basics here, interpreting that example should be much easier. If you encounter any issues while running the script, you can give that example a try or reach out to us via email!!!</p>
 </div>
 </section>
 <section id="entire-script">
 <h2>Entire script<a class="headerlink" href="#entire-script" title="Permalink to this heading">#</a></h2>
 <p>To make it simple here is the entire script that we wrote together!!!</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">I2MC</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">I2MC</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>  <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># =============================================================================</span>
 <span class="c1"># Import data from Tobii TX300</span>
@@ -776,14 +783,15 @@ reach out to us via email!!!</p>
 <span class="c1"># Preparation</span>
 <span class="c1"># =============================================================================</span>
 
-<span class="n">data_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">i2mc_tutorial</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">**</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># find all the files</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl</span><span class="se">\\</span><span class="s1">Documentation</span><span class="se">\\</span><span class="s1">Working</span><span class="se">\\</span><span class="s1">I2mc</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">**</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># define the output folder</span>
-<span class="n">output_fodler</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">i2mc_tutorial</span><span class="se">\\</span><span class="s1">i2mc_output&#39;</span> <span class="c1"># define folder path\name</span>
+<span class="n">output_fodler</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">tomma</span><span class="se">\\</span><span class="s1">surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl</span><span class="se">\\</span><span class="s1">Documentation</span><span class="se">\\</span><span class="s1">Working</span><span class="se">\\</span><span class="s1">I2mc</span><span class="se">\\</span><span class="s1">i2mc_output&#39;</span> <span class="c1"># define folder path\name</span>
 
-<span class="c1"># Create the outputfolder</span>
+<span class="c1"># Create the folder</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">output_fodler</span><span class="p">):</span>
    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">output_fodler</span><span class="p">)</span>
+
 
 
 <span class="c1"># =============================================================================</span>
@@ -835,26 +843,27 @@ reach out to us via email!!!</p>
 <span class="n">opt</span><span class="p">[</span><span class="s1">&#39;minFixDur&#39;</span><span class="p">]</span>            <span class="o">=</span> <span class="mf">40.0</span>                          <span class="c1"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span>
 
 
+
 <span class="c1"># =============================================================================</span>
 <span class="c1"># Run I2MC</span>
 <span class="c1"># =============================================================================</span>
 
 <span class="k">for</span> <span class="n">file_idx</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_files</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing file </span><span class="si">{}</span><span class="s1"> of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_files</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing file </span><span class="si">{}</span><span class="s1"> of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_files</span><span class="p">)))</span>
+
+    <span class="c1"># Extract the name form the file path</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Create the folder the specific subject</span>
     <span class="n">subj_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_fodler</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">subj_folder</span><span class="p">):</span>
        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">subj_folder</span><span class="p">)</span>
 
-    <span class="c1"># Extract the name form the file path</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-
     <span class="c1"># Import data</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">tobii_TX300</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="p">[</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;xres&#39;</span><span class="p">],</span> <span class="n">opt</span><span class="p">[</span><span class="s1">&#39;yres&#39;</span><span class="p">]])</span>
 
     <span class="c1"># Run I2MC on the data</span>
-    <span class="n">fix</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">I2MC</span><span class="o">.</span><span class="n">I2MC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">log_level</span><span class="o">==</span><span class="mi">2</span><span class="p">,</span><span class="n">logging_offset</span><span class="o">=</span><span class="s2">&quot;      &quot;</span><span class="p">)</span>
+    <span class="n">fix</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">I2MC</span><span class="o">.</span><span class="n">I2MC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">opt</span><span class="p">)</span>
 
     <span class="c1">## Create a plot of the result and save them</span>
     <span class="k">if</span> <span class="n">do_plot_data</span><span class="p">:</span>

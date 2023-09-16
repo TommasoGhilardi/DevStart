@@ -1,6 +1,10 @@
 Welcome
 #######
 
+.. meta::
+   :title: Welcome to DevStart - Getting Started with Developmental Cognitive Science
+   :description: Your guide to getting started in developmental psychology and developmental cognitive neuroscience. Learn about research methods, data analysis, and programming for your PhD journey.
+   :keywords: DevStart, developmental cognitive science, PhD, research methods, data analysis, programming, neuroscience, psychology, developmental research, developmental science
 
 
 What is this?
@@ -40,9 +44,9 @@ error in our code, please get in touch! 
 
 You can find us at:
 
+| t.ghilardi@bbk.ac.uk
+| francesco.poli@donders.ru.nl
 | g.serino@bbk.ac.uk
-| tommaso.ghilardi@donders.ru.nl
-| f.poli@donders.ru.nl
 
 Who we are?
 ===========
@@ -78,7 +82,7 @@ Tommaso Ghilardi: *the programmer*
 PostDoc at the Centre for 
 Brain and Cognitive Development, Birkbeck, University of London 
                                                                       
-| https://www.ru.nl/en/people/ghilardi-t                             
+| https://tommasoghilardi.github.io                             
 | tommaso.ghilardi@donders.ru.nl                                       
 | `@TommasoGhi <https://twitter.com/tommasoghi>`_                                                         
 
@@ -105,7 +109,7 @@ PostDoc at the Donders Centre for Cognition
 & Donders Institute for Brain, Cognition and Behaviour. 
 
 | https://www.ru.nl/en/people/poli-f 
-| f.poli@donders.ru.nl
+| francesco.poli@donders.ru.nl
 | `@FrancescPoli <https://twitter.com/FrancescPoli>`_
 
 ----
@@ -144,6 +148,6 @@ We tried our best to offer the best and most accurate solutions.
 However, do always check the code and if the outputs make sense. Please
 get in touch if you spot any errors.
 
-We apologise in advance for our poor coding skills. Our scripts are not
+We apologize in advance for our poor coding skills. Our scripts are not
 perfect, and they don’t mean to be. But, as Francesco always says, they
 work! And we hope they will support you during your PhD.

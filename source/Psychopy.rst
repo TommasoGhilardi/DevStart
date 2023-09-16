@@ -1,24 +1,31 @@
-Starting with Pschopy
-#####################
+Starting with PsychoPy
+######################
+
+.. meta::
+   :title: Starting with PsychoPy - DevStart
+   :author: Tommaso Ghilardi
+   :description: Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to install PsychoPy, create experiments, and more.
+   :keywords: PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science
+
 
 PsychoPy is an open source software package written in the Python
 programming language primarily for use in neuroscience and experimental
 psychology research. It's one of our favorite ways to create experiments
 and we will use it through our tutorials.
 
-So, let's start and install psychopy!!!
+So, let's start and install PsychoPy!!!
 
-Install psychopy
+Install PsychoPy
 ================
 
-As reported on the psychopy
-`website <https://www.psychopy.org/download.html>`__, there are multiple
-ways to install psychopy. Our favorite way to install it is using conda
+As reported on the PsychoPy
+`website <https://www.psychopy.org/download.html>`_, there are multiple
+ways to install PsychoPy. Our favorite way to install it is using conda
 (refer to the :ref:`Starting with Python`).
 
-Psychopy offers a nice .yml file that will install everything that we
+PsychoPy offers a nice .yml file that will install everything that we
 need. Download the
-`file <https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml>`__
+`file <https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml>`_
 from their website and store it somewhere.
 
 Now open the Anaconda prompt and type:
@@ -29,7 +36,7 @@ Now open the Anaconda prompt and type:
 
 This will take some time and will ask for confirmation but in the end
 you will have a nice virtual environment containing everything you need
-to run you experiment on psychopy.
+to run your experiment on PsychoPy.
 
 The virtual environment will be called "psychopy" and you can activate
 it just by typing:
@@ -38,23 +45,20 @@ it just by typing:
 
    conda activate psychopy
 
+We are done!! You now should have a nice conda environment called "psychoPy" with PsychoPy in it. To launch the PsychoPy Gui (also referred to as Builder) you can just type ``psychopy`` in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let's be honest, if you want to code your experiment the Gui of Spyder is way better!!
 
-From here I suggest also installing Spyder in this new virtual environment. You can do that just by simply typing in:
-
+Thus we suggest to install Spyder in your newly created "psychopy" environment. You can do that just by simply typing in:
 
 .. code-block:: console
 
    conda install –c anaconda spyder
 
-You can also refer to our getting started with python guide (link).
+You can also refer to our guide :ref:`Installing Spyder ide`.
 
-Now that you should have both psychopy and Spyder installed let's see
-how to create a simple experiment with them.
-
+Now that you should have both PsychoPy and Spyder installed let's see how to create a simple experiment with them.
 
 
-
-Let’s create our first experiment using psychopy.
+Let’s create our first experiment using PsychoPy.
 =================================================
 
 We will create a very simple and basic experiment that will be the
@@ -72,9 +76,9 @@ will show you how to extend and make this tutorial in a real experiment.
    * a reward (a cute medal)
    * a non-reward (a cartoon of an exploding empty cloud)
    * a sound of winning at an arcade game
-   * a sound of loosing at an arcade game
+   * a sound of losing at an arcade game
 
-In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is  presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the the cued indication you will be able to predict the location of the next stimuli and weather or not it will be rewarding.
+In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is  presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding.
 
 
 
@@ -82,7 +86,7 @@ Preparation:
 ------------
 
 First thing first let’s import the relevant libraries and define the
-path where our stimuli are in. Psychopy has a lot of different modules
+path where our stimuli are in. PsychoPy has a lot of different modules
 that allow us to interface with different type of stimuli and systems.
 For this tutorial we will just import some basic libraries that allow us
 to present visual and auditory stimuli.
@@ -97,7 +101,7 @@ to present visual and auditory stimuli.
     # Let's define the path we will work with.
     # in my case the stimuli that we will use are in here but you will have to adapt
     # this variable to where you have downloaded the stimuli.
-    C:\Users\tomma\surfdrive\Documentation\psychopy. 
+    Path = 'C:\\Users\\tomma\\surfdrive\\Documentation\\psychopy. 
     Path = 'C:\\Users\\tomma\\surfdrive\\Documentation\\psychopy\\'
 
 
@@ -131,7 +135,7 @@ We have 5 stimuli:
 On top of these visual stimuli we will also import two sounds that will help us signal the type of trials. So:
 
 * a *tada!* winning sound
-* a *papapaaa!* loosing sound
+* a *papapaaa!* losing sound
 
 .. note::
 
@@ -152,7 +156,7 @@ On top of these visual stimuli we will also import two sounds that will help us 
     winning_sound = sound.Sound(Path + 'winning.wav')
     losing_sound = sound.Sound(Path + 'loosing.wav')
 
-Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their ``pos`` to ``(250,0)`` and ``(-250,0)``. The first value indicate the number of pixel on the x axis and the second the number of pixel on the y axis.
+Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their ``pos`` to ``(250,0)`` and ``(-250,0)``. The first value indicates the number of pixels on the x-axis and the second the number of pixels on the y-axis.
 
 
 Show a visual stimulus:
@@ -160,7 +164,7 @@ Show a visual stimulus:
 
 No we want to show a stimuli in the center of our window. To do so we
 will have to use the function “draw”. As the name suggests this function
-draw the stimulus that we want on the window.
+draws the stimulus that we want on the window.
 
 Let’s start with displaying the fixation cross in the center.
 
@@ -171,7 +175,7 @@ Let’s start with displaying the fixation cross in the center.
 
 Do you see the fixation cross?????? Probably not!! This is because we
 have drawn the fixation cross but we have not refreshed the window.
-Psychopy allow you to draw as many stimuli as you want on a window but
+Psychopy allows you to draw as many stimuli as you want on a window but
 the changes are only shown when you “refresh” the window. To do so we
 need to use the “flip” function.
 
@@ -179,8 +183,6 @@ need to use the “flip” function.
 
     # Flipping the window (refreshing)
     win.flip()
-
-
 
 Perfect!!!! The fixation cross is there. Before each flip we need to
 draw our objects. Otherwise we will only see the basic window with
@@ -190,14 +192,11 @@ nothing in it. Let’s try!!! flip the window now.
 
     win.flip()
 
-
-
 The fixation is gone again! Exactly as predicted. Flipping the window
 allows us to draw and show something new each frame. This means that the
-speed limit of our presentation is the actual frame-rate of our display. *If we have a 60Hz display we can present an image 60 time in a second.*
+speed limit of our presentation is the actual frame rate of our display. *If we have a 60Hz display we can present an image 60 times in a second.*
 
-
-So if we want to present our fixation for an entire seconds we would
+So if we want to present our fixation for an entire second we would
 have to draw and flip it 60 times (our display has a refresh rate of
 60Hz)! Let’s try:
 
@@ -206,14 +205,12 @@ have to draw and flip it 60 times (our display has a refresh rate of
     for _ in range(60):
         fixation.draw()
         win.flip()
-    win.flip() # we reflip at the end to clean the window
-
-
+    win.flip() # we re-flip at the end to clean the window
 
 Now we have shown the fixation for 1 second and then it disappeared.
 Nice!! However you probably have already figured out that what we have
-done was unnecessary. If we want to present a static stimuli for 1s we
-we could have just draw it, flip the window and then wait for 1s. But now you have an idea on how to show animated stimuli or even videos!!! **AMAZING!!!**.
+done was unnecessary. If we want to present a static stimulus for 1s we
+could have just drawn it, flip the window and then wait for 1s. But now you have an idea on how to show animated stimuli or even videos!!! **AMAZING!!!**.
 
 Now let’s try to show the fixation for 1s by just waiting.
 
@@ -224,7 +221,6 @@ Now let’s try to show the fixation for 1s by just waiting.
     core.wait(1)  # wait for 1 second
     win.flip()    # we re-flip at the end to clean the window
 
-
 Play a sound:
 -------------
 
@@ -234,19 +230,19 @@ We have seen how to show a stimulus let's now play the sounds that we have impor
 
     winning_sound.play()
     core.wait(2)
-    loosing_sound.play()
+    losing_sound.play()
 
 Great now we have played our two sounds!!
 
 .. note::
 
-   When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sund will play overlapping. That's why we have use ``core.wait(2)``, this tells psychopy to wait 2 seconds after starting to play the sound.
+   When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sounds will play overlapping. That's why we have used ``core.wait(2)``, this tells PsychoPy to wait 2 seconds after starting to play the sound.
 
 
 Create a trial:
 ---------------
 
-Now let’s try to put everything we have learned in one place and present one rewarding and one non-rewarding trial: - we present the fixation for 1s - we present one of the two cue for 3s - we present the reward or the non-reward depending on the cue for 2s.
+Now let’s try to put everything we have learned in one place and present one rewarding and one non-rewarding trial: - we present the fixation for 1s - we present one of the two cues for 3s - we present the reward or the non-reward depending on the cue for 2s.
 
 In the end we also close the window.
 
@@ -264,7 +260,7 @@ In the end we also close the window.
     ### Present the winning cue
     circle.draw()
     win.flip()
-    core.wait(3)  # wait for 3 second
+    core.wait(3)  # wait for 3 seconds
     
     ### Present the reward 
     winning.draw()
@@ -285,12 +281,12 @@ In the end we also close the window.
     ### Present the non-rewarding cue
     square.draw()
     win.flip()
-    core.wait(3)  # wait for 3 second
+    core.wait(3)  # wait for 3 seconds
     
     ### Present the reward 
-    loosing.draw()
+    losing.draw()
     win.flip()
-    loosing_sound.play()
+    losing_sound.play()
     core.wait(2)  # wait for 1 second
     win.flip()    # we re-flip at the end to clean the window
 
@@ -302,15 +298,15 @@ In the end we also close the window.
 Create an entire experiment:
 ----------------------------
 
-In an experiment we want more than 1 trial. Let’s then create an
-experiment with 10 trials. We just need to repeat what we have done above multiple times. However we need to randomize the type of trials, otherwise it would be too easy to learn. To do so we will create a list of ``0`` and ``1``. where ``0`` would identify a rewarding trials and ``1`` would index a non-rewarding trial.
+In an experiment, we want more than 1 trial. Let’s then create an
+experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of ``0`` and ``1``. where ``0`` would identify a rewarding trial and ``1`` would index a non-rewarding trial.
 
 
-To properly utilize this list of ``0`` and ``1`` we will need to create other list of our stimuli. This will make easier to call the right stimuli depending on the trial. We can do so by:
+To properly utilize this list of ``0`` and ``1``, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:
 
 .. code:: python3
 
-    # Create list of trials in wich 0 means winning and 1 loosing
+    # Create list of trials in which 0 means winning and 1 means losing
     Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
     # List of stimuli
@@ -323,7 +319,7 @@ Perfect!! Now we can put all the pieces together and run our experiment.
 
 .. note:: 
     
-    In this final script we will change the dimension of the window we will use. Since in most of the experiment we will want to use the entire screen to our disposal, we will set ``fullscr = True`` when defining the window. In addition we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.
+    In this final script, we will change the dimension of the window we will use. Since in most of the experiments, we will want to use the entire screen to our disposal, we will set ``fullscr = True`` when defining the window. In addition, we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.
 
 .. code:: python3
 
@@ -357,7 +353,7 @@ Perfect!! Now we can put all the pieces together and run our experiment.
     sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 
-    # Create list of trials in which 0 means winning and 1 loosing
+    # Create list of trials in which 0 means winning and 1 means losing
     Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 
@@ -374,7 +370,7 @@ Perfect!! Now we can put all the pieces together and run our experiment.
         ### Present the cue
         cues[trial].draw()
         win.flip()
-        core.wait(3)  # wait for 3 second
+        core.wait(3)  # wait for 3 seconds
 
 
         ### Present the reward
@@ -394,8 +390,7 @@ END
 ---
 
 We have our basic experiment and if you have followed up to here you
-should be able to get along with the basic concepts of psychopy!! **Well
+should be able to get along with the basic concepts of PsychoPy!! **Well
 done!!!**.
-
 
 
