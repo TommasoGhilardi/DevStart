@@ -1,0 +1,5 @@
+"0","comb2 = plot_grid(Ts.1, Ts.2, NULL, N.1, N.2, NULL, D.1, D.2,"
+"0","                  nrow = 8, align = ""v"", axis = ""lr"","
+"0","                  rel_heights = c(2, 1.2, .3, 2, 1.2, .3, 2, 1.2))"
+"0","ggsave(paste(output,'FinalPlot_Int.jpg', sep = ''), comb2, width = 1920*3, height = 1080*10, units = ""px"", dpi = 300)"
+"0","comb2"

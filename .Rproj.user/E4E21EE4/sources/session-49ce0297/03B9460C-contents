@@ -1,0 +1,116 @@
+/*-- scss:defaults --*/
+
+$font-family-monospace: "Fira Mono", "Menlo", "Andale Mono", monospace;
+$font-size-root: 16px;
+$h1-font-size: 2.2em;
+$h2-font-size: 1.75em;
+$h3-font-size: 1.5em;
+$h4-font-size: 1.25em;
+$toc-color: #008080;
+
+/*-- scss:rules --*/
+
+/*-- scss:rules --*/
+
+:root {
+    --bs-body-font-weight: 300;
+    --link-color: #007bff; /* Bright blue for links */
+    --sidebar-active-color: #008080; /* Teal for active links in the sidebar and TOC */
+
+    --toc-border-color: #dee2e6;
+
+    --sidebar-fg: #495057; /* Dark gray for sidebar text */
+    --sidebar-bg-docked: #f8f9fa; /* Light gray for sidebar background */
+    --sidebar-border: #dee2e6;
+    --sidebar-part-color: #0056b3; /* Darker blue for sidebar headings */
+    --sidebar-input-border: #ced4da;
+    --sidebar-form-bg: transparent;
+
+    --figure-img-border: 1px solid #dee2e6;
+    --figure-img-shadow: 1px 1px 10px #dee2e6;
+
+    --code-block-color: #495057; /* Dark gray for code blocks */
+    --code-block-bg: #f8f9fa; /* Light gray background for code blocks */
+    --code-color: #d63384; /* Soft pink for inline code */
+    --code-bg: #f8f9fa; /* Light gray background for inline code */
+
+    --hl-code-comments: #6c757d; /* Gray for code comments */
+
+    --header-footer-border: #dee2e6;
+
+    --table-tr-border: #dee2e6;
+    --table-out-borders: #adb5bd; /* Light gray for table borders */
+    --table-tr-hover: rgba(0, 123, 255, 0.1); /* Light blue for table row hover */
+
+    --reader-toggle-bg: #f8f9fa;
+    --reader-toggle-border: #ced4da;
+
+    --callout-color: #495057; /* Dark gray for callout text */
+    --callout-warning-bg: #fff3cd; /* Light yellow for warning callouts */
+    --callout-warning-title: #856404; /* Dark yellow for warning callout titles */
+    --callout-note-bg: #cce5ff; /* Light blue for note callouts */
+    --callout-note-title: #004085; /* Dark blue for note callout titles */
+    --callout-important-bg: #f8d7da; /* Light pink for important callouts */
+    --callout-important-title: #721c24; /* Dark pink for important callout titles */
+    --callout-caution-bg: #fff3cd; /* Light yellow for caution callouts */
+    --callout-caution-title: #856404; /* Dark yellow for caution callout titles */
+    --callout-tip-bg: #d4edda; /* Light green for tip callouts */
+    --callout-tip-title: #155724; /* Dark green for tip callout titles */
+
+    --listing-card-border: #ced4da;
+    --listing-card-shadow: rgba(0, 0, 0, 0.05);
+    --listing-card-shadow-hover: rgba(0, 0, 0, 0.1);
+}
+
+
+/* Sidebar */
+#quarto-sidebar,
+#quarto-content .sidebar-navigation {
+    .sidebar-item-container {
+        margin-bottom: 1em; /* Increased space between sidebar items */
+
+        a {
+            color: var(--sidebar-fg);
+            transition: color 0.3s;
+        }
+
+        a.active,
+        a:hover {
+            font-family: var(--toc-font-family);
+            color: var(--sidebar-active-color);
+            border-left: 3px solid var(--sidebar-active-color);
+            padding-left: 15px;
+        }
+
+        /* Making main sections bold */
+        .sidebar-item {
+            font-weight: bold;
+        }
+    }
+}
+
+/* Page Headings in TOC on Right Side */
+#quarto-margin-sidebar,
+#quarto-content .margin-sidebar,
+#quarto-sidebar #TOC {
+    ul {
+        li a {
+            font-family: var(--toc-font-family);
+            color: var(--sidebar-active-color); /* Consistent teal color for TOC links */
+            transition: color 0.3s;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--sidebar-active-color);
+            border-left: 3px solid var(--sidebar-active-color);
+            padding-left: 15px;
+        }
+    }
+}
+
+/* Style the section headers bold */
+#quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
+    font-weight: bold;
+}
+

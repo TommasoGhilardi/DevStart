@@ -1,0 +1,512 @@
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+Subjects
+Subjects = sample(3:20, 9)
+Childrens = db %>%
+filter(Group == 'Children' & Subject %in% Subjects) %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+View(Childrens)
+db %>%
+filter(Group == 'Children' & Subject %in% Subjects)
+db %>%
+filter(Group == 'Children' , Subject %in% Subjects)
+Childrens = db %>%
+filter(Group == 'Children' , Subjects %in% Subject)
+library(tidyverse)
+library(zoo)
+# Functions ------------------------------------------------------------
+#### Running correlation
+calculate_running_correlation <- function(Matrix, window_sizeP) {
+# Define a function to calculate correlation for each window
+calc_correlation <- function(window_rows) {
+if (sum(is.na(window_rows)) > 0.75*prod(dim(window_rows))){
+return(NA)
+} else {
+# Calculate the correlation matrix for the rows in the current window
+correlation_matrix <- cor(window_rows, use = "pairwise.complete.obs")
+correlation = average_fisher_z_transform(correlation_matrix)
+return(correlation)
+}
+}
+# Use rollapply to apply the function to each rolling window in the Matrix
+correlation_matrices <- rollapply(Matrix, width = window_sizeP, FUN = calc_correlation,
+by.column = FALSE, align = "center", partial = TRUE)
+# Return the list of correlation matrices
+return(correlation_matrices)
+}
+#### Extract Average normalized person correlation
+average_fisher_z_transform <- function(corr_matrix, threshold = 0.75) {
+# Check if more than a given threshold of the columns have a NA
+if(sum(colSums(is.na(corr_matrix)) >= ncol(corr_matrix)-1) > threshold*ncol(corr_matrix)) {
+return(NA)
+}
+# Take the lower triangle, excluding the diagonal
+lower_tri <- corr_matrix[lower.tri(corr_matrix)]
+# Apply Fisher's z transformation using atanh
+z_scores <- atanh(lower_tri)
+# Calculate the mean of z_scores
+average_z_score <- mean(z_scores, na.rm = TRUE)
+# Transform back to the correlation scale using tanh
+average_correlation <- tanh(average_z_score)
+return(average_correlation)
+}
+# Read Data and settings ------------------------------------------------------------
+Hz = 20
+Tresh =  0.75
+window_sizeP = Hz*2 # Window to calculate the rolling correlation over
+db = read.csv('C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\FinalData.csv', sep = ',')
+output_dir = 'C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\'
+# Prepare data for synchrony ------------------------------------------------------------
+# Extract correlation in Pupil ------------------------------------------------------------
+######## Adults ########
+Adults = db %>%
+filter(Group == 'Adults') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+ByStimulus = Adults %>%
+split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Adults$PupilSynch = unlist(Res,use.names=FALSE)
+Adults = Adults %>%
+mutate(PupilSynch = unlist(Res,use.names=FALSE),
+Group = 'Children')%>%
+select(Seconds, Group, Stimulus, PupilSynch )
+######## Children ########
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+ByStimulus = Children %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Children = Children %>%
+mutate(PupilSynch = unlist(Res,use.names=FALSE),
+Group = 'Children')%>%
+select(Seconds,Group, Stimulus, PupilSynch )
+Sub = sample(3:20, 9)
+Childrens = db %>%
+filter(Group == 'Children' , Subjects %in% Sub) %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+Childrens = db %>%
+filter(Group == 'Children' , Subject %in% Sub) %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+Sub
+db$Subject
+db$Subject %in% Sub
+Childrens = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+Children
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+Children
+Children[Sub]
+Sub = sample(3:20, 9)
+Children[Sub]
+for (x in 1:10){
+Sub = sample(3:20, 9)
+Children[Sub]
+}
+Children %>% slect(Sub)
+Children %>% select(Sub)
+Children %>% select(all_of(Sub))
+Sub = sample(3:20, 9)
+Children %>% select(all_of(Sub))
+1,2 Sub
+c(1,2 Sub)
+c(1,2,Sub)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+Chil
+t.test(Chil, Adults$PupilSynch)
+a= t.test(Chil, Adults$PupilSynch)
+View(a)
+as.data.frame(a)
+res = list()
+for (x in 1:10){
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+ByStimulus = Children %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+start.time = Sys.time()
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+end.time <- Sys.time()
+time.taken <- round(end.time - start.time,2)
+time.taken
+cl = makeCluster(6)
+library(parallel)
+cl = makeCluster(6)
+start.time = Sys.time()
+Res = parLapply(cl ,ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+library(tidyverse)
+library(zoo)
+#### Running correlation
+calculate_running_correlation <- function(Matrix, window_sizeP) {
+library(zoo)
+# Define a function to calculate correlation for each window
+calc_correlation <- function(window_rows) {
+if (sum(is.na(window_rows)) > 0.75*prod(dim(window_rows))){
+return(NA)
+} else {
+# Calculate the correlation matrix for the rows in the current window
+correlation_matrix <- cor(window_rows, use = "pairwise.complete.obs")
+correlation = average_fisher_z_transform(correlation_matrix)
+return(correlation)
+}
+}
+# Use rollapply to apply the function to each rolling window in the Matrix
+correlation_matrices <- rollapply(Matrix, width = window_sizeP, FUN = calc_correlation,
+by.column = FALSE, align = "center", partial = TRUE)
+# Return the list of correlation matrices
+return(correlation_matrices)
+}
+start.time = Sys.time()
+Res = parLapply(cl ,ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+#### Running correlation
+calculate_running_correlation <- function(Matrix, window_sizeP) {
+# Define a function to calculate correlation for each window
+calc_correlation <- function(window_rows) {
+if (sum(is.na(window_rows)) > 0.75*prod(dim(window_rows))){
+return(NA)
+} else {
+# Calculate the correlation matrix for the rows in the current window
+correlation_matrix <- cor(window_rows, use = "pairwise.complete.obs")
+correlation = average_fisher_z_transform(correlation_matrix)
+return(correlation)
+}
+}
+# Use rollapply to apply the function to each rolling window in the Matrix
+correlation_matrices <- rollapply(Matrix, width = window_sizeP, FUN = calc_correlation,
+by.column = FALSE, align = "center", partial = TRUE)
+# Return the list of correlation matrices
+return(correlation_matrices)
+}
+#### Extract Average normalized person correlation
+average_fisher_z_transform <- function(corr_matrix, threshold = 0.75) {
+# Check if more than a given threshold of the columns have a NA
+if(sum(colSums(is.na(corr_matrix)) >= ncol(corr_matrix)-1) > threshold*ncol(corr_matrix)) {
+return(NA)
+}
+# Take the lower triangle, excluding the diagonal
+lower_tri <- corr_matrix[lower.tri(corr_matrix)]
+# Apply Fisher's z transformation using atanh
+z_scores <- atanh(lower_tri)
+# Calculate the mean of z_scores
+average_z_score <- mean(z_scores, na.rm = TRUE)
+# Transform back to the correlation scale using tanh
+average_correlation <- tanh(average_z_score)
+return(average_correlation)
+}
+library(parallel)
+cl = makeCluster(6)
+# Load libraries on each node
+clusterEvalQ(cl, {
+library(tidyverse)
+library(zoo)
+})
+stopCluster(cl)
+library(parallel)
+cl = makeCluster(6)
+# Load libraries on each node
+clusterEvalQ(cl, {
+library(tidyverse)
+library(zoo)
+})
+clusterExport(cl, c("calculate_running_correlation", "average_fisher_z_transform"))
+start.time = Sys.time()
+Res = parLapply(cl ,ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+end.time <- Sys.time()
+time.taken <- round(end.time - start.time,2)
+time.taken
+stopCluster(cl)
+library(foreach)
+install.packages("foreach")
+library(foreach)
+###
+res = list()
+for (x in 1:10){
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+stopCluster(cl)
+library(parallel)
+library(foreach)
+# Prepare cluster
+cl = makeCluster(6)
+# Load libraries on each node
+clusterEvalQ(cl, {
+library(tidyverse)
+library(zoo)
+})
+clusterExport(cl, c("calculate_running_correlation", "average_fisher_z_transform"))
+###
+res = list()
+for (x in 1:10){
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+res
+# Parallelize loop using foreach()
+foreach(i = 1:10, .packages = c("parallel", "tidyverse", "zoo")) %dopar% {
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+registerDoParallel(backend = "multicore")
+stopCluster(cl)
+library(doParallel)
+install.packages("doParallel")
+library(doParallel)
+registerDoParallel(backend = "multicore")
+res= list()
+# Parallelize loop using foreach()
+foreach(i = 1:10, .packages = c("parallel", "tidyverse", "zoo")) %dopar% {
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+library(tidyverse)
+library(zoo)
+# Functions ------------------------------------------------------------
+#### Running correlation
+calculate_running_correlation <- function(Matrix, window_sizeP) {
+# Define a function to calculate correlation for each window
+calc_correlation <- function(window_rows) {
+if (sum(is.na(window_rows)) > 0.75*prod(dim(window_rows))){
+return(NA)
+} else {
+# Calculate the correlation matrix for the rows in the current window
+correlation_matrix <- cor(window_rows, use = "pairwise.complete.obs")
+correlation = average_fisher_z_transform(correlation_matrix)
+return(correlation)
+}
+}
+# Use rollapply to apply the function to each rolling window in the Matrix
+correlation_matrices <- rollapply(Matrix, width = window_sizeP, FUN = calc_correlation,
+by.column = FALSE, align = "center", partial = TRUE)
+# Return the list of correlation matrices
+return(correlation_matrices)
+}
+#### Extract Average normalized person correlation
+average_fisher_z_transform <- function(corr_matrix, threshold = 0.75) {
+# Check if more than a given threshold of the columns have a NA
+if(sum(colSums(is.na(corr_matrix)) >= ncol(corr_matrix)-1) > threshold*ncol(corr_matrix)) {
+return(NA)
+}
+# Take the lower triangle, excluding the diagonal
+lower_tri <- corr_matrix[lower.tri(corr_matrix)]
+# Apply Fisher's z transformation using atanh
+z_scores <- atanh(lower_tri)
+# Calculate the mean of z_scores
+average_z_score <- mean(z_scores, na.rm = TRUE)
+# Transform back to the correlation scale using tanh
+average_correlation <- tanh(average_z_score)
+return(average_correlation)
+}
+# Read Data and settings ------------------------------------------------------------
+Hz = 20
+Tresh =  0.75
+window_sizeP = Hz*2 # Window to calculate the rolling correlation over
+db = read.csv('C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\FinalData.csv', sep = ',')
+output_dir = 'C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\'
+cl = makeCluster(6)
+library(tidyverse)
+library(zoo)
+# Functions ------------------------------------------------------------
+#### Running correlation
+calculate_running_correlation <- function(Matrix, window_sizeP) {
+# Define a function to calculate correlation for each window
+calc_correlation <- function(window_rows) {
+if (sum(is.na(window_rows)) > 0.75*prod(dim(window_rows))){
+return(NA)
+} else {
+# Calculate the correlation matrix for the rows in the current window
+correlation_matrix <- cor(window_rows, use = "pairwise.complete.obs")
+correlation = average_fisher_z_transform(correlation_matrix)
+return(correlation)
+}
+}
+# Use rollapply to apply the function to each rolling window in the Matrix
+correlation_matrices <- rollapply(Matrix, width = window_sizeP, FUN = calc_correlation,
+by.column = FALSE, align = "center", partial = TRUE)
+# Return the list of correlation matrices
+return(correlation_matrices)
+}
+#### Extract Average normalized person correlation
+average_fisher_z_transform <- function(corr_matrix, threshold = 0.75) {
+# Check if more than a given threshold of the columns have a NA
+if(sum(colSums(is.na(corr_matrix)) >= ncol(corr_matrix)-1) > threshold*ncol(corr_matrix)) {
+return(NA)
+}
+# Take the lower triangle, excluding the diagonal
+lower_tri <- corr_matrix[lower.tri(corr_matrix)]
+# Apply Fisher's z transformation using atanh
+z_scores <- atanh(lower_tri)
+# Calculate the mean of z_scores
+average_z_score <- mean(z_scores, na.rm = TRUE)
+# Transform back to the correlation scale using tanh
+average_correlation <- tanh(average_z_score)
+return(average_correlation)
+}
+# Read Data and settings ------------------------------------------------------------
+Hz = 20
+Tresh =  0.75
+window_sizeP = Hz*2 # Window to calculate the rolling correlation over
+db = read.csv('C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\FinalData.csv', sep = ',')
+output_dir = 'C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\PupilDilationSync_2023\\Data\\ProcessedData\\'
+# Prepare data for synchrony ------------------------------------------------------------
+# Extract correlation in Pupil ------------------------------------------------------------
+######## Adults ########
+Adults = db %>%
+filter(Group == 'Adults') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+ByStimulus = Adults %>%
+split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Adults$PupilSynch = unlist(Res,use.names=FALSE)
+Adults = Adults %>%
+mutate(PupilSynch = unlist(Res,use.names=FALSE),
+Group = 'Children')%>%
+select(Seconds, Group, Stimulus, PupilSynch )
+######## Children ########
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+ByStimulus = Children %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply(ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Children = Children %>%
+mutate(PupilSynch = unlist(Res,use.names=FALSE),
+Group = 'Children')%>%
+select(Seconds,Group, Stimulus, PupilSynch )
+library(parallel)
+library(foreach)
+# Prepare cluster
+cl = makeCluster(6)
+# Load libraries on each node
+clusterEvalQ(cl, {
+library(tidyverse)
+library(zoo)
+})
+clusterExport(cl, c("calculate_running_correlation", "average_fisher_z_transform"))
+library(doParallel)
+registerDoParallel()
+res= list()
+# Parallelize loop using foreach()
+foreach(x = 1:10, .packages = c("parallel", "tidyverse", "zoo")) %dopar% {
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+for (x in 1:10){
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+###
+res = list()
+for (x in 1:10){
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+res= list()
+# Parallelize loop using foreach()
+foreach(x = 1:10, .packages = c("parallel", "tidyverse", "zoo")) %dopar% {
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = parLapply(cl, ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}
+res= list()
+Children = db %>%
+filter(Group == 'Children') %>%
+arrange(Stimulus) %>%
+pivot_wider(names_from = Subject, values_from = Pupil,
+id_cols = c( "Seconds", "Stimulus"))
+res= list()
+# Parallelize loop using foreach()
+foreach(x = 1:10, .packages = c("parallel", "tidyverse", "zoo")) %dopar% {
+print(x)
+Sub = sample(3:20, 9)
+ByStimulus = Children %>% select(all_of(c(1,2,Sub))) %>% split(.$Stimulus)
+ByStimulus = lapply(ByStimulus, function(df) df %>% select(-1:-2))
+Res = lapply( ByStimulus , calculate_running_correlation, window_sizeP = window_sizeP)
+Chil =  unlist(Res,use.names=FALSE)
+res[[x]]= t.test(Chil, Adults$PupilSynch)
+}

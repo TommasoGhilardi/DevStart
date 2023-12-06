@@ -1,0 +1,11 @@
+"0","# Compare the two models with or without age
+# both models here are not significative I'll use the 
+# one with age but doesn't make a lot of sense
+test_performance(Time.mod2.timeattempt,Time.mod1.timeattempt)
+"
+"1","Name                  | Model |    BF | df | df_diff | Chi2 |     p
+-------------------------------------------------------------------
+Time.mod2.timeattempt |    lm |       |  7 |         |      |      
+Time.mod1.timeattempt |    lm | 88.15 |  4 |   -3.00 | 3.47 | 0.324
+Models were detected as nested (in terms of fixed parameters) and are compared in sequential order.
+"

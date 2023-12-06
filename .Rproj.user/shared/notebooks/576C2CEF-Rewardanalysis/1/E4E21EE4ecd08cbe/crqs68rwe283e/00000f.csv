@@ -1,0 +1,5 @@
+"0","comb1 = plot_grid(T1.1, T1.2, NULL, T2, NULL, T3.1, T3.2,"
+"0","                  nrow = 7, align = ""v"", axis = ""lr"","
+"0","                  rel_heights = c(2, 1.2, 0.9, 2, 0.9, 2, 1.2)) "
+"0","ggsave(paste(output,'FinalPlot_Time.jpg', sep = ''),comb1 , width = 1920*3, height = 1080*10, units = ""px"", dpi = 300)"
+"0","comb1"
