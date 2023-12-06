@@ -3,7 +3,7 @@
     "path": "C:/Users/tomma/OneDrive - Birkbeck, University of London/TomassoGhilardi/PersonalProj/Website/DevStart/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "4046170249",
+    "hash": "3318568816",
     "contents": "",
     "dirty": false,
     "created": 1701881591348.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "35,6",
-        "scrollLine": "8"
+        "cursorPosition": "4,14",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701881693,
+    "lastKnownWriteTime": 1701882719,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701881693053,
+    "last_content_update": 1701882719221,
     "read_only": false,
     "read_only_alternatives": []
 }

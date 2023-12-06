@@ -1,6 +1,9 @@
 project:
   type: website
 
+execute:
+  freeze: auto
+
 website:
   back-to-top-navigation: true
   cookie-consent:

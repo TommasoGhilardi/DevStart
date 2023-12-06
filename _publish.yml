@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: "f35b529e-4565-4c95-b8ab-e24ddd224677"
+      url: "https://jocular-cupcake-f72666.netlify.app"
