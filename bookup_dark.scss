@@ -14,6 +14,7 @@ $footer-bg: #1c1f2b;
 $footer-fg: #cad2dd;
 $toc-color: #008080;
 
+
 /*-- scss:rules --*/
 
 :root {
@@ -119,5 +120,7 @@ body {
 }
 
 
-
-/* Additional styles for your site (if any) should follow here */
+/* Style the section headers bold */
+#quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
+    font-weight: bold;
+}
