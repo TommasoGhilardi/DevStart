@@ -302,6 +302,77 @@ Tobii eye-tracker
 </section>
 <section id="short-recap-of-the-paradigm" class="level2">
 <h2 class="anchored" data-anchor-id="short-recap-of-the-paradigm">Short recap of the paradigm</h2>
+<p>As we alredy mentioned, we will use the experiemntal dsign that we created in <a href="./GettingStartedWithPsychopy.html">Getting started with Psychopy</a> as a base and we will add things to it to make it an eye-tracking study. Before getting started, let’s review the design.</p>
+<p>After a fixation cross two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/GettingStartedWithPsychopy/Design.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Here the code we wrote together to build this design.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's define the path we will work with.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># in my case the stimuli that we will use are in here but you will have to adapt</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this variable to where you have downloaded the stimuli.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Path <span class="op">=</span> <span class="vs">r'C:\\Users\\tomma\\surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl\\Documentation\\Working\\GettingStartedWithPsychopy\\'</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(fullscr <span class="op">=</span> <span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'fixation.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'circle.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'square.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'winning.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="dv">600</span>,<span class="dv">0</span>))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'loosing.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">600</span>,<span class="dv">0</span>))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'winning.wav'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'loosing.wav'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.3</span>) <span class="co"># add Inter Stimulus Interval to make exp more understandable</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>win.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>

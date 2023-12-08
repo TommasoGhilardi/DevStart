@@ -216,6 +216,12 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./CreateAnEyetrackingExperiment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create an eye-tracking experiment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./I2MC_tutorial.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Using I2MC for robust fixation extraction</span></a>
   </div>
@@ -240,7 +246,12 @@ cookieconsent.run({
   <ul class="collapse">
   <li><a href="#everything-into-a-function" id="toc-everything-into-a-function" class="nav-link" data-scroll-target="#everything-into-a-function">Everything into a function</a></li>
   <li><a href="#find-our-data" id="toc-find-our-data" class="nav-link" data-scroll-target="#find-our-data">Find our data</a></li>
+  <li><a href="#define-the-output-folder" id="toc-define-the-output-folder" class="nav-link" data-scroll-target="#define-the-output-folder">Define the output folder</a></li>
+  <li><a href="#i2mc-settings" id="toc-i2mc-settings" class="nav-link" data-scroll-target="#i2mc-settings">I2MC settings</a></li>
+  <li><a href="#run-i2mc" id="toc-run-i2mc" class="nav-link" data-scroll-target="#run-i2mc">Run I2MC</a></li>
   </ul></li>
+  <li><a href="#we-are-done" id="toc-we-are-done" class="nav-link" data-scroll-target="#we-are-done">WE ARE DONE!!!!!</a></li>
+  <li><a href="#entire-script" id="toc-entire-script" class="nav-link" data-scroll-target="#entire-script">Entire script</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -415,9 +426,330 @@ Note
 <li><code>/*.csv</code>: We’re asking Python to look for files with names ending in “.csv”.</li>
 <li><code>recursive=True</code>: This option means that Python should search for files not just in the immediate subfolders but in all the subfolders within subfolders, and so on.</li>
 </ul>
-
-
+<p>So, when we run this code, Python will find and give us a list of all the “.csv” files located in any subfolder within our specified path. This makes it really convenient to find and work with lots of files at once.</p>
 </section>
+<section id="define-the-output-folder" class="level3">
+<h3 class="anchored" data-anchor-id="define-the-output-folder">Define the output folder</h3>
+<p>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called <em>i2mc_output</em>. Using the <em>os</em> library we make sure the output folder dosen’t exist (<code>os.path.isdir(output_fodler)</code>) and then we create it (<code>os.mkdir(output_fodler)</code>)</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">tomma</span><span class="ch">\\</span><span class="st">i2mc_tutorial</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the folder</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="i2mc-settings" class="level3">
+<h3 class="anchored" data-anchor-id="i2mc-settings">I2MC settings</h3>
+<p>Now that we’ve got our data, know how to import it using glob and we have out output folder, we’re all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you’re curious about what each of these settings does, you can explore the original <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">I2MC article</a> for a detailed understanding. Here I’ve added a general explanation about what each setting does. Once you’ve read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</p>
+<p>Let’s define these settings:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> <span class="op">-</span>opt[<span class="st">'xres'</span>]          <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> <span class="op">-</span>opt[<span class="st">'yres'</span>]          <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run-i2mc" class="level3">
+<h3 class="anchored" data-anchor-id="run-i2mc">Run I2MC</h3>
+<p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot .</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run I2MC</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt,log_level<span class="op">==</span><span class="dv">2</span>,logging_offset<span class="op">=</span><span class="st">"      "</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="we-are-done" class="level2">
+<h2 class="anchored" data-anchor-id="we-are-done">WE ARE DONE!!!!!</h2>
+<p>Congratulations on reaching this point! By now, you should have new files containing valuable information from I2MC.</p>
+<p>But what exactly does I2MC tell us?</p>
+<p>I2MC provides us with a data frame that contains various pieces of information:</p>
+<p><strong>What I2MC Returns:</strong></p>
+<ul>
+<li><p><code>cutoff</code>: A number representing the cutoff used for fixation detection.</p></li>
+<li><p><code>start</code>: An array holding the indices where fixations start.</p></li>
+<li><p><code>end</code>: An array holding the indices where fixations end.</p></li>
+<li><p><code>startT</code>: An array containing the times when fixations start.</p></li>
+<li><p><code>endT</code>: An array containing the times when fixations end.</p></li>
+<li><p><code>dur</code>: An array storing the durations of fixations.</p></li>
+<li><p><code>xpos</code>: An array representing the median horizontal position for each fixation in the trial.</p></li>
+<li><p><code>ypos</code>: An array representing the median vertical position for each fixation in the trial.</p></li>
+<li><p><code>flankdataloss</code>: A boolean value (1 or 0) indicating whether a fixation is flanked by data loss (1) or not (0).</p></li>
+<li><p><code>fracinterped</code>: A fraction that tells us the amount of data loss or interpolated data in the fixation data.</p></li>
+</ul>
+<p>In simple terms, I2MC helps us understand where and for how long a person’s gaze remains fixed during an eye-tracking experiment. This is just the first step. Now that we have our fixations, we’ll need to use them to extract the information we’re interested in. Typically, this involves using the raw data to understand what was happening at each specific time point and using the data from I2MC to determine where the participant was looking at that time. This will be covered in a new tutorial. For now, you’ve successfully completed the preprocessing of your eye-tracking data, extracting a robust estimation of participants’ fixations!!</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caution: This tutorial is simplified and assumes the following:</p>
+<ul>
+<li><p>Each participant has only one file (1 trial).</p></li>
+<li><p>All files contain data.</p></li>
+<li><p>The data is relatively clean (I2MC won’t throw any errors).</p></li>
+<li><p>And so on.</p></li>
+</ul>
+<p><strong>If your data doesn’t match these assumptions, you may need to modify the script to handle any discrepancies.</strong></p>
+<p>For a more comprehensive example and in-depth usage, check out the <a href="https://github.com/dcnieho/I2MC_Python/tree/master/example">I2MC repository</a>. It provides a more complete example with data checks for missing data and potential errors. Now that you’ve understood the basics here, interpreting that example should be much easier. If you encounter any issues while running the script, you can give that example a try or reach out to us via email!!!</p>
+</div>
+</div>
+</section>
+<section id="entire-script" class="level2">
+<h2 class="anchored" data-anchor-id="entire-script">Entire script</h2>
+<p>To make it simple here is the entire script that we wrote together!!!</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tobii_TX300(fname, res<span class="op">=</span>[<span class="dv">1920</span>,<span class="dv">1080</span>]):</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Imports data from Tobii TX300</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    fname : string</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">        The file (filepath)</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    res : tuple</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">        The (X,Y) resolution of the screen</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">    df : pandas.DataFrame</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">         Gaze data, with columns:</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">         t : The sample times from the dataset</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">         L_X : X positions from the left eye</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">         L_Y : Y positions from the left eye</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">         R_X : X positions from the right eye</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">         R_Y : Y positions from the right eye</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load all data</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(fname, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract required data</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'Time'</span>]</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'LeftX'</span>]</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'LeftY'</span>]</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'RightX'</span>]</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'RightY'</span>]</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">###</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distance outside the monitor.</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left eye</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'ValidityLeft'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right eye</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>    rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>    rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'ValidityRight'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(df)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparation</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">tomma</span><span class="ch">\\</span><span class="st">i2mc_tutorial</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>) <span class="co"># find all the files</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">tomma</span><span class="ch">\\</span><span class="st">i2mc_tutorial</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the outputfolder</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> <span class="op">-</span>opt[<span class="st">'xres'</span>]          <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> <span class="op">-</span>opt[<span class="st">'yres'</span>]          <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="co"># Run I2MC</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files))</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt,log_level<span class="op">==</span><span class="dv">2</span>,logging_offset<span class="op">=</span><span class="st">"      "</span>)</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 </section>
 
