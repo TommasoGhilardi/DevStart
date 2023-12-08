@@ -41,7 +41,7 @@ website:
     # *gettting started with developmental science*'
     
     # title: "DevStart"
-    logo: LOGO.png # IconB2.svg
+    logo: images/LOGO.png # IconB2.svg
 
     
     tools:
