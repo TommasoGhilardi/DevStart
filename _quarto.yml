@@ -7,11 +7,12 @@ execute:
 
 website:
   back-to-top-navigation: true
-  # cookie-consent:
-  #   type: implied 
-  #   style: interstitial  
-  #   palette: light 
-  
+  google-analytics: "G-G5XSH1GLW7"
+  cookie-consent:
+    type: implied
+    style: interstitial
+    palette: light
+
   
   search:
     location: sidebar
