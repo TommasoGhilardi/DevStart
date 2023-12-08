@@ -1,0 +1,112 @@
+/*-- scss:defaults --*/
+
+$font-family-monospace: "Fira Mono", "Menlo", "Andale Mono", monospace;
+$font-size-root: 16px;
+$h1-font-size: 2.2em;
+$h2-font-size: 1.75em;
+$h3-font-size: 1.5em;
+$h4-font-size: 1.25em;
+$toc-color: #00b3b3; /* Updated to accent color */
+
+/*-- scss:rules --*/
+
+:root {
+    --bs-body-font-weight: 300;
+    --link-color: #00b3b3; /* Updated to accent color */
+    --sidebar-active-color: #00b3b3; /* Updated to accent color */
+
+    --toc-border-color: #008080; /* Updated to secondary background color */
+
+    --sidebar-fg: #E0E0E0; /* Updated to text color */
+    --sidebar-bg-docked: #000000; /* Updated to primary background color */
+    --sidebar-border: #008080; /* Updated to secondary background color */
+    --sidebar-part-color: #00b3b3; /* Updated to accent color */
+    --sidebar-input-border: #008080; /* Updated to secondary background color */
+    --sidebar-form-bg: transparent;
+
+    --figure-img-border: 1px solid #008080; /* Updated to secondary background color */
+    --figure-img-shadow: 1px 1px 10px #008080; /* Updated to secondary background color */
+
+    --code-block-color: #E0E0E0; /* Updated to text color */
+    --code-block-bg: #000000; /* Updated to primary background color */
+    --code-color: #00b3b3; /* Updated to accent color */
+    --code-bg: #000000; /* Updated to primary background color */
+
+    --hl-code-comments: #A0A0A0; /* Updated to secondary text color */
+
+    --header-footer-border: #008080; /* Updated to secondary background color */
+
+    --table-tr-border: #008080; /* Updated to secondary background color */
+    --table-out-borders: #008080; /* Updated to secondary background color */
+    --table-tr-hover: rgba(0, 179, 179, 0.1); /* Updated to a lighter accent color */
+
+    --reader-toggle-bg: #000000; /* Updated to primary background color */
+    --reader-toggle-border: #008080; /* Updated to secondary background color */
+
+    --callout-color: #E0E0E0; /* Updated to text color */
+    --callout-warning-bg: #333333; /* Darker shade for callouts */
+    --callout-warning-title: #E0E0E0; /* Updated to text color */
+    --callout-note-bg: #222222; /* Even darker shade for callouts */
+    --callout-note-title: #E0E0E0; /* Updated to text color */
+    --callout-important-bg: #333333; /* Darker shade for callouts */
+    --callout-important-title: #E0E0E0; /* Updated to text color */
+    --callout-caution-bg: #333333; /* Darker shade for callouts */
+    --callout-caution-title: #E0E0E0; /* Updated to text color */
+    --callout-tip-bg: #222222; /* Even darker shade for callouts */
+    --callout-tip-title: #E0E0E0; /* Updated to text color */
+
+    --listing-card-border: #008080; /* Updated to secondary background color */
+    --listing-card-shadow: rgba(0, 0, 0, 0.05);
+    --listing-card-shadow-hover: rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+#quarto-sidebar,
+#quarto-content .sidebar-navigation {
+    .sidebar-item-container {
+        margin-bottom: 1em; /* Increased space between sidebar items */
+
+        a {
+            color: var(--sidebar-fg);
+            transition: color 0.3s;
+        }
+
+        a.active,
+        a:hover {
+            font-family: var(--toc-font-family);
+            color: var(--sidebar-active-color);
+            border-left: 3px solid var(--sidebar-active-color);
+            padding-left: 15px;
+        }
+
+        /* Making main sections bold */
+        .sidebar-item {
+            font-weight: bold;
+        }
+    }
+}
+
+/* Page Headings in TOC on Right Side */
+#quarto-margin-sidebar,
+#quarto-content .margin-sidebar,
+#quarto-sidebar #TOC {
+    ul {
+        li a {
+            font-family: var(--toc-font-family);
+            color: var(--sidebar-active-color); /* Consistent teal color for TOC links */
+            transition: color 0.3s;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--sidebar-active-color);
+            border-left: 3px solid var(--sidebar-active-color);
+            padding-left: 15px;
+        }
+    }
+}
+
+/* Style the section headers bold */
+#quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
+    font-weight: bold;
+}

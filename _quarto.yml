@@ -1,6 +1,7 @@
 project:
   type: website
-
+  output-dir: docs
+  
 execute:
   freeze: auto
 
@@ -40,7 +41,7 @@ website:
     # *gettting started with developmental science*'
     
     # title: "DevStart"
-    logo: IconB2.svg
+    logo: LOGO.png # IconB2.svg
 
     
     tools:
@@ -54,15 +55,15 @@ website:
       - index.qmd
       - section: "Getting started:"
         contents:
-          - GettingStartedWithPython.qmd
+          - CONTENT/GettingStarted/GettingStartedWithPython.qmd
       - section: "Creating an experiment:"
         contents: 
-          - GettingStartedWithPsychopy.qmd
+          - CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd
       - section: "Eye-tracking"
         contents: 
-            - Intro_eyetracking.qmd
-            - CreateAnEyetrackingExperiment.qmd
-            - I2MC_tutorial.qmd
+            - CONTENT/EyeTracking/Intro_eyetracking.qmd
+            - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
+            - CONTENT/EyeTracking/I2MC_tutorial.qmd
           
 
 

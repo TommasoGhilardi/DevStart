@@ -7,7 +7,7 @@ description-meta: Your guide to getting started in developmental psychology and 
 keywords: DevStart, developmental cognitive science, PhD, research methods, data analysis,programming, neuroscience, psychology, developmental research, developmental science
 ---
 
-# What is thisssss?
+# What is this?
 
 This is a helpline for all the new PhD students in developmental psychology and developmental cognitive neuroscience, and everyone who is approaching this world for the first time. 
 
