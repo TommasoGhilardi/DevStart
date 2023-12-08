@@ -62,7 +62,8 @@ You can download from [here](resources\getting_started_psychopy\getting_started_
 -   a sound of losing at an arcade game
 :::
 
-In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding.
+In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding. Here below you can find a graphic representation of the design:\
+![](images/GettingStartedWithPsychopy/Design.jpg)
 
 ### Preparation:
 

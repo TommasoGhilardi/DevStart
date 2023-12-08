@@ -49,3 +49,75 @@ You should end up like with something like this:\
 **Now we are all set and ready to go !!!!!!!!!!**
 
 ## Short recap of the paradigm
+
+As we alredy mentioned, we will use the experiemntal dsign that we created in [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) as a base and we will add things to it to make it an eye-tracking study. Before getting started, let's review the design.
+
+After a fixation cross two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.
+
+![](images/GettingStartedWithPsychopy/Design.jpg){fig-align="center"}
+
+Here the code we wrote together to build this design.
+
+```{python}
+# Import some libraries from PsychoPy
+from psychopy import visual
+from psychopy import core
+from psychopy import sound
+
+# Let's define the path we will work with.
+# in my case the stimuli that we will use are in here but you will have to adapt
+# this variable to where you have downloaded the stimuli.
+Path = r'C:\\Users\\tomma\\surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl\\Documentation\\Working\\GettingStartedWithPsychopy\\'
+
+# create a window
+win = visual.Window(fullscr = True, units="pix")
+
+# Load images
+fixation = visual.ImageStim(win, image=Path + 'fixation.png', size = (100, 100))
+circle   = visual.ImageStim(win, image=Path + 'circle.png', size = (100, 100))
+square   = visual.ImageStim(win, image=Path + 'square.png', size = (100, 100))
+winning   = visual.ImageStim(win, image=Path + 'winning.png', size = (100, 100), pos=(600,0))
+loosing  = visual.ImageStim(win, image=Path + 'loosing.png', size = (100, 100), pos=(-600,0))
+
+# Load sound
+winning_sound = sound.Sound(Path + 'winning.wav')
+losing_sound = sound.Sound(Path + 'loosing.wav')
+
+# List of stimuli
+cues = [circle, square] # put both cues in a list
+rewards = [winning, loosing] # put both rewards in a list
+sounds = [winning_sound,losing_sound] # put both sounds in a list
+
+
+# Create list of trials in which 0 means winning and 1 means losing
+Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
+
+
+for trial in Trials:
+
+    ### Present the fixation
+    win.flip() # we flip to clean the window
+
+    fixation.draw()
+    win.flip()
+    core.wait(1)  # wait for 1 second
+
+
+    ### Present the cue
+    cues[trial].draw()
+    win.flip()
+    core.wait(3)  # wait for 3 seconds
+
+
+    ### Present the reward
+    rewards[trial].draw()
+    win.flip()
+    sounds[trial].play()
+    core.wait(2)  # wait for 1 second
+    win.flip()    # we re-flip at the end to clean the window
+
+    ### ISI
+    core.wait(0.3) # add Inter Stimulus Interval to make exp more understandable
+
+win.close()
+```
