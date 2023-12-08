@@ -10,8 +10,7 @@ website:
   google-analytics: "G-G5XSH1GLW7"
   cookie-consent:
     type: implied
-    style: interstitial
-    palette: light
+    style: simple    
 
   
   search:
