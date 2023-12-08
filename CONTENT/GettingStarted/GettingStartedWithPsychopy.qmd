@@ -52,7 +52,7 @@ We will create a very simple and basic experiment that will be the stepping ston
 ::: callout-important
 ## Stimuli!
 
-You can download from [here](resources\getting_started_psychopy\getting_started_psychopy.zip) the stimuli that we will use in this example. They are very simple and basic stimuli:
+You can download from [here](/resources/getting_started_psychopy/getting_started_psychopy.zip) the stimuli that we will use in this example. They are very simple and basic stimuli:
 
 -   a fixation cross
 -   two cues (a circle and a square)

@@ -34,4 +34,4 @@ Beware! Stimuli should be carefully designed, controlling their luminance (not t
 
 Here is a visual summary of what you can measure:
 
-![](images/Introduction_eyetracking/Design.jpg){fig-align="center"}
+![](/images/Introduction_eyetracking/Design.jpg){fig-align="center"}

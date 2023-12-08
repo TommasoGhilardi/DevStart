@@ -33,7 +33,7 @@ Great! We have installed the Tobii SDK. However, using the SDK is not very easy.
 
 To use Psychopy_tobii_infant, you need to go to this GitHub page: <https://github.com/yh-luo/psychopy_tobii_infant>. On this page, you can click on ***\<\>Code*** and then on ***Download ZIP*** as shown below:
 
-![](images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg){fig-align="center" width="545"}
+![](/images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg){fig-align="center"}
 
 Perfect!! Now that we have downloaded the code as a zip file we need to:
 
@@ -54,7 +54,7 @@ As we alredy mentioned, we will use the experiemntal dsign that we created in [G
 
 After a fixation cross two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.
 
-![](images/GettingStartedWithPsychopy/Design.jpg){fig-align="center"}
+![](/images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png){fig-align="center"}
 
 Here the code we wrote together to build this design.
 

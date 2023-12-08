@@ -7,10 +7,10 @@ execute:
 
 website:
   back-to-top-navigation: true
-  cookie-consent:
-    type: express
-    style: interstitial  
-    palette: light 
+  # cookie-consent:
+  #   type: implied 
+  #   style: interstitial  
+  #   palette: light 
   
   
   search:
@@ -33,12 +33,10 @@ website:
 
   sidebar:
     style: "floating"
-    # background: "#FFFFFF"
     border: true
     align: center
     
-    # header: '# **DevStart**   
-    # *gettting started with developmental science*'
+
     
     # title: "DevStart"
     logo: images/LOGO.png # IconB2.svg
