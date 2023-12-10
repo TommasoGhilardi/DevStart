@@ -41,7 +41,7 @@ Thus we suggest to install Spyder in your newly created "psychopy" environment. 
 conda install –c anaconda spyder
 ```
 
-You can also refer to our guide [Installing ](GettingStartedWithPython.qmd#sec-installspyder)[Spyder](GettingStartedWithPython.qmd#sec-installspyder)[ide](GettingStartedWithPython.qmd#sec-installspyder).
+You can also refer to our guide [InstallingSpyderide](GettingStartedWithPython.qmd#sec-installspyder).
 
 Now that you should have both PsychoPy and Spyder installed let's see how to create a simple experiment with them.
 
