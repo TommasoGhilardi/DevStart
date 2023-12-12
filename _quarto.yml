@@ -6,13 +6,16 @@ execute:
   freeze: auto
 
 website:
-  back-to-top-navigation: true
   google-analytics: "G-G5XSH1GLW7"
+  twitter-card: true
+  open-graph: true
+  
   cookie-consent:
     type: implied
     style: simple    
 
-  
+  back-to-top-navigation: true
+
   search:
     location: sidebar
     type: textbox
