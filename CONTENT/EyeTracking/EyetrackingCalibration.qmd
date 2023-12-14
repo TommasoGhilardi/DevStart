@@ -1,0 +1,24 @@
+---
+title: "EyetrackingCalibration"
+---
+
+However, using the SDK is not very easy. But don't worry! We have a solution for you. We can use [Psychopy_tobii_infant](https://github.com/yh-luo/psychopy_tobii_infant), a wrapper around the Tobii SDK that is specially designed for running infant-friendly studies. This code collection allows us to use the Tobii SDK with the Psychopy interface.
+
+To use Psychopy_tobii_infant, you need to go to this GitHub page: <https://github.com/yh-luo/psychopy_tobii_infant>. On this page, you can click on ***\<\>Code*** and then on ***Download ZIP*** as shown below:
+
+![](/images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg){fig-align="center"}
+
+Perfect!! Now that we have downloaded the code as a zip file we need to:
+
+-   extract the file
+
+-   identify the folder *'psychopy_tobii_infant'*
+
+-   copy this folder in the same location of your eye-tracking experiment script
+
+You should end up like with something like this:
+
+\
+![](/images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png)
+
+**Now we are all set and ready to go !!!!!!!!!!**

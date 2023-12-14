@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="eye-tracking, experiments, saccadic latency, looking time, pupil dilation, fixations, infant research, DevStart, developmental science">
 
-<title>Introduction to eye-tracking</title>
+<title>EyetrackingCalibration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,12 +90,12 @@ cookieconsent.run({
   
 
 
-<meta property="og:title" content="Introduction to eye-tracking">
+<meta property="og:title" content="EyetrackingCalibration">
 <meta property="og:description" content="">
-<meta property="og:image" content="../..\images/Introduction_eyetracking/Design.jpg">
-<meta name="twitter:title" content="Introduction to eye-tracking">
+<meta property="og:image" content="../..\images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg">
+<meta name="twitter:title" content="EyetrackingCalibration">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="../..\images/Introduction_eyetracking/Design.jpg">
+<meta name="twitter:image" content="../..\images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -109,7 +108,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Eye-tracking</a></li><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Introduction to eye-tracking</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">EyetrackingCalibration</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -190,7 +189,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to eye-tracking</span></a>
   </div>
 </li>
@@ -214,23 +213,14 @@ cookieconsent.run({
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#how-to-build-an-eye-tracking-experiment" id="toc-how-to-build-an-eye-tracking-experiment" class="nav-link active" data-scroll-target="#how-to-build-an-eye-tracking-experiment">How to build an eye-tracking experiment</a>
-  <ul class="collapse">
-  <li><a href="#what-do-you-want-to-measure" id="toc-what-do-you-want-to-measure" class="nav-link" data-scroll-target="#what-do-you-want-to-measure">What do you want to measure?</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to eye-tracking</h1>
+<h1 class="title">EyetrackingCalibration</h1>
 </div>
 
 
@@ -245,64 +235,25 @@ cookieconsent.run({
 
 </header>
 
-<p>Eye-tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</p>
-<p>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time or pupil dilation).</p>
-<section id="how-to-build-an-eye-tracking-experiment" class="level1">
-<h1>How to build an eye-tracking experiment</h1>
-<section id="what-do-you-want-to-measure" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-you-want-to-measure">What do you want to measure?</h2>
-<p>It is much easier to start an eye-tracking project if you have a clear idea of what you want to measure. Classic paradigms on infant research rely on <strong>looking time</strong> (How long are infants attending a given stimulus?) and are often called Violation-of-Expectation tasks. They familiarize infants with a given stimulus or situation (e.g.&nbsp;a cat) and, after a given number of presentations (e.g., 8), they present a different stimulus (e.g., a dog). Do infants look longer at the dog, compared to the cat? If so, they were able to spot that something changed.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they could spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</p>
-</div>
-</div>
-<p>Another very popular eye-tracking measure is <strong>saccadic latency</strong>. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Beware! Saccadic latencies are not a perfect measure of learning. Infants might be faster at looking at something just because they are more interested (pick interesting stimuli to keep them engaged!), and they might become slower due to boredom or fatigue (introduce variation in the stimuli, so that they become less boring over time!).</p>
-</div>
-</div>
-<p>The fanciest eye-tracking measure is <strong>pupil dilation</strong>. It allows us to measure arousal (How interested is the infant in the stimulus?), cognitive effort (How difficult is the task?), and - my special favourite - uncertainty (Does the infant know what will happen next?). However, its fame comes at a price: It is not only the fanciest, but also the most persnickety…</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the center of the screen, as pupil dilation measures are inaccurate elsewhere; Pupil dilation is very slow, so the stimulus presentation also has to be slow; A fixation cross has to precede the moment in which pupil dilation is measured so that its signal returns to baseline before you observe the change you care about. But if you feel confident about your paradigm, go for it!!</p>
-</div>
-</div>
-<p>Here is a visual summary of what you can measure:</p>
+<p>However, using the SDK is not very easy.&nbsp;But don’t worry!&nbsp;We have a solution for you. We can use&nbsp;<a href="https://github.com/yh-luo/psychopy_tobii_infant">Psychopy_tobii_infant</a>, a wrapper around the Tobii SDK that is specially designed for running infant-friendly studies. This code collection allows us to use the Tobii SDK with the Psychopy interface.</p>
+<p>To use Psychopy_tobii_infant, you need to go to this GitHub page: <a href="https://github.com/yh-luo/psychopy_tobii_infant" class="uri">https://github.com/yh-luo/psychopy_tobii_infant</a>. On this page, you can click on <strong><em>&lt;&gt;Code</em></strong> and then on <strong><em>Download ZIP</em></strong> as shown below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/Introduction_eyetracking/Design.jpg" class="img-fluid figure-img"></p>
+<p><img src="../..\images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg" class="img-fluid figure-img"></p>
 </figure>
 </div>
+<p>Perfect!! Now that we have downloaded the code as a zip file we need to:</p>
+<ul>
+<li><p>extract the file</p></li>
+<li><p>identify the folder <em>‘psychopy_tobii_infant’</em></p></li>
+<li><p>copy this folder in the same location of your eye-tracking experiment script</p></li>
+</ul>
+<p>You should end up like with something like this:</p>
+<p><br>
+<img src="../..\images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png" class="img-fluid"></p>
+<p><strong>Now we are all set and ready to go !!!!!!!!!!</strong></p>
 
 
-</section>
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

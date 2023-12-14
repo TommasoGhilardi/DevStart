@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tommaso Ghilardi">
-<meta name="keywords" content="PsychoPy, Python, eye-tracking, psychopy_tobii_infant, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science">
-<meta name="description" content="Learn how to record eyetracking data in your psychopy experiment using Tobii SDK and psychopy_tobii_infant.">
+<meta name="keywords" content="PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science">
+<meta name="description" content="Learn how to record eyetracking data in your psychopy experiment using Tobii SDK, tobii_research">
 
 <title>Create an eye-tracking experiment</title>
 <style>
@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -98,8 +100,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G5XSH1GLW7"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  });
+});
+</script> 
+  
 
 
+<meta property="og:title" content="Create an eye-tracking experiment">
+<meta property="og:description" content="">
+<meta name="twitter:title" content="Create an eye-tracking experiment">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating">
@@ -130,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
-    <a href="https://github.com" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/TommasoGhilardi/DevStart" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -220,8 +252,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-to-connect-to-the-eye-tracker" id="toc-how-to-connect-to-the-eye-tracker" class="nav-link active" data-scroll-target="#how-to-connect-to-the-eye-tracker">How to connect to the eye-tracker</a></li>
+  <li><a href="#tobii_sdk" id="toc-tobii_sdk" class="nav-link active" data-scroll-target="#tobii_sdk">Tobii_sdk</a>
+  <ul class="collapse">
+  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">Install</a></li>
+  <li><a href="#connect-to-the-eye-tracker" id="toc-connect-to-the-eye-tracker" class="nav-link" data-scroll-target="#connect-to-the-eye-tracker">Connect to the eye-tracker</a></li>
+  <li><a href="#collect-data" id="toc-collect-data" class="nav-link" data-scroll-target="#collect-data">Collect data</a></li>
+  <li><a href="#triggersevents" id="toc-triggersevents" class="nav-link" data-scroll-target="#triggersevents">Triggers/Events</a></li>
+  <li><a href="#save-the-data" id="toc-save-the-data" class="nav-link" data-scroll-target="#save-the-data">Save the data</a></li>
+  </ul></li>
+  <li><a href="#create-the-actual-experiment" id="toc-create-the-actual-experiment" class="nav-link" data-scroll-target="#create-the-actual-experiment">Create the actual experiment</a>
+  <ul class="collapse">
   <li><a href="#short-recap-of-the-paradigm" id="toc-short-recap-of-the-paradigm" class="nav-link" data-scroll-target="#short-recap-of-the-paradigm">Short recap of the paradigm</a></li>
+  <li><a href="#combine-things" id="toc-combine-things" class="nav-link" data-scroll-target="#combine-things">Combine things</a>
+  <ul class="collapse">
+  <li><a href="#import-and-fucntions" id="toc-import-and-fucntions" class="nav-link" data-scroll-target="#import-and-fucntions">Import and fucntions</a></li>
+  <li><a href="#load-the-stimuli" id="toc-load-the-stimuli" class="nav-link" data-scroll-target="#load-the-stimuli">Load the stimuli</a></li>
+  <li><a href="#start-recording" id="toc-start-recording" class="nav-link" data-scroll-target="#start-recording">Start recording</a></li>
+  <li><a href="#present-our-stimuli" id="toc-present-our-stimuli" class="nav-link" data-scroll-target="#present-our-stimuli">Present our stimuli</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -252,111 +301,366 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tobii eye-tracker
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Tobii eye-tracker</strong></p>
 <p>Note that this tutorial is specific for using <strong>Tobii eye-trackers</strong>. The general steps and idea are obviously applicable to other eye-trackers, but the specific code and packages vary depending on the device.</p>
 </div>
 </div>
-<section id="how-to-connect-to-the-eye-tracker" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-connect-to-the-eye-tracker">How to connect to the eye-tracker</h2>
-<p>We have different options to use our Tobii eye tracker. One option is to use the software that Tobii provides. However, this software is very expensive and sometimes not flexible enough for all the studies. We prefer to use the <strong>SDK</strong> that Tobii provides.</p>
+<section id="tobii_sdk" class="level1">
+<h1>Tobii_sdk</h1>
+<p>To start we will look into how to connect and talk to our Tobii eyetracker. We have different options to use our Tobii eye tracker. One option is to use the software that Tobii provides. However, this software is very expensive and sometimes not flexible enough for all the studies. We prefer to use the <strong>SDK</strong> that Tobii provides.</p>
 <p>An <strong>SDK</strong> is a collection of tools and programs for developing applications for a specific platform or device. We will use the <strong>Python Tobii SDK</strong> that lets us easily find and get data from our Tobii eye tracker.</p>
-<p>To install the Python Tobii SDK, we can run this command:</p>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
+<p>To install the Python Tobii SDK, we can simply run this command in our conda terminal:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tobii_research</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Great! We have installed the Tobii SDK. However, using the SDK is not very easy.&nbsp;But don’t worry!&nbsp;We have a solution for you. We can use&nbsp;<a href="https://github.com/yh-luo/psychopy_tobii_infant">Psychopy_tobii_infant</a>, a wrapper around the Tobii SDK that is specially designed for running infant-friendly studies. This code collection allows us to use the Tobii SDK with the Psychopy interface.</p>
-<p>To use Psychopy_tobii_infant, you need to go to this GitHub page: <a href="https://github.com/yh-luo/psychopy_tobii_infant" class="uri">https://github.com/yh-luo/psychopy_tobii_infant</a>. On this page, you can click on <strong><em>&lt;&gt;Code</em></strong> and then on <strong><em>Download ZIP</em></strong> as shown below:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<p>Perfect!! Now that we have downloaded the code as a zip file we need to:</p>
-<ul>
-<li><p>extract the file</p></li>
-<li><p>identify the folder <em>‘psychopy_tobii_infant’</em></p></li>
-<li><p>copy this folder in the same location of your eye-tracking experiment script</p></li>
-</ul>
-<p>You should end up like with something like this:<br>
-<img src="images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png" class="img-fluid"></p>
-<p><strong>Now we are all set and ready to go !!!!!!!!!!</strong></p>
+<p>Great! We have installed the Tobii SDK.</p>
 </section>
+<section id="connect-to-the-eye-tracker" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-the-eye-tracker">Connect to the eye-tracker</h2>
+<p>So how does this library work, how do we connect to the eye-tracker and collect our data? Very good questions!</p>
+<p>The <code>tobii_research</code> documentation is quite extensive and describes in detail a lot of functions and data classes that are very useful. However, we don’t need much to start our experiment.</p>
+<p>First we need to identify all the eye trackers connected to our computer. Yes, plural, <code>tobii_research</code> will return a list of all the eye trackers connected to our computer. 99.99999999% of the time you will only have 1 eye tracker connected, so we can just select the first (and usually only) eye tracker found.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import tobii_research library</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobii_research <span class="im">as</span> tr</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perfect!! We have identified our eye-trackers, we have selected the first one (and only).</p>
+<p>We are now ready to use our eye-tracker to collect some data…but how?</p>
+</section>
+<section id="collect-data" class="level2">
+<h2 class="anchored" data-anchor-id="collect-data">Collect data</h2>
+<p>Tobii_research has a cool way of telling us what data we are collecting at each time point. It uses a callback function. What is a callback function, you ask? It is a function that tobii runs each time it has a new data point. Let’s say we have an eye tracker that collects data at 300Hz (300 samples per second): the function will be called every time the tobii has one of those 300 samples.</p>
+<p>This callback function will give us a <code>gaze_data</code> object. This object contains multiple information of that collected sample and we can simply select the information we care about. In our case we want:</p>
+<ul>
+<li><p>the <code>system_time_stamp</code>, our time variable</p></li>
+<li><p>the <code>left_eye.gaze_point.position_on_display_area</code>, it contains the coordinates on the screen of the left eye (both x and y)</p></li>
+<li><p>the <code>right_eye.gaze_point.position_on_display_area</code>, it contains the coordinates on the screen of the right eye (both x and y)</p></li>
+<li><p>the <code>left_eye.pupil.diameter</code>, is the pupil diameter of the left eye</p></li>
+<li><p>the <code>right_eye.pupil.diameter</code>, is the pupil diameter of the right eye</p></li>
+<li><p>the <code>left_eye.gaze_point.validity</code>, this is a value that tells us whether we think the recognition is ok or not</p></li>
+</ul>
+<p>Here is our callback function:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So, how we said this function will be called every time tobii has a new data-point. COOL!! Now we need to tell tobii to run this function we have created. This is very simple we can just:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the callback function</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are telling tobii that we are interested in the <code>EYETRACKER_GAZE_DATA</code> and that we want it to pass it to our function <code>gaze_data_callback</code>.</p>
+</section>
+<section id="triggersevents" class="level2">
+<h2 class="anchored" data-anchor-id="triggersevents">Triggers/Events</h2>
+<p>So, as we have seen, our callback function can access the tobii data and tell us what it is for each sample. Just one little piece missing…. We want to know what we presented when. In most studies, we present stimuli that can be pictures, sounds or even videos. For the latter analysis, it is important to know at what point in our data we presented these stimuli.</p>
+<p>Luckily there is a simple way we can achieve this. We can set a string that our callback function can access and include in our data. To make sure that our callback function can access this variable we will use the <code>global</code> keyword. This makes sure that we can read/modify a variable that exist outside of the function.</p>
+<p>Thus each time the callback function will be run it will also have access to the trigger variable. We save the trigger to the <code>ev</code> variable and we set it back to an empty string <code>""</code> .</p>
+<p>This means that we can set the trigger to whatever string we want and when we set it it will be picked up by the callback function.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(trigger)<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> trigger</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        trigger<span class="op">=</span>[]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp <span class="op">/</span> <span class="fl">1000.0</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>trigger <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Time passes</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># when you present a stimulus you can set trigger to a string that will be captured by the callabck function</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>trigger <span class="op">=</span> <span class="st">'Presented Stimulus'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perfect now we have a way to access the data from the eye-tracker and to account for what we are presenting to out participant.</p>
+</section>
+<section id="save-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="save-the-data">Save the data</h2>
+<p>If, if you’ve been paying attention, you might’ve noticed that we get the data in our callback function but don’t actually save it anywhere. So how to save them? There are two main approaches we can use:</p>
+<ol type="1">
+<li><p>We could have a saving function inside our callback that could append the new data to a .csv each time the callback is called.</p></li>
+<li><p>We could append the data to a list. Once the experiment is finished we could save our data.</p></li>
+</ol>
+<p>These two approaches have however some weaknesses. The first could slow down the callback function if our pc is not performing or if we are sampling at a very high sampling rate. The second is potentially faster, but if anything happens thought the study that makes python crash ( trust me, it can happen…..) you would loose all your data.</p>
+<p>What is the solution you ask? A mixed approach!!!!!!!<br>
+We can store our data in a list and save it during the less important parts of the study, for example the Inter Stimulus Interval ( the time between a trial and another). So let’s write a function to do exactly that.</p>
+<p>Lets first create an empty list that we will fill with out data from the callback function. As before, we make sure that our callback function can access this list and append the new data we will use the <code>global</code> keyword.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list we will append our data to</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gaze_data_buffer <span class="op">=</span> []</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This will be called every time there is new gaze data</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> gaze_data_buffer</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(trigger)<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> trigger</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        trigger<span class="op">=</span>[]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp <span class="op">/</span> <span class="fl">1000.0</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add gaze data to the buffer </span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    gaze_data_buffer.append((t,lx,ly,lp,lv,rx,ry,rp,rv,ev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now the gaze_data_buffer will be filled with the data we extract. Let’s save this list then.</p>
+<p>We will first make a copy of the list and then clear it. This way we have our data and the original list is empty and can be filled with new data.</p>
+<p>After creating a copy, we use <code>pandas</code> to transform the list into a data frame and save it to a csv file. Using <code>mode = 'a'</code> we tell pandas to append the new data to the existing .csv, if this is the first time and the .csv does not yet exist, pandas will create the csv instead.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_buffer_to_file(<span class="bu">buffer</span>, output_path):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a copy of the buffer and clear it</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    buffer_copy <span class="op">=</span> <span class="bu">buffer</span>[:]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">buffer</span>.clear()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names for the dataframe</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'L_X'</span>, <span class="st">'L_Y'</span>, <span class="st">'L_P'</span>, <span class="st">'L_V'</span>, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">'R_X'</span>, <span class="st">'R_Y'</span>, <span class="st">'R_P'</span>, <span class="st">'R_V'</span>, <span class="st">'Event'</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert buffer to DataFrame</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.DataFrame(buffer_copy, columns<span class="op">=</span>columns)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the file exists</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    file_exists <span class="op">=</span> <span class="kw">not</span> os.path.isfile(output_path)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write the DataFrame to an HDF5 file</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    out.to_csv(output_path, mode<span class="op">=</span><span class="st">'a'</span>, index <span class="op">=</span><span class="va">False</span>, header <span class="op">=</span> file_exists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="create-the-actual-experiment" class="level1">
+<h1>Create the actual experiment</h1>
+<p>Now we have two function, one to access and append the data to a list, and the second to save the data to a csv. Let’s see now how to include this functions in our study.</p>
 <section id="short-recap-of-the-paradigm" class="level2">
 <h2 class="anchored" data-anchor-id="short-recap-of-the-paradigm">Short recap of the paradigm</h2>
-<p>As we alredy mentioned, we will use the experiemntal dsign that we created in <a href="GettingStartedWithPsychopy.qmd">Getting started with Psychopy</a> as a base and we will add things to it to make it an eye-tracking study. Before getting started, let’s review the design.</p>
+<p>As we already mentioned, we will use the experimental design that we created in <a href="GettingStartedWithPsychopy.qmd">Getting started with Psychopy</a> as a base and we will add things to it to make it an eye-tracking study. If you don’t remember the paradigm please give it a rapid look as we will not go into much detail about each specific part of it.</p>
+<p>Here a very short summary of what the design was:</p>
 <p>After a fixation cross two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png" class="img-fluid figure-img"></p>
-</figure>
+</section>
+<section id="combine-things" class="level2">
+<h2 class="anchored" data-anchor-id="combine-things">Combine things</h2>
+<p>Let’s try to build together the experiment then.</p>
+<section id="import-and-fucntions" class="level3">
+<h3 class="anchored" data-anchor-id="import-and-fucntions">Import and fucntions</h3>
+<p>To start let’s import the libraries and define the two functions that we create before</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core, event, visual, prefs</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>prefs.hardware[<span class="st">'audioLib'</span>] <span class="op">=</span> [<span class="st">'PTB'</span>]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobii_research <span class="im">as</span> tr</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Functions</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># This will be called every time there is new gaze data</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> gaze_data_buffer</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> winsize</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(trigger)<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> trigger</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        trigger<span class="op">=</span>[]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp <span class="op">/</span> <span class="fl">1000.0</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add gaze data to the buffer </span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    gaze_data_buffer.append((t,lx,ly,lp,lv,rx,ry,rp,rv,ev))</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_buffer_to_file(<span class="bu">buffer</span>, output_path):</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a copy of the buffer and clear it</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    buffer_copy <span class="op">=</span> <span class="bu">buffer</span>[:]</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">buffer</span>.clear()</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'L_X'</span>, <span class="st">'L_Y'</span>, <span class="st">'L_P'</span>, <span class="st">'L_V'</span>, </span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>               <span class="st">'R_X'</span>, <span class="st">'R_Y'</span>, <span class="st">'R_P'</span>, <span class="st">'R_V'</span>, <span class="st">'Event'</span>]</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert buffer to DataFrame</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.DataFrame(buffer_copy, columns<span class="op">=</span>columns)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the file exists</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    file_exists <span class="op">=</span> <span class="kw">not</span> os.path.isfile(output_path)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write the DataFrame to an HDF5 file</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    out.to_csv(output_path, mode<span class="op">=</span><span class="st">'a'</span>, index <span class="op">=</span><span class="va">False</span>, header <span class="op">=</span> file_exists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here the code we wrote together to build this design.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's define the path we will work with.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># in my case the stimuli that we will use are in here but you will have to adapt</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this variable to where you have downloaded the stimuli.</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Path <span class="op">=</span> <span class="vs">r'C:\\Users\\tomma\\surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl\\Documentation\\Working\\GettingStartedWithPsychopy\\'</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(fullscr <span class="op">=</span> <span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'fixation.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'circle.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'square.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'winning.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="dv">600</span>,<span class="dv">0</span>))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'loosing.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">600</span>,<span class="dv">0</span>))</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'winning.wav'</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'loosing.wav'</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.3</span>) <span class="co"># add Inter Stimulus Interval to make exp more understandable</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>win.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="load-the-stimuli" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-stimuli">Load the stimuli</h3>
+<p>Now we are going to set a few settings, such as the screen size, create a psychpy window, load the stimuli and then prepare the trial definition. This is exactly the same as we did in the previous Psychopy tutorial.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="start-recording" class="level3">
+<h3 class="anchored" data-anchor-id="start-recording">Start recording</h3>
+<p>Perfect now that we have everything we will look for the eye-trackers connected to the computer and select the first one that we find. One we have selected it we will launch our callback function to start collecting data.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Start recording</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="present-our-stimuli" class="level3">
+<h3 class="anchored" data-anchor-id="present-our-stimuli">Present our stimuli</h3>
+<p>The eye-tracking is running! Let’s show our participant something!</p>
+<p>As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    trigger <span class="op">=</span> <span class="st">'Fixation'</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Circle'</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Square'</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Wait for saccadic latencty</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.75</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Reward'</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'NoReward'</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As we said before in <a href="#save-the-data">Save the data</a>, it is best to save the data thought our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. So now we will modify a little our ISI presentation in comparison to the previous psychopy design.</p>
+<p>We will create a psychopy clock. Once the clock is initiated it will start to track time and we can access how much time passed from it initiation by running <code>.getTime()</code>. Our aim here is to save our data, and this will take some time depending on how much data we have collected. Since the time that it will take will be variable we will be simply check how much time has passed after saving the data and wait (using the while: pass code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(clock.getTime())</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>win.close()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+</section>
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -717,7 +1021,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/realworlddatascience">
+    <a class="nav-link active" href="https://github.com/TommasoGhilardi/DevStart" aria-current="page">
       <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
     </a>
@@ -729,7 +1033,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+    <div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

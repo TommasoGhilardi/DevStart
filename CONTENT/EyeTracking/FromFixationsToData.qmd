@@ -1,0 +1,82 @@
+---
+title: "From fixations to data"
+execute:
+  eval: true
+
+pagetitle: From fixations to data
+author-meta: Tommaso Ghilardi
+description-meta: Learn how to extract different eye-tracking measures from the collected data
+keywords: Python, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science
+---
+
+In the previous two tutorial we [collected some eye-trackign data](CreateAnEyetrackingExperiment.qmd) and then we have [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. That is a good first step but what can we do with fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.
+
+In this tutorial we will look at how to extract two features from our paradigm.
+
+-   **Saccadic latency:** how quickly our participant looked at the correct location. This includes checking whether the participant was able to anticipate the appearance of the stimulus. In our paradigm we will look at how fast our participant looked at the target location (left: NoReward, right: Reward).
+
+-   **Looking time:** how long our participant looked at certain locations on the screen. In our case we will look at how long our participant looked at the two target locations (left: NoReward, right: Reward).
+
+So what do these two measures have in common? EXACTLY!!! They are both clearly related to the position of our stimuli. It is indeed important to define our Areas Of Interest (AOI), where we will check whether our participant was looking into.
+
+# AOIs
+
+## Define AOIs
+
+As AOIs are important, let's define them. We will define two squares around the target positions. To do this we can simply pass two coordinates for each AOI: the lower left corner and the upper right corner.
+
+An important point to understand is that tobii and psychopy use two different coordinate systems:
+
+-   Psychopy has it's origin (0,0) in the centre of the window/screen by default.
+
+-   Tobii reports data with it's origin (0,0) in the lower left corner.
+
+This inconsistency is not a problem per se, but we obviously need to take it into account when defining the AOIs. Let's try to define the AOIs:
+
+```{python}
+# Define the variable realted to the screen and to the target position
+screensize = (1920, 1080)
+dimension_of_AOI = 600/2
+Target_position = 500
+
+# Create areas of interest
+AOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 - Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
+
+AOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 + Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
+
+AOIs = [AOI1, AOI2]
+```
+
+Nice!! This step is essential. We have created two AOIs. We will use them to define whether the gaze of our participant was on these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
+
+```{python}
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# Create a figure
+fig, ax = plt.subplots(1)
+
+# Set the limits of the plot
+ax.set_xlim(0, 1920)
+ax.set_ylim(0, 1080)
+
+# Define the colors for the rectangles
+colors = ['#46AEB9', '#C7D629']
+
+# Create a rectangle for each area of interest and add it to the plot
+for i, (bottom_left, top_right) in enumerate(AOIs):
+    width = top_right[0] - bottom_left[0]
+    height = top_right[1] - bottom_left[1]
+    rectangle = patches.Rectangle(bottom_left, width, height, linewidth=2, edgecolor='k', facecolor=colors[i])
+    ax.add_patch(rectangle)
+
+ax.plot(600,500,marker='o', markersize=8, color='green')    
+ax.plot(1400,1000,marker='o', markersize=8, color='red')    
+
+# Show the plot
+plt.show()
+```
+
+## Points in AOIs
+
+As you can see we are plotting the two AOIs and two points. One falls into one of it and the second doesn't. But how can we get python to tell us if a point is falling inside one of our AOIs? We can write a simple function to check that.

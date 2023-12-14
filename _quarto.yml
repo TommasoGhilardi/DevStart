@@ -6,6 +6,7 @@ execute:
   freeze: auto
 
 website:
+  site-url: "https://tommasoghilardi.github.io/DevStart/"
   google-analytics: "G-G5XSH1GLW7"
   twitter-card: true
   open-graph: true
@@ -65,7 +66,7 @@ website:
             - CONTENT/EyeTracking/Intro_eyetracking.qmd
             - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
             - CONTENT/EyeTracking/I2MC_tutorial.qmd
-          
+
 
 
 
