@@ -194,5 +194,26 @@
     "title": "EyetrackingCalibration",
     "section": "",
     "text": "However, using the SDK is not very easy. But don’t worry! We have a solution for you. We can use Psychopy_tobii_infant, a wrapper around the Tobii SDK that is specially designed for running infant-friendly studies. This code collection allows us to use the Tobii SDK with the Psychopy interface.\nTo use Psychopy_tobii_infant, you need to go to this GitHub page: https://github.com/yh-luo/psychopy_tobii_infant. On this page, you can click on &lt;&gt;Code and then on Download ZIP as shown below:\n\n\n\n\n\nPerfect!! Now that we have downloaded the code as a zip file we need to:\n\nextract the file\nidentify the folder ‘psychopy_tobii_infant’\ncopy this folder in the same location of your eye-tracking experiment script\n\nYou should end up like with something like this:\n\n\nNow we are all set and ready to go !!!!!!!!!!\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "CONTENT/EyeTracking/FromFixationsToData.html",
+    "href": "CONTENT/EyeTracking/FromFixationsToData.html",
+    "title": "From fixations to data",
+    "section": "",
+    "text": "In the previous two tutorial we collected some eye-trackign data and then we have used I2MC to extract the fixations from that data. That is a good first step but what can we do with fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.\nIn this tutorial we will look at how to extract two features from our paradigm.\nSo what do these two measures have in common? EXACTLY!!! They are both clearly related to the position of our stimuli. It is indeed important to define our Areas Of Interest (AOI), where we will check whether our participant was looking into."
+  },
+  {
+    "objectID": "CONTENT/EyeTracking/FromFixationsToData.html#define-aois",
+    "href": "CONTENT/EyeTracking/FromFixationsToData.html#define-aois",
+    "title": "From fixations to data",
+    "section": "Define AOIs",
+    "text": "Define AOIs\nAs AOIs are important, let’s define them. We will define two squares around the target positions. To do this we can simply pass two coordinates for each AOI: the lower left corner and the upper right corner.\nAn important point to understand is that tobii and psychopy use two different coordinate systems:\n\nPsychopy has it’s origin (0,0) in the centre of the window/screen by default.\nTobii reports data with it’s origin (0,0) in the lower left corner.\n\nThis inconsistency is not a problem per se, but we obviously need to take it into account when defining the AOIs. Let’s try to define the AOIs:\n\n# Define the variable realted to the screen and to the target position\nscreensize = (1920, 1080)\ndimension_of_AOI = 600/2\nTarget_position = 500\n\n# Create areas of interest\nAOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 - Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]\n\nAOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 + Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]\n\nAOIs = [AOI1, AOI2]\n\nNice!! This step is essential. We have created two AOIs. We will use them to define whether the gaze of our participant was on these two AOIs. Let’s get a better idea by just plotting these two AOIs and two random points (600, 500) and (1400,1000).\n\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as patches\n\n# Create a figure\nfig, ax = plt.subplots(1)\n\n# Set the limits of the plot\nax.set_xlim(0, 1920)\nax.set_ylim(0, 1080)\n\n# Define the colors for the rectangles\ncolors = ['#46AEB9', '#C7D629']\n\n# Create a rectangle for each area of interest and add it to the plot\nfor i, (bottom_left, top_right) in enumerate(AOIs):\n    width = top_right[0] - bottom_left[0]\n    height = top_right[1] - bottom_left[1]\n    rectangle = patches.Rectangle(bottom_left, width, height, linewidth=2, edgecolor='k', facecolor=colors[i])\n    ax.add_patch(rectangle)\n\nax.plot(600,500,marker='o', markersize=8, color='green')    \nax.plot(1400,1000,marker='o', markersize=8, color='red')    \n\n# Show the plot\nplt.show()"
+  },
+  {
+    "objectID": "CONTENT/EyeTracking/FromFixationsToData.html#points-in-aois",
+    "href": "CONTENT/EyeTracking/FromFixationsToData.html#points-in-aois",
+    "title": "From fixations to data",
+    "section": "Points in AOIs",
+    "text": "Points in AOIs\nAs you can see we are plotting the two AOIs and two points. One falls into one of it and the second doesn’t. But how can we get python to tell us if a point is falling inside one of our AOIs? We can write a simple function to check that."
   }
 ]

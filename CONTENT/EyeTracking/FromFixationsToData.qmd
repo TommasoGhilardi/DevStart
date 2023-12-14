@@ -1,7 +1,7 @@
 ---
 title: "From fixations to data"
 execute:
-  eval: true
+  eval: false
 
 pagetitle: From fixations to data
 author-meta: Tommaso Ghilardi
