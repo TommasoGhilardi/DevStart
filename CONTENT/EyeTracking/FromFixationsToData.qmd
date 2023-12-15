@@ -9,7 +9,38 @@ description-meta: Learn how to extract different eye-tracking measures from the 
 keywords: Python, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science
 ---
 
-In the previous two tutorial we [collected some eye-trackign data](CreateAnEyetrackingExperiment.qmd) and then we have [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. That is a good first step but what can we do with fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.
+In the previous two tutorial we [collected some eye-trackign data](CreateAnEyetrackingExperiment.qmd) and then we have [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. Let's load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.
+
+```{python}
+{python}
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+#%% Settings
+
+# Settign the working directory
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+
+# Screen resolution
+res = [1920, 1080]
+
+
+#%% Read and prepare data
+
+# The fixation data extracted from I2MC
+Fixations = pd.read_csv('Data\\i2mc_output\\Test1\Test1.csv')
+
+# The original RAW data
+Raw_data = pd.read_csv('Data\\RAW\\Test1.csv')
+
+# Start Recording from 0 and in Seconds
+Raw_data['time'] = Raw_data['time'] - Raw_data.loc[0,'time']
+```
+
+That is a good first step but what can we do with the raw data and teh fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.
 
 In this tutorial we will look at how to extract two features from our paradigm.
 
@@ -79,4 +110,116 @@ plt.show()
 
 ## Points in AOIs
 
-As you can see we are plotting the two AOIs and two points. One falls into one of it and the second doesn't. But how can we get python to tell us if a point is falling inside one of our AOIs? We can write a simple function to check that.
+As you can see, we are plotting the two AOIs and two points. One falls into one of them and the other doesn't. But how can we get Python to tell us if a point falls within one of our AOIs?
+
+We can simply check that the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right. So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
+
+```{python}
+# Extract bottom left and top right points
+bottom_left, top_right = area
+
+# Extract the x and y of each point
+bottom_X, bottom_y = bottom_left
+top_x, top_y = top_right
+
+# Extract the x and y of our point of interest
+x, y = point
+
+# Check if the point is in the area
+bottom_x <= x <= top_x and bottom_y <= y <= top_y
+```
+
+Perfectly, this would return True if the point falls inside the area and False if it falls outside. Now we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.
+
+We will run the code above in a loop using `enumerate`. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both these information. We will use the actual area to check if our points falls into it and if it does we will return the index of that area. In case the point doesn't falls in any area the function will return -1.
+
+```{python}
+# We define a function that simply takes the a point and a list of areas.
+# This function checks in which area this point is and return the index
+# of the area. If the point is in no area it returns -1
+def find_area_for_point(point, areas):
+
+    for i, area in enumerate(areas):
+        # Extract bottom left and top right points
+        bottom_left, top_right = area
+        
+        # Extract the x and y of each point
+        bottom_X, bottom_y = bottom_left
+        top_x, top_y = top_right
+        
+        # Extract the x and y of our point of interest
+        x, y = point
+        
+        # Check if the point is in the area
+        bottom_x <= x <= top_x and bottom_y <= y <= top_y :
+            return(i)
+    return(-1)
+```
+
+Perfect now we have a cool function to check whether a point falls into a list of areas. We can use this function to filter the fixations that are into the AOIs, these are the one we care about.
+
+# TOIs
+
+Now that we\'ve figured out how to select fixations that fall within our areas of interest, it\'s time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. However, similar to real-life studies, we\'re not interested in analyzing the entire experiment. Instead, we focus on specific events.
+
+In this case, our attention is on the target window. We\'re going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its presentation. This will allow us to extract both **Saccadic latency** and **Lookign time.**
+
+Let's start by finding the moment in which the target appeared:
+
+```{python}
+# Let's find the time we presented a reward or no reward
+Targets = Raw_data.loc[(Raw_data['Event'] == 'Reward') | (Raw_data['Event'] == 'NoReward'), ['time', 'Event']].values
+```
+
+Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things even clearer, we\'re going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to and which specific trial it belongs to. Plus, we\'re going to add another column called `Onset` to the fixations dataframe. This will let us easily store the onset times of specific events, making our analysis down the line a whole lot simpler.
+
+```{python}
+# Find the fixations that we care about
+pre  = -750
+post = 400
+
+for i,c in enumerate(Targets):
+    
+    # Find which row meet our conditions
+    mask = (Fixations['startT'] >= c[0]+pre) & (Fixations['startT'] < c[0]+post)
+    
+    # Fill the rows with have found with more info
+    Fixations.loc[mask, 'Event'] = c[1]
+    Fixations.loc[mask, 'Event_trial'] = i
+    Fixations.loc[mask, 'Onset'] =  c[0]
+```
+
+Our Fixations dataframe is now chock-full of event-related info. But, there\'s a catch. The fixations that took place at times other than during the target presentation are still hanging around in the dataframe. And they\'re filled with NANs in the new columns we just created. We can use this at our advantage adn filter all the NANs out:
+
+```{python}
+# We can drop the NANs to have only the fixations that interest us!!!!
+Target_fixations = Fixations[Fixations['Event'].notna()].reset_index(drop = True)
+```
+
+# Add the AOIs
+
+Now we have selected our fixations based on the events. But we also need to filter the fixations based on the AOIs. If only we had some functions to do so.... Oh wait we actually just created them!! Let's make use of them!!
+
+As first step we will add a new column to our Target_fixations dataframe containing the AOIs we defined together before. Thus each row of this column will inform us which AOIs we should check.
+
+::: callout-important
+Just a heads up, our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you\'re dealing with multiple or moving AOIs, you\'ve got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It\'s all about flexibility and precision!
+:::
+
+```{python}
+Target_fixations['AOIs'] = [AOIs]* len(Latency_fixations)
+Target_fixations['Looked_AOI'] = np.NAN
+```
+
+Now that we have a columns with the AOIs in our Target_fixations dataframe we can run our function `find_area_for_point()` to check in which AOI each fixation falls into.
+
+```{python}
+# We run the function  for each row. We pass each xpos and ypos to the function
+# toghether with the areas
+for row in range(len(Target_fixations)):
+    
+    Point = Target_fixations.loc[row, ['xpos', 'ypos']].values
+    Areas = Target_fixations.loc[row, 'AOIs']
+    
+    Target_fixations.loc[row, 'Looked_AOI'] = find_area_for_point(Point, Areas)
+```

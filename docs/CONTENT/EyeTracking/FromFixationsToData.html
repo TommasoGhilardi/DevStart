@@ -256,7 +256,14 @@ cookieconsent.run({
   <ul class="collapse">
   <li><a href="#define-aois" id="toc-define-aois" class="nav-link" data-scroll-target="#define-aois">Define AOIs</a></li>
   <li><a href="#points-in-aois" id="toc-points-in-aois" class="nav-link" data-scroll-target="#points-in-aois">Points in AOIs</a></li>
+  <li><a href="#add-aois-to-database" id="toc-add-aois-to-database" class="nav-link" data-scroll-target="#add-aois-to-database">Add AOIs to database</a>
+  <ul class="collapse">
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#new-columns" id="toc-new-columns" class="nav-link" data-scroll-target="#new-columns">New Columns</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#tois" id="toc-tois" class="nav-link" data-scroll-target="#tois">TOIs</a></li>
+  <li><a href="#add-the-aois" id="toc-add-the-aois" class="nav-link" data-scroll-target="#add-the-aois">Add the AOIs</a></li>
   </ul>
 </nav>
     </div>
@@ -280,7 +287,36 @@ cookieconsent.run({
 
 </header>
 
-<p>In the previous two tutorial we <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html">collected some eye-trackign data</a> and then we have <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html">used I2MC to extract the fixations</a> from that data. That is a good first step but what can we do with fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.</p>
+<p>In the previous two tutorial we <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html">collected some eye-trackign data</a> and then we have <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html">used I2MC to extract the fixations</a> from that data. Let’s load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{python}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Settings</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Settign the working directory</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> [<span class="dv">1920</span>, <span class="dv">1080</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Read and prepare data</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixation data extracted from I2MC</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Fixations <span class="op">=</span> pd.read_csv(<span class="st">'Data</span><span class="ch">\\</span><span class="st">i2mc_output</span><span class="ch">\\</span><span class="st">Test1\Test1.csv'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># The original RAW data</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Raw_data <span class="op">=</span> pd.read_csv(<span class="st">'Data</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">Test1.csv'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Recording from 0 and in Seconds</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Raw_data[<span class="st">'time'</span>] <span class="op">=</span> Raw_data[<span class="st">'time'</span>] <span class="op">-</span> Raw_data.loc[<span class="dv">0</span>,<span class="st">'time'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That is a good first step but what can we do with the raw data and teh fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.</p>
 <p>In this tutorial we will look at how to extract two features from our paradigm.</p>
 <ul>
 <li><p><strong>Saccadic latency:</strong> how quickly our participant looked at the correct location. This includes checking whether the participant was able to anticipate the appearance of the stimulus. In our paradigm we will look at how fast our participant looked at the target location (left: NoReward, right: Reward).</p></li>
@@ -298,54 +334,175 @@ cookieconsent.run({
 <li><p>Tobii reports data with it’s origin (0,0) in the lower left corner.</p></li>
 </ul>
 <p>This inconsistency is not a problem per se, but we obviously need to take it into account when defining the AOIs. Let’s try to define the AOIs:</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable realted to the screen and to the target position</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dimension_of_AOI <span class="op">=</span> <span class="dv">600</span><span class="op">/</span><span class="dv">2</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Target_position <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create areas of interest</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>AOI1 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>AOI2 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable realted to the screen and to the target position</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dimension_of_AOI <span class="op">=</span> <span class="dv">600</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Target_position <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create areas of interest</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>AOI1 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>AOI2 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nice!! This step is essential. We have created two AOIs. We will use them to define whether the gaze of our participant was on these two AOIs. Let’s get a better idea by just plotting these two AOIs and two random points <code>(600, 500)</code> and <code>(1400,1000)</code>.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the limits of the plot</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">1920</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">1080</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the colors for the rectangles</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#46AEB9'</span>, <span class="st">'#C7D629'</span>]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a rectangle for each area of interest and add it to the plot</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (bottom_left, top_right) <span class="kw">in</span> <span class="bu">enumerate</span>(AOIs):</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> top_right[<span class="dv">0</span>] <span class="op">-</span> bottom_left[<span class="dv">0</span>]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> top_right[<span class="dv">1</span>] <span class="op">-</span> bottom_left[<span class="dv">1</span>]</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    rectangle <span class="op">=</span> patches.Rectangle(bottom_left, width, height, linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, facecolor<span class="op">=</span>colors[i])</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(rectangle)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">600</span>,<span class="dv">500</span>,marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'green'</span>)    </span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">1400</span>,<span class="dv">1000</span>,marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'red'</span>)    </span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the limits of the plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">1920</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">1080</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the colors for the rectangles</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#46AEB9'</span>, <span class="st">'#C7D629'</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a rectangle for each area of interest and add it to the plot</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (bottom_left, top_right) <span class="kw">in</span> <span class="bu">enumerate</span>(AOIs):</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> top_right[<span class="dv">0</span>] <span class="op">-</span> bottom_left[<span class="dv">0</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> top_right[<span class="dv">1</span>] <span class="op">-</span> bottom_left[<span class="dv">1</span>]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    rectangle <span class="op">=</span> patches.Rectangle(bottom_left, width, height, linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, facecolor<span class="op">=</span>colors[i])</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(rectangle)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">600</span>,<span class="dv">500</span>,marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'green'</span>)    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">1400</span>,<span class="dv">1000</span>,marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'red'</span>)    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="points-in-aois" class="level2">
 <h2 class="anchored" data-anchor-id="points-in-aois">Points in AOIs</h2>
-<p>As you can see we are plotting the two AOIs and two points. One falls into one of it and the second doesn’t. But how can we get python to tell us if a point is falling inside one of our AOIs? We can write a simple function to check that.</p>
-
-
+<p>As you can see, we are plotting the two AOIs and two points. One falls into one of them and the other doesn’t. But how can we get Python to tell us if a point falls within one of our AOIs?</p>
+<p>We can simply check that the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right. So imagine we have a point: <code>point</code> and an area: <code>area</code>, we can check if the point falls inside the area by:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract bottom left and top right points</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bottom_left, top_right <span class="op">=</span> area</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the x and y of each point</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>bottom_X, bottom_y <span class="op">=</span> bottom_left</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>top_x, top_y <span class="op">=</span> top_right</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the x and y of our point of interest</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> point</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the point is in the area</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>bottom_x <span class="op">&lt;=</span> x <span class="op">&lt;=</span> top_x <span class="kw">and</span> bottom_y <span class="op">&lt;=</span> y <span class="op">&lt;=</span> top_y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perfectly, this would return True if the point falls inside the area and False if it falls outside. Now we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.</p>
+<p>We will run the code above in a loop using <code>enumerate</code>. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both these information. We will use the actual area to check if our points falls into it and if it does we will return the index of that area. In case the point doesn’t falls in any area the function will return -1.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We define a function that simply takes the a point and a list of areas.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This function checks in which area this point is and return the index</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of the area. If the point is in no area it returns -1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_area_for_point(point, areas):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, area <span class="kw">in</span> <span class="bu">enumerate</span>(areas):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract bottom left and top right points</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        bottom_left, top_right <span class="op">=</span> area</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the x and y of each point</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        bottom_X, bottom_y <span class="op">=</span> bottom_left</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        top_x, top_y <span class="op">=</span> top_right</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the x and y of our point of interest</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> point</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if the point is in the area</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        bottom_x <span class="op">&lt;=</span> x <span class="op">&lt;=</span> top_x <span class="kw">and</span> bottom_y <span class="op">&lt;=</span> y <span class="op">&lt;=</span> top_y :</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span>(i)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perfect now we have a cool function to check whether a point falls into a list of areas. We can use this function to filter the fixations that are into the AOIs, these are the one we care about.</p>
 </section>
+<section id="add-aois-to-database" class="level2">
+<h2 class="anchored" data-anchor-id="add-aois-to-database">Add AOIs to database</h2>
+<p>Now that we have defined our areas of interest and have this cool function to find out if a point falls within them, we can add these AOIs to our database.</p>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
+<p>First of all, let’s load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC. The raw data will be used to find where the events occurred and the fixations from I2MC will tell us where the participant was looking.</p>
+<pre><code></code></pre>
+</section>
+<section id="new-columns" class="level3">
+<h3 class="anchored" data-anchor-id="new-columns">New Columns</h3>
+<p>Here we add a new column to our Fixation database containing the AOIs we defined together before. Thus each row of this column will inform us which AOIs we should check.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Our study paradigm is extremely simple as we have only 2 stable AOIs. If you have multiple or even changing AOIs you can add them to each row based on the event or on the trials</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="tois" class="level1">
+<h1>TOIs</h1>
+<p>Now that we've figured out how to select fixations that fall within our areas of interest, it's time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. However, similar to real-life studies, we're not interested in analyzing the entire experiment. Instead, we focus on specific events.</p>
+<p>In this case, our attention is on the target window. We're going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its presentation. This will allow us to extract both <strong>Saccadic latency</strong> and <strong>Lookign time.</strong></p>
+<p>Let’s start by finding the moment in which the target appeared:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things even clearer, we're going to add two new columns to our fixation database: <code>Event</code> and <code>Event_trial</code>. These will help us know which event each fixation is linked to and which specific trial it belongs to. Plus, we're going to add another column called <code>Onset</code> to the fixations database. This will let us easily store the onset times of specific events, making our analysis down the line a whole lot simpler.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,c <span class="kw">in</span> <span class="bu">enumerate</span>(Targets):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which row meet our conditions</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&gt;=</span> c[<span class="dv">0</span>]<span class="op">+</span>pre) <span class="op">&amp;</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&lt;</span> c[<span class="dv">0</span>]<span class="op">+</span>post)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the rows with have found with more info</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event'</span>] <span class="op">=</span> c[<span class="dv">1</span>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event_trial'</span>] <span class="op">=</span> i</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Onset'</span>] <span class="op">=</span>  c[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our Fixations database is now chock-full of event-related info. But, there's a catch. The fixations that took place at times other than during the target presentation are still hanging around in the database. And they're filled with NANs in the new columns we just created. We can use this at our advantage adn filter all the NANs out:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-the-aois" class="level1">
+<h1>Add the AOIs</h1>
+<p>Now we have selected our fixations based on the events. But we also need to filter the fixations based on the AOIs. If only we had some functions to do so…. Oh wait we actually just created them!! Let’s make use of them!!</p>
+<p>As first step we will add a new column to our Target_fixations database containing the AOIs we defined together before. Thus each row of this column will inform us which AOIs we should check.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just a heads up, our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you're dealing with multiple or moving AOIs, you've got options. You can add them to each row of the database, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It's all about flexibility and precision!</p>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Latency_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Latency_fixations)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Latency_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.NAN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Latency_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Latency_fixations)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Latency_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.NAN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
