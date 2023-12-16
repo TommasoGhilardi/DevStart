@@ -4,24 +4,22 @@ execute:
   eval: false
 
 pagetitle: Create an eye-tracking experiment
-author-meta: Tommaso Ghilardi
+author-meta: Tommaso Ghilardi, Francesco Poli
 description-meta: Learn how to record eyetracking data in your psychopy experiment using Tobii SDK, tobii_research
 keywords: PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science
 ---
 
-This page will show you how to collect eye-tracking data in a simple psychopy paradigm. We will use the same paradigm that we built together in the [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) tutorial. If you have not done that tutorial yet, please go through it first.
+This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) tutorial. If you have not done that tutorial yet, please go through it first.
 
 ::: callout-caution
 **Tobii eye-tracker**
 
-Note that this tutorial is specific for using **Tobii eye-trackers**. The general steps and idea are obviously applicable to other eye-trackers, but the specific code and packages vary depending on the device.
+Note that this tutorial is specific for using **Tobii eye-trackers**. The general steps and idea are obviously applicable to other eye-trackers, but the specific code and packages may vary.
 :::
 
 # Tobii_sdk
 
-To start we will look into how to connect and talk to our Tobii eyetracker. We have different options to use our Tobii eye tracker. One option is to use the software that Tobii provides. However, this software is very expensive and sometimes not flexible enough for all the studies. We prefer to use the **SDK** that Tobii provides.
-
-An **SDK** is a collection of tools and programs for developing applications for a specific platform or device. We will use the **Python Tobii SDK** that lets us easily find and get data from our Tobii eye tracker.
+To start, we will look into how to connect and talk to our Tobii eyetracker with the **SDK** that Tobii provides. An **SDK** is a collection of tools and programs for developing applications for a specific platform or device. We will use the **Python Tobii SDK** that lets us easily find and get data from our Tobii eye tracker.
 
 ## Install
 
@@ -52,9 +50,9 @@ found_eyetrackers = tr.find_all_eyetrackers()
 Eyetracker = found_eyetrackers[0]
 ```
 
-Perfect!! We have identified our eye-trackers, we have selected the first one (and only).
+Perfect!! We have identified our eye-trackers, and we have selected the first one (and only).
 
-We are now ready to use our eye-tracker to collect some data...but how?
+We are now ready to use our eye-tracker to collect some data... but how?
 
 ## Collect data
 
@@ -91,7 +89,7 @@ def gaze_data_callback(gaze_data):
     rv = gaze_data.right_eye.gaze_point.validity
 ```
 
-So, how we said this function will be called every time tobii has a new data-point. COOL!! Now we need to tell tobii to run this function we have created. This is very simple we can just:
+How we said, this function will be called every time tobii has a new data-point. COOL!! Now we need to tell tobii to run this function we have created. This is very simple, we can just do the following:
 
 ```{python}
 # Start the callback function
@@ -102,11 +100,11 @@ We are telling tobii that we are interested in the `EYETRACKER_GAZE_DATA` and th
 
 ## Triggers/Events
 
-So, as we have seen, our callback function can access the tobii data and tell us what it is for each sample. Just one little piece missing.... We want to know what we presented when. In most studies, we present stimuli that can be pictures, sounds or even videos. For the latter analysis, it is important to know at what point in our data we presented these stimuli.
+As we have seen, our callback function can access the tobii data and tell us what it is for each sample. Just one little piece missing... We want to know what we presented and when. In most studies, we present stimuli that can be pictures, sounds or even videos. For the following analysis, it is important to know at what exact point in time we presented these stimuli.
 
-Luckily there is a simple way we can achieve this. We can set a string that our callback function can access and include in our data. To make sure that our callback function can access this variable we will use the `global` keyword. This makes sure that we can read/modify a variable that exist outside of the function.
+Luckily there is a simple way we can achieve this. We can set a text string that our callback function can access and include in our data. To make sure that our callback function can access this variable we will use the `global` keyword. This makes sure that we can read/modify a variable that exists outside of the function.
 
-Thus each time the callback function will be run it will also have access to the trigger variable. We save the trigger to the `ev` variable and we set it back to an empty string `""` .
+In this way, each time the callback function will be run, it will also have access to the trigger variable. We save the trigger to the `ev` variable and we set it back to an empty string `""` .
 
 This means that we can set the trigger to whatever string we want and when we set it it will be picked up by the callback function.
 
@@ -140,20 +138,20 @@ trigger = ''
 trigger = 'Presented Stimulus'
 ```
 
-Perfect now we have a way to access the data from the eye-tracker and to account for what we are presenting to out participant.
+Perfect! Now we have 1. a way to access the data from the eye-tracker and 2. know exactly what stimuli we are presenting the participant and when.
 
 ## Save the data
 
-If, if you've been paying attention, you might've noticed that we get the data in our callback function but don't actually save it anywhere. So how to save them? There are two main approaches we can use:
+You might've noticed that we get the data in our callback function but don't actually save it anywhere. So how to save them? There are two main approaches we can use:
 
 1.  We could have a saving function inside our callback that could append the new data to a .csv each time the callback is called.
 
 2.  We could append the data to a list. Once the experiment is finished we could save our data.
 
-These two approaches have however some weaknesses. The first could slow down the callback function if our pc is not performing or if we are sampling at a very high sampling rate. The second is potentially faster, but if anything happens thought the study that makes python crash ( trust me, it can happen.....) you would loose all your data.
+These two approaches have however some weaknesses. The first could slow down the callback function if our PC is not performing or if we are sampling at a very high sampling rate. The second is potentially faster, but if anything happens during the study which makes python crash (and trust me, it can happen.....) you would lose all your data.
 
 What is the solution you ask? A mixed approach!!!!!!!\
-We can store our data in a list and save it during the less important parts of the study, for example the Inter Stimulus Interval ( the time between a trial and another). So let's write a function to do exactly that.
+We can store our data in a list and save it during the less important parts of the study, for example the Inter Stimulus Interval (the time between a trial and another). So let's write a function to do exactly that.
 
 Lets first create an empty list that we will fill with out data from the callback function. As before, we make sure that our callback function can access this list and append the new data we will use the `global` keyword.
 
@@ -190,9 +188,9 @@ def gaze_data_callback(gaze_data):
 
 Now the gaze_data_buffer will be filled with the data we extract. Let's save this list then.
 
-We will first make a copy of the list and then clear it. This way we have our data and the original list is empty and can be filled with new data.
+We will first make a copy of the list, and then empty the original list. In this way, we have our data stored, while the original list is empty and can be filled with new data.
 
-After creating a copy, we use `pandas` to transform the list into a data frame and save it to a csv file. Using `mode = 'a'` we tell pandas to append the new data to the existing .csv, if this is the first time and the .csv does not yet exist, pandas will create the csv instead.
+After creating a copy, we use `pandas` to transform the list into a data frame and save it to a csv file. Using `mode = 'a'` we tell pandas to append the new data to the existing .csv. If this is the first time we are trying to save the data the .csv does not yet exist, so pandas will create a new csv instead.
 
 ```{python}
 def write_buffer_to_file(buffer, output_path):
@@ -217,23 +215,21 @@ def write_buffer_to_file(buffer, output_path):
 
 # Create the actual experiment
 
-Now we have two function, one to access and append the data to a list, and the second to save the data to a csv. Let's see now how to include this functions in our study.
+Now we have two function, one to access and append the data to a list, and the second to save the data to a csv. Let's see now how to include these functions in our study.
 
 ## Short recap of the paradigm
 
 As we already mentioned, we will use the experimental design that we created in [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) as a base and we will add things to it to make it an eye-tracking study. If you don't remember the paradigm please give it a rapid look as we will not go into much detail about each specific part of it.
 
-Here a very short summary of what the design was:
-
-After a fixation cross two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.
+Here a very short summary of what the design was: After a fixation cross, two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.
 
 ## Combine things
 
 Let's try to build together the experiment then.
 
-### Import and fucntions
+### Import and functions
 
-To start let's import the libraries and define the two functions that we create before
+To start, let's import the libraries and define the two functions that we create before
 
 ```{python}
 import os
@@ -299,7 +295,7 @@ def write_buffer_to_file(buffer, output_path):
 
 ### Load the stimuli
 
-Now we are going to set a few settings, such as the screen size, create a psychpy window, load the stimuli and then prepare the trial definition. This is exactly the same as we did in the previous Psychopy tutorial.
+Now we are going to set a few settings, such as the screen size, create a Psychopy window, load the stimuli and then prepare the trial definition. This is exactly the same as we did in the previous Psychopy tutorial.
 
 ```{python}
 #%% Load and prepare stimuli
@@ -332,7 +328,7 @@ Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 ### Start recording
 
-Perfect now that we have everything we will look for the eye-trackers connected to the computer and select the first one that we find. One we have selected it we will launch our callback function to start collecting data.
+Now we are ready to look for the eye-trackers connected to the computer and select the first one that we find. Once we have selected it, we will launch our callback function to start collecting data.
 
 ```{python}
 #%% Record the data
@@ -392,13 +388,14 @@ for trial in Trials:
         
     sounds[trial].play()
     
-    core.wait(2)  # wait for 1 second
+    ### ISI
+    core.wait(1)  # wait for 1 second
     win.flip()    # we re-flip at the end to clean the window
 ```
 
-As we said before in [Save the data], it is best to save the data thought our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. So now we will modify a little our ISI presentation in comparison to the previous psychopy design.
+As we said before in [Save the data], it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. So now we will modify a little our ISI presentation in comparison to the previous Psychopy design.
 
-We will create a psychopy clock. Once the clock is initiated it will start to track time and we can access how much time passed from it initiation by running `.getTime()`. Our aim here is to save our data, and this will take some time depending on how much data we have collected. Since the time that it will take will be variable we will be simply check how much time has passed after saving the data and wait (using the while: pass code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.
+We will create a Psychopy clock. Once the clock is initiated it will start to track time and we can access how much time passed from its initiation by running `.getTime()`. Our aim here is to save our data, and this will take some time depending on how much data we have collected. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the "while: pass" code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.
 
 ```{python}
 
@@ -410,7 +407,13 @@ We will create a psychopy clock. Once the clock is initiated it will start to tr
         pass
 ```
 
+### Stop recording
+
+We're almost there! We have imported our functions, started collecting data, sent the triggers, and saved the data. The last step will be stop data collection (or python will keep getting an endless amount of data from the eye tracker!). Do do that, We simply unsubscribe from the eye tracker to which we had subscribed to start of data collection:
+
 ```{python}
 win.close()
 Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
 ```
+
+Note that we also closed the Psychopy window, so that the stimulus presentation is also officially over. Well done!!! Now go and get your data!!! We'll see you back when it's time to analyze it.
