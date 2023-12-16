@@ -63,9 +63,10 @@ website:
           - CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd
       - section: "Eye-tracking"
         contents: 
-            - CONTENT/EyeTracking/Intro_eyetracking.qmd
-            - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
-            - CONTENT/EyeTracking/I2MC_tutorial.qmd
+          - CONTENT/EyeTracking/Intro_eyetracking.qmd
+          - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
+          - CONTENT/EyeTracking/I2MC_tutorial.qmd
+          - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
 
 
 
@@ -86,15 +87,23 @@ format:
     
     theme:
       light: bookup.scss
-      dark: bookup_dark.scss
+      dark:  bookup_dark.scss
 
     mainfont: 'Arial'
 
-    highlight-style: zenburn
+
+    # Code variables
+    code-fold: false
     code-copy: true
     code-link: true
     code-overflow: wrap
+    code-tools:
+      source: true
+      toggle: true
+      caption: none
+      
+    highlight-style: zenburn
 
-
+    code-block-border-left: "#00B3B3"
 editor: visual
 

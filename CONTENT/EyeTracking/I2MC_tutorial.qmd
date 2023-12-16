@@ -503,6 +503,4 @@ for file_idx, file in enumerate(data_files):
     fix_df = pd.DataFrame(fix)
     save_file = os.path.join(subj_folder, name+'.csv')
     fix_df.to_csv(save_file)
-
-
 ```
