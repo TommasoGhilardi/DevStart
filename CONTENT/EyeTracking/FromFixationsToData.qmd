@@ -9,7 +9,7 @@ description-meta: Learn how to extract different eye-tracking measures from the 
 keywords: Python, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science
 ---
 
-In the previous two tutorial we [collected some eye-trackign data](CreateAnEyetrackingExperiment.qmd) and then we have [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. Let's load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.
+In the previous two tutorials we [collected some eye-tracking data](CreateAnEyetrackingExperiment.qmd) and then we [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. Let's load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.
 
 ```{python}
 import os
@@ -39,38 +39,40 @@ Raw_data = pd.read_csv('Data\\RAW\\Test1.csv')
 Raw_data['time'] = Raw_data['time'] - Raw_data.loc[0,'time']
 ```
 
-That is a good first step but what can we do with the raw data and teh fixations? Not much I am afraid. But we can use these fixation to extract some more meaningful indexes.
+What can we do with just the raw data and the fixations? Not much I am afraid. But we can use these fixations to extract some more meaningful indexes.
 
-In this tutorial we will look at how to extract two features from our paradigm.
+In this tutorial, we will look at how to extract two variables from our paradigm:
 
--   **Saccadic latency:** how quickly our participant looked at the correct location. This includes checking whether the participant was able to anticipate the appearance of the stimulus. In our paradigm we will look at how fast our participant looked at the target location (left: NoReward, right: Reward).
+-   **Saccadic latency:** how quickly our participant looked at the correct location. This includes checking whether the participant could anticipate the stimulus appearance. In our paradigm, we will look at how fast our participant looked at the target location (left: NoReward, right: Reward).
 
--   **Looking time:** how long our participant looked at certain locations on the screen. In our case we will look at how long our participant looked at the two target locations (left: NoReward, right: Reward).
+-   **Looking time:** how long our participant looked at certain locations on the screen. In our case, we will look at how long our participant looked at either target location (left: NoReward, right: Reward) on each trial.
 
-So what do these two measures have in common? EXACTLY!!! They are both clearly related to the position of our stimuli. It is indeed important to define our Areas Of Interest (AOI), where we will check whether our participant was looking into.
+So what do these two measures have in common? 
+*pregnant pause for you to answer* 
+EXACTLY!!! They are both clearly related to the position of our stimuli. For this reason, it is important to define Areas Of Interest (AOIs) on the screen (for example, the locations of the targets). Defining AOIs will allow us to check, for each single fixation, whether it happened in an area that we are interested in.
 
 # Areas Of Interest
 
 ## Define AOIs
 
-As AOIs are important, let's define them. We will define two squares around the target positions. To do this we can simply pass two coordinates for each AOI: the lower left corner and the upper right corner.
+Let's define AOIs. We will define two squares around the target locations. To do this, we can simply pass two coordinates for each AOI: the lower left corner and the upper right corner of an imaginary square.
 
-An important point to understand is that tobii and psychopy use two different coordinate systems:
+An important point to understand is that tobii and Psychopy use two different coordinate systems:
 
--   Psychopy has it's origin (0,0) in the centre of the window/screen by default.
+-   Psychopy has its origin (0,0) in the centre of the window/screen by default.
 
--   Tobii reports data with it's origin (0,0) in the lower left corner.
+-   Tobii reports data with its origin (0,0) in the lower left corner.
 
-This inconsistency is not a problem per se, but we obviously need to take it into account when defining the AOIs. Let's try to define the AOIs:
+This inconsistency is not a problem per se, but we need to take it into account when defining the AOIs. Let's try to define the AOIs:
 
 ```{python}
 #| eval: true
 #| eco: false
 
 # Define the variable realted to the screen and to the target position
-screensize = (1920, 1080)
-dimension_of_AOI = 600/2
-Target_position = 500
+screensize = (1920, 1080) 
+dimension_of_AOI = 600/2  #the dimension of the AOIs, divided by 2
+Target_position = 500 #the position of the targets relative to the centre (e.g., 500 pixels on the right from the centre)
 
 # Create areas of interest
 AOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 - Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
@@ -80,7 +82,7 @@ AOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-di
 AOIs = [AOI1, AOI2]
 ```
 
-Nice!! This step is essential. We have created two AOIs. We will use them to define whether the gaze of our participant was on these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
+Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
 
 ```{python}
 #| eval: true
@@ -122,7 +124,7 @@ plt.show()
 
 As you can see, we are plotting the two AOIs and two points. One falls into one of them and the other doesn't. But how can we get Python to tell us if a point falls within one of our AOIs?
 
-We can simply check that the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right. So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
+We can check whether the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right corners of the AOI. So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
 
 ```{python}
 # Extract bottom left and top right points
@@ -139,9 +141,9 @@ x, y = point
 bottom_x <= x <= top_x and bottom_y <= y <= top_y
 ```
 
-Perfectly, this would return True if the point falls inside the area and False if it falls outside. Now we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.
+Perfect, this will return True if the point falls inside the area and False if it falls outside. Since we have two AOIs and not just one, we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.
 
-We will run the code above in a loop using `enumerate`. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both these information. We will use the actual area to check if our points falls into it and if it does we will return the index of that area. In case the point doesn't falls in any area the function will return -1.
+We will run the code above in a loop using `enumerate`. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both of these two pieces of information. We will use the actual area to check if our points fall into it. Then, if it does, we will return the index of that area. Conversely, if the point doesn't fall in any area the function will return -1.
 
 ```{python}
 # We define a function that simply takes the a point and a list of areas.
@@ -166,13 +168,13 @@ def find_area_for_point(point, areas):
     return(-1)
 ```
 
-Perfect now we have a cool function to check whether a point falls into a list of areas. We can use this function to filter the fixations that are into the AOIs, these are the one we care about.
+Now we have a cool function to check whether a point falls into any of our AOIs. We can use this function to filter the fixations that are in the AOIs: These are the only ones we care about.
 
 # Time Of Interest
 
-Now that we've figured out how to select fixations that fall within our areas of interest, it's time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. However, similar to real-life studies, we're not interested in analyzing the entire experiment. Instead, we focus on specific events.
+Now that we've figured out how to select fixations that fall within our areas of interest, it's time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. However, we're not interested in analyzing the entire experiment. Instead, we focus on specific events.
 
-In this case, our attention is on the target window. We're going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its presentation. This will allow us to extract both **Saccadic latency** and **Lookign time.**
+In this case, our attention is on the target window. We're going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its presentation. Indeed, both **Saccadic latency** and **Lookign time** occur within this time window, while we don't really care about where the participant is looking during other phases of the task.
 
 Let's start by finding the moment in which the target appeared:
 
@@ -181,7 +183,7 @@ Let's start by finding the moment in which the target appeared:
 Targets = Raw_data.loc[(Raw_data['Event'] == 'Reward') | (Raw_data['Event'] == 'NoReward'), ['time', 'Event']].values
 ```
 
-Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things even clearer, we're going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us easily store the onset times of specific events, making our analysis down the line a whole lot simpler.
+Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we're going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.
 
 ```{python}
 # Find the fixations that we care about
@@ -190,7 +192,7 @@ post = 400
 
 for i,c in enumerate(Targets):
     
-    # Find which row meet our conditions
+    # Find which row meets our conditions
     mask = (Fixations['startT'] >= c[0]+pre) & (Fixations['startT'] < c[0]+post)
     
     # Fill the rows with have found with more info
@@ -199,18 +201,18 @@ for i,c in enumerate(Targets):
     Fixations.loc[mask, 'Onset'] =  c[0]
 ```
 
-Our Fixations dataframe is now chock-full of event-related info. But, there's a catch. The fixations that took place at times other than during the target presentation are still hanging around in the dataframe. And they're filled with NANs in the new columns we just created. We can use this at our advantage adn filter all the NANs out:
+Our Fixations dataframe is now chock-full of event-related info. But, there's a catch. The fixations that took place at times other than during the target presentation are still hanging around in the dataframe. And they're filled with NANs in the new columns we just created. We can use this to our advantage and filter all the NANs out:
 
 ```{python}
 # We can drop the NANs to have only the fixations that interest us!!!!
 Target_fixations = Fixations[Fixations['Event'].notna()].reset_index(drop = True)
 ```
 
-# Put things toghether
+# Put things together
 
 Now we have selected our fixations based on the events. But we also need to filter the fixations based on the AOIs. If only we had some functions to do so.... Oh wait we actually just created them!! Let's make use of them!!
 
-As first step we will add a new column to our Target_fixations dataframe containing the AOIs we defined together before. Thus each row of this column will inform us which AOIs we should check. We will also add a new column called `Looked_AOI` where we will storethe indexes of which AOI the fixation fell into.
+As a first step, we will add a new column to our Target_fixations dataframe containing the AOIs we defined together before. Thus, each row of this column will tell us which AOIs we should check. We will also add a new column called `Looked_AOI` where we will storethe indexes of which AOI the fixation fell into.
 
 ::: callout-important
 Just a heads up, our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you're dealing with multiple or moving AOIs, you've got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It's all about flexibility and precision!
