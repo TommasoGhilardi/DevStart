@@ -9,15 +9,15 @@ keywords: DevStart, developmental cognitive science, PhD, research methods, data
 
 # What is this?
 
-This is a helpline for all the new PhD students in developmental psychology and developmental cognitive neuroscience, and everyone who is approaching this world for the first time. 
+DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs. 
 
-Assuming no apriori knowledge, this website will guide you through your first steps as a developmental researcher. You'll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.
+Assuming no a priori knowledge, this website will guide you through your first steps as a developmental researcher. You'll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.
 
-## Why we created it?
+## Why did we create it?
 
-There are many resources on the web to learn programming, build experiments, and analyse data. However, they often assume basic skills in programming, and they don't tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair. 
+There are many resources on the web to learn how to program, build experiments, and analyse data. However, they often assume basic skills in programming, and they don't tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair. 
 
-We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems and we invite you to do better than us and contribute to this open science framework! 
+We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems, and we invite anyone to help us and contribute to this open science framework! 
 
 ## How to contribute?
 
@@ -29,9 +29,9 @@ You can find us at:
 -   {{< fa envelope >}} [francesco.poli\@donders.ru.nl](mailto:francesco.poli@donders.ru.nl)\
 -   {{< fa envelope >}} [g.serino\@bbk.ac.uk](mailto:g.serino@bbk.ac.uk)\
 
-## Who we are?
+## Who are we?
 
-This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into it, looking for data to write her master's thesis.
+This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into them, looking for data to write her master's thesis.
 
 United by a strong passion for research and a creepy attraction to complex and noisy datasets, they immediately got along well. We haven't stopped collaborating since then.
 
