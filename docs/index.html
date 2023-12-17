@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./CONTENT/GettingStarted/GettingStartedWithPython.html" rel="next">
 <script src="site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -131,6 +132,7 @@ cookieconsent.run({
 <meta property="og:title" content="DevStart - Getting Started with Developmental Cognitive Science">
 <meta property="og:description" content="Getting Started with Developmental Cognitive Science">
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/images/welcome/Tommaso.jpg">
+<meta property="og:site-name" content="DevStart">
 <meta name="twitter:title" content="DevStart - Getting Started with Developmental Cognitive Science">
 <meta name="twitter:description" content="Getting Started with Developmental Cognitive Science">
 <meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/images/welcome/Tommaso.jpg">
@@ -165,8 +167,27 @@ cookieconsent.run({
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
-    <a href="https://github.com/TommasoGhilardi/DevStart" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -245,10 +266,24 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create an eye-tracking experiment</span></a>
+  <a href="./CONTENT/EyeTracking/FromFixationsToData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From fixations to data</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Workshops</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">CONTENT/Workshops/BCCD2024.qmd</span>
+  </li>
       </ul>
   </li>
     </ul>
@@ -263,9 +298,9 @@ cookieconsent.run({
   <ul>
   <li><a href="#what-is-this" id="toc-what-is-this" class="nav-link active" data-scroll-target="#what-is-this">What is this?</a>
   <ul class="collapse">
-  <li><a href="#why-we-created-it" id="toc-why-we-created-it" class="nav-link" data-scroll-target="#why-we-created-it">Why we created it?</a></li>
+  <li><a href="#why-did-we-create-it" id="toc-why-did-we-create-it" class="nav-link" data-scroll-target="#why-did-we-create-it">Why did we create it?</a></li>
   <li><a href="#how-to-contribute" id="toc-how-to-contribute" class="nav-link" data-scroll-target="#how-to-contribute">How to contribute?</a></li>
-  <li><a href="#who-we-are" id="toc-who-we-are" class="nav-link" data-scroll-target="#who-we-are">Who we are?</a>
+  <li><a href="#who-are-we" id="toc-who-are-we" class="nav-link" data-scroll-target="#who-are-we">Who are we?</a>
   <ul class="collapse">
   <li><a href="#tommaso-ghilardi-the-programmer" id="toc-tommaso-ghilardi-the-programmer" class="nav-link" data-scroll-target="#tommaso-ghilardi-the-programmer">Tommaso Ghilardi: <em>the programmer</em></a></li>
   <li><a href="#francesco-poli-the-deep-thinker" id="toc-francesco-poli-the-deep-thinker" class="nav-link" data-scroll-target="#francesco-poli-the-deep-thinker">Francesco Poli: <em>the deep thinker</em></a></li>
@@ -299,12 +334,12 @@ cookieconsent.run({
 
 <section id="what-is-this" class="level1">
 <h1>What is this?</h1>
-<p>This is a helpline for all the new PhD students in developmental psychology and developmental cognitive neuroscience, and everyone who is approaching this world for the first time.&nbsp;</p>
-<p>Assuming no apriori knowledge, this website will guide you through your first steps as a developmental researcher. You’ll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.</p>
-<section id="why-we-created-it" class="level2">
-<h2 class="anchored" data-anchor-id="why-we-created-it">Why we created it?</h2>
-<p>There are many resources on the web to learn programming, build experiments, and analyse data. However, they often assume basic skills in programming, and they don’t tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair.&nbsp;</p>
-<p>We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems and we invite you to do better than us and contribute to this open science framework!&nbsp;</p>
+<p>DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master’s students and PhDs to postdocs.&nbsp;</p>
+<p>Assuming no a priori knowledge, this website will guide you through your first steps as a developmental researcher. You’ll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.</p>
+<section id="why-did-we-create-it" class="level2">
+<h2 class="anchored" data-anchor-id="why-did-we-create-it">Why did we create it?</h2>
+<p>There are many resources on the web to learn how to program, build experiments, and analyse data. However, they often assume basic skills in programming, and they don’t tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair.&nbsp;</p>
+<p>We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems, and we invite anyone to help us and contribute to this open science framework!&nbsp;</p>
 </section>
 <section id="how-to-contribute" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-contribute">How to contribute?</h2>
@@ -319,9 +354,9 @@ cookieconsent.run({
 </li>
 </ul>
 </section>
-<section id="who-we-are" class="level2">
-<h2 class="anchored" data-anchor-id="who-we-are">Who we are?</h2>
-<p>This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into it, looking for data to write her master’s thesis.</p>
+<section id="who-are-we" class="level2">
+<h2 class="anchored" data-anchor-id="who-are-we">Who are we?</h2>
+<p>This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into them, looking for data to write her master’s thesis.</p>
 <p>United by a strong passion for research and a creepy attraction to complex and noisy datasets, they immediately got along well. We haven’t stopped collaborating since then.</p>
 <section id="tommaso-ghilardi-the-programmer" class="level3">
 <h3 class="anchored" data-anchor-id="tommaso-ghilardi-the-programmer">Tommaso Ghilardi: <em>the programmer</em></h3>
@@ -781,7 +816,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./CONTENT/GettingStarted/GettingStartedWithPython.html" class="pagination-link">
+        <span class="nav-page-text">Starting with Python</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Welcome to DevStart</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Getting Started with Developmental Cognitive Science</span></span>
@@ -793,15 +837,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># What is this?</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>This is a helpline for all the new PhD students in developmental psychology and developmental cognitive neuroscience, and everyone who is approaching this world for the first time.&nbsp;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs.&nbsp;</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Assuming no apriori knowledge, this website will guide you through your first steps as a developmental researcher. You'll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Assuming no a priori knowledge, this website will guide you through your first steps as a developmental researcher. You'll find many examples and guidelines on how to grasp the basic principles of developmental psychology research, design and set up a study with different research methods, analyse data, and start programming.</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why we created it?</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why did we create it?</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>There are many resources on the web to learn programming, build experiments, and analyse data. However, they often assume basic skills in programming, and they don't tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair.&nbsp;</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>There are many resources on the web to learn how to program, build experiments, and analyse data. However, they often assume basic skills in programming, and they don't tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair.&nbsp;</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems and we invite you to do better than us and contribute to this open science framework!&nbsp;</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems, and we invite anyone to help us and contribute to this open science framework!&nbsp;</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to contribute?</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -813,9 +857,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>{{&lt; fa envelope &gt;}} <span class="co">[</span><span class="ot">francesco.poli\@donders.ru.nl</span><span class="co">](mailto:francesco.poli@donders.ru.nl)</span>\</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>{{&lt; fa envelope &gt;}} <span class="co">[</span><span class="ot">g.serino\@bbk.ac.uk</span><span class="co">](mailto:g.serino@bbk.ac.uk)</span>\</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who we are?</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who are we?</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into it, looking for data to write her master's thesis.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>This is a story of bullying and love started in 2018 at the Donders Institute in the Netherlands. Tommaso and Francesco were living their best PhD life when Giulia bumped into them, looking for data to write her master's thesis.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>United by a strong passion for research and a creepy attraction to complex and noisy datasets, they immediately got along well. We haven't stopped collaborating since then.</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
@@ -909,6 +953,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/">
       <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://bsky.app">
+      <i class="bi bi-bsky" role="img" aria-label="Bsky">
 </i> 
     </a>
   </li>  

@@ -47,9 +47,7 @@ In this tutorial, we will look at how to extract two variables from our paradigm
 
 -   **Looking time:** how long our participant looked at certain locations on the screen. In our case, we will look at how long our participant looked at either target location (left: NoReward, right: Reward) on each trial.
 
-So what do these two measures have in common? 
-*pregnant pause for you to answer* 
-EXACTLY!!! They are both clearly related to the position of our stimuli. For this reason, it is important to define Areas Of Interest (AOIs) on the screen (for example, the locations of the targets). Defining AOIs will allow us to check, for each single fixation, whether it happened in an area that we are interested in.
+So what do these two measures have in common? *pregnant pause for you to answer* EXACTLY!!! They are both clearly related to the position of our stimuli. For this reason, it is important to define Areas Of Interest (AOIs) on the screen (for example, the locations of the targets). Defining AOIs will allow us to check, for each single fixation, whether it happened in an area that we are interested in.
 
 # Areas Of Interest
 

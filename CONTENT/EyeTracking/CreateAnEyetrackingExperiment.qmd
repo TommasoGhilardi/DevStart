@@ -140,9 +140,50 @@ trigger = 'Presented Stimulus'
 
 Perfect! Now we have 1. a way to access the data from the eye-tracker and 2. know exactly what stimuli we are presenting the participant and when.
 
+## Correct the data
+
+Tobii presents gaze data in a variety of formats. The one we\'re most interested in is the Active Display Coordinate System (ADCS). This system maps all gaze data onto a 2D coordinate system that aligns with the Active Display Area. When an eye tracker is used with a monitor, the Active Display Area refers to the display area that doesn\'t include the monitor frame. In the ADCS system, the point (0, 0) represents the upper left corner of the screen, and (1, 1) represents the lower right corner.
+
+While this coordinate system is perfectly acceptable, it might cause some confusion when we come to analyze and plot the data. This is because in most systems, the data\'s origin is located in the lower left corner, not the upper left. It might seem a bit complicated, but the image below will make everything clear.
+
+![](/images/CreateAnEyetrackingExperiment/Origins.png){fig-align="center" width="419"}
+
+For this reason, we typically adjust the data to position the origin in the bottom left corner. This can be achieved by subtracting the gaze coordinates from the maximum window height size.
+
+In addition to the origin point issue, the gaze coordinates are reported between 0 and 1. It\'s often more convenient to handle data in pixels, so we can transform our data into pixels. This is done by multiplying the obtained coordinates by the pixel dimensions of our screen.
+
+Lastly, we also modify the time column. Tobii provides data in microseconds, but such precision isn\'t necessary for our purposes, so we convert it to milliseconds by dividing by 1000.
+
+```{python}
+def gaze_data_callback(gaze_data):
+    global trigger
+    global winsize
+
+    if len(trigger)==0:
+        ev = ''
+    else:
+        ev = trigger
+        trigger=[]
+    
+    # Extract the data we are interested in
+    t  = gaze_data.system_time_stamp / 1000.0
+    lx = gaze_data.left_eye.gaze_point.position_on_display_area[0] * winsize[0]
+    ly = winsize[1] - gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    lp = gaze_data.left_eye.pupil.diameter
+    lv = gaze_data.left_eye.gaze_point.validity
+    rx = gaze_data.right_eye.gaze_point.position_on_display_area[0] * winsize[0]
+    ry = winsize[1] - gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    rp = gaze_data.right_eye.pupil.diameter
+    rv = gaze_data.right_eye.gaze_point.validity
+    
+    
+trigger = ''
+winsize = (1920, 1080)
+```
+
 ## Save the data
 
-You might've noticed that we get the data in our callback function but don't actually save it anywhere. So how to save them? There are two main approaches we can use:
+You might have noticed that we get the data in our callback function but don't actually save it anywhere. So how to save them? There are two main approaches we can use:
 
 1.  We could have a saving function inside our callback that could append the new data to a .csv each time the callback is called.
 
@@ -164,6 +205,7 @@ gaze_data_buffer = []
 def gaze_data_callback(gaze_data):
     global gaze_data_buffer
     global trigger
+    global winsize
 
     if len(trigger)==0:
         ev = ''
@@ -174,11 +216,11 @@ def gaze_data_callback(gaze_data):
     # Extract the data we are interested in
     t  = gaze_data.system_time_stamp / 1000.0
     lx = gaze_data.left_eye.gaze_point.position_on_display_area[0] * winsize[0]
-    ly = gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    ly = winsize[1] - gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
     lp = gaze_data.left_eye.pupil.diameter
     lv = gaze_data.left_eye.gaze_point.validity
     rx = gaze_data.right_eye.gaze_point.position_on_display_area[0] * winsize[0]
-    ry = gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    ry = winsize[1] - gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
     rp = gaze_data.right_eye.pupil.diameter
     rv = gaze_data.right_eye.gaze_point.validity
         
@@ -261,11 +303,11 @@ def gaze_data_callback(gaze_data):
     # Extract the data we are interested in
     t  = gaze_data.system_time_stamp / 1000.0
     lx = gaze_data.left_eye.gaze_point.position_on_display_area[0] * winsize[0]
-    ly = gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    ly = winsize[1] - gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
     lp = gaze_data.left_eye.pupil.diameter
     lv = gaze_data.left_eye.gaze_point.validity
     rx = gaze_data.right_eye.gaze_point.position_on_display_area[0] * winsize[0]
-    ry = gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    ry = winsize[1] - gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
     rp = gaze_data.right_eye.pupil.diameter
     rv = gaze_data.right_eye.gaze_point.validity
         
@@ -417,3 +459,165 @@ Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
 ```
 
 Note that we also closed the Psychopy window, so that the stimulus presentation is also officially over. Well done!!! Now go and get your data!!! We'll see you back when it's time to analyze it.
+
+# END!!
+
+Great job getting to here!! it want easy but you did it. Here is all the code we made together.
+
+``` python
+import os
+import glob
+import pandas as pd
+
+# Import some libraries from PsychoPy
+from psychopy import core, event, visual, prefs
+prefs.hardware['audioLib'] = ['PTB']
+from psychopy import sound
+
+import tobii_research as tr
+
+
+#%% Functions
+
+# This will be called every time there is new gaze data
+def gaze_data_callback(gaze_data):
+    global trigger
+    global gaze_data_buffer
+    global winsize
+
+    if len(trigger)==0:
+        ev = ''
+    else:
+        ev = trigger
+        trigger=[]
+    
+    # Extract the data we are interested in
+    t  = gaze_data.system_time_stamp / 1000.0
+    lx = gaze_data.left_eye.gaze_point.position_on_display_area[0] * winsize[0]
+    ly = winsize[1] - gaze_data.left_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    lp = gaze_data.left_eye.pupil.diameter
+    lv = gaze_data.left_eye.gaze_point.validity
+    rx = gaze_data.right_eye.gaze_point.position_on_display_area[0] * winsize[0]
+    ry = winsize[1] - gaze_data.right_eye.gaze_point.position_on_display_area[1] * winsize[1]
+    rp = gaze_data.right_eye.pupil.diameter
+    rv = gaze_data.right_eye.gaze_point.validity
+        
+    # Add gaze data to the buffer 
+    gaze_data_buffer.append((t,lx,ly,lp,lv,rx,ry,rp,rv,ev))
+    
+        
+def write_buffer_to_file(buffer, output_path):
+
+    # Make a copy of the buffer and clear it
+    buffer_copy = buffer[:]
+    buffer.clear()
+    
+    # Define column names
+    columns = ['time', 'L_X', 'L_Y', 'L_P', 'L_V', 
+               'R_X', 'R_Y', 'R_P', 'R_V', 'Event']
+
+    # Convert buffer to DataFrame
+    out = pd.DataFrame(buffer_copy, columns=columns)
+    
+    # Check if the file exists
+    file_exists = not os.path.isfile(output_path)
+    
+    # Write the DataFrame to an HDF5 file
+    out.to_csv(output_path, mode='a', index =False, header = file_exists)
+    
+    
+    
+#%% Load and prepare stimuli
+
+# Winsize
+winsize = (1920, 1080)
+
+# create a window
+win = visual.Window(size = winsize,fullscr=True, units="pix", pos =(0,30), screen=1)
+
+# Load images
+fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
+circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
+square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
+winning   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
+loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+
+# Load sound
+winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
+losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
+
+# List of stimuli
+cues = [circle, square] # put both cues in a list
+rewards = [winning, loosing] # put both rewards in a list
+sounds = [winning_sound,losing_sound] # put both sounds in a list
+
+# Create list of trials in which 0 means winning and 1 means losing
+Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
+
+
+
+#%% Record the data
+
+# Find all connected eye trackers
+found_eyetrackers = tr.find_all_eyetrackers()
+
+# We will just use the first one
+Eyetracker = found_eyetrackers[0]
+
+#Start recording
+Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
+
+
+for trial in Trials:
+
+    ### Present the fixation
+    win.flip() # we flip to clean the window
+
+        
+    fixation.draw()
+    win.flip()
+    trigger = 'Fixation'
+    core.wait(1)  # wait for 1 second
+
+
+    ### Present the cue
+    cues[trial].draw()
+    win.flip()
+    if trial ==0:
+        trigger = 'Circle'
+    else:
+        trigger = 'Square'
+
+    core.wait(3)  # wait for 3 seconds
+    win.flip()
+
+    ### Wait for saccadic latencty
+    core.wait(0.75)
+
+    ### Present the reward
+    rewards[trial].draw()
+    win.flip()
+
+    if trial ==0:
+        trigger = 'Reward'
+    else:
+        trigger = 'NoReward'
+        
+    sounds[trial].play()
+    
+    ### ISI
+    core.wait(1)  # wait for 1 second
+    win.flip()    # we re-flip at the end to clean the window
+    
+
+    ### ISI
+    clock = core.Clock()
+    write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
+    print(clock.getTime())
+    while clock.getTime() < 1:
+        pass
+      
+      
+win.close()
+Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
+```

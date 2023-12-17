@@ -6,6 +6,10 @@ execute:
   freeze: auto
 
 website:
+  title: "DevStart"
+  description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
+  image: images/LOGO.png
+  
   site-url: "https://tommasoghilardi.github.io/DevStart/"
   google-analytics: "G-G5XSH1GLW7"
   twitter-card: true
@@ -16,6 +20,8 @@ website:
     style: simple    
 
   back-to-top-navigation: true
+  page-navigation: true
+  reader-mode: true
 
   search:
     location: sidebar
@@ -39,10 +45,6 @@ website:
     style: "floating"
     border: true
     align: center
-    
-
-    
-    # title: "DevStart"
     logo: images/LOGO.png # IconB2.svg
 
     
@@ -50,8 +52,11 @@ website:
       - icon: twitter
         href: https://twitter.com
       - icon: github
-        href: https://github.com/TommasoGhilardi/DevStart
-    
+        menu:
+          - text: Source Code
+            url:  https://github.com/TommasoGhilardi/DevStart
+          - text: Report a Bug
+            url:  https://github.com/TommasoGhilardi/DevStart/issues
     
     contents:
       - index.qmd
@@ -66,7 +71,10 @@ website:
           - CONTENT/EyeTracking/Intro_eyetracking.qmd
           - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
-          - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
+          - CONTENT/EyeTracking/FromFixationsToData.qmd
+      - section: "Workshops"
+        contents: 
+          - CONTENT/Workshops/BCCD2024.qmd
 
 
 
@@ -79,6 +87,9 @@ website:
       - href: https://twitter.com/
         icon: twitter
         aria-label: Twitter
+      - href: https://bsky.app
+        icon: bsky
+        aria-label: Bsky
 
 format:
   html:
