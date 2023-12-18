@@ -95,7 +95,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 # Create a figure
-fig, ax = plt.subplots(1)
+fig, ax = plt.subplots(1, figsize=(1920/2,1080/2))
 
 # Set the limits of the plot
 ax.set_xlim(0, 1920)
@@ -181,7 +181,7 @@ Let's start by finding the moment in which the target appeared:
 Targets = Raw_data.loc[(Raw_data['Event'] == 'Reward') | (Raw_data['Event'] == 'NoReward'), ['time', 'Event']].values
 ```
 
-Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we're going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.
+Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we're going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.
 
 ```{python}
 # Find the fixations that we care about
@@ -208,12 +208,12 @@ Target_fixations = Fixations[Fixations['Event'].notna()].reset_index(drop = True
 
 # Put things together
 
-Now we have selected our fixations based on the events. But we also need to filter the fixations based on the AOIs. If only we had some functions to do so.... Oh wait we actually just created them!! Let's make use of them!!
+Now we have selected our fixations based on the events. But we also need to filter the fixations based on the AOIs. If only we had some functions to do so.... Oh wait, we actually just created them!! Let's make use of them!!
 
-As a first step, we will add a new column to our Target_fixations dataframe containing the AOIs we defined together before. Thus, each row of this column will tell us which AOIs we should check. We will also add a new column called `Looked_AOI` where we will storethe indexes of which AOI the fixation fell into.
+As a first step, we will add a new column to our Target_fixations dataframe containing the AOIs we defined together before. Thus, each row of this column will tell us which AOIs we should check. We will also add a new column called `Looked_AOI` where we will store the indexes of which AOI the fixation fell into.
 
 ::: callout-important
-Just a heads up, our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you're dealing with multiple or moving AOIs, you've got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It's all about flexibility and precision!
+Just a heads up: our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you're dealing with multiple or moving AOIs, you've got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It's all about flexibility and precision!
 :::
 
 ```{python}
@@ -221,7 +221,7 @@ Target_fixations['AOIs'] = [AOIs]* len(Latency_fixations)
 Target_fixations['Looked_AOI'] = np.NAN
 ```
 
-Now that we have a columns with the AOIs in our Target_fixations dataframe we can run our function `find_area_for_point()` to check in which AOI each fixation falls into.
+Now that we have a column with the AOIs in our Target_fixations dataframe, we can run our function `find_area_for_point()` to check in which AOI each fixation falls.
 
 ```{python}
 # We run the function  for each row. We pass each xpos and ypos to the function
@@ -243,14 +243,14 @@ Target_fixations = Target_fixations[Target_fixations['Looked_AOI'] != -1]
 
 # Saccadic latency
 
-As I mentioned at the beginning of this tutorial, one of the indices we want to extract is saccadic latency. Basically, how quickly our participants fixated on the target location.
+As I mentioned at the beginning of this tutorial, one of the indices we want to extract is saccadic latency. Basically, this indicates how quickly our participants fixated on the correct target location.
 
-If we know where our participant was supposed to look, we can easily find the first fixations. Sounds simple, right?
+If we know where our participant was supposed to look, we can easily find the first fixation. Sounds simple, right?
 
-Our paradigm was very simple, every time the non rewarding stimulus was presented on the left (the first AOI we defined) and the rewarding stimulus was presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter our the wrong fixations:
+In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:
 
 ```{python}
-# We define which is the correct AOI that the participant should have looked.
+# We define which is the correct AOI that the participant should have looked at.
 Target_fixations.loc[Target_fixations['Event'] == 'NoReward', 'Correct_Aoi'] = 0
 Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
 
@@ -258,7 +258,7 @@ Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
 Correct_Target_fixations = Target_fixations[Target_fixations['Correct_Aoi'] == Target_fixations['Looked_AOI']]
 ```
 
-Now we can finally extract the saccadic latency by simply subtracting the from the onset of the fixations (`startT`) the onset of the event `Onset`:
+Now we can finally extract the saccadic latency by simply subtracting the onset of the event `Onset` from the onset of the fixations (`startT`):
 
 ```{python}
 Correct_Target_fixations['Latency'] = Correct_Target_fixations['Onset'] - Correct_Target_fixations['startT']
@@ -285,18 +285,18 @@ Here we have our **Saccadic latency**!!!
 
 # Looking time
 
-While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tell us how much our participant was looking in either of the two AOIs at each trial.
+While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.
 
-We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by `Event`, `Event_trial` and `Looked_AOI`. For each of the grouped dataframes we will extract the `sum()` of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.
+We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by `Event`, `Event_trial` and `Looked_AOI`. For each of the grouped dataframes, we will extract the `sum()` of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.
 
 ```{python}
-# Using groupby we can extrac the sum of the duration of the fixation for each reward and trial
+# Using groupby we can extract the sum of the duration of the fixation for each reward and trial
 LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
 ```
 
 # END!!
 
-Well done!! we have successfully extract both Saccadic latency and Lookign time from our data. Remember that is is just a simple tutorial based on an even simpler design. However if you got to teh end nad you have understood all the steps and what they mean I am sure you can apply this knowledge to your study as well. If you have any question or somethign is not clear feel free to send us an email!!\
+Well done!! we have successfully extracted both saccadic latency and looking time from our data. Remember that it is just a simple tutorial based on an even simpler design. However if you got to the end and you have understood all the steps and what they mean, I am sure you can apply this knowledge to your study as well. If you have any questions or if something is not clear, feel free to send us an email!!\
 \
 Here below the entire script!!\
 
@@ -363,7 +363,7 @@ post = 400
 
 for i,c in enumerate(Targets):
     
-    # Find which row meet our conditions
+    # Find which row meets our conditions
     mask = (Fixations['startT'] >= c[0]+pre) & (Fixations['startT'] < c[0]+post)
     
     # Fill the rows with have found with more info
@@ -376,7 +376,7 @@ Target_fixations = Fixations[Fixations['Event'].notna()].reset_index(drop = True
 
 
 
-#%% Put things toghether
+#%% Put things together
 
 # Add the AOIs to dataframe
 Target_fixations['AOIs'] = [AOIs]* len(Latency_fixations)
@@ -398,7 +398,7 @@ Target_fixations = Target_fixations[Target_fixations['Looked_AOI'] != -1]
 
 #%% Saccadic Latency
 
-# We define which is the correct AOI that the participant should have looked.
+# We define which is the correct AOI that the participant should have looked at.
 Target_fixations.loc[Target_fixations['Event'] == 'NoReward', 'Correct_Aoi'] = 0
 Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
 
@@ -415,6 +415,6 @@ SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['La
 
 #%% Looking time
 
-# Using groupby we can extrac the sum of the duration of the fixation for each reward and trial
+# Using groupby we can extract the sum of the duration of the fixation for each reward and trial
 LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
 ```
