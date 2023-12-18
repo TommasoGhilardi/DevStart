@@ -95,7 +95,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 # Create a figure
-fig, ax = plt.subplots(1)
+fig, ax = plt.subplots(1, figsize=(1920/2,1080/2))
 
 # Set the limits of the plot
 ax.set_xlim(0, 1920)
