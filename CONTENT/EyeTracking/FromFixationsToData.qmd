@@ -161,7 +161,7 @@ def find_area_for_point(point, areas):
         x, y = point
         
         # Check if the point is in the area
-        bottom_x <= x <= top_x and bottom_y <= y <= top_y :
+        if bottom_x <= x <= top_x and bottom_y <= y <= top_y :
             return(i)
     return(-1)
 ```
@@ -327,7 +327,7 @@ def find_area_for_point(point, areas):
         x, y = point
         
         # Check if the point is in the area
-        bottom_x <= x <= top_x and bottom_y <= y <= top_y :
+        if bottom_x <= x <= top_x and bottom_y <= y <= top_y :
             return(i)
     return(-1)
 
