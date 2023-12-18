@@ -142,17 +142,17 @@ Perfect! Now we have 1. a way to access the data from the eye-tracker and 2. kno
 
 ## Correct the data
 
-Tobii presents gaze data in a variety of formats. The one we\'re most interested in is the Active Display Coordinate System (ADCS). This system maps all gaze data onto a 2D coordinate system that aligns with the Active Display Area. When an eye tracker is used with a monitor, the Active Display Area refers to the display area that doesn\'t include the monitor frame. In the ADCS system, the point (0, 0) represents the upper left corner of the screen, and (1, 1) represents the lower right corner.
+Tobii presents gaze data in a variety of formats. The one we're most interested in is the Active Display Coordinate System (ADCS). This system maps all gaze data onto a 2D coordinate system that aligns with the Active Display Area. When an eye tracker is used with a monitor, the Active Display Area refers to the display area that doesn't include the monitor frame. In the ADCS system, the point (0, 0) represents the upper left corner of the screen, and (1, 1) represents the lower right corner.
 
-While this coordinate system is perfectly acceptable, it might cause some confusion when we come to analyze and plot the data. This is because in most systems, the data\'s origin is located in the lower left corner, not the upper left. It might seem a bit complicated, but the image below will make everything clear.
+While this coordinate system is perfectly acceptable, it might cause some confusion when we come to analyze and plot the data. This is because in most systems, the data's origin is located in the lower left corner, not the upper left. It might seem a bit complicated, but the image below will make everything clear.
 
 ![](/images/CreateAnEyetrackingExperiment/Origins.png){fig-align="center" width="419"}
 
 For this reason, we typically adjust the data to position the origin in the bottom left corner. This can be achieved by subtracting the gaze coordinates from the maximum window height size.
 
-In addition to the origin point issue, the gaze coordinates are reported between 0 and 1. It\'s often more convenient to handle data in pixels, so we can transform our data into pixels. This is done by multiplying the obtained coordinates by the pixel dimensions of our screen.
+In addition to the origin point issue, the gaze coordinates are reported between 0 and 1. It's often more convenient to handle data in pixels, so we can transform our data into pixels. This is done by multiplying the obtained coordinates by the pixel dimensions of our screen.
 
-Lastly, we also modify the time column. Tobii provides data in microseconds, but such precision isn\'t necessary for our purposes, so we convert it to milliseconds by dividing by 1000.
+Lastly, we also modify the time column. Tobii provides data in microseconds, but such precision isn't necessary for our purposes, so we convert it to milliseconds by dividing by 1000.
 
 ```{python}
 def gaze_data_callback(gaze_data):
@@ -342,6 +342,9 @@ Now we are going to set a few settings, such as the screen size, create a Psycho
 ```{python}
 #%% Load and prepare stimuli
 
+# Setting directory of our experiment
+os.chdir('C:\\Users\\CBCD\\Desktop\\BCCCD')
+
 # Winsize
 winsize = (1920, 1080)
 
@@ -392,6 +395,7 @@ The eye-tracking is running! Let's show our participant something!
 As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.
 
 ```{python}
+#%% Trials
 
 for trial in Trials:
 
@@ -587,11 +591,10 @@ for trial in Trials:
         trigger = 'Circle'
     else:
         trigger = 'Square'
-
     core.wait(3)  # wait for 3 seconds
-    win.flip()
 
     ### Wait for saccadic latencty
+    win.flip()
     core.wait(0.75)
 
     ### Present the reward
@@ -602,18 +605,13 @@ for trial in Trials:
         trigger = 'Reward'
     else:
         trigger = 'NoReward'
-        
     sounds[trial].play()
-    
-    ### ISI
-    core.wait(1)  # wait for 1 second
-    win.flip()    # we re-flip at the end to clean the window
-    
+    core.wait(2)  # wait for 2 second
 
     ### ISI
+    win.flip()    # we re-flip at the end to clean the window
     clock = core.Clock()
     write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
-    print(clock.getTime())
     while clock.getTime() < 1:
         pass
       

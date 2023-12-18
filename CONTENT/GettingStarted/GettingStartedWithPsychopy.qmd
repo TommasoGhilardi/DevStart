@@ -13,7 +13,7 @@ PsychoPy is an open source software package written in the Python programming la
 
 So, let's start and install PsychoPy!!!
 
-## Install PsychoPy
+# Install PsychoPy
 
 As reported on the PsychoPy [website](https://www.psychopy.org/download.html), there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the [Getting started with python](GettingStartedWithPython.qmd)).
 
@@ -45,7 +45,7 @@ You can also refer to our guide [InstallingSpyderide](GettingStartedWithPython.q
 
 Now that you should have both PsychoPy and Spyder installed let's see how to create a simple experiment with them.
 
-## Let's create our first experiment using PsychoPy.
+# Let's create our first experiment using PsychoPy.
 
 We will create a very simple and basic experiment that will be the stepping stone for some of the future tutorials. In the future tutorials we will show you how to extend and make this tutorial in a real experiment.
 
@@ -65,29 +65,31 @@ You can download from [here](/resources/getting_started_psychopy/getting_started
 In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding. Here below you can find a graphic representation of the design:\
 ![](/images/GettingStartedWithPsychopy/Design.jpg)
 
-### Preparation:
+## Preparation:
 
 First thing first let's import the relevant libraries and define the path where our stimuli are in. PsychoPy has a lot of different modules that allow us to interface with different type of stimuli and systems. For this tutorial
 
 ```{python}
-# Import some libraries from PsychoPy
+# Import some libraries from PsychoPy and others
+import os
 from psychopy import core
 from psychopy import visual  
 from psychopy import sound
-
-# Let's define the path we will work with.
-# in my case the stimuli that we will use are in here but you will have to adapt
-# this variable to where you have downloaded the stimuli.
-Path = 'C:\\Users\\tomma\\surfdrive\\Documentation\\psychopy\\'
 ```
 
-### Stimuli:
+## Stimuli:
 
-The next step is to create the window The window is what we will show the stimuli in; it is the canvas in which to draw objects. For now we will create a small window of 800\*600 pixels. In this way we will able to see the stimuli and still interact with the rest of our pc interface. In a real experiment we would probably set the window dimension to the entirety of the the display (Fullscreen).
+The next step is to create the window The window is what we will show the stimuli in; it is the canvas in which to draw objects. For now we will create a small window of 960\*540 pixels. In this way we will able to see the stimuli and still interact with the rest of our pc interface. In a real experiment we would probably set the window dimension to the entirety of the the display (Fullscreen).
 
 ```{python}
+# Winsize
+winsize = (1920, 1080)
+
+# create a window
+win = visual.Window(size = winsize,fullscr=True, units="pix", pos =(0,30), screen=1)
+
 #create a window
-win = visual.Window([800,600], units="pix")
+win = visual.Window([1920,1080], units="pix")
 ```
 
 Now let's import the stimuli that we will present in this tutorial. We have 5 stimuli:
@@ -108,6 +110,32 @@ When importing a visual stimulus we need to pass to the importing function in wh
 :::
 
 ```{python}
+#%% Load and prepare stimuli
+
+# Setting directory of our experiment
+os.chdir('C:\\Users\\CBCD\\Desktop\\BCCCD')
+
+
+# Load images
+fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
+circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
+square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
+winning   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
+loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+
+# Load sound
+winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
+losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
+
+# List of stimuli
+cues = [circle, square] # put both cues in a list
+rewards = [winning, loosing] # put both rewards in a list
+sounds = [winning_sound,losing_sound] # put both sounds in a list
+
+# Create list of trials in which 0 means winning and 1 means losing
+Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
+
+
 # Load images
 fixation = visual.ImageStim(win, image=Path + 'fixation.png', size = (100, 100))
 circle   = visual.ImageStim(win, image=Path + 'circle.png', size = (100, 100))
@@ -122,7 +150,7 @@ losing_sound = sound.Sound(Path + 'loosing.wav')
 
 Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their `pos` to `(250,0)` and `(-250,0)`. The first value indicates the number of pixels on the x-axis and the second the number of pixels on the y-axis.
 
-### Show a visual stimulus:
+## Show a visual stimulus:
 
 No we want to show a stimuli in the center of our window. To do so we will have to use the function "draw". As the name suggests this function draws the stimulus that we want on the window.
 
@@ -168,7 +196,7 @@ core.wait(1)  # wait for 1 second
 win.flip()    # we re-flip at the end to clean the window
 ```
 
-### Play a sound:
+## Play a sound:
 
 We have seen how to show a stimulus let's now play the sounds that we have imported. This is extremely simple, we can just `play()` them:
 
@@ -184,9 +212,17 @@ Great now we have played our two sounds!!
 When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sounds will play overlapping. That's why we have used `core.wait(2)`, this tells PsychoPy to wait 2 seconds after starting to play the sound.
 :::
 
-### Create a trial:
+## Create a trial:
 
-Now let's try to put everything we have learned in one place and present one rewarding and one non-rewarding trial: - we present the fixation for 1s - we present one of the two cues for 3s - we present the reward or the non-reward depending on the cue for 2s.
+Now let's try to put everything we have learned in one place and present one rewarding and one non-rewarding trial:
+
+-   we present the fixation for 1s
+
+-   we present one of the two cues for 3s
+
+-   we wait 750ms of blank screen
+
+-    we present the reward or the non-reward depending on the cue for 2s.
 
 In the end we also close the window.
 
@@ -230,14 +266,31 @@ core.wait(3)  # wait for 3 seconds
 losing.draw()
 win.flip()
 losing_sound.play()
-core.wait(2)  # wait for 1 second
+core.wait(2)  # wait for 2 second
 win.flip()    # we re-flip at the end to clean the window
 
 
 win.close()  # let's close the window at the end of the trial
 ```
 
-### Create an entire experiment:
+## ISI
+
+Amazing, we\'ve got two trials! But, these trials are back-to-back, which isn\'t typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a `core.wait(1)`, which would pause the script for a second. However, I\'d like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.
+
+To implement this ISI, we\'ll create a psychopy `core.Clock()`. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We\'ll then use a `while` loop to monitor the elapsed time and break this loop once a second has passed.
+
+The `while` loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.
+
+```{python}
+### ISI
+clock = core.Clock() # start clock
+while clock.getTime() < 1:
+    pass
+```
+
+Perfect we can now add this at the end of our trials!!
+
+## Create an entire experiment:
 
 In an experiment, we want more than 1 trial. Let's then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of `0` and `1`. where `0` would identify a rewarding trial and `1` would index a non-rewarding trial.
 
@@ -260,39 +313,47 @@ In this final script, we will change the dimension of the window we will use. Si
 :::
 
 ```{python}
-# Import some libraries from PsychoPy
-from psychopy import visual
+# Import some libraries from PsychoPy and others
+import os
 from psychopy import core
+from psychopy import visual  
 from psychopy import sound
 
-# Let's define the path we will work with.
-# in my case the stimuli that we will use are in here but you will have to adapt
-# this variable to where you have downloaded the stimuli.
-Path = r'C:\\Users\\tomma\\surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl\\Documentation\\Working\\GettingStartedWithPsychopy\\'
+
+
+#%% Load and prepare stimuli
+
+# Setting directory of our experiment
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+
+# Winsize
+winsize = (960, 540)
 
 # create a window
-win = visual.Window(fullscr = True, units="pix")
+win = visual.Window(size = winsize,fullscr=False, units="pix", pos =(0,30), screen=1)
 
 # Load images
-fixation = visual.ImageStim(win, image=Path + 'fixation.png', size = (100, 100))
-circle   = visual.ImageStim(win, image=Path + 'circle.png', size = (100, 100))
-square   = visual.ImageStim(win, image=Path + 'square.png', size = (100, 100))
-winning   = visual.ImageStim(win, image=Path + 'winning.png', size = (100, 100), pos=(600,0))
-loosing  = visual.ImageStim(win, image=Path + 'loosing.png', size = (100, 100), pos=(-600,0))
+fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (100, 100))
+circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (100, 100))
+square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (100, 100))
+winning  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (100, 100), pos=(280,0))
+loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (100, 100), pos=(-280,0))
 
 # Load sound
-winning_sound = sound.Sound(Path + 'winning.wav')
-losing_sound = sound.Sound(Path + 'loosing.wav')
+winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
+losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
 rewards = [winning, loosing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
-
 # Create list of trials in which 0 means winning and 1 means losing
 Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
+
+
+#%% Trials
 
 for trial in Trials:
 
@@ -318,11 +379,13 @@ for trial in Trials:
     win.flip()    # we re-flip at the end to clean the window
 
     ### ISI
-    core.wait(0.3) # add Inter Stimulus Interval to make exp more understandable
-
+    clock = core.Clock() # start clock
+    while clock.getTime() < 1:
+        pass
+    
 win.close()
 ```
 
-### END
+# END
 
 We have our basic experiment and if you have followed up to here you should be able to get along with the basic concepts of PsychoPy!! **Well done!!!**.
