@@ -129,7 +129,7 @@ We can check whether the (x, y) coordinates of the point are within the x and y 
 bottom_left, top_right = area
 
 # Extract the x and y of each point
-bottom_X, bottom_y = bottom_left
+bottom_x, bottom_y = bottom_left
 top_x, top_y = top_right
 
 # Extract the x and y of our point of interest
@@ -154,7 +154,7 @@ def find_area_for_point(point, areas):
         bottom_left, top_right = area
         
         # Extract the x and y of each point
-        bottom_X, bottom_y = bottom_left
+        bottom_x, bottom_y = bottom_left
         top_x, top_y = top_right
         
         # Extract the x and y of our point of interest
@@ -320,7 +320,7 @@ def find_area_for_point(point, areas):
         bottom_left, top_right = area
         
         # Extract the x and y of each point
-        bottom_X, bottom_y = bottom_left
+        bottom_x, bottom_y = bottom_left
         top_x, top_y = top_right
         
         # Extract the x and y of our point of interest
