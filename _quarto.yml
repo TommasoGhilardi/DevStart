@@ -74,7 +74,7 @@ website:
           - CONTENT/EyeTracking/FromFixationsToData.qmd
       - section: "Workshops"
         contents: 
-          - CONTENT/Workshops/BCCD2024.qmd
+          - CONTENT/Workshops/BCCCD2024.qmd
 
 
 

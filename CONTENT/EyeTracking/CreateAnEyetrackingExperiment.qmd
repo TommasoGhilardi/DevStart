@@ -1,12 +1,11 @@
 ---
-title: Create an eye-tracking experiment
+title: "Create an eye-tracking experiment"
 execute:
   eval: false
 
-pagetitle: Create an eye-tracking experiment
 author-meta: Tommaso Ghilardi, Francesco Poli
-description-meta: Learn how to record eyetracking data in your psychopy experiment using Tobii SDK, tobii_research
-keywords: PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science
+description-meta: "Learn how to record eyetracking data in your psychopy experiment using Tobii SDK, tobii_research"
+keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science"
 ---
 
 This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) tutorial. If you have not done that tutorial yet, please go through it first.

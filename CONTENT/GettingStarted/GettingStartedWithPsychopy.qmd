@@ -1,12 +1,11 @@
 ---
-title: Starting with PsychoPy
+title: "Starting with PsychoPy"
 execute:
   eval: false
 
-pagetitle: Starting with PsychoPy
 author-meta: Tommaso Ghilardi
-description-meta: Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to install PsychoPy, create experiments, and more.
-keywords: PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science
+description-meta: "Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to install PsychoPy, create experiments, and more."
+keywords: "PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science"
 ---
 
 PsychoPy is an open source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It's one of our favorite ways to create experiments and we will use it through our tutorials.
