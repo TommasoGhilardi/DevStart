@@ -8,7 +8,7 @@
 
 <meta name="keywords" content="eye-tracking, experiments, saccadic latency, looking time, pupil dilation, fixations, infant research, DevStart, developmental science">
 
-<title>Introduction to eye-tracking</title>
+<title>DevStart - Introduction to eye-tracking</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" rel="next">
+<link href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" rel="prev">
 <script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -125,10 +127,11 @@ cookieconsent.run({
   
 
 
-<meta property="og:title" content="Introduction to eye-tracking">
+<meta property="og:title" content="DevStart - Introduction to eye-tracking">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/images/Introduction_eyetracking/Design.jpg">
-<meta name="twitter:title" content="Introduction to eye-tracking">
+<meta property="og:site-name" content="DevStart">
+<meta name="twitter:title" content="DevStart - Introduction to eye-tracking">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/images/Introduction_eyetracking/Design.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -162,8 +165,27 @@ cookieconsent.run({
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
-    <a href="https://github.com/TommasoGhilardi/DevStart" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -242,8 +264,25 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create an eye-tracking experiment</span></a>
+  <a href="../../CONTENT/EyeTracking/FromFixationsToData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From fixations to measures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Workshops</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CONTENT/Workshops/BCCCD2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BCCCD 2024</span></a>
   </div>
 </li>
       </ul>
@@ -254,7 +293,7 @@ cookieconsent.run({
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="4">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -745,7 +784,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Starting with PsychoPy</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="pagination-link">
+        <span class="nav-page-text">Create an eye-tracking experiment</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Introduction to eye-tracking"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
@@ -801,6 +852,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/">
       <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://bsky.app">
+      <i class="bi bi-bsky" role="img" aria-label="Bsky">
 </i> 
     </a>
   </li>  

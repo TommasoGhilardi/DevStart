@@ -295,7 +295,7 @@ cookieconsent.run({
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="4">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -719,8 +719,15 @@ Note
 <span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
 <span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
 <span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>win.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>win.close()</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>core.quit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -1550,13 +1557,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
 <span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
 <span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>win.close()</span>
-<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a><span class="fu"># END</span></span>
-<span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>We have our basic experiment and if you have followed up to here you should be able to get along with the basic concepts of PsychoPy!! **Well done!!!**.</span>
+<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
+<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
+<span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
+<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-441"><a href="#cb18-441" aria-hidden="true" tabindex="-1"></a>win.close()</span>
+<span id="cb18-442"><a href="#cb18-442" aria-hidden="true" tabindex="-1"></a>core.quit()</span>
+<span id="cb18-443"><a href="#cb18-443" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-444"><a href="#cb18-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-445"><a href="#cb18-445" aria-hidden="true" tabindex="-1"></a><span class="fu"># END</span></span>
+<span id="cb18-446"><a href="#cb18-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-447"><a href="#cb18-447" aria-hidden="true" tabindex="-1"></a>We have our basic experiment and if you have followed up to here you should be able to get along with the basic concepts of PsychoPy!! **Well done!!!**.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
