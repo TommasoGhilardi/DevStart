@@ -425,32 +425,41 @@ for trial in Trials:
     ### Present the reward
     rewards[trial].draw()
     win.flip()
-
     if trial ==0:
         trigger = 'Reward'
     else:
         trigger = 'NoReward'
-        
-    sounds[trial].play()
+    core.wait(2)  # wait for 1 second
+    win.flip()    # we re-flip at the end to clean the window
     
     ### ISI
-    core.wait(1)  # wait for 1 second
-    win.flip()    # we re-flip at the end to clean the window
-```
-
-As we said before in [Save the data], it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. So now we will modify a little our ISI presentation in comparison to the previous Psychopy design.
-
-We will create a Psychopy clock. Once the clock is initiated it will start to track time and we can access how much time passed from its initiation by running `.getTime()`. Our aim here is to save our data, and this will take some time depending on how much data we have collected. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the "while: pass" code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.
-
-```{python}
-
-    ### ISI
     clock = core.Clock()
-    write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
-    print(clock.getTime())
     while clock.getTime() < 1:
         pass
+    
+    ### Check for closing experiment
+    keys = event.getKeys() # collect list of pressed keys
+    if 'escape' in keys:
+        win.close()  # close window
+        core.quit()  # stop study
 ```
+
+As we said before in [Save the data], it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: [Getting started with Psychopy](GettingStartedWithPsychopy.qmd), we created the ISI in a different way than just a `clock.wait()` and we said that this different method would come in handy later on. This is the moment!
+
+Our **ISI** starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the `while clock.getTime() < 1:  pass` code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.
+
+```{python}
+### ISI
+clock = core.Clock()
+write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
+while clock.getTime() < 1:
+    pass
+```
+
+::: callout-warning
+Carefull!!!\
+If saving the data takes more than 1 second, your ISI will also be longer. However, this should not be the case with typical studies where trials are not too long. Nonetheless, it\'s always a good idea to keep an eye out.
+:::
 
 ### Stop recording
 
@@ -613,8 +622,15 @@ for trial in Trials:
     write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
     while clock.getTime() < 1:
         pass
+    
+    ### Check for closing experiment
+    keys = event.getKeys() # collect list of pressed keys
+    if 'escape' in keys:
+        win.close()  # close window
+        Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) # unsubscribe eyetracking
+        core.quit()  # stop study
       
-      
-win.close()
-Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
+win.close() # close window
+Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) # unsubscribe eyetracking
+core.quit() # stop study
 ```

@@ -27,9 +27,9 @@ We will focus on:
 
 ## Software
 
-In this tutorial, our primary tool will be Python!! We recommend installing it via [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/). Our interaction with Python will primarily be through the Spyder IDE. You\'re free to use any IDE of your choice, but if you\'d like to follow along more smoothly, we suggest checking out our guide on how to install both Miniconda and Spyder: [Getting started with Python](GettingStartedWithPython.qmd).
+In this tutorial, our primary tool will be Python!! We recommend installing it via [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/). Our interaction with Python will primarily be through the Spyder IDE. You're free to use any IDE of your choice, but if you'd like to follow along more smoothly, we suggest checking out our guide on how to install both Miniconda and Spyder: [Getting started with Python](GettingStartedWithPython.qmd).
 
-Besides Python, we\'ll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It\'s available as a standalone software or can be installed as a Python package.
+Besides Python, we'll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It's available as a standalone software or can be installed as a Python package.
 
 Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this [anaconda environment](resources\psychopy.yml) to easily create an virtual environment with both python, psychopy and all the libraries that we will need.
 
@@ -41,4 +41,4 @@ In our workshop we will also make use of some stimuli to create a cool experimen
 
 This section is dedicated to the questions and answers that arise during the workshop. We will document the most pertinent and intriguing ones here for future reference and to assist anyone who might have similar queries.
 
-**So... don\'t hesitate to ask a multitude of questions!!!**
+**So... don't hesitate to ask a multitude of questions!!!**

@@ -94,7 +94,7 @@ website:
 format:
   html:
     toc: true
-    toc-expand: 2    
+    toc-expand: 4    
     
     theme:
       light: bookup.scss
@@ -107,7 +107,7 @@ format:
     code-fold: false
     code-copy: true
     code-link: true
-    code-overflow: wrap
+    code-overflow: scroll
     code-tools:
       source: true
       toggle: true

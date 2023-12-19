@@ -221,7 +221,7 @@ Now let's try to put everything we have learned in one place and present one rew
 
 -   we wait 750ms of blank screen
 
--    we present the reward or the non-reward depending on the cue for 2s.
+-   we present the reward or the non-reward depending on the cue for 2s.
 
 In the end we also close the window.
 
@@ -274,9 +274,9 @@ win.close()  # let's close the window at the end of the trial
 
 ## ISI
 
-Amazing, we\'ve got two trials! But, these trials are back-to-back, which isn\'t typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a `core.wait(1)`, which would pause the script for a second. However, I\'d like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.
+Amazing, we've got two trials! But, these trials are back-to-back, which isn't typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a `core.wait(1)`, which would pause the script for a second. However, I'd like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.
 
-To implement this ISI, we\'ll create a psychopy `core.Clock()`. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We\'ll then use a `while` loop to monitor the elapsed time and break this loop once a second has passed.
+To implement this ISI, we'll create a psychopy `core.Clock()`. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We'll then use a `while` loop to monitor the elapsed time and break this loop once a second has passed.
 
 The `while` loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.
 
@@ -289,7 +289,29 @@ while clock.getTime() < 1:
 
 Perfect we can now add this at the end of our trials!!
 
-## Create an entire experiment:
+## Stop the experiment
+
+Fantastic, we've nearly have our study! However, studies often don't run to completion, especially when we're working with infants and children. More often than not, we need to halt the study prematurely. This could be due to the participant becoming fatigued or distracted, or perhaps we need to tweak some settings.
+
+How can we accomplish this? Of course, we could just shut down Python and let the experiment crash... but surely, there's a more elegant solution... And indeed, there is! In fact, there are numerous methods to achieve this, and we're going to demonstrate one of the most straightforward and flexible ones to you.
+
+We can use the `event.getKeys()` function to ask Psychopy to report any key that has been pressed during our trial. In our case, we will check if the ESC key has been pressed and if it has, we will simply close the window and stop the study.
+
+```{python}
+### Check for closing experiment
+keys = event.getKeys() # collect list of pressed keys
+if 'escape' in keys:
+    win.close()  # close window
+    core.quit()  # stop study
+```
+
+::: callout-important
+You can add this check for closing the study at any point during the study. However, we recommend placing it at the end of each trial. This ensures that even if you stop the experiment, you will have a complete trial, making it easier to analyze data since you won\'t have any incomplete sections of the study.
+
+Also, you can use this same method to pause the study or interact with its progress in general.
+:::
+
+## Create an entire experiment
 
 In an experiment, we want more than 1 trial. Let's then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of `0` and `1`. where `0` would identify a rewarding trial and `1` would index a non-rewarding trial.
 
@@ -326,17 +348,17 @@ from psychopy import sound
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
 # Winsize
-winsize = (960, 540)
+winsize = (1920, 1080)
 
 # create a window
 win = visual.Window(size = winsize,fullscr=False, units="pix", pos =(0,30), screen=1)
 
 # Load images
-fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (100, 100))
-circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (100, 100))
-square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (100, 100))
-winning  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (100, 100), pos=(280,0))
-loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (100, 100), pos=(-280,0))
+fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
+circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
+square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
+winning  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
+loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
@@ -381,8 +403,15 @@ for trial in Trials:
     clock = core.Clock() # start clock
     while clock.getTime() < 1:
         pass
-    
+      
+    ### Check for closing experiment
+    keys = event.getKeys() # collect list of pressed keys
+    if 'escape' in keys:
+        win.close()  # close window
+        core.quit()  # stop study
+        
 win.close()
+core.quit()
 ```
 
 # END
