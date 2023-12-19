@@ -23,9 +23,7 @@ To install Anaconda simply follow this [link](https://www.anaconda.com/products/
 
 ![](/images/GettingStartedWithPython/setup1.png){fig-align="center"}
 
-Follow the instructions in the setup. Don't forget to click on add anaconda to my path environment variable. As shown below:
-
-![](/images/GettingStartedWithPython/setup2.png){fig-align="center" width="500"}
+Follow the instructions in the setup.
 
 After the installation is complete, launch the Anaconda navigator. The Anaconda Navigator is a desktop GUI that comes with the anaconda distribution. Navigator allows you to launch common Python programs and easily manage conda packages, environments, and channels without using command-line commands. Navigator can search for packages on Anaconda Cloud or in a local Anaconda Repository.
 
