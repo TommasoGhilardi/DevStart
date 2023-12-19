@@ -23,7 +23,7 @@ import matplotlib.patches as patches
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
 # Screen resolution
-res = [1920, 1080]
+screensize = (1920, 1080) 
 
 
 #%% Read and prepare data
@@ -66,36 +66,33 @@ This inconsistency is not a problem per se, but we need to take it into account 
 #| eval: true
 #| eco: false
 
-# Define the variable realted to the screen and to the target position
+# Screen resolution
 screensize = (1920, 1080) 
+
+# Define the variable realted to AOIs and target position
 dimension_of_AOI = 600/2  #the dimension of the AOIs, divided by 2
 Target_position = 500 #the position of the targets relative to the centre (e.g., 500 pixels on the right from the centre)
 
-# Create areas of interest
+# Create areas of intescreensizet
 AOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 - Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
 
 AOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 + Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
 
 AOIs = [AOI1, AOI2]
+
 ```
 
 Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
 
 ```{python}
 #| eval: true
-#| out-width: 3000
-#| out-height: 1080
-#| fig-width: 1920
-#| fig-height: 1080
 #| fig-align: "center"
 #| code-fold: true
-
-
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 # Create a figure
-fig, ax = plt.subplots(1, figsize=(1920/2,1080/2))
+fig, ax = plt.subplots(1, figsize=(8,4.4))
 
 # Set the limits of the plot
 ax.set_xlim(0, 1920)
@@ -170,9 +167,13 @@ Now we have a cool function to check whether a point falls into any of our AOIs.
 
 # Time Of Interest
 
-Now that we've figured out how to select fixations that fall within our areas of interest, it's time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. However, we're not interested in analyzing the entire experiment. Instead, we focus on specific events.
+Now that we've figured out how to select fixations that fall within our areas of interest, it's time to consider another important factor: Time. Our experiment involves presenting a variety of stimuli, including fixation crosses, cues, and rewards. , we're not interested in analyzing the entire experiment. Instead, we focus on specific events.
 
-In this case, our attention is on the target window. We're going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its presentation. Indeed, both **Saccadic latency** and **Lookign time** occur within this time window, while we don't really care about where the participant is looking during other phases of the task.
+Let's take a look at the design image. What we are interest in is the last part of the target presentation.
+
+![](/images/FromDataToMeasures/DesignSelection.jpg){fig-align="center" width="495"}
+
+In this case, our attention is on the target window. We're going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its pentation. Indeed, both **Saccadic latency** and **Lookign time** occur within this time window, while we don't really care about where the participant is looking during other phases of the task.
 
 Let's start by finding the moment in which the target appeared:
 
@@ -217,7 +218,7 @@ Just a heads up: our study design is pretty straightforward with only two stable
 :::
 
 ```{python}
-Target_fixations['AOIs'] = [AOIs]* len(Latency_fixations)
+Target_fixations['AOIs'] = [AOIs]* len(Target_fixations)
 Target_fixations['Looked_AOI'] = np.NAN
 ```
 
@@ -339,7 +340,7 @@ def find_area_for_point(point, areas):
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
 # Screen resolution
-res = [1920, 1080]
+screensize = (1920, 1080)
 
 # The fixation data extracted from I2MC
 Fixations = pd.read_csv('Data\\i2mc_output\\Test1\Test1.csv')
