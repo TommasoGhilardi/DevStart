@@ -1,9 +1,9 @@
 ---
-title: "BCCCD 2024"
+title: "BCCCD2024"
 
 execute:
   eval: false
-title-meta: "Workshop BCCCD 2024"
+title-meta: "BCCCD2024"
 author-meta: Tommaso Ghilardi
 description-meta: "Data and resource for the workshop at BCCCD 2024"
 keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, worshop"

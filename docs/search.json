@@ -37,21 +37,21 @@
   {
     "objectID": "CONTENT/Workshops/BCCCD2024.html",
     "href": "CONTENT/Workshops/BCCCD2024.html",
-    "title": "BCCCD 2024",
+    "title": "BCCCD2024",
     "section": "",
     "text": "Hello hello!!! This page has been created to provide support and resources for the tutorial and we presented at BCCC 2024."
   },
   {
     "objectID": "CONTENT/Workshops/BCCCD2024.html#software",
     "href": "CONTENT/Workshops/BCCCD2024.html#software",
-    "title": "BCCCD 2024",
+    "title": "BCCCD2024",
     "section": "Software",
     "text": "Software\nIn this tutorial, our primary tool will be Python!! We recommend installing it via Miniconda. Our interaction with Python will primarily be through the Spyder IDE. You’re free to use any IDE of your choice, but if you’d like to follow along more smoothly, we suggest checking out our guide on how to install both Miniconda and Spyder: Getting started with Python.\nBesides Python, we’ll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It’s available as a standalone software or can be installed as a Python package.\nBased on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this anaconda environment to easily create an virtual environment with both python, psychopy and all the libraries that we will need."
   },
   {
     "objectID": "CONTENT/Workshops/BCCCD2024.html#stimuli",
     "href": "CONTENT/Workshops/BCCCD2024.html#stimuli",
-    "title": "BCCCD 2024",
+    "title": "BCCCD2024",
     "section": "Stimuli",
     "text": "Stimuli\nIn our workshop we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli here:"
   },
