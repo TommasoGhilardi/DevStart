@@ -72,9 +72,9 @@ website:
           - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
-      - section: "Workshops"
-        contents: 
-          - CONTENT/Workshops/BCCCD2024.qmd
+      # - section: "Workshops"
+      #   contents: 
+      #     - CONTENT/Workshops/BCCCD2024.qmd
 
 
 
