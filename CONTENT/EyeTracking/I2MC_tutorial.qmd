@@ -11,19 +11,19 @@ keywords: eye-tracking, I2MC, fixation detection, data analysis, tutorial, pytho
 
 # What we are going to do
 
-When it comes to eye-tracking data, one of the most important things we want to figure out is fixations. Fixations are specific points in an eye-tracking dataset where a person's gaze remains relatively still and focused on a particular area or object for a period of time. These moments represent critical instances when a person's visual attention is focused on a particular point of interest.
+When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person's eyes are looking at a particular point of interest for a given amount of time. More specifically, a fixation is a cluster of consecutive data points in an eye-tracking dataset for which a person's gaze remains relatively still and focused on a particular area or object. 
 
 Typically, eye-tracking programs come with their own fixation detection algorithms that give us a rough idea of what the person was looking at. But here's the problem: these tools aren't always very good when it comes to data from infants and children. Why? Because infants and children can be all over the place! They move their heads, put their hands (or even feet) in front of their faces, close their eyes, or just look away. All of this makes the data a big mess that's hard to make sense of with regular fixation detection algorithms. Because the data is so messy, it is difficult to tell which data points are part of the same fixation or different fixations.
 
 **But don't worry! We've got a solution: I2MC.**
 
-I2MC stands for *"Identification by Two-Means Clustering"*, and it was designed specifically for this kind of problem. It's designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we'll show you how to use I2MC to find fixations. We won't get into the nerdy stuff about how it works - this is all about the practical side. If you're curious about the science, you can read the [article](https://link.springer.com/article/10.3758/s13428-016-0822-1).
+I2MC stands for *"Identification by Two-Means Clustering"*, and it was designed specifically for this kind of problem. It's designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we'll show you how to use I2MC to find fixations. We won't get into the nerdy stuff about how it works - this is all about the practical side. If you're curious about the science, you can read the original [article](https://link.springer.com/article/10.3758/s13428-016-0822-1).
 
 Now that we've introduced I2MC, let's get our hands dirty and see how to use it!
 
 # Install I2MC
 
-Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in and type `pip install I2MC`. After a few seconds, you should be ready to go!!
+Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type `pip install I2MC`. After a few seconds, you should be ready to go!!
 
 ::: callout-note
 I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: [I2MC Matlab!](https://github.com/royhessels/I2MC)
@@ -67,7 +67,7 @@ df['R_X'] = raw_df['RightX']
 df['R_Y'] = raw_df['RightY']
 ```
 
-After selecting the relevant data we will perform some very basic processing. - Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (\>1) we will consider the sample as missing
+After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (\>1) we will consider the sample as missing
 
 ```{python}
 # Sometimes we have weird peaks where one sample is (very) far outside the monitor. Here, count as missing any data that is more than one monitor distance outside the monitor.
@@ -218,7 +218,7 @@ opt['scrSz']        = [50.9174, 28.6411]    # screen size in cm
 opt['disttoscreen'] = 65.0                  # distance to screen in cm.
 
 # Options of example script
-do_plot_data = True # if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.
+do_plot_data = True # if set to True, plot of fixation detection for each trial will be saved as a png file in the output folder.
 # the figures works best for short trials (up to around 20 seconds)
 
 # =============================================================================
@@ -240,7 +240,7 @@ opt['downsampFilter']       = False                         # use chebychev filt
 
 # # FIXATION DETERMINATION
 opt['cutoffstd']            = 2.0                           # number of standard deviations above mean k-means weights will be used as fixation cutoff
-opt['onoffsetThresh']       = 3.0                           # number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades
+opt['onoffsetThresh']       = 3.0                           # number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop the algorithm from eating into saccades
 opt['maxMergeDist']         = 30.0                          # maximum Euclidean distance in pixels between fixations for merging
 opt['maxMergeTime']         = 30.0                          # maximum time in ms between fixations for merging
 opt['minFixDur']            = 40.0                          # minimum fixation duration after merging, fixations with shorter duration are removed from output
@@ -248,7 +248,7 @@ opt['minFixDur']            = 40.0                          # minimum fixation d
 
 ### Run I2MC
 
-Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot .
+Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.
 
 ```{python}
 #%% Run I2MC
