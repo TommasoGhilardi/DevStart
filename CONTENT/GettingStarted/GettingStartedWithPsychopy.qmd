@@ -25,7 +25,7 @@ Make sure to set the directory to where the .yml file is:
 
 ``` bash
 cd C:\Users\ThisPC\Downloads
-``` bash
+```
 
 And then install the conda environment:
 
@@ -70,12 +70,12 @@ You can download from [here](/resources/getting_started_psychopy/getting_started
 -   a sound of losing at an arcade game
 :::
 
-In this tutorial we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is presented as cue the medal will be presented on the right. After the circle the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding. Here below you can find a graphic representation of the design:\
+In this tutorial, we will create an experiment in which, after the fixation cross, one of the two cues is presented. The cues will indicate whether we will receive a reward or not and where this will appear. After the circle is presented as a cue, the medal will be presented on the right. After the square is presented as a cue, the empty cloud will be presented on the left. Thus, if you follow the cued indication you will be able to predict the location of the next stimuli and whether or not it will be rewarding. Here below you can find a graphic representation of the design:\
 ![](/images/GettingStartedWithPsychopy/Design.jpg)
 
 ## Preparation:
 
-First thing first let's import the relevant libraries and define the path where our stimuli are in. PsychoPy has a lot of different modules that allow us to interface with different type of stimuli and systems. For this tutorial
+First things first, let's import the relevant libraries and define the path to where our stimuli are. PsychoPy has a lot of different modules that allow us to interface with different types of stimuli and systems. For this tutorial we need the following:
 
 ```{python}
 # Import some libraries from PsychoPy and others
@@ -87,40 +87,37 @@ from psychopy import sound
 
 ## Stimuli:
 
-The next step is to create the window The window is what we will show the stimuli in; it is the canvas in which to draw objects. For now we will create a small window of 960\*540 pixels. In this way we will able to see the stimuli and still interact with the rest of our pc interface. In a real experiment we would probably set the window dimension to the entirety of the the display (Fullscreen).
+The next step is to create the window. The window is what we will show the stimuli in; it is the canvas on which to draw objects. For now, we will create a small window of 960\*540 pixels. In this way, we will able to see the stimuli and still interact with the rest of our PC interface. In a real experiment, we would probably set the window dimension to the entirety of the display (fullscr=True) and maybe on a secondary screen (screen = 1).
 
 ```{python}
 # Winsize
-winsize = (1920, 1080)
+winsize = (960, 540)
 
 # create a window
-win = visual.Window(size = winsize,fullscr=True, units="pix", pos =(0,30), screen=1)
-
-#create a window
-win = visual.Window([1920,1080], units="pix")
+win = visual.Window(size = winsize, fullscr=False, units="pix", pos =(0,30), screen=0)
 ```
 
 Now let's import the stimuli that we will present in this tutorial. We have 5 stimuli:
 
 -   a fixation cross that we will use to catch the attention of our participants
--   a circle that will be our cue that signal a rewarding trial
--   a square that will be our cue that signal a non-rewarding trial
+-   a circle that will be our cue that signals a rewarding trial
+-   a square that will be our cue that signals a non-rewarding trial
 -   a cartoon of a medal that will be our reward
 -   a cartoon of an empty cloud that will be our non-reward
 
-On top of these visual stimuli we will also import two sounds that will help us signal the type of trials. So:
+On top of these visual stimuli, we will also import two sounds that will help us signal the type of trials. So:
 
 -   a *tada!* winning sound
 -   a *papapaaa!* losing sound
 
 ::: callout-tip
-When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case we will pass all of them the "win" window that we just created.
+When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case, we will pass all of them the "win" window that we just created.
 :::
 
 ```{python}
 #%% Load and prepare stimuli
 
-# Setting directory of our experiment
+# Setting the directory of our experiment
 os.chdir('C:\\Users\\CBCD\\Desktop\\BCCCD')
 
 
@@ -129,7 +126,7 @@ fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.
 circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
 square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
 winning   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
-loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+losing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
@@ -137,10 +134,10 @@ losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
-rewards = [winning, loosing] # put both rewards in a list
+rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
-# Create list of trials in which 0 means winning and 1 means losing
+# Create a list of trials in which 0 means winning and 1 means losing
 Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 
@@ -149,18 +146,18 @@ fixation = visual.ImageStim(win, image=Path + 'fixation.png', size = (100, 100))
 circle   = visual.ImageStim(win, image=Path + 'circle.png', size = (100, 100))
 square   = visual.ImageStim(win, image=Path + 'square.png', size = (100, 100))
 winning   = visual.ImageStim(win, image=Path + 'winning.png', size = (100, 100), pos=(250,0))
-loosing  = visual.ImageStim(win, image=Path + 'loosing.png', size = (100, 100), pos=(-250,0))
+losing  = visual.ImageStim(win, image=Path + 'loosing.png', size = (100, 100), pos=(-250,0))
 
 # Load sound
 winning_sound = sound.Sound(Path + 'winning.wav')
 losing_sound = sound.Sound(Path + 'loosing.wav')
 ```
 
-Note that in this simple experiment we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their `pos` to `(250,0)` and `(-250,0)`. The first value indicates the number of pixels on the x-axis and the second the number of pixels on the y-axis.
+Note that in this simple experiment, we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their `pos` to `(250,0)` and `(-250,0)`. The first value indicates the number of pixels on the x-axis and the second is the number of pixels on the y-axis.
 
 ## Show a visual stimulus:
 
-No we want to show a stimuli in the center of our window. To do so we will have to use the function "draw". As the name suggests this function draws the stimulus that we want on the window.
+Now we want to show a stimulus in the center of our window. To do so, we will have to use the function "draw". As the name suggests this function draws the stimulus that we want on the window that we have created.
 
 Let's start with displaying the fixation cross in the center.
 
@@ -175,14 +172,14 @@ Do you see the fixation cross?????? Probably not!! This is because we have drawn
 win.flip()
 ```
 
-Perfect!!!! The fixation cross is there. Before each flip we need to draw our objects. Otherwise we will only see the basic window with nothing in it. Let's try!!! flip the window now.
+Perfect!!!! The fixation cross is there. Before each flip, we need to draw our objects. Otherwise, we will only see the basic window with nothing in it. Let's try!!! flip the window now.
 
 ```{python}
 # Flipping the window (refreshing)
 win.flip()
 ```
 
-The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new each frame. This means that the speed limit of our presentation is the actual frame rate of our display. *If we have a 60Hz display we can present an image 60 times in a second.*
+The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new in each frame. This means that the speed limit of our presentation is the actual frame rate of our display. *If we have a 60Hz display we can present an image 60 times in a second.*
 
 So if we want to present our fixation for an entire second we would have to draw and flip it 60 times (our display has a refresh rate of 60Hz)! Let's try:
 
@@ -193,7 +190,7 @@ for _ in range(60):
 win.flip() # we re-flip at the end to clean the window
 ```
 
-Now we have shown the fixation for 1 second and then it disappeared. Nice!! However you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flip the window and then wait for 1s. But now you have an idea on how to show animated stimuli or even videos!!! **AMAZING!!!**.
+Now we have shown the fixation for 1 second and then it disappeared. Nice!! However, you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flipped the window, and then waited for 1s. But now you have an idea of how to show animated stimuli or even videos!!! **AMAZING!!!**.
 
 Now let's try to show the fixation for 1s by just waiting.
 
@@ -232,7 +229,7 @@ Now let's try to put everything we have learned in one place and present one rew
 
 -   we present the reward or the non-reward depending on the cue for 2s.
 
-In the end we also close the window.
+In the end, we also close the window.
 
 ```{python}
 ###### 1st Trial ######
@@ -332,7 +329,7 @@ Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
-rewards = [winning, loosing] # put both rewards in a list
+rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 ```
 
@@ -360,14 +357,14 @@ os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhila
 winsize = (1920, 1080)
 
 # create a window
-win = visual.Window(size = winsize,fullscr=False, units="pix", pos =(0,30), screen=1)
+win = visual.Window(size = winsize, fullscr=False, units="pix", pos =(0,30), screen=1)
 
 # Load images
 fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
 circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
 square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
 winning  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
-loosing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+losing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
@@ -375,7 +372,7 @@ losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
-rewards = [winning, loosing] # put both rewards in a list
+rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 # Create list of trials in which 0 means winning and 1 means losing
