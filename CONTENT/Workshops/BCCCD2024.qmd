@@ -6,14 +6,14 @@ execute:
 title-meta: "BCCCD2024"
 author-meta: Tommaso Ghilardi
 description-meta: "Data and resource for the workshop at BCCCD 2024"
-keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, worshop"
+keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, workshop"
 ---
 
-Hello hello!!! This page has been created to provide support and resources for the tutorial and we presented at BCCC 2024.
+Hello hello!!! This page has been created to provide support and resources for the tutorial and we presented at BCCCD24.
 
 # What will you learn?
 
-This worhsop will focus on using python to run and analyze an eye-tracking study.
+This workshop will focus on using Python to run and analyze an eye-tracking study.
 
 We will focus on:
 
@@ -31,11 +31,11 @@ In this tutorial, our primary tool will be Python!! We recommend installing it v
 
 Besides Python, we'll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It's available as a standalone software or can be installed as a Python package.
 
-Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this [anaconda environment](resources\psychopy.yml) to easily create an virtual environment with both python, psychopy and all the libraries that we will need.
+Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this [anaconda environment](https://github.com/TommasoGhilardi/DevStart/blob/main/resources/psychopy.yml) to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: [Getting started with Psychopy](GettingStartedWithPsychopy.qmd)
 
 ## Stimuli
 
-In our workshop we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli here:
+In our workshop, we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli [here](https://github.com/TommasoGhilardi/DevStart/tree/main/resources/getting_started_psychopy).
 
 # Q&A
 
