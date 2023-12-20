@@ -8,7 +8,7 @@ description-meta: "Learn how to get started with PsychoPy, an open-source softwa
 keywords: "PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science"
 ---
 
-PsychoPy is an open source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It's one of our favorite ways to create experiments and we will use it through our tutorials.
+PsychoPy is an open-source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It's one of our favorite ways to create experiments and we will use it through our tutorials.
 
 So, let's start and install PsychoPy!!!
 
@@ -16,9 +16,18 @@ So, let's start and install PsychoPy!!!
 
 As reported on the PsychoPy [website](https://www.psychopy.org/download.html), there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the [Getting started with python](GettingStartedWithPython.qmd)).
 
-PsychoPy offers a nice .yml file that will install everything that we need. Download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website and store it somewhere.
+Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website. 
 
-Now open the Anaconda prompt and type:
+We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download its [file](https://github.com/TommasoGhilardi/DevStart/blob/main/docs/psychopy.yml) from our github repository. 
+
+Now open the Anaconda prompt.
+Make sure to set the directory to where the .yml file is:
+
+``` bash
+cd C:\Users\ThisPC\Downloads
+``` bash
+
+And then install the conda environment:
 
 ``` bash
 conda env create -f  your_dowloaded_file.yml
