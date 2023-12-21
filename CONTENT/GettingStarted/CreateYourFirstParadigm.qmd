@@ -267,7 +267,7 @@ if 'escape' in keys:
 ```
 
 ::: callout-important
-You can add this check for closing the study at any point during the study. However, we recommend placing it at the end of each trial. This ensures that even if you stop the experiment, you will have a complete trial, making it easier to analyze data since you won\'t have any incomplete sections of the study.
+You can add this check for closing the study at any point during the study. However, we recommend placing it at the end of each trial. This ensures that even if you stop the experiment, you will have a complete trial, making it easier to analyze data since you won't have any incomplete sections of the study.
 
 Also, you can use this same method to pause the study or interact with its progress in general.
 :::
@@ -290,8 +290,10 @@ sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 Perfect!! Now we can put all the pieces together and run our experiment.
 
-::: callout-note
+::: callout-caution
 In this final script, we will change the dimension of the window we will use. Since in most of the experiments, we will want to use the entire screen to our disposal, we will set `fullscr = True` when defining the window. In addition, we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.
+
+If you are testing this script on your laptop and do not want to lose the ability to interact with it until the experiment is finished, keep the same window size and position as the previous lines of code.
 :::
 
 ```{python}

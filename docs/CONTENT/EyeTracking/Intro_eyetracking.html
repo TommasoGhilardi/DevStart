@@ -282,7 +282,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../CONTENT/Workshops/BCCCD2024.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BCCCD 2024</span></a>
+ <span class="menu-text">BCCCD2024</span></a>
   </div>
 </li>
       </ul>
@@ -324,8 +324,8 @@ cookieconsent.run({
 
 </header>
 
-<p>Eye-tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</p>
-<p>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time or pupil dilation).</p>
+<p>Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</p>
+<p>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time, or pupil dilation).</p>
 <section id="how-to-build-an-eye-tracking-experiment" class="level1">
 <h1>How to build an eye-tracking experiment</h1>
 <section id="what-do-you-want-to-measure" class="level2">
@@ -341,7 +341,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they could spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</p>
+<p>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they can spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</p>
 </div>
 </div>
 <p>Another very popular eye-tracking measure is <strong>saccadic latency</strong>. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.</p>
@@ -369,7 +369,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the center of the screen, as pupil dilation measures are inaccurate elsewhere; Pupil dilation is very slow, so the stimulus presentation also has to be slow; A fixation cross has to precede the moment in which pupil dilation is measured so that its signal returns to baseline before you observe the change you care about. But if you feel confident about your paradigm, go for it!!</p>
+<p>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the same location on the screen, as pupil size changes depending on screen location; Pupil dilation is very slow, so the stimulus presentation also has to be slow; Often, a fixation cross has to precede the moment in which pupil dilation is measured, so that the pupil size can return to baseline before the event you care about happens. But if you feel confident about your paradigm, go for it!!</p>
 </div>
 </div>
 <p>Here is a visual summary of what you can measure:</p>
@@ -805,9 +805,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> eye-tracking, experiments, saccadic latency, looking time, pupil dilation, fixations, infant research, DevStart, developmental science</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Eye-tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time or pupil dilation).</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time, or pupil dilation).</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># How to build an eye-tracking experiment</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
@@ -816,7 +816,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>It is much easier to start an eye-tracking project if you have a clear idea of what you want to measure. Classic paradigms on infant research rely on **looking time** (How long are infants attending a given stimulus?) and are often called Violation-of-Expectation tasks. They familiarize infants with a given stimulus or situation (e.g. a cat) and, after a given number of presentations (e.g., 8), they present a different stimulus (e.g., a dog). Do infants look longer at the dog, compared to the cat? If so, they were able to spot that something changed.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they could spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they can spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Another very popular eye-tracking measure is **saccadic latency**. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.</span>
@@ -828,7 +828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>The fanciest eye-tracking measure is **pupil dilation**. It allows us to measure arousal (How interested is the infant in the stimulus?), cognitive effort (How difficult is the task?), and - my special favourite - uncertainty (Does the infant know what will happen next?). However, its fame comes at a price: It is not only the fanciest, but also the most persnickety...</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the center of the screen, as pupil dilation measures are inaccurate elsewhere; Pupil dilation is very slow, so the stimulus presentation also has to be slow; A fixation cross has to precede the moment in which pupil dilation is measured so that its signal returns to baseline before you observe the change you care about. But if you feel confident about your paradigm, go for it!!</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the same location on the screen, as pupil size changes depending on screen location; Pupil dilation is very slow, so the stimulus presentation also has to be slow; Often, a fixation cross has to precede the moment in which pupil dilation is measured, so that the pupil size can return to baseline before the event you care about happens. But if you feel confident about your paradigm, go for it!!</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Here is a visual summary of what you can measure:</span>

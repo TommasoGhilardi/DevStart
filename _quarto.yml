@@ -63,9 +63,11 @@ website:
       - section: "Getting started:"
         contents:
           - CONTENT/GettingStarted/GettingStartedWithPython.qmd
-      - section: "Creating an experiment:"
-        contents: 
           - CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd
+
+      - section: "Creating an experiment:"
+        contents:
+          - CONTENT/GettingStarted/CreateYourFirstParadigm.qmd
       - section: "Eye-tracking"
         contents: 
           - CONTENT/EyeTracking/Intro_eyetracking.qmd

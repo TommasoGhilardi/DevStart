@@ -3,9 +3,9 @@ title: "Starting with PsychoPy"
 execute:
   eval: false
 
-author-meta: Tommaso Ghilardi
-description-meta: "Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to install PsychoPy, create experiments, and more."
-keywords: "PsychoPy, Python, experimental psychology, neuroscience, tutorial, installation, experiment, DevStart, developmental science"
+author-meta: Tommaso Ghilardi, Franesco Poli
+description-meta: "Learn how to install psychpy and spyder in a new econda environment"
+keywords: "PsychoPy, Python, experimental psychology, tutorial, installation, DevStart, developmental science, Spyder ide, Spyder"
 ---
 
 PsychoPy is an open-source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It's one of our favorite ways to create experiments and we will use it through our tutorials.
@@ -16,12 +16,11 @@ So, let's start and install PsychoPy!!!
 
 As reported on the PsychoPy [website](https://www.psychopy.org/download.html), there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the [Getting started with python](GettingStartedWithPython.qmd)).
 
-Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website. 
+Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website.
 
-We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download its [file](https://github.com/TommasoGhilardi/DevStart/blob/main/docs/psychopy.yml) from our github repository. 
+We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here [our_file](/resources/psychopy.yml) from our github repository.
 
-Now open the Anaconda prompt.
-Make sure to set the directory to where the .yml file is:
+Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example
 
 ``` bash
 cd C:\Users\ThisPC\Downloads
@@ -41,14 +40,20 @@ The virtual environment will be called "psychopy" and you can activate it just b
 conda activate psychopy
 ```
 
-We are done!! You now should have a nice conda environment called "psychoPy" with PsychoPy in it. To launch the PsychoPy Gui (also referred to as Builder) you can just type `psychopy` in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let's be honest, if you want to code your experiment the Gui of Spyder is way better!!
+## Check our new environmnet
 
-Thus we suggest to install Spyder in your newly created "psychopy" environment. You can do that just by simply typing in:
+We are done!! You now should have a nice conda environment called "psychoPy" with PsychoPy and few more things in it. You can always check which environment you have on your pc by typing:
 
 ``` bash
-conda install –c anaconda spyder
+conda env list
 ```
 
-You can also refer to our guide [InstallingSpyderide](GettingStartedWithPython.qmd#sec-installspyder).
+We recommend using the Psychopy environment to create and run your studies. You can use your base environment (or create additional ones) to install more libraries and analyze the data. This approach will keep everything organized and prevent compatibility issues with Psychopy.
 
-Now that you should have both PsychoPy and Spyder installed. Next, we'll see how to create a simple experiment with them.
+## From conda to..
+
+But how to use all the cool things that are in this new environment? After you activate the environment, to launch the PsychoPy Gui (also referred to as Builder) you can just type `psychopy` in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let's be honest, if you want to code your experiment the Gui of Spyder is way better!!
+
+Thus we suggest to launch Spyder in your newly created "psychopy" environment. You can do that just by simply typing in `spyder` in your activated environment. After few seconds you should be in Spyder with all its glory !!!
+
+Good job!! in the next tutorial we will see how to use Psychopy to create our first study!! Let's go!!!

@@ -282,7 +282,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../CONTENT/Workshops/BCCCD2024.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BCCCD 2024</span></a>
+ <span class="menu-text">BCCCD2024</span></a>
   </div>
 </li>
       </ul>
@@ -337,15 +337,15 @@ cookieconsent.run({
 
 <section id="what-we-are-going-to-do" class="level1">
 <h1>What we are going to do</h1>
-<p>When it comes to eye-tracking data, one of the most important things we want to figure out is fixations. Fixations are specific points in an eye-tracking dataset where a person’s gaze remains relatively still and focused on a particular area or object for a period of time. These moments represent critical instances when a person’s visual attention is focused on a particular point of interest.</p>
+<p>When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person’s eyes are looking at a particular point of interest for a given amount of time. More specifically, a fixation is a cluster of consecutive data points in an eye-tracking dataset for which a person’s gaze remains relatively still and focused on a particular area or object.</p>
 <p>Typically, eye-tracking programs come with their own fixation detection algorithms that give us a rough idea of what the person was looking at. But here’s the problem: these tools aren’t always very good when it comes to data from infants and children. Why? Because infants and children can be all over the place! They move their heads, put their hands (or even feet) in front of their faces, close their eyes, or just look away. All of this makes the data a big mess that’s hard to make sense of with regular fixation detection algorithms. Because the data is so messy, it is difficult to tell which data points are part of the same fixation or different fixations.</p>
 <p><strong>But don’t worry! We’ve got a solution: I2MC.</strong></p>
-<p>I2MC stands for <em>“Identification by Two-Means Clustering”</em>, and it was designed specifically for this kind of problem. It’s designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we’ll show you how to use I2MC to find fixations. We won’t get into the nerdy stuff about how it works - this is all about the practical side. If you’re curious about the science, you can read the <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">article</a>.</p>
+<p>I2MC stands for <em>“Identification by Two-Means Clustering”</em>, and it was designed specifically for this kind of problem. It’s designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we’ll show you how to use I2MC to find fixations. We won’t get into the nerdy stuff about how it works - this is all about the practical side. If you’re curious about the science, you can read the original <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">article</a>.</p>
 <p>Now that we’ve introduced I2MC, let’s get our hands dirty and see how to use it!</p>
 </section>
 <section id="install-i2mc" class="level1">
 <h1>Install I2MC</h1>
-<p>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in and type <code>pip install I2MC</code>. After a few seconds, you should be ready to go!!</p>
+<p>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type <code>pip install I2MC</code>. After a few seconds, you should be ready to go!!</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -390,7 +390,7 @@ Note
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'RightX'</span>]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'RightY'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>After selecting the relevant data we will perform some very basic processing. - Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (&gt;1) we will consider the sample as missing</p>
+<p>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (&gt;1) we will consider the sample as missing</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the monitor. Here, count as missing any data that is more than one monitor distance outside the monitor.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -531,7 +531,7 @@ Note
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as a png file in the output folder.</span></span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
@@ -553,7 +553,7 @@ Note
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
 <span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop the algorithm from eating into saccades</span></span>
 <span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
 <span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -561,7 +561,7 @@ Note
 </section>
 <section id="run-i2mc" class="level3">
 <h3 class="anchored" data-anchor-id="run-i2mc">Run I2MC</h3>
-<p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot .</p>
+<p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1241,19 +1241,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu"># What we are going to do</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>When it comes to eye-tracking data, one of the most important things we want to figure out is fixations. Fixations are specific points in an eye-tracking dataset where a person's gaze remains relatively still and focused on a particular area or object for a period of time. These moments represent critical instances when a person's visual attention is focused on a particular point of interest.</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person's eyes are looking at a particular point of interest for a given amount of time. More specifically, a fixation is a cluster of consecutive data points in an eye-tracking dataset for which a person's gaze remains relatively still and focused on a particular area or object. </span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>Typically, eye-tracking programs come with their own fixation detection algorithms that give us a rough idea of what the person was looking at. But here's the problem: these tools aren't always very good when it comes to data from infants and children. Why? Because infants and children can be all over the place! They move their heads, put their hands (or even feet) in front of their faces, close their eyes, or just look away. All of this makes the data a big mess that's hard to make sense of with regular fixation detection algorithms. Because the data is so messy, it is difficult to tell which data points are part of the same fixation or different fixations.</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>**But don't worry! We've got a solution: I2MC.**</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>I2MC stands for *"Identification by Two-Means Clustering"*, and it was designed specifically for this kind of problem. It's designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we'll show you how to use I2MC to find fixations. We won't get into the nerdy stuff about how it works - this is all about the practical side. If you're curious about the science, you can read the <span class="co">[</span><span class="ot">article</span><span class="co">](https://link.springer.com/article/10.3758/s13428-016-0822-1)</span>.</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>I2MC stands for *"Identification by Two-Means Clustering"*, and it was designed specifically for this kind of problem. It's designed to deal with all kinds of noise, and even periods of data loss. In this tutorial, we'll show you how to use I2MC to find fixations. We won't get into the nerdy stuff about how it works - this is all about the practical side. If you're curious about the science, you can read the original <span class="co">[</span><span class="ot">article</span><span class="co">](https://link.springer.com/article/10.3758/s13428-016-0822-1)</span>.</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>Now that we've introduced I2MC, let's get our hands dirty and see how to use it!</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># Install I2MC</span></span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in and type <span class="in">`pip install I2MC`</span>. After a few seconds, you should be ready to go!!</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type <span class="in">`pip install I2MC`</span>. After a few seconds, you should be ready to go!!</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: <span class="co">[</span><span class="ot">I2MC Matlab!</span><span class="co">](https://github.com/royhessels/I2MC)</span></span>
@@ -1297,7 +1297,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'RightY'</span>]</span>
 <span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>After selecting the relevant data we will perform some very basic processing. - Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (<span class="sc">\&gt;</span>1) we will consider the sample as missing</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (<span class="sc">\&gt;</span>1) we will consider the sample as missing</span>
 <span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the monitor. Here, count as missing any data that is more than one monitor distance outside the monitor.</span></span>
@@ -1448,7 +1448,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
 <span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
-<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as a png file in the output folder.</span></span>
 <span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
 <span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
@@ -1470,7 +1470,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
 <span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
-<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop the algorithm from eating into saccades</span></span>
 <span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
 <span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
 <span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
@@ -1478,7 +1478,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### Run I2MC</span></span>
 <span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot .</span>
+<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</span>
 <span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
