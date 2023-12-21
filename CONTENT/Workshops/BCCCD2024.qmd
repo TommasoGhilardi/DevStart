@@ -15,6 +15,7 @@ Hello hello!!! This page has been created to provide support and resources for t
 
 This workshop will focus on using Python to run and analyze an eye-tracking study.
 
+
 We will focus on:
 
 -   How to implement eye-tracking designs in Python
@@ -36,6 +37,7 @@ Based on our experience, we find it more advantageous to use Psychopy as a Pytho
 ## Stimuli
 
 In our workshop, we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli [here](https://github.com/TommasoGhilardi/DevStart/tree/main/resources/getting_started_psychopy).
+
 
 # Q&A
 
