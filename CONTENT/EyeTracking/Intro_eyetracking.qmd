@@ -14,17 +14,23 @@ This tutorial will teach you all you need to navigate the huge and often confusi
 
 ## What do you want to measure?
 
+### Looking time
+
 It is much easier to start an eye-tracking project if you have a clear idea of what you want to measure. Classic paradigms on infant research rely on **looking time** (How long are infants attending a given stimulus?) and are often called Violation-of-Expectation tasks. They familiarize infants with a given stimulus or situation (e.g. a cat) and, after a given number of presentations (e.g., 8), they present a different stimulus (e.g., a dog). Do infants look longer at the dog, compared to the cat? If so, they were able to spot that something changed.
 
 ::: callout-important
 Beware! This does not mean that they can distinguish cats and dogs, but more simply that they can spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.
 :::
 
+### Saccadic Latency
+
 Another very popular eye-tracking measure is **saccadic latency**. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.
 
 ::: callout-important
 Beware! Saccadic latencies are not a perfect measure of learning. Infants might be faster at looking at something just because they are more interested (pick interesting stimuli to keep them engaged!), and they might become slower due to boredom or fatigue (introduce variation in the stimuli, so that they become less boring over time!).
 :::
+
+### Pupillometry
 
 The fanciest eye-tracking measure is **pupil dilation**. It allows us to measure arousal (How interested is the infant in the stimulus?), cognitive effort (How difficult is the task?), and - my special favourite - uncertainty (Does the infant know what will happen next?). However, its fame comes at a price: It is not only the fanciest, but also the most persnickety...
 

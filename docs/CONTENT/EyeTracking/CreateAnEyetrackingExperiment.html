@@ -222,6 +222,12 @@ cookieconsent.run({
  <span class="menu-text">Starting with Python</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Starting with PsychoPy</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -235,8 +241,8 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Starting with PsychoPy</span></a>
+  <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create your first paradigm</span></a>
   </div>
 </li>
       </ul>
@@ -288,7 +294,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../CONTENT/Workshops/BCCCD2024.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BCCCD 2024</span></a>
+ <span class="menu-text">BCCCD2024</span></a>
   </div>
 </li>
       </ul>
@@ -648,33 +654,34 @@ We can store our data in a list and save it during the less important parts of t
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting directory of our experiment</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">CBCD</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">BCCCD'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the directory of our experiment</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD'</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="start-recording" class="level3">
@@ -767,7 +774,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>Carefull!!!<br>
-If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be longer. However, this should not be the case with typical studies where trials are not too long. Nonetheless, it's always a good idea to keep an eye out.</p>
+If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be longer. However, this should not be the case with typical studies where trials are not too long. Nonetheless, it’s always a good idea to keep an eye out.</p>
 </div>
 </div>
 </section>
@@ -856,15 +863,15 @@ If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be lon
 <span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
 <span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
 <span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
 <span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
@@ -1701,299 +1708,300 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-358"><a href="#cb16-358" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb16-359"><a href="#cb16-359" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
 <span id="cb16-360"><a href="#cb16-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-361"><a href="#cb16-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting directory of our experiment</span></span>
-<span id="cb16-362"><a href="#cb16-362" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">CBCD</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">BCCCD'</span>)</span>
+<span id="cb16-361"><a href="#cb16-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the directory of our experiment</span></span>
+<span id="cb16-362"><a href="#cb16-362" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD'</span>)</span>
 <span id="cb16-363"><a href="#cb16-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-364"><a href="#cb16-364" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
-<span id="cb16-365"><a href="#cb16-365" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
-<span id="cb16-366"><a href="#cb16-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-367"><a href="#cb16-367" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
-<span id="cb16-368"><a href="#cb16-368" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb16-369"><a href="#cb16-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-370"><a href="#cb16-370" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb16-371"><a href="#cb16-371" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
-<span id="cb16-379"><a href="#cb16-379" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
-<span id="cb16-380"><a href="#cb16-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-381"><a href="#cb16-381" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
-<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### Start recording</span></span>
-<span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-392"><a href="#cb16-392" aria-hidden="true" tabindex="-1"></a>Now we are ready to look for the eye-trackers connected to the computer and select the first one that we find. Once we have selected it, we will launch our callback function to start collecting data.</span>
-<span id="cb16-393"><a href="#cb16-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-396"><a href="#cb16-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb16-397"><a href="#cb16-397" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
-<span id="cb16-398"><a href="#cb16-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-399"><a href="#cb16-399" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
-<span id="cb16-400"><a href="#cb16-400" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
-<span id="cb16-401"><a href="#cb16-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-402"><a href="#cb16-402" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
-<span id="cb16-403"><a href="#cb16-403" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span>
-<span id="cb16-404"><a href="#cb16-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-405"><a href="#cb16-405" aria-hidden="true" tabindex="-1"></a><span class="co">#Start recording</span></span>
-<span id="cb16-406"><a href="#cb16-406" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
-<span id="cb16-407"><a href="#cb16-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-408"><a href="#cb16-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-409"><a href="#cb16-409" aria-hidden="true" tabindex="-1"></a><span class="fu">### Present our stimuli</span></span>
-<span id="cb16-410"><a href="#cb16-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-411"><a href="#cb16-411" aria-hidden="true" tabindex="-1"></a>The eye-tracking is running! Let's show our participant something!</span>
-<span id="cb16-412"><a href="#cb16-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-413"><a href="#cb16-413" aria-hidden="true" tabindex="-1"></a>As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.</span>
-<span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Trials</span></span>
-<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
-<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
-<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
-<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a>    trigger <span class="op">=</span> <span class="st">'Fixation'</span></span>
-<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-364"><a href="#cb16-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-365"><a href="#cb16-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
+<span id="cb16-366"><a href="#cb16-366" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb16-367"><a href="#cb16-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-368"><a href="#cb16-368" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb16-369"><a href="#cb16-369" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-370"><a href="#cb16-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-371"><a href="#cb16-371" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb16-379"><a href="#cb16-379" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb16-380"><a href="#cb16-380" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb16-381"><a href="#cb16-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
+<span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### Start recording</span></span>
+<span id="cb16-392"><a href="#cb16-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-393"><a href="#cb16-393" aria-hidden="true" tabindex="-1"></a>Now we are ready to look for the eye-trackers connected to the computer and select the first one that we find. Once we have selected it, we will launch our callback function to start collecting data.</span>
+<span id="cb16-394"><a href="#cb16-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-397"><a href="#cb16-397" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-398"><a href="#cb16-398" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
+<span id="cb16-399"><a href="#cb16-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-400"><a href="#cb16-400" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
+<span id="cb16-401"><a href="#cb16-401" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
+<span id="cb16-402"><a href="#cb16-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-403"><a href="#cb16-403" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
+<span id="cb16-404"><a href="#cb16-404" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span>
+<span id="cb16-405"><a href="#cb16-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-406"><a href="#cb16-406" aria-hidden="true" tabindex="-1"></a><span class="co">#Start recording</span></span>
+<span id="cb16-407"><a href="#cb16-407" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
+<span id="cb16-408"><a href="#cb16-408" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-409"><a href="#cb16-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-410"><a href="#cb16-410" aria-hidden="true" tabindex="-1"></a><span class="fu">### Present our stimuli</span></span>
+<span id="cb16-411"><a href="#cb16-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-412"><a href="#cb16-412" aria-hidden="true" tabindex="-1"></a>The eye-tracking is running! Let's show our participant something!</span>
+<span id="cb16-413"><a href="#cb16-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a>As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.</span>
+<span id="cb16-415"><a href="#cb16-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Trials</span></span>
+<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
+<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
+<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
+<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a>    trigger <span class="op">=</span> <span class="st">'Fixation'</span></span>
+<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
 <span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
-<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
-<span id="cb16-434"><a href="#cb16-434" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Circle'</span></span>
-<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-438"><a href="#cb16-438" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Square'</span></span>
-<span id="cb16-439"><a href="#cb16-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
-<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Wait for saccadic latencty</span></span>
-<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.75</span>)</span>
-<span id="cb16-445"><a href="#cb16-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-446"><a href="#cb16-446" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
-<span id="cb16-447"><a href="#cb16-447" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
-<span id="cb16-448"><a href="#cb16-448" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-449"><a href="#cb16-449" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb16-450"><a href="#cb16-450" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Reward'</span></span>
-<span id="cb16-451"><a href="#cb16-451" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-452"><a href="#cb16-452" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'NoReward'</span></span>
-<span id="cb16-453"><a href="#cb16-453" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb16-454"><a href="#cb16-454" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb16-455"><a href="#cb16-455" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-456"><a href="#cb16-456" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
-<span id="cb16-457"><a href="#cb16-457" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock()</span>
-<span id="cb16-458"><a href="#cb16-458" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb16-459"><a href="#cb16-459" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb16-460"><a href="#cb16-460" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-461"><a href="#cb16-461" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
-<span id="cb16-462"><a href="#cb16-462" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
-<span id="cb16-463"><a href="#cb16-463" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
-<span id="cb16-464"><a href="#cb16-464" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
-<span id="cb16-465"><a href="#cb16-465" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
-<span id="cb16-466"><a href="#cb16-466" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-467"><a href="#cb16-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-468"><a href="#cb16-468" aria-hidden="true" tabindex="-1"></a>As we said before in <span class="co">[</span><span class="ot">Save the data</span><span class="co">]</span>, it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: <span class="co">[</span><span class="ot">Getting started with Psychopy</span><span class="co">](GettingStartedWithPsychopy.qmd)</span>, we created the ISI in a different way than just a <span class="in">`clock.wait()`</span> and we said that this different method would come in handy later on. This is the moment!</span>
-<span id="cb16-469"><a href="#cb16-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-470"><a href="#cb16-470" aria-hidden="true" tabindex="-1"></a>Our **ISI** starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the <span class="in">`while clock.getTime() &lt; 1:  pass`</span> code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.</span>
-<span id="cb16-471"><a href="#cb16-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-474"><a href="#cb16-474" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb16-475"><a href="#cb16-475" aria-hidden="true" tabindex="-1"></a><span class="co">### ISI</span></span>
-<span id="cb16-476"><a href="#cb16-476" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> core.Clock()</span>
-<span id="cb16-477"><a href="#cb16-477" aria-hidden="true" tabindex="-1"></a>write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
-<span id="cb16-478"><a href="#cb16-478" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb16-479"><a href="#cb16-479" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb16-480"><a href="#cb16-480" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-481"><a href="#cb16-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-482"><a href="#cb16-482" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb16-483"><a href="#cb16-483" aria-hidden="true" tabindex="-1"></a>Carefull!!!\</span>
-<span id="cb16-484"><a href="#cb16-484" aria-hidden="true" tabindex="-1"></a>If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be longer. However, this should not be the case with typical studies where trials are not too long. Nonetheless, it\'s always a good idea to keep an eye out.</span>
-<span id="cb16-485"><a href="#cb16-485" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb16-486"><a href="#cb16-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-487"><a href="#cb16-487" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stop recording</span></span>
-<span id="cb16-488"><a href="#cb16-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-489"><a href="#cb16-489" aria-hidden="true" tabindex="-1"></a>We're almost there! We have imported our functions, started collecting data, sent the triggers, and saved the data. The last step will be stop data collection (or python will keep getting an endless amount of data from the eye tracker!). Do do that, We simply unsubscribe from the eye tracker to which we had subscribed to start of data collection:</span>
-<span id="cb16-490"><a href="#cb16-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-493"><a href="#cb16-493" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb16-494"><a href="#cb16-494" aria-hidden="true" tabindex="-1"></a>win.close()</span>
-<span id="cb16-495"><a href="#cb16-495" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
-<span id="cb16-496"><a href="#cb16-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-497"><a href="#cb16-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-498"><a href="#cb16-498" aria-hidden="true" tabindex="-1"></a>Note that we also closed the Psychopy window, so that the stimulus presentation is also officially over. Well done!!! Now go and get your data!!! We'll see you back when it's time to analyze it.</span>
-<span id="cb16-499"><a href="#cb16-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-500"><a href="#cb16-500" aria-hidden="true" tabindex="-1"></a><span class="fu"># END!!</span></span>
-<span id="cb16-501"><a href="#cb16-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-502"><a href="#cb16-502" aria-hidden="true" tabindex="-1"></a>Great job getting to here!! it want easy but you did it. Here is all the code we made together.</span>
-<span id="cb16-503"><a href="#cb16-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-504"><a href="#cb16-504" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
-<span id="cb16-505"><a href="#cb16-505" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb16-506"><a href="#cb16-506" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
-<span id="cb16-507"><a href="#cb16-507" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb16-508"><a href="#cb16-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-509"><a href="#cb16-509" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy</span></span>
-<span id="cb16-510"><a href="#cb16-510" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core, event, visual, prefs</span>
-<span id="cb16-511"><a href="#cb16-511" aria-hidden="true" tabindex="-1"></a>prefs.hardware[<span class="st">'audioLib'</span>] <span class="op">=</span> [<span class="st">'PTB'</span>]</span>
-<span id="cb16-512"><a href="#cb16-512" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
-<span id="cb16-513"><a href="#cb16-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-514"><a href="#cb16-514" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobii_research <span class="im">as</span> tr</span>
-<span id="cb16-515"><a href="#cb16-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
+<span id="cb16-434"><a href="#cb16-434" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
+<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Circle'</span></span>
+<span id="cb16-438"><a href="#cb16-438" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-439"><a href="#cb16-439" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Square'</span></span>
+<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Wait for saccadic latencty</span></span>
+<span id="cb16-445"><a href="#cb16-445" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.75</span>)</span>
+<span id="cb16-446"><a href="#cb16-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-447"><a href="#cb16-447" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
+<span id="cb16-448"><a href="#cb16-448" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
+<span id="cb16-449"><a href="#cb16-449" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-450"><a href="#cb16-450" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb16-451"><a href="#cb16-451" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Reward'</span></span>
+<span id="cb16-452"><a href="#cb16-452" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-453"><a href="#cb16-453" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'NoReward'</span></span>
+<span id="cb16-454"><a href="#cb16-454" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb16-455"><a href="#cb16-455" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb16-456"><a href="#cb16-456" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-457"><a href="#cb16-457" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
+<span id="cb16-458"><a href="#cb16-458" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock()</span>
+<span id="cb16-459"><a href="#cb16-459" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb16-460"><a href="#cb16-460" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb16-461"><a href="#cb16-461" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-462"><a href="#cb16-462" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
+<span id="cb16-463"><a href="#cb16-463" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb16-464"><a href="#cb16-464" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb16-465"><a href="#cb16-465" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
+<span id="cb16-466"><a href="#cb16-466" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
+<span id="cb16-467"><a href="#cb16-467" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-468"><a href="#cb16-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-469"><a href="#cb16-469" aria-hidden="true" tabindex="-1"></a>As we said before in <span class="co">[</span><span class="ot">Save the data</span><span class="co">]</span>, it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: <span class="co">[</span><span class="ot">Getting started with Psychopy</span><span class="co">](GettingStartedWithPsychopy.qmd)</span>, we created the ISI in a different way than just a <span class="in">`clock.wait()`</span> and we said that this different method would come in handy later on. This is the moment!</span>
+<span id="cb16-470"><a href="#cb16-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-471"><a href="#cb16-471" aria-hidden="true" tabindex="-1"></a>Our **ISI** starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the <span class="in">`while clock.getTime() &lt; 1:  pass`</span> code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.</span>
+<span id="cb16-472"><a href="#cb16-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-475"><a href="#cb16-475" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-476"><a href="#cb16-476" aria-hidden="true" tabindex="-1"></a><span class="co">### ISI</span></span>
+<span id="cb16-477"><a href="#cb16-477" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> core.Clock()</span>
+<span id="cb16-478"><a href="#cb16-478" aria-hidden="true" tabindex="-1"></a>write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb16-479"><a href="#cb16-479" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb16-480"><a href="#cb16-480" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb16-481"><a href="#cb16-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-482"><a href="#cb16-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-483"><a href="#cb16-483" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb16-484"><a href="#cb16-484" aria-hidden="true" tabindex="-1"></a>Carefull!!!\</span>
+<span id="cb16-485"><a href="#cb16-485" aria-hidden="true" tabindex="-1"></a>If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be longer. However, this should not be the case with typical studies where trials are not too long. Nonetheless, it's always a good idea to keep an eye out.</span>
+<span id="cb16-486"><a href="#cb16-486" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-487"><a href="#cb16-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-488"><a href="#cb16-488" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stop recording</span></span>
+<span id="cb16-489"><a href="#cb16-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-490"><a href="#cb16-490" aria-hidden="true" tabindex="-1"></a>We're almost there! We have imported our functions, started collecting data, sent the triggers, and saved the data. The last step will be stop data collection (or python will keep getting an endless amount of data from the eye tracker!). Do do that, We simply unsubscribe from the eye tracker to which we had subscribed to start of data collection:</span>
+<span id="cb16-491"><a href="#cb16-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-494"><a href="#cb16-494" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-495"><a href="#cb16-495" aria-hidden="true" tabindex="-1"></a>win.close()</span>
+<span id="cb16-496"><a href="#cb16-496" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
+<span id="cb16-497"><a href="#cb16-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-498"><a href="#cb16-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-499"><a href="#cb16-499" aria-hidden="true" tabindex="-1"></a>Note that we also closed the Psychopy window, so that the stimulus presentation is also officially over. Well done!!! Now go and get your data!!! We'll see you back when it's time to analyze it.</span>
+<span id="cb16-500"><a href="#cb16-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-501"><a href="#cb16-501" aria-hidden="true" tabindex="-1"></a><span class="fu"># END!!</span></span>
+<span id="cb16-502"><a href="#cb16-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-503"><a href="#cb16-503" aria-hidden="true" tabindex="-1"></a>Great job getting to here!! it want easy but you did it. Here is all the code we made together.</span>
+<span id="cb16-504"><a href="#cb16-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-505"><a href="#cb16-505" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb16-506"><a href="#cb16-506" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-507"><a href="#cb16-507" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb16-508"><a href="#cb16-508" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-509"><a href="#cb16-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-510"><a href="#cb16-510" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy</span></span>
+<span id="cb16-511"><a href="#cb16-511" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core, event, visual, prefs</span>
+<span id="cb16-512"><a href="#cb16-512" aria-hidden="true" tabindex="-1"></a>prefs.hardware[<span class="st">'audioLib'</span>] <span class="op">=</span> [<span class="st">'PTB'</span>]</span>
+<span id="cb16-513"><a href="#cb16-513" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
+<span id="cb16-514"><a href="#cb16-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-515"><a href="#cb16-515" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobii_research <span class="im">as</span> tr</span>
 <span id="cb16-516"><a href="#cb16-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-517"><a href="#cb16-517" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Functions</span></span>
-<span id="cb16-518"><a href="#cb16-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-519"><a href="#cb16-519" aria-hidden="true" tabindex="-1"></a><span class="co"># This will be called every time there is new gaze data</span></span>
-<span id="cb16-520"><a href="#cb16-520" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
-<span id="cb16-521"><a href="#cb16-521" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
-<span id="cb16-522"><a href="#cb16-522" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> gaze_data_buffer</span>
-<span id="cb16-523"><a href="#cb16-523" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> winsize</span>
-<span id="cb16-524"><a href="#cb16-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-525"><a href="#cb16-525" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(trigger)<span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb16-526"><a href="#cb16-526" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> <span class="st">''</span></span>
-<span id="cb16-527"><a href="#cb16-527" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-528"><a href="#cb16-528" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> trigger</span>
-<span id="cb16-529"><a href="#cb16-529" aria-hidden="true" tabindex="-1"></a>        trigger<span class="op">=</span>[]</span>
-<span id="cb16-530"><a href="#cb16-530" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-531"><a href="#cb16-531" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
-<span id="cb16-532"><a href="#cb16-532" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp <span class="op">/</span> <span class="fl">1000.0</span></span>
-<span id="cb16-533"><a href="#cb16-533" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
-<span id="cb16-534"><a href="#cb16-534" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> winsize[<span class="dv">1</span>] <span class="op">-</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
-<span id="cb16-535"><a href="#cb16-535" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
-<span id="cb16-536"><a href="#cb16-536" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
-<span id="cb16-537"><a href="#cb16-537" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
-<span id="cb16-538"><a href="#cb16-538" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> winsize[<span class="dv">1</span>] <span class="op">-</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
-<span id="cb16-539"><a href="#cb16-539" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
-<span id="cb16-540"><a href="#cb16-540" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span>
-<span id="cb16-541"><a href="#cb16-541" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-542"><a href="#cb16-542" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add gaze data to the buffer </span></span>
-<span id="cb16-543"><a href="#cb16-543" aria-hidden="true" tabindex="-1"></a>    gaze_data_buffer.append((t,lx,ly,lp,lv,rx,ry,rp,rv,ev))</span>
-<span id="cb16-544"><a href="#cb16-544" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-545"><a href="#cb16-545" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-546"><a href="#cb16-546" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_buffer_to_file(<span class="bu">buffer</span>, output_path):</span>
-<span id="cb16-547"><a href="#cb16-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-548"><a href="#cb16-548" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a copy of the buffer and clear it</span></span>
-<span id="cb16-549"><a href="#cb16-549" aria-hidden="true" tabindex="-1"></a>    buffer_copy <span class="op">=</span> <span class="bu">buffer</span>[:]</span>
-<span id="cb16-550"><a href="#cb16-550" aria-hidden="true" tabindex="-1"></a>    <span class="bu">buffer</span>.clear()</span>
-<span id="cb16-551"><a href="#cb16-551" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-552"><a href="#cb16-552" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names</span></span>
-<span id="cb16-553"><a href="#cb16-553" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'L_X'</span>, <span class="st">'L_Y'</span>, <span class="st">'L_P'</span>, <span class="st">'L_V'</span>, </span>
-<span id="cb16-554"><a href="#cb16-554" aria-hidden="true" tabindex="-1"></a>               <span class="st">'R_X'</span>, <span class="st">'R_Y'</span>, <span class="st">'R_P'</span>, <span class="st">'R_V'</span>, <span class="st">'Event'</span>]</span>
-<span id="cb16-555"><a href="#cb16-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-556"><a href="#cb16-556" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert buffer to DataFrame</span></span>
-<span id="cb16-557"><a href="#cb16-557" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.DataFrame(buffer_copy, columns<span class="op">=</span>columns)</span>
-<span id="cb16-558"><a href="#cb16-558" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-559"><a href="#cb16-559" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the file exists</span></span>
-<span id="cb16-560"><a href="#cb16-560" aria-hidden="true" tabindex="-1"></a>    file_exists <span class="op">=</span> <span class="kw">not</span> os.path.isfile(output_path)</span>
-<span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write the DataFrame to an HDF5 file</span></span>
-<span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a>    out.to_csv(output_path, mode<span class="op">=</span><span class="st">'a'</span>, index <span class="op">=</span><span class="va">False</span>, header <span class="op">=</span> file_exists)</span>
-<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-517"><a href="#cb16-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-518"><a href="#cb16-518" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Functions</span></span>
+<span id="cb16-519"><a href="#cb16-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-520"><a href="#cb16-520" aria-hidden="true" tabindex="-1"></a><span class="co"># This will be called every time there is new gaze data</span></span>
+<span id="cb16-521"><a href="#cb16-521" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
+<span id="cb16-522"><a href="#cb16-522" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
+<span id="cb16-523"><a href="#cb16-523" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> gaze_data_buffer</span>
+<span id="cb16-524"><a href="#cb16-524" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> winsize</span>
+<span id="cb16-525"><a href="#cb16-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-526"><a href="#cb16-526" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(trigger)<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb16-527"><a href="#cb16-527" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb16-528"><a href="#cb16-528" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-529"><a href="#cb16-529" aria-hidden="true" tabindex="-1"></a>        ev <span class="op">=</span> trigger</span>
+<span id="cb16-530"><a href="#cb16-530" aria-hidden="true" tabindex="-1"></a>        trigger<span class="op">=</span>[]</span>
+<span id="cb16-531"><a href="#cb16-531" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-532"><a href="#cb16-532" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
+<span id="cb16-533"><a href="#cb16-533" aria-hidden="true" tabindex="-1"></a>    t  <span class="op">=</span> gaze_data.system_time_stamp <span class="op">/</span> <span class="fl">1000.0</span></span>
+<span id="cb16-534"><a href="#cb16-534" aria-hidden="true" tabindex="-1"></a>    lx <span class="op">=</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb16-535"><a href="#cb16-535" aria-hidden="true" tabindex="-1"></a>    ly <span class="op">=</span> winsize[<span class="dv">1</span>] <span class="op">-</span> gaze_data.left_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb16-536"><a href="#cb16-536" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> gaze_data.left_eye.pupil.diameter</span>
+<span id="cb16-537"><a href="#cb16-537" aria-hidden="true" tabindex="-1"></a>    lv <span class="op">=</span> gaze_data.left_eye.gaze_point.validity</span>
+<span id="cb16-538"><a href="#cb16-538" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">0</span>] <span class="op">*</span> winsize[<span class="dv">0</span>]</span>
+<span id="cb16-539"><a href="#cb16-539" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> winsize[<span class="dv">1</span>] <span class="op">-</span> gaze_data.right_eye.gaze_point.position_on_display_area[<span class="dv">1</span>] <span class="op">*</span> winsize[<span class="dv">1</span>]</span>
+<span id="cb16-540"><a href="#cb16-540" aria-hidden="true" tabindex="-1"></a>    rp <span class="op">=</span> gaze_data.right_eye.pupil.diameter</span>
+<span id="cb16-541"><a href="#cb16-541" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span>
+<span id="cb16-542"><a href="#cb16-542" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-543"><a href="#cb16-543" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add gaze data to the buffer </span></span>
+<span id="cb16-544"><a href="#cb16-544" aria-hidden="true" tabindex="-1"></a>    gaze_data_buffer.append((t,lx,ly,lp,lv,rx,ry,rp,rv,ev))</span>
+<span id="cb16-545"><a href="#cb16-545" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-546"><a href="#cb16-546" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-547"><a href="#cb16-547" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_buffer_to_file(<span class="bu">buffer</span>, output_path):</span>
+<span id="cb16-548"><a href="#cb16-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-549"><a href="#cb16-549" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a copy of the buffer and clear it</span></span>
+<span id="cb16-550"><a href="#cb16-550" aria-hidden="true" tabindex="-1"></a>    buffer_copy <span class="op">=</span> <span class="bu">buffer</span>[:]</span>
+<span id="cb16-551"><a href="#cb16-551" aria-hidden="true" tabindex="-1"></a>    <span class="bu">buffer</span>.clear()</span>
+<span id="cb16-552"><a href="#cb16-552" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-553"><a href="#cb16-553" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names</span></span>
+<span id="cb16-554"><a href="#cb16-554" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'L_X'</span>, <span class="st">'L_Y'</span>, <span class="st">'L_P'</span>, <span class="st">'L_V'</span>, </span>
+<span id="cb16-555"><a href="#cb16-555" aria-hidden="true" tabindex="-1"></a>               <span class="st">'R_X'</span>, <span class="st">'R_Y'</span>, <span class="st">'R_P'</span>, <span class="st">'R_V'</span>, <span class="st">'Event'</span>]</span>
+<span id="cb16-556"><a href="#cb16-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-557"><a href="#cb16-557" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert buffer to DataFrame</span></span>
+<span id="cb16-558"><a href="#cb16-558" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.DataFrame(buffer_copy, columns<span class="op">=</span>columns)</span>
+<span id="cb16-559"><a href="#cb16-559" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-560"><a href="#cb16-560" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the file exists</span></span>
+<span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a>    file_exists <span class="op">=</span> <span class="kw">not</span> os.path.isfile(output_path)</span>
+<span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write the DataFrame to an HDF5 file</span></span>
+<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>    out.to_csv(output_path, mode<span class="op">=</span><span class="st">'a'</span>, index <span class="op">=</span><span class="va">False</span>, header <span class="op">=</span> file_exists)</span>
 <span id="cb16-565"><a href="#cb16-565" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-566"><a href="#cb16-566" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
-<span id="cb16-568"><a href="#cb16-568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-569"><a href="#cb16-569" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
-<span id="cb16-570"><a href="#cb16-570" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
-<span id="cb16-571"><a href="#cb16-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-572"><a href="#cb16-572" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
-<span id="cb16-573"><a href="#cb16-573" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb16-574"><a href="#cb16-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-575"><a href="#cb16-575" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb16-576"><a href="#cb16-576" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-577"><a href="#cb16-577" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-578"><a href="#cb16-578" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb16-579"><a href="#cb16-579" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb16-580"><a href="#cb16-580" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb16-581"><a href="#cb16-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-582"><a href="#cb16-582" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb16-583"><a href="#cb16-583" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
-<span id="cb16-584"><a href="#cb16-584" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">getting_started_psychopy</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
-<span id="cb16-585"><a href="#cb16-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-586"><a href="#cb16-586" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb16-587"><a href="#cb16-587" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb16-588"><a href="#cb16-588" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb16-589"><a href="#cb16-589" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
-<span id="cb16-590"><a href="#cb16-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-591"><a href="#cb16-591" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb16-592"><a href="#cb16-592" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb16-593"><a href="#cb16-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-568"><a href="#cb16-568" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
+<span id="cb16-569"><a href="#cb16-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-570"><a href="#cb16-570" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
+<span id="cb16-571"><a href="#cb16-571" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb16-572"><a href="#cb16-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-573"><a href="#cb16-573" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb16-574"><a href="#cb16-574" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize,fullscr<span class="op">=</span><span class="va">True</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-575"><a href="#cb16-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-576"><a href="#cb16-576" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb16-577"><a href="#cb16-577" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-578"><a href="#cb16-578" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-579"><a href="#cb16-579" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb16-580"><a href="#cb16-580" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb16-581"><a href="#cb16-581" aria-hidden="true" tabindex="-1"></a>loosing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb16-582"><a href="#cb16-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-583"><a href="#cb16-583" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb16-584"><a href="#cb16-584" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb16-585"><a href="#cb16-585" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb16-586"><a href="#cb16-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-587"><a href="#cb16-587" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb16-588"><a href="#cb16-588" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb16-589"><a href="#cb16-589" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, loosing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb16-590"><a href="#cb16-590" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb16-591"><a href="#cb16-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-592"><a href="#cb16-592" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb16-593"><a href="#cb16-593" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
 <span id="cb16-594"><a href="#cb16-594" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-595"><a href="#cb16-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-596"><a href="#cb16-596" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
-<span id="cb16-597"><a href="#cb16-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-598"><a href="#cb16-598" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
-<span id="cb16-599"><a href="#cb16-599" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
-<span id="cb16-600"><a href="#cb16-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-601"><a href="#cb16-601" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
-<span id="cb16-602"><a href="#cb16-602" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span>
-<span id="cb16-603"><a href="#cb16-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-604"><a href="#cb16-604" aria-hidden="true" tabindex="-1"></a><span class="co">#Start recording</span></span>
-<span id="cb16-605"><a href="#cb16-605" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
-<span id="cb16-606"><a href="#cb16-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-596"><a href="#cb16-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-597"><a href="#cb16-597" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
+<span id="cb16-598"><a href="#cb16-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-599"><a href="#cb16-599" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
+<span id="cb16-600"><a href="#cb16-600" aria-hidden="true" tabindex="-1"></a>found_eyetrackers <span class="op">=</span> tr.find_all_eyetrackers()</span>
+<span id="cb16-601"><a href="#cb16-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-602"><a href="#cb16-602" aria-hidden="true" tabindex="-1"></a><span class="co"># We will just use the first one</span></span>
+<span id="cb16-603"><a href="#cb16-603" aria-hidden="true" tabindex="-1"></a>Eyetracker <span class="op">=</span> found_eyetrackers[<span class="dv">0</span>]</span>
+<span id="cb16-604"><a href="#cb16-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-605"><a href="#cb16-605" aria-hidden="true" tabindex="-1"></a><span class="co">#Start recording</span></span>
+<span id="cb16-606"><a href="#cb16-606" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span>
 <span id="cb16-607"><a href="#cb16-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-608"><a href="#cb16-608" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
-<span id="cb16-609"><a href="#cb16-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-610"><a href="#cb16-610" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
-<span id="cb16-611"><a href="#cb16-611" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb16-612"><a href="#cb16-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-613"><a href="#cb16-613" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-614"><a href="#cb16-614" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
-<span id="cb16-615"><a href="#cb16-615" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-616"><a href="#cb16-616" aria-hidden="true" tabindex="-1"></a>    trigger <span class="op">=</span> <span class="st">'Fixation'</span></span>
-<span id="cb16-617"><a href="#cb16-617" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb16-618"><a href="#cb16-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-608"><a href="#cb16-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-609"><a href="#cb16-609" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
+<span id="cb16-610"><a href="#cb16-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-611"><a href="#cb16-611" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
+<span id="cb16-612"><a href="#cb16-612" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
+<span id="cb16-613"><a href="#cb16-613" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-614"><a href="#cb16-614" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-615"><a href="#cb16-615" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb16-616"><a href="#cb16-616" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-617"><a href="#cb16-617" aria-hidden="true" tabindex="-1"></a>    trigger <span class="op">=</span> <span class="st">'Fixation'</span></span>
+<span id="cb16-618"><a href="#cb16-618" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
 <span id="cb16-619"><a href="#cb16-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-620"><a href="#cb16-620" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
-<span id="cb16-621"><a href="#cb16-621" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
-<span id="cb16-622"><a href="#cb16-622" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-623"><a href="#cb16-623" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb16-624"><a href="#cb16-624" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Circle'</span></span>
-<span id="cb16-625"><a href="#cb16-625" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-626"><a href="#cb16-626" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Square'</span></span>
-<span id="cb16-627"><a href="#cb16-627" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
-<span id="cb16-628"><a href="#cb16-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-629"><a href="#cb16-629" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Wait for saccadic latencty</span></span>
-<span id="cb16-630"><a href="#cb16-630" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-631"><a href="#cb16-631" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.75</span>)</span>
-<span id="cb16-632"><a href="#cb16-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-633"><a href="#cb16-633" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
-<span id="cb16-634"><a href="#cb16-634" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
-<span id="cb16-635"><a href="#cb16-635" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb16-636"><a href="#cb16-636" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-637"><a href="#cb16-637" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb16-638"><a href="#cb16-638" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Reward'</span></span>
-<span id="cb16-639"><a href="#cb16-639" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-640"><a href="#cb16-640" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'NoReward'</span></span>
-<span id="cb16-641"><a href="#cb16-641" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
-<span id="cb16-642"><a href="#cb16-642" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 2 second</span></span>
-<span id="cb16-643"><a href="#cb16-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-644"><a href="#cb16-644" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
-<span id="cb16-645"><a href="#cb16-645" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb16-646"><a href="#cb16-646" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock()</span>
-<span id="cb16-647"><a href="#cb16-647" aria-hidden="true" tabindex="-1"></a>    write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
-<span id="cb16-648"><a href="#cb16-648" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb16-649"><a href="#cb16-649" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb16-650"><a href="#cb16-650" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-651"><a href="#cb16-651" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
-<span id="cb16-652"><a href="#cb16-652" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
-<span id="cb16-653"><a href="#cb16-653" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
-<span id="cb16-654"><a href="#cb16-654" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
-<span id="cb16-655"><a href="#cb16-655" aria-hidden="true" tabindex="-1"></a>        Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) <span class="co"># unsubscribe eyetracking</span></span>
-<span id="cb16-656"><a href="#cb16-656" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
-<span id="cb16-657"><a href="#cb16-657" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb16-658"><a href="#cb16-658" aria-hidden="true" tabindex="-1"></a>win.close() <span class="co"># close window</span></span>
-<span id="cb16-659"><a href="#cb16-659" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) <span class="co"># unsubscribe eyetracking</span></span>
-<span id="cb16-660"><a href="#cb16-660" aria-hidden="true" tabindex="-1"></a>core.quit() <span class="co"># stop study</span></span>
-<span id="cb16-661"><a href="#cb16-661" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-620"><a href="#cb16-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-621"><a href="#cb16-621" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
+<span id="cb16-622"><a href="#cb16-622" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
+<span id="cb16-623"><a href="#cb16-623" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-624"><a href="#cb16-624" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb16-625"><a href="#cb16-625" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Circle'</span></span>
+<span id="cb16-626"><a href="#cb16-626" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-627"><a href="#cb16-627" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Square'</span></span>
+<span id="cb16-628"><a href="#cb16-628" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb16-629"><a href="#cb16-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-630"><a href="#cb16-630" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Wait for saccadic latencty</span></span>
+<span id="cb16-631"><a href="#cb16-631" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-632"><a href="#cb16-632" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="fl">0.75</span>)</span>
+<span id="cb16-633"><a href="#cb16-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-634"><a href="#cb16-634" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
+<span id="cb16-635"><a href="#cb16-635" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
+<span id="cb16-636"><a href="#cb16-636" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb16-637"><a href="#cb16-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-638"><a href="#cb16-638" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trial <span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb16-639"><a href="#cb16-639" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'Reward'</span></span>
+<span id="cb16-640"><a href="#cb16-640" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-641"><a href="#cb16-641" aria-hidden="true" tabindex="-1"></a>        trigger <span class="op">=</span> <span class="st">'NoReward'</span></span>
+<span id="cb16-642"><a href="#cb16-642" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
+<span id="cb16-643"><a href="#cb16-643" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 2 second</span></span>
+<span id="cb16-644"><a href="#cb16-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-645"><a href="#cb16-645" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
+<span id="cb16-646"><a href="#cb16-646" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb16-647"><a href="#cb16-647" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock()</span>
+<span id="cb16-648"><a href="#cb16-648" aria-hidden="true" tabindex="-1"></a>    write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb16-649"><a href="#cb16-649" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb16-650"><a href="#cb16-650" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb16-651"><a href="#cb16-651" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-652"><a href="#cb16-652" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
+<span id="cb16-653"><a href="#cb16-653" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb16-654"><a href="#cb16-654" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb16-655"><a href="#cb16-655" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
+<span id="cb16-656"><a href="#cb16-656" aria-hidden="true" tabindex="-1"></a>        Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) <span class="co"># unsubscribe eyetracking</span></span>
+<span id="cb16-657"><a href="#cb16-657" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
+<span id="cb16-658"><a href="#cb16-658" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb16-659"><a href="#cb16-659" aria-hidden="true" tabindex="-1"></a>win.close() <span class="co"># close window</span></span>
+<span id="cb16-660"><a href="#cb16-660" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback) <span class="co"># unsubscribe eyetracking</span></span>
+<span id="cb16-661"><a href="#cb16-661" aria-hidden="true" tabindex="-1"></a>core.quit() <span class="co"># stop study</span></span>
+<span id="cb16-662"><a href="#cb16-662" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

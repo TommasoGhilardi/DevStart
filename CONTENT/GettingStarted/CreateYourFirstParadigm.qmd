@@ -15,7 +15,7 @@ We will create a very simple and basic experiment that will be the stepping ston
 ::: callout-important
 ## Stimuli!
 
-You can download from [here](/resources/getting_started_psychopy/getting_started_psychopy.zip) the stimuli that we will use in this example. They are very simple and basic stimuli:
+You can download from [here](/resources/getting_started_psychopy/EXP.zip) the stimuli that we will use in this example. They are very simple and basic stimuli:
 
 -   a fixation cross
 -   two cues (a circle and a square)
@@ -73,19 +73,19 @@ When importing a visual stimulus we need to pass to the importing function in wh
 #%% Load and prepare stimuli
 
 # Setting the directory of our experiment
-os.chdir('C:\\Users\\CBCD\\Desktop\\BCCCD')
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
 
 # Load images
-fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
-winning   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
+circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
+square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
+winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
+losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
-winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
-losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
+winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
+losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
@@ -317,15 +317,15 @@ winsize = (1920, 1080)
 win = visual.Window(size = winsize, fullscr=False, units="pix", pos =(0,30), screen=1)
 
 # Load images
-fixation = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\square.png', size = (200, 200))
-winning  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\getting_started_psychopy\\loosing.png', size = (200, 200), pos=(-560,0))
+fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
+circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
+square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
+winning  = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
+losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
-winning_sound = sound.Sound('EXP\\getting_started_psychopy\\winning.wav')
-losing_sound = sound.Sound('EXP\\getting_started_psychopy\\loosing.wav')
+winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
+losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list

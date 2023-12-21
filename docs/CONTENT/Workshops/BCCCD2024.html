@@ -215,6 +215,12 @@ cookieconsent.run({
  <span class="menu-text">Starting with Python</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Starting with PsychoPy</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,8 +234,8 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Starting with PsychoPy</span></a>
+  <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create your first paradigm</span></a>
   </div>
 </li>
       </ul>
@@ -300,7 +306,7 @@ cookieconsent.run({
   <li><a href="#what-will-you-need" id="toc-what-will-you-need" class="nav-link" data-scroll-target="#what-will-you-need">What will you need?</a>
   <ul class="collapse">
   <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#stimuli" id="toc-stimuli" class="nav-link" data-scroll-target="#stimuli">Stimuli</a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
   </ul></li>
   <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">Q&amp;A</a></li>
   </ul>
@@ -345,9 +351,9 @@ cookieconsent.run({
 <p>Besides Python, we’ll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It’s available as a standalone software or can be installed as a Python package.</p>
 <p>Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this <a href="https://github.com/TommasoGhilardi/DevStart/blob/main/resources/psychopy.yml">anaconda environment</a> to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: <a href="GettingStartedWithPsychopy.qmd">Getting started with Psychopy</a></p>
 </section>
-<section id="stimuli" class="level2">
-<h2 class="anchored" data-anchor-id="stimuli">Stimuli</h2>
-<p>In our workshop, we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli <a href="https://github.com/TommasoGhilardi/DevStart/tree/main/resources/getting_started_psychopy">here</a>.</p>
+<section id="files" class="level2">
+<h2 class="anchored" data-anchor-id="files">Files</h2>
+<p>In our workshop we will create a cool eye-tracking study, collect the data and analyze them. To make everything smoother we provide <a href="\resources\Workshops\BCCCD2024.zip">HERE</a> the stimuli and the data that we will use for the workshop.</p>
 </section>
 </section>
 <section id="qa" class="level1">
@@ -786,35 +792,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>This workshop will focus on using Python to run and analyze an eye-tracking study.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>We will focus on:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to implement eye-tracking designs in Python</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to interact with an eye-tracker via Python</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to extract and visualize meaningful eye-tracking measures from the raw data</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># What will you need?</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>In this tutorial, our primary tool will be Python!! We recommend installing it via <span class="co">[</span><span class="ot">Miniconda</span><span class="co">](https://docs.conda.io/projects/miniconda/en/latest/)</span>. Our interaction with Python will primarily be through the Spyder IDE. You're free to use any IDE of your choice, but if you'd like to follow along more smoothly, we suggest checking out our guide on how to install both Miniconda and Spyder: <span class="co">[</span><span class="ot">Getting started with Python</span><span class="co">](GettingStartedWithPython.qmd)</span>.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Besides Python, we'll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It's available as a standalone software or can be installed as a Python package.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this <span class="co">[</span><span class="ot">anaconda environment</span><span class="co">](https://github.com/TommasoGhilardi/DevStart/blob/main/resources/psychopy.yml)</span> to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: <span class="co">[</span><span class="ot">Getting started with Psychopy</span><span class="co">](GettingStartedWithPsychopy.qmd)</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stimuli</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>In our workshop, we will also make use of some stimuli to create a cool experiment. If you want to follow along you can dowload the stimuli <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/TommasoGhilardi/DevStart/tree/main/resources/getting_started_psychopy)</span>.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>We will focus on:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to implement eye-tracking designs in Python</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to interact with an eye-tracker via Python</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to extract and visualize meaningful eye-tracking measures from the raw data</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># What will you need?</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>In this tutorial, our primary tool will be Python!! We recommend installing it via <span class="co">[</span><span class="ot">Miniconda</span><span class="co">](https://docs.conda.io/projects/miniconda/en/latest/)</span>. Our interaction with Python will primarily be through the Spyder IDE. You're free to use any IDE of your choice, but if you'd like to follow along more smoothly, we suggest checking out our guide on how to install both Miniconda and Spyder: <span class="co">[</span><span class="ot">Getting started with Python</span><span class="co">](GettingStartedWithPython.qmd)</span>.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Besides Python, we'll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It's available as a standalone software or can be installed as a Python package.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this <span class="co">[</span><span class="ot">anaconda environment</span><span class="co">](https://github.com/TommasoGhilardi/DevStart/blob/main/resources/psychopy.yml)</span> to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: <span class="co">[</span><span class="ot">Getting started with Psychopy</span><span class="co">](GettingStartedWithPsychopy.qmd)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Files</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>In our workshop we will create a cool eye-tracking study, collect the data and analyze them. To make everything smoother we provide <span class="co">[</span><span class="ot">HERE</span><span class="co">](\resources\Workshops\BCCCD2024.zip)</span> the stimuli and the data that we will use for the workshop.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q&amp;A</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q&amp;A</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>This section is dedicated to the questions and answers that arise during the workshop. We will document the most pertinent and intriguing ones here for future reference and to assist anyone who might have similar queries.</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>This section is dedicated to the questions and answers that arise during the workshop. We will document the most pertinent and intriguing ones here for future reference and to assist anyone who might have similar queries.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**So... don't hesitate to ask a multitude of questions!!!**</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>**So... don't hesitate to ask a multitude of questions!!!**</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

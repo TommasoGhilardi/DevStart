@@ -11,7 +11,7 @@ keywords: eye-tracking, I2MC, fixation detection, data analysis, tutorial, pytho
 
 # What we are going to do
 
-When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person's eyes are looking at a particular point of interest for a given amount of time. More specifically, a fixation is a cluster of consecutive data points in an eye-tracking dataset for which a person's gaze remains relatively still and focused on a particular area or object. 
+When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person's eyes are looking at a particular point of interest for a given amount of time. More specifically, a fixation is a cluster of consecutive data points in an eye-tracking dataset for which a person's gaze remains relatively still and focused on a particular area or object.
 
 Typically, eye-tracking programs come with their own fixation detection algorithms that give us a rough idea of what the person was looking at. But here's the problem: these tools aren't always very good when it comes to data from infants and children. Why? Because infants and children can be all over the place! They move their heads, put their hands (or even feet) in front of their faces, close their eyes, or just look away. All of this makes the data a big mess that's hard to make sense of with regular fixation detection algorithms. Because the data is so messy, it is difficult to tell which data points are part of the same fixation or different fixations.
 
