@@ -281,6 +281,13 @@ SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['La
 
 Here we have our **Saccadic latency**!!!
 
+Once our dataset is ready, we might want to visualise the data. For example, we can plot how saccadic latency changes across trials with seaborn:
+
+```{python}
+import seaborn as sns
+plt.scatter(data=SaccadicLatency, x="Event_trial", y="Latency", by='Event')
+```
+
 # Looking time
 
 While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.
@@ -292,9 +299,16 @@ We have already extracted all the information we need, we just need to do the fi
 LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
 ```
 
+Again, we can now visualise the data. For example, we can plot whether looking time to rewarding vs. non-rewarding stimuli:
+
+```{python}
+import seaborn as sns
+plt.scatter(data=LookingTime, x="Event", y="dur", by='Event')
+```
+
 # END!!
 
-Well done!! we have successfully extracted both saccadic latency and looking time from our data. Remember that it is just a simple tutorial based on an even simpler design. However if you got to the end and you have understood all the steps and what they mean, I am sure you can apply this knowledge to your study as well. If you have any questions or if something is not clear, feel free to send us an email!!\
+Well done!! we have successfully extracted both saccadic latency and looking time from our data. Remember that it is just a simple tutorial based on an even simpler design. However, if you got to the end and you have understood all the steps and what they mean, I am sure you can apply this knowledge to your study as well. If you have any questions or if something is not clear, feel free to send us an email!!\
 \
 Here below the entire script!!\
 
@@ -408,8 +422,6 @@ Correct_Target_fixations['Latency'] = Correct_Target_fixations['Onset'] - Correc
 
 # We extract the first fixation of our dataframe for each event
 SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['Latency'].min().reset_index()
-
-
 
 #%% Looking time
 
