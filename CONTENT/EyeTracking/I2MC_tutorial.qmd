@@ -99,26 +99,6 @@ We have read the data, extracted the relevant information and done some extremel
 # ===================================================================
 
 def tobii_TX300(fname, res=[1920,1080]):
-    '''
-    Imports data from Tobii TX300
-    
-    Parameters
-    ----------
-    fname : string
-        The file (filepath)
-    res : tuple
-        The (X,Y) resolution of the screen
-    
-    Returns
-    -------
-    df : pandas.DataFrame
-         Gaze data, with columns:
-         t : The sample times from the dataset
-         L_X : X positions from the left eye
-         L_Y : Y positions from the left eye
-         R_X : X positions from the right eye
-         R_Y : Y positions from the right eye
-    '''
 
     # Load all data
     raw_df = pd.read_csv(fname, delimiter=',')
@@ -159,14 +139,14 @@ Nice!! we have our import function that we will use to read our data. Now, let's
 
 ```{python}
 import os
-os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop')
 ```
 
 This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a *.csv* extension in a specific folder on our computer. Let's import glob and then let's find the files:
 
 ```{python}
 import glob
-data_files = glob.glob('C:\\Users\\tomma\\surfdrive - Ghilardi, T. (Tommaso)@surfdrive.surf.nl\\Documentation\Working\\Eyetracking\\data\\**\\*.csv', recursive = True)
+data_files = glob.glob('DATA\\RAW\\**\\*.csv', recursive = True)
 ```
 
 -   `/home/geeks/Desktop/gfg/`: This is the path where we want to start our search.
@@ -350,26 +330,6 @@ import pandas as pd
 # =============================================================================
 
 def tobii_TX300(fname, res=[1920,1080]):
-    '''
-    Imports data from Tobii TX300
-
-    Parameters
-    ----------
-    fname : string
-        The file (filepath)
-    res : tuple
-        The (X,Y) resolution of the screen
-
-    Returns
-    -------
-    df : pandas.DataFrame
-         Gaze data, with columns:
-         t : The sample times from the dataset
-         L_X : X positions from the left eye
-         L_Y : Y positions from the left eye
-         R_X : X positions from the right eye
-         R_Y : Y positions from the right eye
-    '''
 
     # Load all data
     raw_df = pd.read_csv(fname, delimiter=',')
@@ -408,7 +368,7 @@ def tobii_TX300(fname, res=[1920,1080]):
 #%% Preparation
 
 # Settign the working directory
-os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop')
 
 # Find the files
 data_files = glob.glob('DATA\\RAW\\**\\*.csv', recursive = True) # find all the files

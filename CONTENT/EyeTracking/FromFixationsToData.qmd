@@ -29,13 +29,10 @@ screensize = (1920, 1080)
 #%% Read and prepare data
 
 # The fixation data extracted from I2MC
-Fixations = pd.read_csv('Data\\i2mc_output\\Test1\Test1.csv')
+Fixations = pd.read_csv('DATA\\i2mc_output\\Test1\Test1.csv')
 
 # The original RAW data
-Raw_data = pd.read_csv('Data\\RAW\\Test1.csv')
-
-# Start Recording from 0 and in Seconds
-Raw_data['time'] = Raw_data['time'] - Raw_data.loc[0,'time']
+Raw_data = pd.read_csv('DATA\\RAW\\Test1.csv')
 ```
 
 What can we do with just the raw data and the fixations? Not much I am afraid. But we can use these fixations to extract some more meaningful indexes.
@@ -343,10 +340,10 @@ os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhila
 screensize = (1920, 1080)
 
 # The fixation data extracted from I2MC
-Fixations = pd.read_csv('Data\\i2mc_output\\Test1\Test1.csv')
+Fixations = pd.read_csv('DATA\\i2mc_output\\Test1\Test1.csv')
 
 # The original RAW data
-Raw_data = pd.read_csv('Data\\RAW\\Test1.csv')
+Raw_data = pd.read_csv('DATA\\RAW\\Test1.csv')
 
 # Start Recording from 0 and in Seconds
 Raw_data['time'] = Raw_data['time'] - Raw_data.loc[0,'time']
