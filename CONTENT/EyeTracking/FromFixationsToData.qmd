@@ -1,7 +1,7 @@
 ---
 title: "From fixations to measures"
 execute:
-  eval: false
+  eval: true
 
 author-meta: Tommaso Ghilardi
 description-meta: "Learn how to extract different eye-tracking measures from the collected data"
@@ -10,7 +10,7 @@ keywords: "Python, latency, saccadic-latency, looking time, eye-tracking, tobii,
 
 In the previous two tutorials we [collected some eye-tracking data](CreateAnEyetrackingExperiment.qmd) and then we [used I2MC to extract the fixations](I2MC_tutorial.qmd) from that data. Let's load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.
 
-```{python}
+```{python, setup}
 import os
 import numpy as np
 import pandas as pd
@@ -20,7 +20,7 @@ import matplotlib.patches as patches
 #%% Settings
 
 # # Settign the working directory
-os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop')
 
 # Screen resolution
 screensize = (1920, 1080) 
@@ -29,10 +29,10 @@ screensize = (1920, 1080)
 #%% Read and prepare data
 
 # The fixation data extracted from I2MC
-Fixations = pd.read_csv('DATA\\i2mc_output\\Test1\Test1.csv')
+Fixations = pd.read_csv('DATA\\i2mc_output\\Adult1\Adult1.csv')
 
 # The original RAW data
-Raw_data = pd.read_csv('DATA\\RAW\\Test1.csv')
+Raw_data = pd.read_csv('DATA\\RAW\\Adult1.csv')
 ```
 
 What can we do with just the raw data and the fixations? Not much I am afraid. But we can use these fixations to extract some more meaningful indexes.
@@ -60,9 +60,6 @@ An important point to understand is that tobii and Psychopy use two different co
 This inconsistency is not a problem per se, but we need to take it into account when defining the AOIs. Let's try to define the AOIs:
 
 ```{python}
-#| eval: true
-#| eco: false
-
 # Screen resolution
 screensize = (1920, 1080) 
 
@@ -82,7 +79,6 @@ AOIs = [AOI1, AOI2]
 Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
 
 ```{python}
-#| eval: true
 #| fig-align: "center"
 #| code-fold: true
 import matplotlib.pyplot as plt
@@ -119,6 +115,7 @@ As you can see, we are plotting the two AOIs and two points. One falls into one 
 We can check whether the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right corners of the AOI. So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
 
 ```{python}
+#| eval: false
 # Extract bottom left and top right points
 bottom_left, top_right = area
 
@@ -253,7 +250,7 @@ Target_fixations.loc[Target_fixations['Event'] == 'NoReward', 'Correct_Aoi'] = 0
 Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
 
 # We select only the correct fixations
-Correct_Target_fixations = Target_fixations[Target_fixations['Correct_Aoi'] == Target_fixations['Looked_AOI']]
+Correct_Target_fixations = Target_fixations.loc[Target_fixations['Correct_Aoi'] == Target_fixations['Looked_AOI'],]
 ```
 
 Now we can finally extract the saccadic latency by simply subtracting the onset of the event `Onset` from the onset of the fixations (`startT`):
@@ -284,8 +281,21 @@ Here we have our **Saccadic latency**!!!
 Once our dataset is ready, we might want to visualise the data. For example, we can plot how saccadic latency changes across trials with seaborn:
 
 ```{python}
+#| fig-align: "center"
 import seaborn as sns
-plt.scatter(data=SaccadicLatency, x="Event_trial", y="Latency", by='Event')
+plt.figure()
+
+# Scatterplot
+sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
+
+# Place the legend outside the plot
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+
+# Adjust layout to make room for the legend
+plt.tight_layout()
+
+# Show the plot
+plt.show()
 ```
 
 # Looking time
@@ -302,8 +312,20 @@ LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], a
 Again, we can now visualise the data. For example, we can plot whether looking time to rewarding vs. non-rewarding stimuli:
 
 ```{python}
-import seaborn as sns
-plt.scatter(data=LookingTime, x="Event", y="dur", by='Event')
+#| fig-align: "center"
+plt.figure()
+
+# Scatterplot
+sns.scatterplot(data=LookingTime, x="Event", y="dur", hue='Event')
+
+# Place the legend outside the plot
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+
+# Adjust layout to make room for the legend
+plt.tight_layout()
+
+# Show the plot
+plt.show()
 ```
 
 # END!!
