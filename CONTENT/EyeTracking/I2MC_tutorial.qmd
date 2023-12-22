@@ -1,12 +1,12 @@
 ---
-title: Using I2MC for robust fixation extraction
+title: "Using I2MC for robust fixation extraction"
 execute:
   eval: false
   
-pagetitle: Using I2MC for Robust Fix Extraction - DevStart
+pagetitle: "Using I2MC for robust fixation extraction"
 author-meta: Tommaso Ghilardi
-description-meta: Learn how to use I2MC for robust fixation extraction in eye-tracking data analysis.
-keywords: eye-tracking, I2MC, fixation detection, data analysis, tutorial, python, DevStart, developmental science, tutorial, eye fixations
+description-meta: "Learn how to use I2MC for robust fixation extraction in eye-tracking data analysis."
+keywords: "eye-tracking, I2MC, fixation detection, data analysis, tutorial, python, DevStart, developmental science, tutorial, eye fixations"
 ---
 
 # What we are going to do
