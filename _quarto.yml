@@ -12,12 +12,13 @@ website:
   
   site-url: "https://tommasoghilardi.github.io/DevStart/"
   google-analytics: "G-G5XSH1GLW7"
+  favicon: images/LOGO.png
   twitter-card: true
   open-graph: true
   
-  cookie-consent:
-    type: implied
-    style: simple    
+  # cookie-consent:
+  #   type: implied
+  #   style: simple    
 
   back-to-top-navigation: true
   page-navigation: true
@@ -26,20 +27,6 @@ website:
   search:
     location: sidebar
     type: textbox
-  # navbar:
-  #   background: "#FFFF"
-  #   foreground: dark
-  #   right:
-  #     - text: "Forum"
-  #       href: https://twitter.com
-  #   page-navigation: true
-  #   title: "**DEVSTART**: gettting started with developmental science"
-  #   tools:
-  #     - icon: twitter
-  #       href: https://twitter.com
-  #     - icon: github
-  #       href: https://github.com
-    
 
   sidebar:
     style: "floating"
@@ -49,8 +36,8 @@ website:
 
     
     tools:
-      - icon: twitter
-        href: https://twitter.com
+      # - icon: twitter
+      #   href: https://twitter.com
       - icon: github
         menu:
           - text: Source Code
@@ -86,12 +73,10 @@ website:
       - href: https://github.com/TommasoGhilardi/DevStart
         icon: github
         aria-label: GitHub
-      - href: https://twitter.com/
-        icon: twitter
-        aria-label: Twitter
-      - href: https://bsky.app
-        icon: bsky
-        aria-label: Bsky
+      # - href: https://twitter.com/
+      #   icon: twitter
+      #   aria-label: Twitter
+
 
 format:
   html:
