@@ -245,6 +245,7 @@ If we know where our participant was supposed to look, we can easily find the fi
 In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:
 
 ```{python}
+#| echo: false
 # We define which is the correct AOI that the participant should have looked at.
 Target_fixations.loc[Target_fixations['Event'] == 'NoReward', 'Correct_Aoi'] = 0
 Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
@@ -282,17 +283,14 @@ Once our dataset is ready, we might want to visualise the data. For example, we 
 
 ```{python}
 #| fig-align: "center"
-import seaborn as sns
+import seaborn as sns # import seaborn
 plt.figure()
 
 # Scatterplot
-sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
+ax = sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
 
-# Place the legend outside the plot
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-
-# Adjust layout to make room for the legend
-plt.tight_layout()
+# Place the legend 
+sns.move_legend(ax,loc="upper left")
 
 # Show the plot
 plt.show()
@@ -315,14 +313,11 @@ Again, we can now visualise the data. For example, we can plot whether looking t
 #| fig-align: "center"
 plt.figure()
 
-# Scatterplot
-sns.scatterplot(data=LookingTime, x="Event", y="dur", hue='Event')
+# Barplot
+ax = sns.barplot(data=LookingTime, x="Event", y="dur", hue='Event')
 
-# Place the legend outside the plot
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-
-# Adjust layout to make room for the legend
-plt.tight_layout()
+# Place the legend 
+sns.move_legend(ax,loc="upper center")
 
 # Show the plot
 plt.show()
@@ -338,6 +333,7 @@ Here below the entire script!!\
 import os
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
@@ -445,8 +441,34 @@ Correct_Target_fixations['Latency'] = Correct_Target_fixations['Onset'] - Correc
 # We extract the first fixation of our dataframe for each event
 SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['Latency'].min().reset_index()
 
+### PLOT
+plt.figure()
+
+# Scatterplot
+ax = sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
+
+# Place the legend 
+sns.move_legend(ax,loc="upper left")
+
+# Show the plot
+plt.show()
+
+
+
 #%% Looking time
 
 # Using groupby we can extract the sum of the duration of the fixation for each reward and trial
 LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
+
+### PLOT
+plt.figure()
+
+# Barplot
+ax = sns.barplot(data=LookingTime, x="Event", y="dur", hue='Event')
+
+# Place the legend 
+sns.move_legend(ax,loc="upper center")
+
+# Show the plot
+plt.show()
 ```
