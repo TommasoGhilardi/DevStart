@@ -44,7 +44,7 @@ This was too easy now, let's start to really get into it.
 
 ## Import data
 
-Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from here LINK.
+Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from [here](/resources/I2mc/DATA.zip).
 
 Let's create step by step our function to import the data
 
@@ -60,29 +60,32 @@ After reading the data we will create a new data-frame that we will fill with th
 df = pd.DataFrame()
     
 # Extract required data
-df['time'] = raw_df['Time']
-df['L_X'] = raw_df['LeftX']
-df['L_Y'] = raw_df['LeftY']
-df['R_X'] = raw_df['RightX']
-df['R_Y'] = raw_df['RightY']
+df['time'] = raw_df['time']
+df['L_X'] = raw_df['L_X']
+df['L_Y'] = raw_df['L_Y']
+df['R_X'] = raw_df['R_X']
+df['R_Y'] = raw_df['R_Y']
 ```
 
 After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (\>1) we will consider the sample as missing
 
 ```{python}
-# Sometimes we have weird peaks where one sample is (very) far outside the monitor. Here, count as missing any data that is more than one monitor distance outside the monitor.
+###
+# Sometimes we have weird peaks where one sample is (very) far outside the
+# monitor. Here, count as missing any data that is more than one monitor
+# distance outside the monitor.
 
 # Left eye
 lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
 lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-lMiss  = lMiss1 | lMiss2 | (raw_df['ValidityLeft'] > 1)
+lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
 df.loc[lMiss,'L_X'] = np.NAN
 df.loc[lMiss,'L_Y'] = np.NAN
 
 # Right eye
 rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
 rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-rMiss  = rMiss1 | rMiss2 | (raw_df['ValidityRight'] > 1)
+rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
 df.loc[rMiss,'R_X'] = np.NAN
 df.loc[rMiss,'R_Y'] = np.NAN
 ```
@@ -105,11 +108,12 @@ def tobii_TX300(fname, res=[1920,1080]):
     df = pd.DataFrame()
     
     # Extract required data
-    df['time'] = raw_df['Time']
-    df['L_X'] = raw_df['LeftX']
-    df['L_Y'] = raw_df['LeftY']
-    df['R_X'] = raw_df['RightX']
-    df['R_Y'] = raw_df['RightY']
+    df['time'] = raw_df['time']
+    df['L_X'] = raw_df['L_X']
+    df['L_Y'] = raw_df['L_Y']
+    df['R_X'] = raw_df['R_X']
+    df['R_Y'] = raw_df['R_Y']
+    
     
     ###
     # Sometimes we have weird peaks where one sample is (very) far outside the
@@ -119,14 +123,14 @@ def tobii_TX300(fname, res=[1920,1080]):
     # Left eye
     lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
     lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-    lMiss  = lMiss1 | lMiss2 | (raw_df['ValidityLeft'] > 1)
+    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
     df.loc[lMiss,'L_X'] = np.NAN
     df.loc[lMiss,'L_Y'] = np.NAN
     
     # Right eye
     rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
     rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-    rMiss  = rMiss1 | rMiss2 | (raw_df['ValidityRight'] > 1)
+    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
     df.loc[rMiss,'R_X'] = np.NAN
     df.loc[rMiss,'R_Y'] = np.NAN
     
@@ -334,30 +338,31 @@ def tobii_TX300(fname, res=[1920,1080]):
     # Load all data
     raw_df = pd.read_csv(fname, delimiter=',')
     df = pd.DataFrame()
-
+    
     # Extract required data
-    df['time'] = raw_df['Time']
-    df['L_X'] = raw_df['LeftX']
-    df['L_Y'] = raw_df['LeftY']
-    df['R_X'] = raw_df['RightX']
-    df['R_Y'] = raw_df['RightY']
-
+    df['time'] = raw_df['time']
+    df['L_X'] = raw_df['L_X']
+    df['L_Y'] = raw_df['L_Y']
+    df['R_X'] = raw_df['R_X']
+    df['R_Y'] = raw_df['R_Y']
+    
+    
     ###
     # Sometimes we have weird peaks where one sample is (very) far outside the
     # monitor. Here, count as missing any data that is more than one monitor
     # distance outside the monitor.
-
+    
     # Left eye
     lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
     lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-    lMiss  = lMiss1 | lMiss2 | (raw_df['ValidityLeft'] > 1)
+    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
     df.loc[lMiss,'L_X'] = np.NAN
     df.loc[lMiss,'L_Y'] = np.NAN
-
+    
     # Right eye
     rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
     rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-    rMiss  = rMiss1 | rMiss2 | (raw_df['ValidityRight'] > 1)
+    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
     df.loc[rMiss,'R_X'] = np.NAN
     df.loc[rMiss,'R_Y'] = np.NAN
 

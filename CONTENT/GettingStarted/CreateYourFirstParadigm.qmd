@@ -35,9 +35,7 @@ First things first, let's import the relevant libraries and define the path to w
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-from psychopy import core
-from psychopy import visual  
-from psychopy import sound
+from psychopy import core, visual, sound, event 
 ```
 
 ## Stimuli:
@@ -69,6 +67,38 @@ On top of these visual stimuli, we will also import two sounds that will help us
 When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case, we will pass all of them the "win" window that we just created.
 :::
 
+::: callout-warning
+## PATHS
+
+When working with file paths in Python, it's important to remember that Windows and macOS/Linux use different conventions for their file paths:
+
+1.  **Windows Paths:**
+
+    -   Windows file paths typically use backslashes (`\`). However, in Python, a backslash is used as an escape character. To handle this, you have two options:
+
+        -   Use double backslashes to avoid Python interpreting the backslash as an escape character:
+
+            ``` python
+            'C:\\Users\\tomma\\Desktop'
+            ```
+
+        -   Alternatively, use a raw string by prefixing the path with `r`, which tells Python to treat backslashes as literal characters:
+
+            ``` python
+            r'C:\Users\tomma\Desktop'
+            ```
+
+2.  **macOS/Linux Paths:**
+
+    -   macOS and Linux use forward slashes (`/`) for their file paths, which are also compatible with Python's string handling. You can use the path directly. There's no need for double slashes or raw strings in macOS/Linux paths.
+
+        ``` python
+        '/Users/tomma/Desktop'
+        ```
+
+Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. **We'll follow this rule in all our scripts, so keep it in mind – it's a key detail for error-free scripting!**
+:::
+
 ```{python}
 #%% Load and prepare stimuli
 
@@ -80,8 +110,8 @@ os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhila
 fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
 circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
 square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
-winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
+winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(250,0))
+losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-250,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
@@ -94,18 +124,6 @@ sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 # Create a list of trials in which 0 means winning and 1 means losing
 Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
-
-
-# Load images
-fixation = visual.ImageStim(win, image=Path + 'fixation.png', size = (100, 100))
-circle   = visual.ImageStim(win, image=Path + 'circle.png', size = (100, 100))
-square   = visual.ImageStim(win, image=Path + 'square.png', size = (100, 100))
-winning   = visual.ImageStim(win, image=Path + 'winning.png', size = (100, 100), pos=(250,0))
-losing  = visual.ImageStim(win, image=Path + 'loosing.png', size = (100, 100), pos=(-250,0))
-
-# Load sound
-winning_sound = sound.Sound(Path + 'winning.wav')
-losing_sound = sound.Sound(Path + 'loosing.wav')
 ```
 
 Note that in this simple experiment, we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their `pos` to `(250,0)` and `(-250,0)`. The first value indicates the number of pixels on the x-axis and the second is the number of pixels on the y-axis.

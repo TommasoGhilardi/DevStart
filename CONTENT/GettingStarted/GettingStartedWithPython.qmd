@@ -46,7 +46,7 @@ Spyder is a powerful scientific environment ide written in Python. Spyder is des
 When you install the full version of Anaconda, it installs Spyder for you. However, Miniconda doesn't come with Spyder. Fortunately, Miniconda does make it easy to install. In the Anaconda Prompt type following command and press the "enter" key:
 
 ``` bash
-conda install -c anaconda spyder
+conda install -c conda-forge spyder
 ```
 
 After thinking a bit, the Anaconda prompt will prepared a bunch of files to download and ask if you'd like to proceed. Go ahead and type "y" and hit "enter" to proceed.
