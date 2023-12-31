@@ -393,13 +393,13 @@ Tip
 <p>When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case, we will pass all of them the “win” window that we just created.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+PATHS
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -421,8 +421,7 @@ Important
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">'/Users/tomma/Desktop'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 </ol>
-<p>Remember to always use the correct path format according to the operating system you are working with. This ensures your Python scripts are portable and error-free when accessing file systems across different environments.</p>
-<p><strong>This will hold true for all our scripts!!</strong></p>
+<p>Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. <strong>We’ll follow this rule in all our scripts, so keep it in mind – it’s a key detail for error-free scripting!</strong></p>
 </div>
 </div>
 <div class="cell" data-execution_count="3">
@@ -436,8 +435,8 @@ Important
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">250</span>,<span class="dv">0</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">250</span>,<span class="dv">0</span>))</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
@@ -449,19 +448,7 @@ Important
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'fixation.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'circle.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'square.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'winning.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="dv">250</span>,<span class="dv">0</span>))</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'loosing.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">250</span>,<span class="dv">0</span>))</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'winning.wav'</span>)</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'loosing.wav'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that in this simple experiment, we will present the reward always on the right and the non-rewards always on the left that’s why when we import the two rewards we set their <code>pos</code> to <code>(250,0)</code> and <code>(-250,0)</code>. The first value indicates the number of pixels on the x-axis and the second is the number of pixels on the y-axis.</p>
 </section>
@@ -1219,36 +1206,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case, we will pass all of them the "win" window that we just created.</span>
 <span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>When working with file paths in Python, it's important to remember that Windows and macOS/Linux use different conventions for their file paths:</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## PATHS</span></span>
 <span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Windows Paths:**</span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>When working with file paths in Python, it's important to remember that Windows and macOS/Linux use different conventions for their file paths:</span>
 <span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Windows file paths typically use backslashes (<span class="in">`\`</span>). However, in Python, a backslash is used as an escape character. To handle this, you have two options:</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Windows Paths:**</span>
 <span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Use double backslashes to avoid Python interpreting the backslash as an escape character:</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Windows file paths typically use backslashes (<span class="in">`\`</span>). However, in Python, a backslash is used as an escape character. To handle this, you have two options:</span>
 <span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>            <span class="in">``` python</span></span>
-<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>            <span class="co">'C:</span><span class="ch">\\</span><span class="co">Users</span><span class="ch">\\</span><span class="co">tomma</span><span class="ch">\\</span><span class="co">Desktop'</span></span>
-<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>            <span class="in">```</span></span>
-<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Alternatively, use a raw string by prefixing the path with <span class="in">`r`</span>, which tells Python to treat backslashes as literal characters:</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Use double backslashes to avoid Python interpreting the backslash as an escape character:</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>            <span class="in">``` python</span></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>            <span class="co">'C:</span><span class="ch">\\</span><span class="co">Users</span><span class="ch">\\</span><span class="co">tomma</span><span class="ch">\\</span><span class="co">Desktop'</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>            <span class="in">```</span></span>
 <span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>            <span class="in">``` python</span></span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>            <span class="co">r'C:\Users</span><span class="ch">\t</span><span class="co">omma\Desktop'</span></span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>            <span class="in">```</span></span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**macOS/Linux Paths:**</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Alternatively, use a raw string by prefixing the path with <span class="in">`r`</span>, which tells Python to treat backslashes as literal characters:</span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>            <span class="in">``` python</span></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>            <span class="co">r'C:\Users</span><span class="ch">\t</span><span class="co">omma\Desktop'</span></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>            <span class="in">```</span></span>
 <span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>macOS and Linux use forward slashes (<span class="in">`/`</span>) for their file paths, which are also compatible with Python's string handling. You can use the path directly. There's no need for double slashes or raw strings in macOS/Linux paths.</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**macOS/Linux Paths:**</span>
 <span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>        <span class="in">``` python</span></span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>        <span class="co">'/Users/tomma/Desktop'</span></span>
-<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>        <span class="in">```</span></span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>Remember to always use the correct path format according to the operating system you are working with. This ensures your Python scripts are portable and error-free when accessing file systems across different environments.</span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>macOS and Linux use forward slashes (<span class="in">`/`</span>) for their file paths, which are also compatible with Python's string handling. You can use the path directly. There's no need for double slashes or raw strings in macOS/Linux paths.</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>        <span class="in">``` python</span></span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">'/Users/tomma/Desktop'</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>        <span class="in">```</span></span>
 <span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>**This will hold true for all our scripts!!**</span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. **We'll follow this rule in all our scripts, so keep it in mind – it's a key detail for error-free scripting!**</span>
 <span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
@@ -1262,8 +1249,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
 <span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
 <span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">250</span>,<span class="dv">0</span>))</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">250</span>,<span class="dv">0</span>))</span>
 <span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
 <span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
@@ -1276,292 +1263,280 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of trials in which 0 means winning and 1 means losing</span></span>
 <span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'fixation.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'circle.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'square.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>winning   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'winning.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="dv">250</span>,<span class="dv">0</span>))</span>
-<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span>Path <span class="op">+</span> <span class="st">'loosing.png'</span>, size <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">100</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">250</span>,<span class="dv">0</span>))</span>
-<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'winning.wav'</span>)</span>
-<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(Path <span class="op">+</span> <span class="st">'loosing.wav'</span>)</span>
-<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>Note that in this simple experiment, we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their <span class="in">`pos`</span> to <span class="in">`(250,0)`</span> and <span class="in">`(-250,0)`</span>. The first value indicates the number of pixels on the x-axis and the second is the number of pixels on the y-axis.</span>
-<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a><span class="fu">## Show a visual stimulus:</span></span>
-<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>Now we want to show a stimulus in the center of our window. To do so, we will have to use the function "draw". As the name suggests this function draws the stimulus that we want on the window that we have created.</span>
-<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a>Let's start with displaying the fixation cross in the center.</span>
-<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the fixation</span></span>
-<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
-<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>Do you see the fixation cross?????? Probably not!! This is because we have drawn the fixation cross but we have not refreshed the window. Psychopy allows you to draw as many stimuli as you want on a window but the changes are only shown when you "refresh" the window. To do so we need to use the "flip" function.</span>
-<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>Perfect!!!! The fixation cross is there. Before each flip, we need to draw our objects. Otherwise, we will only see the basic window with nothing in it. Let's try!!! flip the window now.</span>
-<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Flipping the window (refreshing)</span></span>
-<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a>The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new in each frame. This means that the speed limit of our presentation is the actual frame rate of our display. *If we have a 60Hz display we can present an image 60 times in a second.*</span>
-<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a>So if we want to present our fixation for an entire second we would have to draw and flip it 60 times (our display has a refresh rate of 60Hz)! Let's try:</span>
-<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">60</span>):</span>
-<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
-<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a>Now we have shown the fixation for 1 second and then it disappeared. Nice!! However, you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flipped the window, and then waited for 1s. But now you have an idea of how to show animated stimuli or even videos!!! **AMAZING!!!**.</span>
-<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>Now let's try to show the fixation for 1s by just waiting.</span>
-<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
-<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>Note that in this simple experiment, we will present the reward always on the right and the non-rewards always on the left that's why when we import the two rewards we set their <span class="in">`pos`</span> to <span class="in">`(250,0)`</span> and <span class="in">`(-250,0)`</span>. The first value indicates the number of pixels on the x-axis and the second is the number of pixels on the y-axis.</span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Show a visual stimulus:</span></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>Now we want to show a stimulus in the center of our window. To do so, we will have to use the function "draw". As the name suggests this function draws the stimulus that we want on the window that we have created.</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>Let's start with displaying the fixation cross in the center.</span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the fixation</span></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>Do you see the fixation cross?????? Probably not!! This is because we have drawn the fixation cross but we have not refreshed the window. Psychopy allows you to draw as many stimuli as you want on a window but the changes are only shown when you "refresh" the window. To do so we need to use the "flip" function.</span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>Perfect!!!! The fixation cross is there. Before each flip, we need to draw our objects. Otherwise, we will only see the basic window with nothing in it. Let's try!!! flip the window now.</span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Flipping the window (refreshing)</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new in each frame. This means that the speed limit of our presentation is the actual frame rate of our display. *If we have a 60Hz display we can present an image 60 times in a second.*</span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>So if we want to present our fixation for an entire second we would have to draw and flip it 60 times (our display has a refresh rate of 60Hz)! Let's try:</span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">60</span>):</span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>Now we have shown the fixation for 1 second and then it disappeared. Nice!! However, you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flipped the window, and then waited for 1s. But now you have an idea of how to show animated stimuli or even videos!!! **AMAZING!!!**.</span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>Now let's try to show the fixation for 1s by just waiting.</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## Play a sound:</span></span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>We have seen how to show a stimulus let's now play the sounds that we have imported. This is extremely simple, we can just <span class="in">`play()`</span> them:</span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>winning_sound.play()</span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>losing_sound.play()</span>
 <span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a><span class="fu">## Play a sound:</span></span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>Great now we have played our two sounds!!</span>
 <span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>We have seen how to show a stimulus let's now play the sounds that we have imported. This is extremely simple, we can just <span class="in">`play()`</span> them:</span>
-<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>winning_sound.play()</span>
-<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)</span>
-<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a>losing_sound.play()</span>
-<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sounds will play overlapping. That's why we have used <span class="in">`core.wait(2)`</span>, this tells PsychoPy to wait 2 seconds after starting to play the sound.</span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a trial:</span></span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a>Now let's try to put everything we have learned in one place and present one rewarding and one non-rewarding trial:</span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present the fixation for 1s</span>
 <span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a>Great now we have played our two sounds!!</span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present one of the two cues for 3s</span>
 <span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a>When playing a sound the script will continue and will not wait for the sound to have finished playing. So if you play two sounds one after without waiting the two sounds will play overlapping. That's why we have used <span class="in">`core.wait(2)`</span>, this tells PsychoPy to wait 2 seconds after starting to play the sound.</span>
-<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we wait 750ms of blank screen</span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present the reward or the non-reward depending on the cue for 2s.</span>
 <span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a trial:</span></span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a>In the end, we also close the window.</span>
 <span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a>Now let's try to put everything we have learned in one place and present one rewarding and one non-rewarding trial:</span>
-<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present the fixation for 1s</span>
-<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present one of the two cues for 3s</span>
-<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we wait 750ms of blank screen</span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a><span class="co">###### 1st Trial ######</span></span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the fixation</span></span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we flip to clean the window</span></span>
 <span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>we present the reward or the non-reward depending on the cue for 2s.</span>
-<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a>In the end, we also close the window.</span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
 <span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a><span class="co">###### 1st Trial ######</span></span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the winning cue</span></span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>circle.draw()</span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
 <span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the fixation</span></span>
-<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
-<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the reward </span></span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>winning.draw()</span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>winning_sound.play()</span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
 <span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the winning cue</span></span>
-<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>circle.draw()</span>
-<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a><span class="co">###### 2nd Trial ######</span></span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the fixation</span></span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we flip to clean the window</span></span>
 <span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the reward </span></span>
-<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a>winning.draw()</span>
-<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>winning_sound.play()</span>
-<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a><span class="co">###### 2nd Trial ######</span></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the non-rewarding cue</span></span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>square.draw()</span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
 <span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the fixation</span></span>
-<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a>win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>fixation.draw()</span>
-<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the reward </span></span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a>losing.draw()</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>losing_sound.play()</span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)  <span class="co"># wait for 2 second</span></span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
 <span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the non-rewarding cue</span></span>
-<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a>square.draw()</span>
-<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
-<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a><span class="co">### Present the reward </span></span>
-<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>losing.draw()</span>
-<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a>win.flip()</span>
-<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a>losing_sound.play()</span>
-<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a>core.wait(<span class="dv">2</span>)  <span class="co"># wait for 2 second</span></span>
-<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a>win.close()  <span class="co"># let's close the window at the end of the trial</span></span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a><span class="fu">## ISI</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>Amazing, we've got two trials! But, these trials are back-to-back, which isn't typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a <span class="in">`core.wait(1)`</span>, which would pause the script for a second. However, I'd like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.</span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a>To implement this ISI, we'll create a psychopy <span class="in">`core.Clock()`</span>. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We'll then use a <span class="in">`while`</span> loop to monitor the elapsed time and break this loop once a second has passed.</span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>The <span class="in">`while`</span> loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.</span>
 <span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a>win.close()  <span class="co"># let's close the window at the end of the trial</span></span>
-<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a><span class="fu">## ISI</span></span>
-<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>Amazing, we've got two trials! But, these trials are back-to-back, which isn't typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a <span class="in">`core.wait(1)`</span>, which would pause the script for a second. However, I'd like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.</span>
-<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>To implement this ISI, we'll create a psychopy <span class="in">`core.Clock()`</span>. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We'll then use a <span class="in">`while`</span> loop to monitor the elapsed time and break this loop once a second has passed.</span>
-<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>The <span class="in">`while`</span> loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.</span>
-<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a><span class="co">### ISI</span></span>
-<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
-<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a>Perfect we can now add this at the end of our trials!!</span>
-<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stop the experiment</span></span>
-<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a>Fantastic, we've nearly have our study! However, studies often don't run to completion, especially when we're working with infants and children. More often than not, we need to halt the study prematurely. This could be due to the participant becoming fatigued or distracted, or perhaps we need to tweak some settings.</span>
-<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a>How can we accomplish this? Of course, we could just shut down Python and let the experiment crash... but surely, there's a more elegant solution... And indeed, there is! In fact, there are numerous methods to achieve this, and we're going to demonstrate one of the most straightforward and flexible ones to you.</span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a><span class="co">### ISI</span></span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a>Perfect we can now add this at the end of our trials!!</span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stop the experiment</span></span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a>Fantastic, we've nearly have our study! However, studies often don't run to completion, especially when we're working with infants and children. More often than not, we need to halt the study prematurely. This could be due to the participant becoming fatigued or distracted, or perhaps we need to tweak some settings.</span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>How can we accomplish this? Of course, we could just shut down Python and let the experiment crash... but surely, there's a more elegant solution... And indeed, there is! In fact, there are numerous methods to achieve this, and we're going to demonstrate one of the most straightforward and flexible ones to you.</span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a>We can use the&nbsp;<span class="in">`event.getKeys()`</span>&nbsp;function to ask Psychopy to report any key that has been pressed during our trial. In our case, we will check if the&nbsp;ESC&nbsp;key has been pressed and if it has, we will simply close the window and stop the study.</span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="co">### Check for closing experiment</span></span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a>    win.close()  <span class="co"># close window</span></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a>    core.quit()  <span class="co"># stop study</span></span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a>We can use the&nbsp;<span class="in">`event.getKeys()`</span>&nbsp;function to ask Psychopy to report any key that has been pressed during our trial. In our case, we will check if the&nbsp;ESC&nbsp;key has been pressed and if it has, we will simply close the window and stop the study.</span>
-<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="co">### Check for closing experiment</span></span>
-<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
-<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
-<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a>    win.close()  <span class="co"># close window</span></span>
-<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a>    core.quit()  <span class="co"># stop study</span></span>
-<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a>You can add this check for closing the study at any point during the study. However, we recommend placing it at the end of each trial. This ensures that even if you stop the experiment, you will have a complete trial, making it easier to analyze data since you won't have any incomplete sections of the study.</span>
+<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a>Also, you can use this same method to pause the study or interact with its progress in general.</span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create an entire experiment</span></span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a>In an experiment, we want more than 1 trial. Let's then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of <span class="in">`0`</span> and <span class="in">`1`</span>. where <span class="in">`0`</span> would identify a rewarding trial and <span class="in">`1`</span> would index a non-rewarding trial.</span>
+<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>To properly utilize this list of <span class="in">`0`</span> and <span class="in">`1`</span>, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:</span>
 <span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a>You can add this check for closing the study at any point during the study. However, we recommend placing it at the end of each trial. This ensures that even if you stop the experiment, you will have a complete trial, making it easier to analyze data since you won't have any incomplete sections of the study.</span>
-<span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a>Also, you can use this same method to pause the study or interact with its progress in general.</span>
-<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
 <span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create an entire experiment</span></span>
-<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>In an experiment, we want more than 1 trial. Let's then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of <span class="in">`0`</span> and <span class="in">`1`</span>. where <span class="in">`0`</span> would identify a rewarding trial and <span class="in">`1`</span> would index a non-rewarding trial.</span>
-<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>To properly utilize this list of <span class="in">`0`</span> and <span class="in">`1`</span>, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:</span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, losing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, losing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
-<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a>Perfect!! Now we can put all the pieces together and run our experiment.</span>
-<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>In this final script, we will change the dimension of the window we will use. Since in most of the experiments, we will want to use the entire screen to our disposal, we will set <span class="in">`fullscr = True`</span> when defining the window. In addition, we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.</span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>Perfect!! Now we can put all the pieces together and run our experiment.</span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a>In this final script, we will change the dimension of the window we will use. Since in most of the experiments, we will want to use the entire screen to our disposal, we will set <span class="in">`fullscr = True`</span> when defining the window. In addition, we will also change the position of the rewarding and non-rewarding stimulus since now the window is bigger.</span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a>If you are testing this script on your laptop and do not want to lose the ability to interact with it until the experiment is finished, keep the same window size and position as the previous lines of code.</span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy and others</span></span>
+<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core</span>
+<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual  </span>
+<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
 <span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a>If you are testing this script on your laptop and do not want to lose the ability to interact with it until the experiment is finished, keep the same window size and position as the previous lines of code.</span>
-<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a><span class="co"># Import some libraries from PsychoPy and others</span></span>
-<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> core</span>
-<span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual  </span>
-<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> sound</span>
-<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
+<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting directory of our experiment</span></span>
+<span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD'</span>)</span>
+<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
+<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
+<span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
+<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize, fullscr<span class="op">=</span><span class="va">False</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
-<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting directory of our experiment</span></span>
-<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD'</span>)</span>
-<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsize</span></span>
-<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)</span>
-<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a><span class="co"># create a window</span></span>
-<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(size <span class="op">=</span> winsize, fullscr<span class="op">=</span><span class="va">False</span>, units<span class="op">=</span><span class="st">"pix"</span>, pos <span class="op">=</span>(<span class="dv">0</span>,<span class="dv">30</span>), screen<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
-<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
-<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a>winning  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
-<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Load images</span></span>
+<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a>fixation <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">fixation.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a>circle   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">circle.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a>square   <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">square.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>winning  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>losing  <span class="op">=</span> visual.ImageStim(win, image<span class="op">=</span><span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.png'</span>, size <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">200</span>), pos<span class="op">=</span>(<span class="op">-</span><span class="dv">560</span>,<span class="dv">0</span>))</span>
+<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
+<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
+<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
+<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
+<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, losing] <span class="co"># put both rewards in a list</span></span>
+<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
+<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
 <span id="cb18-383"><a href="#cb18-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a><span class="co"># Load sound</span></span>
-<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>winning_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">winning.wav'</span>)</span>
-<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a>losing_sound <span class="op">=</span> sound.Sound(<span class="st">'EXP</span><span class="ch">\\</span><span class="st">Stimuli</span><span class="ch">\\</span><span class="st">loosing.wav'</span>)</span>
+<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Trials</span></span>
 <span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a><span class="co"># List of stimuli</span></span>
-<span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a>cues <span class="op">=</span> [circle, square] <span class="co"># put both cues in a list</span></span>
-<span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> [winning, losing] <span class="co"># put both rewards in a list</span></span>
-<span id="cb18-391"><a href="#cb18-391" aria-hidden="true" tabindex="-1"></a>sounds <span class="op">=</span> [winning_sound,losing_sound] <span class="co"># put both sounds in a list</span></span>
+<span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
+<span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
+<span id="cb18-391"><a href="#cb18-391" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
 <span id="cb18-392"><a href="#cb18-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of trials in which 0 means winning and 1 means losing</span></span>
-<span id="cb18-394"><a href="#cb18-394" aria-hidden="true" tabindex="-1"></a>Trials <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span> ]</span>
-<span id="cb18-395"><a href="#cb18-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb18-394"><a href="#cb18-394" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb18-395"><a href="#cb18-395" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
 <span id="cb18-396"><a href="#cb18-396" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Trials</span></span>
-<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
-<span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-402"><a href="#cb18-402" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the fixation</span></span>
-<span id="cb18-403"><a href="#cb18-403" aria-hidden="true" tabindex="-1"></a>    win.flip() <span class="co"># we flip to clean the window</span></span>
-<span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a>    fixation.draw()</span>
+<span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
+<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
+<span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
+<span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
+<span id="cb18-402"><a href="#cb18-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-403"><a href="#cb18-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
+<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
 <span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">1</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-410"><a href="#cb18-410" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the cue</span></span>
-<span id="cb18-411"><a href="#cb18-411" aria-hidden="true" tabindex="-1"></a>    cues[trial].draw()</span>
-<span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb18-413"><a href="#cb18-413" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">3</span>)  <span class="co"># wait for 3 seconds</span></span>
-<span id="cb18-414"><a href="#cb18-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Present the reward</span></span>
-<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a>    rewards[trial].draw()</span>
-<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a>    win.flip()</span>
-<span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
-<span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
-<span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
-<span id="cb18-422"><a href="#cb18-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
-<span id="cb18-424"><a href="#cb18-424" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
-<span id="cb18-425"><a href="#cb18-425" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
-<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
-<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
-<span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
-<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
-<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>win.close()</span>
-<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>core.quit()</span>
-<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a><span class="fu"># END</span></span>
-<span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>We have our basic experiment and if you have followed up to here you should be able to get along with the basic concepts of PsychoPy!! **Well done!!!**.</span>
+<span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a>    sounds[trial].play()</span>
+<span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a>    core.wait(<span class="dv">2</span>)  <span class="co"># wait for 1 second</span></span>
+<span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a>    win.flip()    <span class="co"># we re-flip at the end to clean the window</span></span>
+<span id="cb18-410"><a href="#cb18-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-411"><a href="#cb18-411" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ISI</span></span>
+<span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">=</span> core.Clock() <span class="co"># start clock</span></span>
+<span id="cb18-413"><a href="#cb18-413" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> clock.getTime() <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb18-414"><a href="#cb18-414" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Check for closing experiment</span></span>
+<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> event.getKeys() <span class="co"># collect list of pressed keys</span></span>
+<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'escape'</span> <span class="kw">in</span> keys:</span>
+<span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a>        win.close()  <span class="co"># close window</span></span>
+<span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a>        core.quit()  <span class="co"># stop study</span></span>
+<span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-422"><a href="#cb18-422" aria-hidden="true" tabindex="-1"></a>win.close()</span>
+<span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a>core.quit()</span>
+<span id="cb18-424"><a href="#cb18-424" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-425"><a href="#cb18-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a><span class="fu"># END</span></span>
+<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a>We have our basic experiment and if you have followed up to here you should be able to get along with the basic concepts of PsychoPy!! **Well done!!!**.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

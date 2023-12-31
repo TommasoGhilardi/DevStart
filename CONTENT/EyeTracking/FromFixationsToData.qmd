@@ -73,7 +73,6 @@ AOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-di
 AOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 + Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
 
 AOIs = [AOI1, AOI2]
-
 ```
 
 Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let's get a better idea by just plotting these two AOIs and two random points `(600, 500)` and `(1400,1000)`.
@@ -194,7 +193,11 @@ for i,c in enumerate(Targets):
     Fixations.loc[mask, 'Onset'] =  c[0]
 ```
 
-Our Fixations dataframe is now chock-full of event-related info. But, there's a catch. The fixations that took place at times other than during the target presentation are still hanging around in the dataframe. And they're filled with NANs in the new columns we just created. We can use this to our advantage and filter all the NANs out:
+Our Fixations dataframe is now chock-full of event-related info. But, there's a catch. The fixations that took place at times other than during the target presentation are still hanging around in the dataframe. And they're filled with NANs in the new columns we just created.
+
+![](/images/FromDataToMeasures/CorrectFixations.jpg){fig-align="center" width="416"}
+
+We can use this to our advantage and filter all the NANs out:
 
 ```{python}
 # We can drop the NANs to have only the fixations that interest us!!!!

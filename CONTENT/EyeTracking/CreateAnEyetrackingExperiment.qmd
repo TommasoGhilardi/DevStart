@@ -8,7 +8,7 @@ description-meta: "Learn how to record eyetracking data in your psychopy experim
 keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science"
 ---
 
-This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) tutorial. If you have not done that tutorial yet, please go through it first.
+This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the [Getting started with Psychopy](/CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd) tutorial. If you have not done that tutorial yet, please go through it first.
 
 ::: callout-caution
 **Tobii eye-tracker**
@@ -260,7 +260,7 @@ Now we have two function, one to access and append the data to a list, and the s
 
 ## Short recap of the paradigm
 
-As we already mentioned, we will use the experimental design that we created in [Getting started with Psychopy](GettingStartedWithPsychopy.qmd) as a base and we will add things to it to make it an eye-tracking study. If you don't remember the paradigm please give it a rapid look as we will not go into much detail about each specific part of it.
+As we already mentioned, we will use the experimental design that we created in [Getting started with Psychopy](/CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd) as a base and we will add things to it to make it an eye-tracking study. If you don't remember the paradigm please give it a rapid look as we will not go into much detail about each specific part of it.
 
 Here a very short summary of what the design was: After a fixation cross, two shapes can be presented: a circle or a square. The circle indicates that a reward will appear on the right of the screen while the square predicts the appearance of an empty cloud on the left.
 
@@ -445,7 +445,7 @@ for trial in Trials:
         core.quit()  # stop study
 ```
 
-As we said before in [Save the data], it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: [Getting started with Psychopy](GettingStartedWithPsychopy.qmd), we created the ISI in a different way than just a `clock.wait()` and we said that this different method would come in handy later on. This is the moment!
+As we said before in [Save the data], it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: [Getting started with Psychopy](/CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd), we created the ISI in a different way than just a `clock.wait()` and we said that this different method would come in handy later on. This is the moment!
 
 Our **ISI** starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the `while clock.getTime() < 1:  pass` code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.
 
