@@ -111,7 +111,11 @@ plt.show()
 
 As you can see, we are plotting the two AOIs and two points. One falls into one of them and the other doesn't. But how can we get Python to tell us if a point falls within one of our AOIs?
 
-We can check whether the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right corners of the AOI. So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
+We can check whether the (x, y) coordinates of the point are within the x and y coordinates of the left bottom and top right corners of the AOI.
+
+![](/images/FromDataToMeasures/Squares.jpg){fig-align="center" width="192"}
+
+So imagine we have a point: `point` and an area: `area`, we can check if the point falls inside the area by:
 
 ```{python}
 #| eval: false
@@ -248,7 +252,6 @@ If we know where our participant was supposed to look, we can easily find the fi
 In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:
 
 ```{python}
-#| echo: false
 # We define which is the correct AOI that the participant should have looked at.
 Target_fixations.loc[Target_fixations['Event'] == 'NoReward', 'Correct_Aoi'] = 0
 Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
@@ -310,7 +313,7 @@ We have already extracted all the information we need, we just need to do the fi
 LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
 ```
 
-Again, we can now visualise the data. For example, we can plot whether looking time to rewarding vs. non-rewarding stimuli:
+Again, we can now visualize the data. For example, we can plot whether looking time to rewarding vs. non-rewarding stimuli:
 
 ```{python}
 #| fig-align: "center"
