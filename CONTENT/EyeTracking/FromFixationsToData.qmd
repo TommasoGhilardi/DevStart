@@ -260,10 +260,10 @@ Target_fixations.loc[Target_fixations['Event'] == 'Reward'  , 'Correct_Aoi'] = 1
 Correct_Target_fixations = Target_fixations.loc[Target_fixations['Correct_Aoi'] == Target_fixations['Looked_AOI'],]
 ```
 
-Now we can finally extract the saccadic latency by simply subtracting the onset of the event `Onset` from the onset of the fixations (`startT`):
+Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (`startT`) the event `Onset`:
 
 ```{python}
-Correct_Target_fixations['Latency'] = Correct_Target_fixations['Onset'] - Correct_Target_fixations['startT']
+Correct_Target_fixations['Latency'] = Correct_Target_fixations['startT'] - Correct_Target_fixations['Onset']
 ```
 
 Voilá!! as simple as this!!! Now our `Latency` column will contain the onset of the fixations in relation to the target presentation.

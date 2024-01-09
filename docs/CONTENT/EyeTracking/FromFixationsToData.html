@@ -114,10 +114,8 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 
 <meta property="og:title" content="DevStart - From fixations to measures">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData_files/figure-html/cell-4-output-1.png">
+<meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/images/LOGO.png">
 <meta property="og:site-name" content="DevStart">
-<meta property="og:image:height" content="733">
-<meta property="og:image:width" content="1314">
 <meta name="twitter:title" content="DevStart - From fixations to measures">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData_files/figure-html/cell-4-output-1.png">
@@ -569,9 +567,9 @@ Important
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We select only the correct fixations</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations.loc[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>],]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we can finally extract the saccadic latency by simply subtracting the onset of the event <code>Onset</code> from the onset of the fixations (<code>startT</code>):</p>
+<p>Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (<code>startT</code>) the event <code>Onset</code>:</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'startT'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'Onset'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Voilá!! as simple as this!!! Now our <code>Latency</code> column will contain the onset of the fixations in relation to the target presentation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1475,10 +1473,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-282"><a href="#cb19-282" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations.loc[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>],]</span>
 <span id="cb19-283"><a href="#cb19-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb19-284"><a href="#cb19-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-285"><a href="#cb19-285" aria-hidden="true" tabindex="-1"></a>Now we can finally extract the saccadic latency by simply subtracting the onset of the event <span class="in">`Onset`</span> from the onset of the fixations (<span class="in">`startT`</span>):</span>
+<span id="cb19-285"><a href="#cb19-285" aria-hidden="true" tabindex="-1"></a>Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (<span class="in">`startT`</span>) the event <span class="in">`Onset`</span>:</span>
 <span id="cb19-286"><a href="#cb19-286" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-289"><a href="#cb19-289" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb19-290"><a href="#cb19-290" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span>
+<span id="cb19-290"><a href="#cb19-290" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'startT'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'Onset'</span>]</span>
 <span id="cb19-291"><a href="#cb19-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb19-292"><a href="#cb19-292" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-293"><a href="#cb19-293" aria-hidden="true" tabindex="-1"></a>Voilá!! as simple as this!!! Now our <span class="in">`Latency`</span> column will contain the onset of the fixations in relation to the target presentation.</span>

@@ -14,7 +14,8 @@ website:
   google-analytics: "G-G5XSH1GLW7"
   favicon: images/FAVLOGO.png
   twitter-card: true
-  open-graph: true
+  open-graph:
+    image: images/LOGO.png
   
   # cookie-consent:
   #   type: implied
