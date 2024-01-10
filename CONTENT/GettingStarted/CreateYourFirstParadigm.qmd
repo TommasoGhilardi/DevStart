@@ -317,9 +317,7 @@ If you are testing this script on your laptop and do not want to lose the abilit
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-from psychopy import core
-from psychopy import visual  
-from psychopy import sound
+from psychopy import core, visual, sounds, event
 
 
 
