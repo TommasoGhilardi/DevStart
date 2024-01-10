@@ -18,7 +18,7 @@ As reported on the PsychoPy [website](https://www.psychopy.org/download.html), t
 
 Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website.
 
-We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here [our_file](/resources/psychopy.yml) from our github repository.
+We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here `<a href="/resources/psychopy.yml" download>our environment</a>`{=html} from our github repository.
 
 Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example
 

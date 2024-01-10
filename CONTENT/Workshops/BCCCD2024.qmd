@@ -31,7 +31,7 @@ In this tutorial, our primary tool will be Python!! We recommend installing it v
 
 Besides Python, we'll also be utilizing Psychopy! Psychopy is an awesome set of packages and functions designed for conducting psychological experiments. It's available as a standalone software or can be installed as a Python package.
 
-Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this [anaconda environment](/resources/psychopy.yml) to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: [Getting started with Psychopy](/CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd)
+Based on our experience, we find it more advantageous to use Psychopy as a Python package due to its increased flexibility. We provide this `<a href="/resources/psychopy.yml" download>anaconda environment</a>`{=html} to easily create a virtual environment with both python, psychopy and all the libraries that we will need. You can find details on how to install a conda environment on this page: [Getting started with Psychopy](/CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd)
 
 ## Files
 
