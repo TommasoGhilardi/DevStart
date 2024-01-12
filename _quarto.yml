@@ -8,15 +8,17 @@ execute:
 website:
   title: "DevStart"
   description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
-  image: images/LOGO.png
-  
   site-url: "https://tommasoghilardi.github.io/DevStart/"
+  repo-url: "https://github.com/TommasoGhilardi/DevStart"
+  image: images/LOGO.png
   google-analytics: "G-G5XSH1GLW7"
-  favicon: images/FAVLOGO.png
-  twitter-card: true
+
   open-graph:
     image: images/LOGO.png
   
+  favicon: favicon.png
+  twitter-card: true
+
   # cookie-consent:
   #   type: implied
   #   style: simple    
