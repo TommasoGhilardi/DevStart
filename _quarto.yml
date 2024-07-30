@@ -10,19 +10,27 @@ website:
   description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
   site-url: "https://tommasoghilardi.github.io/DevStart/"
   repo-url: "https://github.com/TommasoGhilardi/DevStart"
-  image: images/LOGO.png
+  image: "images/LOGO.png"
   google-analytics: "G-G5XSH1GLW7"
-
+  
+  # Cards
   open-graph:
-    image: images/LOGO.png
+    title: "DevStart"
+    description: "Getting started with developmental science"
+    image: "favicon.png"
+  
+  twitter-card: 
+    title: "DevStart"
+    card-style: summary
+    description: "Language, stats, R"
+    site: "@DevSciStart"
+    image: "favicon.png"
   
   favicon: favicon.png
-  twitter-card: true
 
-  # cookie-consent:
-  #   type: implied
-  #   style: simple    
 
+
+  # Utilities
   back-to-top-navigation: true
   page-navigation: true
   reader-mode: true
@@ -32,15 +40,15 @@ website:
     type: textbox
 
   sidebar:
+    title: " "
     style: "floating"
     border: true
     align: center
-    logo: images/LOGO.png # IconB2.svg
+    logo: "images/LOGO.png"
 
-    
     tools:
-      # - icon: twitter
-      #   href: https://twitter.com
+      - icon: twitter
+        href: https://x.com/DevSciStart
       - icon: github
         menu:
           - text: Source Code
@@ -56,18 +64,21 @@ website:
           - CONTENT/GettingStarted/GettingStartedWithPsychopy.qmd
 
       - section: "Creating an experiment:"
+        href: CONTENT/GettingStarted/CreateYourFirstParadigm.qmd
         contents:
           - CONTENT/GettingStarted/CreateYourFirstParadigm.qmd
       - section: "Eye-tracking"
+        href: CONTENT/EyeTracking/Intro_eyetracking.qmd
         contents: 
           - CONTENT/EyeTracking/Intro_eyetracking.qmd
           - CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd
+          - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
       - section: "Workshops"
         contents:
-          - CONTENT/Workshops/BCCCD2024.qmd
-
+          #- CONTENT/Workshops/BCCCD2024.qmd
+          - CONTENT/Workshops/GAP_2024.qmd
 
 
 
@@ -76,23 +87,24 @@ website:
       - href: https://github.com/TommasoGhilardi/DevStart
         icon: github
         aria-label: GitHub
-      # - href: https://twitter.com/
-      #   icon: twitter
-      #   aria-label: Twitter 
+      - href: https://x.com/DevSciStart
+        icon: twitter
+        aria-label: Twitter
 
 
 format:
   html:
+
     toc: true
     toc-expand: 4    
     
     theme:
       light: bookup.scss
-      dark:  bookup_dark.scss
+      # dark:  bookup_dark.scss
 
     mainfont: 'Arial'
 
-
+    
     # Code variables
     code-fold: false
     code-copy: true
@@ -102,7 +114,6 @@ format:
       source: true
       toggle: true
       caption: none
-      
     highlight-style: zenburn
 
     code-block-border-left: "#00B3B3"

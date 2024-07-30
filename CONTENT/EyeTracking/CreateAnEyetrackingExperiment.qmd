@@ -2,7 +2,8 @@
 title: "Create an eye-tracking experiment"
 execute:
   eval: false
-
+jupyter:
+  kernel: "python3"
 author-meta: Tommaso Ghilardi, Francesco Poli
 description-meta: "Learn how to record eyetracking data in your psychopy experiment using Tobii SDK, tobii_research"
 keywords: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science"

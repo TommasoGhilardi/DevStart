@@ -2,7 +2,8 @@
 title: "Using I2MC for robust fixation extraction"
 execute:
   eval: false
-  
+jupyter:
+  kernel: "python3"
 pagetitle: "Using I2MC for robust fixation extraction"
 author-meta: Tommaso Ghilardi
 description-meta: "Learn how to use I2MC for robust fixation extraction in eye-tracking data analysis."
@@ -153,9 +154,9 @@ import glob
 data_files = glob.glob('DATA\\RAW\\**\\*.csv', recursive = True)
 ```
 
--   `/home/geeks/Desktop/gfg/`: This is the path where we want to start our search.
--   `\*\*`: This special symbol tells Python to search in all the subfolders (folders within folders) under our starting path.
--   `/*.csv`: We're asking Python to look for files with names ending in ".csv".
+-   `DATA\\RAW\\`: This is the path where we want to start our search.
+-   `\\*`: This special symbol tells Python to search in all the subfolders (folders within folders) under our starting path.
+-   `\\*.csv`: We're asking Python to look for files with names ending in ".csv".
 -   `recursive=True`: This option means that Python should search for files not just in the immediate subfolders but in all the subfolders within subfolders, and so on.
 
 So, when we run this code, Python will find and give us a list of all the ".csv" files located in any subfolder within our specified path. This makes it really convenient to find and work with lots of files at once.

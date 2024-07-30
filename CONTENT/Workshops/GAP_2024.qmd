@@ -1,0 +1,60 @@
+---
+title: "Bridging the Technological Gap Workshop (GAP)"
+
+execute:
+  eval: false
+title-meta: "GAP 2024"
+author-meta: Tommaso Ghilardi
+description-meta: "Data and resource for the workshop at GAP 2024"
+keywords-meta: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, workshop"
+---
+
+Hello hello!!! This page has been created to provide support and resources for the tutorial that will take place during the [Bridging the Technological Gap Workshop](https://www.eva.mpg.de/de/comparative-cultural-psychology/events/2024-btg2/).
+
+# What will you learn?
+
+This workshop will focus on using Python to run and analyze an eye-tracking study.
+
+We will focus on:
+
+-   How to implement eye-tracking designs in Python
+
+-   How to interact with an eye-tracker via Python
+
+-   How to extract and visualize meaningful eye-tracking measures from the raw data
+
+# What will you need?
+
+## Python
+
+In this tutorial, our primary tool will be Python!! There are lots of ways to install python. [We recommend installing it via Miniconda](/CONTENT/GettingStarted/GettingStartedWithPython.qmd). However, for this workshop, the suggested way to install Python is using [Anaconda](https://www.anaconda.com/download/success).
+
+You might ask....Then which installation should I follow? Well, it doesn't really matter! Miniconda is a minimal installation of Anaconda. It lacks the GUI, but has all the main features. So follow whichever one you like more!
+
+Once you have it installed, we need a few more things. For the ***Gaze Tracking & Pupillometry Workshop*** (the part we will be hosting) we will need some specific libraries and files. We have tried our best to make everything as simple as possible:
+
+### Libraries
+
+We will be working with a conda environment (a self-contained directory that contains a specific collection of Python packages and dependencies, allowing you to manage different project requirements separately). To create this environment and install all the necessary libraries, all you need is this file:
+
+{{< downloadthis ../../resources/Workshops/GAP2024/psychopy_GAP.yml label="Psychopy.yml" type="secondary" >}}
+
+Once you have downloaded the file, simply open the anaconda/miniconda terminal and type \`conda env create -f', then simply drag and drop the downloaded file onto the terminal. This will copy the filename with its absolute path. In my case it looked something like this:
+
+![](/resources/Workshops/GAP2024/exampleTerminal_gap2024.png){fig-align="center" width="588"}
+
+Now you will be asked to confirm a few things (by pressing `Y`) and after a while of downloading and installing you will have your new workshop environment called **Psychopy**!
+
+Now you should see a shortcut in your start menu called **Spyder(psychopy)**, just click on it to open spyder in our newly created environment. If you don't see it, just reopen the anaconda/miniconda terminal, activate your new environment by typing `conda activate psychopy` and then just type `spyder`.
+
+### Files
+
+We also need some files if you want to run the examples with us. Here you can download the zip files with everything you need:
+
+{{< downloadthis ../../resources/Workshops/GAP2024/GAP_2024.zip label="Files" icon="database-fill-down" type="secondary" >}}
+
+Once downloaded, simply extract the file by unzipping it. For our workshop we will work together in a folder that should look like this:
+
+![](/resources/Workshops/GAP2024/FinalFolder.png){fig-align="center" width="611"}
+
+If you have a similar folder... you are ready to go!!!!

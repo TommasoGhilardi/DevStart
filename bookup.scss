@@ -14,7 +14,7 @@ $toc-color: #008080;
 
 :root {
     --bs-body-font-weight: 300;
-    --link-color: #007bff; /* Bright blue for links */
+    /*--link-color: #007bff; /* Bright blue for links */
     --sidebar-active-color: #008080; /* Teal for active links in the sidebar and TOC */
 
     --toc-border-color: #dee2e6;
@@ -60,6 +60,9 @@ $toc-color: #008080;
     --listing-card-border: #ced4da;
     --listing-card-shadow: rgba(0, 0, 0, 0.05);
     --listing-card-shadow-hover: rgba(0, 0, 0, 0.1);
+    
+    --bs-link-color-rgb: 0, 112, 112;
+    --bs-link-hover-color-rgb: 0, 168, 168;
 }
 
 
@@ -67,7 +70,7 @@ $toc-color: #008080;
 #quarto-sidebar,
 #quarto-content .sidebar-navigation {
     .sidebar-item-container {
-        margin-bottom: 1em; /* Increased space between sidebar items */
+        margin-bottom: 0.9em; /* Increased space between sidebar items */
 
         a {
             color: var(--sidebar-fg);
@@ -117,3 +120,27 @@ $toc-color: #008080;
     font-weight: bold;
 }
 
+
+.sidebar-logo {
+  max-width: 12em;
+  padding-bottom: .5em;
+}
+
+/* Increase size of sidebar tools icons */
+.sidebar-navigation .quarto-navigation-tool {
+  font-size: 1.1em; // Increase this value to make icons bigger
+}
+
+
+
+// The left hand sidebar
+$grid-sidebar-width: 250px !default;
+
+// The main body
+$grid-body-width: 950px !default;
+
+// The right hand margin bar
+$grid-margin-width: 300px !default;
+
+// The gutter that appears between the above columns
+$grid-column-gutter-width: 1.5rem !default;

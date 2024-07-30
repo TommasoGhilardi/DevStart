@@ -97,6 +97,9 @@ body {
             padding-left: 15px;
         }
     }
+} .sidebar-logo {
+  max-height: 10px !important;  /* Adjust this value to your preference */
+  width: auto !important;
 }
 
 /* Page Headings in TOC on Right Side */
@@ -124,3 +127,5 @@ body {
 #quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
     font-weight: bold;
 }
+
+

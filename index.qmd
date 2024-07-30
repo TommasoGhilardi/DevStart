@@ -4,7 +4,7 @@ subtitle: "Getting Started with Developmental Cognitive Science"
 
 pagetitle: "DevStart - Getting Started with Developmental Cognitive Science"
 description-meta: "Your guide to getting started in developmental psychology and developmental cognitive neuroscience. Learn about research methods, data analysis, and programming for your PhD journey."
-keywords: "DevStart, developmental cognitive science, PhD, research methods, data analysis,programming, neuroscience, psychology, developmental research, developmental science"
+keywords: ["DevStart, developmental cognitive science, PhD, research methods, data analysis,programming, neuroscience, psychology, developmental research, developmental science"]
 ---
 
 # What is this?
@@ -17,7 +17,7 @@ Assuming no a priori knowledge, this website will guide you through your first s
 
 There are many resources on the web to learn how to program, build experiments, and analyse data. However, they often assume basic skills in programming, and they don't tackle the challenges that we encounter when testing babies and young children. This knowledge is often handed down from Professors and Postdocs to PhD students, or it is acquired through hours and hours of despair. 
 
-We tried to summarise all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems, and we invite anyone to help us and contribute to this open science framework! 
+We tried to summarize all the struggles that we encountered during our PhDs and the solutions we came up with. With this website, we aim to offer you a solution to overcome these problems, and we invite anyone to help us and contribute to this open science framework! 
 
 ## How to contribute?
 
