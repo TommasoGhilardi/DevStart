@@ -530,5 +530,12 @@
     "title": "BCCCD2024",
     "section": "Files",
     "text": "Files\nIn our workshop we will create a cool eye-tracking study, collect the data and analyze them. To make everything smoother we provide HERE the stimuli and the data that we will use for the workshop."
+  },
+  {
+    "objectID": "CONTENT/Stats/LinearModels.html",
+    "href": "CONTENT/Stats/LinearModels.html",
+    "title": "Linear Models",
+    "section": "",
+    "text": "Welcome to the first tutorial on data analysis!!!\nToday we are going to talk about one of the most flexible statistical methods: Linear models.\nLet’s be clear, WE ARE NOT STATISTICIANS!!!!\nWe’ll be discussing linear models in a very accessible and practical manner. Our explanations might not align with the rigorous definitions statisticians are accustomed to, and for that, we apologize in advance! However, our aim is to provide a stepping stone for you to grasp the concept of linear models and similar analyses. Let’s get started!\n\nWhat is a linear model?\nA linear model is a simple statistical test that tries to find the best line that represent the relations between two variables\n\n\n\n\n\n\n\nimage found on towardsdatascience.com\n\n\n\nlibrary(tidyverse)\nlibrary(gt)\ndf = read.csv('C:\\\\Users\\\\tomma\\\\Desktop\\\\Docu\\\\SimulateData.csv')\n\nLet’s take a look at the data we have just read.\n\nhead(df)%&gt;%gt()\n\nOur dataframe includes potential salaries from university employment. The ‘Salary’ column indicates the salary amount, while the ‘Experience’ column denotes the years of experience.\nDepending on the years of experience we may expect to earn more money…. but is that the case???\nWe can use a linear model to check if that is actually the case.\n\n\n\n\n\n\n Back to top"
   }
 ]

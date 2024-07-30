@@ -7,7 +7,7 @@ jupyter:
   
 author-meta: Tommaso Ghilardi
 description-meta: "Learn how to extract different eye-tracking measures from the collected data"
-keywords: "eye-tracking, calibration, tobii, psychopy, tobii infant, experimental psychology, tutorial, experiment, DevStart, developmental science"
+keywords-meta: "eye-tracking, calibration, tobii, psychopy, tobii infant, experimental psychology, tutorial, experiment, DevStart, developmental science"
 ---
 
 # Calibration
@@ -15,7 +15,6 @@ keywords: "eye-tracking, calibration, tobii, psychopy, tobii infant, experimenta
 Before running an eye-tracking study, we usually need to do a calibration. What is a calibration you ask??
 
 Well, an eye-tracker works by using illuminators to emit near-infrared light towards the eye. This light reflects off the cornea, creating a visible glint or reflection that the eye-tracker's sensors can detect. By capturing this reflection, the eye-tracker can determine the position of the eye relative to a screen, allowing it to pinpoint where the user is looking, known as the gaze point.
-
 
 [![Image from the tobii website](https://help.tobii.com/hc/article_attachments/360036648293/How_DoesEyetrackingWork_ScreenBased.jpg){fig-align="center" width="528"}](https://help.tobii.com/hc/en-us/articles/360023794433-How-does-the-calibration-work)
 
@@ -44,7 +43,7 @@ In the following paragraph we will see together how to prepare and use Psychopy 
 
 One question that you could ask yourself is... can I use Psychopy tobii infants to run my eye-tracking studies?? Well yes!! We have actually used it for few of our studies. Psychopy tobii infants provides an easy intarface between tobii eye-trackers and psychopy.
 
-Over the years we have personally move away from  it but we often come back to it for some of its handy functionalities (e.g. the calibration).
+Over the years we have personally move away from it but we often come back to it for some of its handy functionalities (e.g. the calibration).
 :::
 
 ### Download
@@ -185,7 +184,6 @@ Ok, but what is going to happen??? After running this line we will start our cal
 ![](/resources/EyetrackingCalibration/ZoomingStim.jpg){fig-align="center" width="852"}
 
 Once we are confident that the infant is looking at the cartoon zooming in and out you can press **Space** to collect the first calibration sample. Once that's been done, we can move to the following points. Once all point are done we can press **Enter**. This will show the result of our calibration, e.g:
-
 
 ![](/resources/EyetrackingCalibration/CalibrationResults.jpg){fig-align="center" width="852"}
 
