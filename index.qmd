@@ -4,7 +4,7 @@ subtitle: "Getting Started with Developmental Cognitive Science"
 
 pagetitle: "DevStart - Getting Started with Developmental Cognitive Science"
 description-meta: "Your guide to getting started in developmental psychology and developmental cognitive neuroscience. Learn about research methods, data analysis, and programming for your PhD journey."
-keywords: ["DevStart, developmental cognitive science, PhD, research methods, data analysis,programming, neuroscience, psychology, developmental research, developmental science"]
+keywords-meta: ["DevStart, developmental cognitive science, PhD, research methods, data analysis,programming, neuroscience, psychology, developmental research, developmental science"]
 ---
 
 # What is this?

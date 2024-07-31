@@ -4,7 +4,7 @@ title: Starting with Python
 pagetitle: Starting with Python
 author-meta: Tommaso Ghilardi
 description-meta: Learn how to insatll and manage python.
-keywords: Python, Anaconda, Conda,virtual environment, Spyder, experimental psychology, tutorial, installation, DevStart, developmental science
+keywords-meta: Python, Anaconda, Conda,virtual environment, Spyder, experimental psychology, tutorial, installation, DevStart, developmental science
 ---
 
 Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.
