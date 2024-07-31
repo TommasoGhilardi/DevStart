@@ -1,18 +1,5 @@
 [
   {
-    "listing": "/list.html",
-    "items": [
-      "/CONTENT/GettingStarted/CreateYourFirstParadigm.html",
-      "/CONTENT/GettingStarted/GettingStartedWithPsychopy.html",
-      "/CONTENT/GettingStarted/GettingStartedWithPython.html",
-      "/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html",
-      "/CONTENT/EyeTracking/EyetrackingCalibration.html",
-      "/CONTENT/EyeTracking/FromFixationsToData.html",
-      "/CONTENT/EyeTracking/I2MC_tutorial.html",
-      "/CONTENT/EyeTracking/Intro_eyetracking.html"
-    ]
-  },
-  {
     "listing": "/CONTENT/ContentList.html",
     "items": [
       "/CONTENT/GettingStarted/CreateYourFirstParadigm.html",
