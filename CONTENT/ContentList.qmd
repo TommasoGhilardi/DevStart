@@ -7,7 +7,11 @@ listing:
   sort:
     - "categoties asc"
     - "date"
-  
+
+  feed: true
   categories: true
   type: grid
+  sort-ui: true
+  filter-ui: true
+page-layout: full
 ---
