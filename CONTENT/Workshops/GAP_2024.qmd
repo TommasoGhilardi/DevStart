@@ -40,7 +40,7 @@ We will be working with a conda environment (a self-contained directory that con
 
 {{< downloadthis ../../resources/Workshops/GAP2024/psychopy_GAP.yml label="Psychopy.yml" dname= "psychopy_GAP" type="secondary" >}}
 
-Once you have downloaded the file, simply open the anaconda/miniconda terminal and type \`conda env create -f', then simply drag and drop the downloaded file onto the terminal. This will copy the filename with its absolute path. In my case it looked something like this:
+Once you have downloaded the file, simply open the anaconda/miniconda terminal and type `conda env create -f`, then simply drag and drop the downloaded file onto the terminal. This will copy the filename with its absolute path. In my case it looked something like this:
 
 ![](/resources/Workshops/GAP2024/exampleTerminal_gap2024.png){fig-align="center" width="588"}
 
