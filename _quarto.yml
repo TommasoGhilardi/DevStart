@@ -6,6 +6,7 @@ execute:
   freeze: auto
 
 website:
+  favicon: images/ICON.png
   title: "DevStart"
   description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
   site-url: "https://tommasoghilardi.github.io/DevStart/"
@@ -13,23 +14,20 @@ website:
   image: "images/LOGO.png"
   google-analytics: "G-G5XSH1GLW7"
   
+  
   # Cards
   open-graph:
     title: "DevStart"
     description: "Getting started with developmental science"
-    image: "favicon.png"
+    image: "images/ICON.png"
   
   twitter-card: 
     title: "DevStart"
     card-style: summary
     description: "Language, stats, R"
     site: "@DevSciStart"
-    image: "favicon.png"
+    image: "images/ICON.png"
   
-  favicon: favicon.png
-
-
-
   # Utilities
   back-to-top-navigation: true
   page-navigation: true
@@ -38,7 +36,8 @@ website:
   search:
     location: sidebar
     type: textbox
-
+  
+  ## Sidebar settings
   sidebar:
     title: " "
     style: "floating"
@@ -81,7 +80,7 @@ website:
           - CONTENT/Workshops/GAP_2024.qmd
 
 
-
+  ## Footer
   page-footer:
     center:  
       - href: https://github.com/TommasoGhilardi/DevStart
@@ -91,7 +90,7 @@ website:
         icon: twitter
         aria-label: Twitter
 
-
+##### Format #####
 format:
   html:
 
