@@ -7,6 +7,7 @@ title-meta: "GAP 2024"
 author-meta: Tommaso Ghilardi
 description-meta: "Data and resource for the workshop at GAP 2024"
 keywords-meta: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, workshop"
+categories: Workhsop
 ---
 
 Hello hello!!! This page has been created to provide support and resources for the tutorial that will take place during the [Bridging the Technological Gap Workshop](https://www.eva.mpg.de/de/comparative-cultural-psychology/events/2024-btg2/).

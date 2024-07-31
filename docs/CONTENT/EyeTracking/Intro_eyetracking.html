@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.47">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Francesco Poli">
 <meta name="description" content="Learn the fundamentals of eye-tracking in developmental cognitive science. Understand how to build experiments, record data, and analyze results.">
 
-<title>DevStart - Introduction to eye-tracking</title>
+<title>Introduction to eye-tracking – DevStart</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" rel="next">
 <link href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" rel="prev">
-<link href="../../favicon.png" rel="icon" type="image/png">
+<link href="../../images/ICON.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,11 +117,11 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 
 <meta property="og:title" content="DevStart">
 <meta property="og:description" content="Getting started with developmental science">
-<meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/favicon.png">
+<meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/images/ICON.png">
 <meta property="og:site_name" content="DevStart">
 <meta name="twitter:title" content="DevStart">
 <meta name="twitter:description" content="Language, stats, R">
-<meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/favicon.png">
+<meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/images/ICON.png">
 <meta name="twitter:site" content="@DevSciStart">
 <meta name="twitter:card" content="summary">
 </head>
@@ -132,13 +132,13 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Eye-tracking</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -157,7 +157,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
         <div class="sidebar-tools-main tools-wide">
     <a href="https://x.com/DevSciStart" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
@@ -171,6 +171,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
           </li>
       </ul>
     </div>
+    <a href="../../CONTENT/ContentList.html" title="Content listing" class="quarto-navigation-tool px-1" aria-label="Content listing"><i class="bi bi-menu-up"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -194,9 +195,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Getting started:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +220,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating an experiment:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,7 +237,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Eye-tracking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -275,9 +276,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Workshops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -318,7 +319,11 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Introduction to eye-tracking</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Eye-tracking</div>
+    <div class="quarto-category">Theory</div>
+  </div>
+  </div>
 
 
 
@@ -440,18 +445,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -483,7 +477,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -542,7 +558,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -883,43 +899,46 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> Francesco Poli</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">description-meta:</span><span class="co"> Learn the fundamentals of eye-tracking in developmental cognitive science. Understand how to build experiments, record data, and analyze results.</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">keywords-meta:</span><span class="co"> eye-tracking, experiments, saccadic latency, looking time, pupil dilation, fixations, infant research, DevStart, developmental science</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time, or pupil dilation).</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># How to build an eye-tracking experiment</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## What do you want to measure?</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### Looking time</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>It is much easier to start an eye-tracking project if you have a clear idea of what you want to measure. Classic paradigms on infant research rely on **looking time** (How long are infants attending a given stimulus?) and are often called Violation-of-Expectation tasks. They familiarize infants with a given stimulus or situation (e.g. a cat) and, after a given number of presentations (e.g., 8), they present a different stimulus (e.g., a dog). Do infants look longer at the dog, compared to the cat? If so, they were able to spot that something changed.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they can spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Saccadic Latency</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Another very popular eye-tracking measure is **saccadic latency**. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Beware! Saccadic latencies are not a perfect measure of learning. Infants might be faster at looking at something just because they are more interested (pick interesting stimuli to keep them engaged!), and they might become slower due to boredom or fatigue (introduce variation in the stimuli, so that they become less boring over time!).</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pupillometry</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>The fanciest eye-tracking measure is **pupil dilation**. It allows us to measure arousal (How interested is the infant in the stimulus?), cognitive effort (How difficult is the task?), and - my special favourite - uncertainty (Does the infant know what will happen next?). However, its fame comes at a price: It is not only the fanciest, but also the most persnickety...</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the same location on the screen, as pupil size changes depending on screen location; Pupil dilation is very slow, so the stimulus presentation also has to be slow; Often, a fixation cross has to precede the moment in which pupil dilation is measured, so that the pupil size can return to baseline before the event you care about happens. But if you feel confident about your paradigm, go for it!!</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Here is a visual summary of what you can measure:</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](/images/Introduction_eyetracking/Design.jpg)</span>{fig-align="center"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - Eye-tracking</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - Theory</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>This tutorial will teach you all you need to navigate the huge and often confusing eye-tracking world. First, we will introduce how an experiment can (and should) be built, explaining how to easily record eye-tracking data from Python. Then, it will focus on how to analyse the data, reducing the seemingly overwhelming amount of rows and columns in a few variables of interest (such as saccadic latency, looking time, or pupil dilation).</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># How to build an eye-tracking experiment</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## What do you want to measure?</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Looking time</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>It is much easier to start an eye-tracking project if you have a clear idea of what you want to measure. Classic paradigms on infant research rely on **looking time** (How long are infants attending a given stimulus?) and are often called Violation-of-Expectation tasks. They familiarize infants with a given stimulus or situation (e.g. a cat) and, after a given number of presentations (e.g., 8), they present a different stimulus (e.g., a dog). Do infants look longer at the dog, compared to the cat? If so, they were able to spot that something changed.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Beware! This does not mean that they can distinguish cats and dogs, but more simply that they can spot any difference between the two images. A careful control of the stimuli should be in place if we want to make strong conclusions from looking time.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Saccadic Latency</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Another very popular eye-tracking measure is **saccadic latency**. It measures how quickly infants can direct their gaze onto a stimulus, once it is presented on screen. This is a great measure of learning because infants will be faster at looking at a stimulus if they expect it to appear in a given position on the screen. They can even be so fast that they anticipate the correct location of the stimulus, even before the stimulus appears! This is called an anticipatory look.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Beware! Saccadic latencies are not a perfect measure of learning. Infants might be faster at looking at something just because they are more interested (pick interesting stimuli to keep them engaged!), and they might become slower due to boredom or fatigue (introduce variation in the stimuli, so that they become less boring over time!).</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pupillometry</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>The fanciest eye-tracking measure is **pupil dilation**. It allows us to measure arousal (How interested is the infant in the stimulus?), cognitive effort (How difficult is the task?), and - my special favourite - uncertainty (Does the infant know what will happen next?). However, its fame comes at a price: It is not only the fanciest, but also the most persnickety...</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Beware! Stimuli should be carefully designed, controlling their luminance (not too high, and ALWAYS the same) to avoid that task-unrelated variations in light will affect your measurements; They have to be presented in the same location on the screen, as pupil size changes depending on screen location; Pupil dilation is very slow, so the stimulus presentation also has to be slow; Often, a fixation cross has to precede the moment in which pupil dilation is measured, so that the pupil size can return to baseline before the event you care about happens. But if you feel confident about your paradigm, go for it!!</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Here is a visual summary of what you can measure:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="al">![](/images/Introduction_eyetracking/Design.jpg)</span>{fig-align="center"}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

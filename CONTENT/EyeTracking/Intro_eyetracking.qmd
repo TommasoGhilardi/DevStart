@@ -4,6 +4,9 @@ title: "Introduction to eye-tracking"
 author-meta: Francesco Poli
 description-meta: Learn the fundamentals of eye-tracking in developmental cognitive science. Understand how to build experiments, record data, and analyze results.
 keywords-meta: eye-tracking, experiments, saccadic latency, looking time, pupil dilation, fixations, infant research, DevStart, developmental science
+categories:
+  - Eye-tracking
+  - Theory
 ---
 
 Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities, but little chances to show them (they cannot talk!).

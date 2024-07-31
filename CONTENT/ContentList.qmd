@@ -1,0 +1,13 @@
+---
+title: "Content listing"
+listing:
+  contents:
+    - "GettingStarted"
+    - "EyeTracking"
+  sort:
+    - "categoties asc"
+    - "date"
+  
+  categories: true
+  type: grid
+---

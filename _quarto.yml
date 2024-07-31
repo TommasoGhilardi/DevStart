@@ -31,7 +31,7 @@ website:
   # Utilities
   back-to-top-navigation: true
   page-navigation: true
-  reader-mode: true
+  reader-mode: false
 
   search:
     location: sidebar
@@ -54,6 +54,8 @@ website:
             url:  https://github.com/TommasoGhilardi/DevStart
           - text: Report a Bug
             url:  https://github.com/TommasoGhilardi/DevStart/issues
+      - icon: menu-up
+        href: CONTENT/ContentList.qmd
     
     contents:
       - index.qmd
