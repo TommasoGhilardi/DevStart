@@ -38,7 +38,7 @@ Once you have it installed, we need a few more things. For the ***Gaze Tracking 
 
 We will be working with a conda environment (a self-contained directory that contains a specific collection of Python packages and dependencies, allowing you to manage different project requirements separately). To create this environment and install all the necessary libraries, all you need is this file:
 
-{{< downloadthis ../../resources/Workshops/GAP2024/psychopy_GAP.yml label="Psychopy.yml" type="secondary" >}}
+{{< downloadthis ../../resources/Workshops/GAP2024/psychopy_GAP.yml label="Psychopy.yml" dname= "psychopy_GAP" type="secondary" >}}
 
 Once you have downloaded the file, simply open the anaconda/miniconda terminal and type \`conda env create -f', then simply drag and drop the downloaded file onto the terminal. This will copy the filename with its absolute path. In my case it looked something like this:
 
@@ -52,7 +52,7 @@ Now you should see a shortcut in your start menu called **Spyder(psychopy)**, ju
 
 We also need some files if you want to run the examples with us. Here you can download the zip files with everything you need:
 
-{{< downloadthis ../../resources/Workshops/GAP2024/GAP_2024.zip label="Files" icon="database-fill-down" type="secondary" >}}
+{{< downloadthis ../../resources/Workshops/GAP2024/GAP_2024.zip label="Files" dname= "Files_Gap" icon="database-fill-down" type="secondary" >}}
 
 Once downloaded, simply extract the file by unzipping it. For our workshop we will work together in a folder that should look like this:
 

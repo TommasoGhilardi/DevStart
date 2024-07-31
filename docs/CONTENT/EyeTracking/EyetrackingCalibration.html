@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tommaso Ghilardi">
 <meta name="description" content="Learn how to extract different eye-tracking measures from the collected data">
 
-<title>Calibrating eye-tracking – DevStart</title>
+<title>DevStart - Calibrating eye-tracking</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -132,13 +132,13 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Eye-tracking</a></li><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/EyetrackingCalibration.html">Calibrating eye-tracking</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -157,7 +157,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
         <div class="sidebar-tools-main tools-wide">
     <a href="https://x.com/DevSciStart" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
@@ -190,9 +190,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Getting started:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -215,7 +215,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating an experiment:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -232,7 +232,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Eye-tracking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -271,9 +271,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Workshops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -363,7 +363,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </section>
 <section id="psychopy-tobii-infant" class="level2">
 <h2 class="anchored" data-anchor-id="psychopy-tobii-infant">Psychopy tobii infant</h2>
-<p>Finally, if you are broke and/or you want flexibility in running your calibration, one of the best option is to use the Tobii SDK that allows us to interact with the eyetrackers using Python. However, running a calibration using the SDK is pretty complex. We are trying to write a nice script to make it easier but in the meantime we have another solution….&nbsp;We can use&nbsp;!! Psychopy tobii infants is a nice python code that wraps around the Tobii SDK making it easy to run a calibration, especailly an infant friendly one!! This code collection allows us to use the Tobii SDK with the Psychopy library.</p>
+<p>Finally, if you are broke (like us!) and/or you want flexibility in running your calibration, one of the best option is to use the Tobii SDK that allows us to interact with the eyetrackers using Python. However, running a calibration using the SDK is pretty complex. We are trying to write a nice script to make it easier but in the meantime we have another solution….&nbsp;We can use&nbsp;!! Psychopy tobii infants is a nice python code that wraps around the Tobii SDK making it easy to run a calibration, especailly an infant friendly one!! This code collection allows us to use the Tobii SDK with the Psychopy library.</p>
 <p>Finally, if you are broke and you want flexibility in running your calibration, one of the best options is to use the Tobii SDK. How we explained in previous tutorials (<a href="../..\CONTENT/GettingStarted/CreateAnEyetrackingExperiment.qmd">Create an eye-tracking experiment</a>), this SDK allows the interaction with eye-trackers using Python. However, implementing a calibration using the SDK can be quite challenging……. We’re are trying to write an easy to explain and run code to perform calibrations, but in the meantime, we have an alternative solution!!</p>
 <p>Enter <a href="https://github.com/yh-luo/psychopy_tobii_infant">Psychopy_tobii_infant</a>! This is a series of python functions that effectively wraps around the Tobii SDK, making it much easier to run calibrations, particularly those designed for infants. This code collection enables us to use the Tobii SDK in conjunction with the PsychoPy library, offering a more accessible approach to eye-tracking calibration!!</p>
 <p>In the following paragraph we will see together how to prepare and use Psychopy tobii infant to run a nice and infant friendly calibration.</p>
@@ -373,10 +373,11 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Use Psychopy tobii infant to run studies
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Use Psychopy tobii infant to run studies</p>
 <p>One question that you could ask yourself is… can I use Psychopy tobii infants to run my eye-tracking studies?? Well yes!! We have actually used it for few of our studies. Psychopy tobii infants provides an easy intarface between tobii eye-trackers and psychopy.</p>
 <p>Over the years we have personally move away from it but we often come back to it for some of its handy functionalities (e.g.&nbsp;the calibration).</p>
 </div>
@@ -407,7 +408,7 @@ Use Psychopy tobii infant to run studies
 <section id="importing-the-functions" class="level3">
 <h3 class="anchored" data-anchor-id="importing-the-functions">Importing the functions</h3>
 <p>Now that the folder of Psychopy tobii infant is in the same directory of our Experiment script we can use its functions by just importing it ( since we are already there we will import few other things)</p>
-<div id="f131fb1a" class="cell" data-execution_count="1">
+<div id="64967072" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual, sound</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,7 +421,7 @@ Use Psychopy tobii infant to run studies
 <h3 class="anchored" data-anchor-id="settings">Settings</h3>
 <p>Before running our calibration we need to prepare a few things!</p>
 <p>First, we create a nice window. As we explained before, this is the canvas where we will draw our stimuli.</p>
-<div id="b89b4673" class="cell" data-execution_count="2">
+<div id="b0acf327" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> [<span class="dv">1920</span>, <span class="dv">1080</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(winsize, fullscr<span class="op">=</span><span class="va">True</span>, allowGUI<span class="op">=</span><span class="va">False</span>,screen <span class="op">=</span> <span class="dv">1</span>, color <span class="op">=</span> <span class="st">"#a6a6a6"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -433,7 +434,7 @@ Use Psychopy tobii infant to run studies
 </figure>
 </div>
 <p>Let’s find them and put the in a list.</p>
-<div id="8a1cd874" class="cell" data-execution_count="3">
+<div id="b28f57dd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visual stimuli</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>CALISTIMS <span class="op">=</span> glob.glob(<span class="st">"..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">EyetrackingCalibration</span><span class="ch">\\</span><span class="st">*.png"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -445,7 +446,7 @@ Use Psychopy tobii infant to run studies
 </div>
 <p>Perfect we have found all the stimuli that we need.</p>
 <p>Now we will use the TobiiInfantController that we have imported before to connect to the eye-tracker. It is extremely simple:</p>
-<div id="83a0c098" class="cell" data-execution_count="4">
+<div id="d5371fe8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>EyeTracker <span class="op">=</span> TobiiInfantController(win)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect we now even have our eye-tracker!!</p>
@@ -462,7 +463,7 @@ Use Psychopy tobii infant to run studies
 <p>But how to do it?? We can eyeball it but it’s not going to be easy. Luckily we can get some help!!</p>
 <p>Using <code>EyeTracker.show_status()</code> we can see the eyes of the participant in relation to the screen. Therefore we can move either the eye-tracker or the infant to make sure the gaze is parallel to the screen. Sounds good doesn’t it??!!?? However, most of the times infants won’t look at the screen if nothing interesting is presented on it. Thus we need to capture their attention!!!!!</p>
 <p>We can use the video we imported before. We set it to autodraw (each time the window is flipped a new frame will be drawn automatically) and the we start it by calling <code>play()</code>.</p>
-<div id="6552f4ad" class="cell" data-execution_count="5">
+<div id="9bd5d9f1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set video playing</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VideoGrabber.setAutoDraw(<span class="va">True</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>VideoGrabber.play()</span>
@@ -484,15 +485,15 @@ Use Psychopy tobii infant to run studies
 <p>Ok, now that we are happy with the setup let’s actually run the calibration. It only takes two steps.</p>
 <p>First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the centre.</p>
 <p>The easiest way to define them is by using Psychopy’s normalized unit.</p>
-<div id="347f56c9" class="cell" data-execution_count="6">
+<div id="d45d715f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>CALINORMP <span class="op">=</span> [(<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>), (<span class="op">-</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.4</span>), (<span class="fl">0.0</span>, <span class="fl">0.0</span>), (<span class="fl">0.4</span>, <span class="fl">0.4</span>), (<span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we usually like to work in pixel units, we could define them in pixels or just transform our <code>CALINORMP</code> using the dimension of our window.</p>
-<div id="8bc315fb" class="cell" data-execution_count="7">
+<div id="31e43c83" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CALIPOINTS <span class="op">=</span> [(x <span class="op">*</span> winsize[<span class="dv">0</span>], y <span class="op">*</span> winsize[<span class="dv">1</span>]) <span class="cf">for</span> x, y <span class="kw">in</span> CALINORMP]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect! Now we run our calibration by running</p>
-<div id="4009a6c5" class="cell" data-execution_count="8">
+<div id="def51e43" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>success <span class="op">=</span> controller.run_calibration(CALIPOINTS, CALISTIMS, audio <span class="op">=</span> Sound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ok, but what is going to happen??? After running this line we will start our calibration. Using the numbers on our keyboard (use 1~9 (depending on the number of calibration points) to present) we will show 1 of the <code>.png</code> stimuli that we have listed in <code>CALISTIMS</code> in the selected position. The presentation of the cartoon will be accompanied by the sound passed with <code>Sound</code>. The cartoon will start to zoom in and out in the attempt to capture the attention of the infant.</p>
@@ -527,7 +528,7 @@ Tip
 <p>Well done!! Calibration is done!!!!</p>
 <p>Now we can start with our eye-tracking study!</p>
 <p>Here below the entire code.</p>
-<div id="2133b399" class="cell" data-execution_count="9">
+<div id="a6d1f051" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual, sound</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -610,7 +611,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -642,29 +654,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -723,7 +713,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1093,7 +1083,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Psychopy tobii infant</span></span>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>Finally, if you are broke and/or you want flexibility in running your calibration, one of the best option is to use the Tobii SDK that allows us to interact with the eyetrackers using Python. However, running a calibration using the SDK is pretty complex. We are trying to write a nice script to make it easier but in the meantime we have another solution....&nbsp;We can use&nbsp;!! Psychopy tobii infants is a nice python code that wraps around the Tobii SDK making it easy to run a calibration, especailly an infant friendly one!! This code collection allows us to use the Tobii SDK with the Psychopy library.</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>Finally, if you are broke (like us!) and/or you want flexibility in running your calibration, one of the best option is to use the Tobii SDK that allows us to interact with the eyetrackers using Python. However, running a calibration using the SDK is pretty complex. We are trying to write a nice script to make it easier but in the meantime we have another solution....&nbsp;We can use&nbsp;!! Psychopy tobii infants is a nice python code that wraps around the Tobii SDK making it easy to run a calibration, especailly an infant friendly one!! This code collection allows us to use the Tobii SDK with the Psychopy library.</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>Finally, if you are broke and you want flexibility in running your calibration, one of the best options is to use the Tobii SDK. How we explained in previous tutorials (<span class="co">[</span><span class="ot">Create an eye-tracking experiment</span><span class="co">](/CONTENT/GettingStarted/CreateAnEyetrackingExperiment.qmd)</span>), this SDK allows the interaction with eye-trackers using Python. However, implementing a calibration using the SDK can be quite challenging....... We're are trying to write an easy to explain and run code to perform calibrations, but in the meantime, we have an alternative solution!!</span>
 <span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1102,7 +1092,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>In the following paragraph we will see together how to prepare and use Psychopy tobii infant to run a nice and infant friendly calibration.</span>
 <span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Use Psychopy tobii infant to run studies</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>Use Psychopy tobii infant to run studies</span>
 <span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>One question that you could ask yourself is... can I use Psychopy tobii infants to run my eye-tracking studies?? Well yes!! We have actually used it for few of our studies. Psychopy tobii infants provides an easy intarface between tobii eye-trackers and psychopy.</span>
 <span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
@@ -1307,7 +1297,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a>success <span class="op">=</span> controller.run_calibration(CALIPOINTS, CALISTIMS, audio <span class="op">=</span> Sound)</span>
 <span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
