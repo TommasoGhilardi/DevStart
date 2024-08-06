@@ -585,6 +585,9 @@ Eyetracker = found_eyetrackers[0]
 Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)
 
 
+# Create an empty list we will append our data to
+gaze_data_buffer = []
+
 for trial in Trials:
 
     ### Present the fixation

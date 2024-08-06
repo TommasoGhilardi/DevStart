@@ -73,11 +73,13 @@ You should end up like with something like this:
 
 ### Importing the functions
 
-Now that the folder of Psychopy tobii infant is in the same directory of our Experiment script we can use its functions by just importing it ( since we are already there we will import few other things)
+We'll now import the required libraries and custom functions. First, we'll set the working directory to where our stimuli and the psychopy_tobii_infant folder are located. This allows Python to access these resources. Once set, we can easily import the necessary libraries and the custom functions from psychopy_tobii_infant for our eye-tracking experiment.
 
 ```{python}
 import os
 from psychopy import visual, sound
+
+os.chdir(r"C:\Users\tomma\Desktop\EyeTracking\Files\Calibration")
 
 # import Psychopy tobii infant
 from psychopy_tobii_infant import TobiiInfantController
@@ -93,7 +95,7 @@ First, we create a nice window. As we explained before, this is the canvas where
 
 ```{python}
 winsize = [1920, 1080]
-win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = "#a6a6a6")
+win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = "#a6a6a6", unit='pix')
 ```
 
 Second we will import a few stimuli. I will explain later what we need them for, just trust me for now. If you want to follow along [these are the stimuli we have used](/resources/EyetrackingCalibration/CalibrationStim.zip). Just download them and unzip them.
@@ -108,13 +110,13 @@ Let's find them and put the in a list.
 
 ```{python}
 # visual stimuli
-CALISTIMS = glob.glob("..\\..\\resources\\EyetrackingCalibration\\*.png")
+CALISTIMS = glob.glob("CalibrationStim\\*.png")
 
 # video
-VideoGrabber = visual.MovieStim3(win, "..\\..\\resources\\EyetrackingCalibration\\Attentiongrabber.mp4", loop=True, size=[800,450],volume =0.4, unit = 'pix')  
+VideoGrabber = visual.MovieStim(win, "CalibrationStim\\Attentiongrabber.mp4", loop=True, size=[800,450],volume =0.4, unit = 'pix')  
 
 # sound
-Sound = sound.Sound(directory + "..\\..\\resources\\EyetrackingCalibration\\\\audio.wav")
+Sound = sound.Sound(directory + "CalibrationStim\\audio.wav")
 ```
 
 Perfect we have found all the stimuli that we need.
@@ -156,13 +158,19 @@ This is what we will see:
 
 In the center of the screen you will see the video we imported. In this case, a video of funny dancing fruits. But more importantly, at the top we can see the eyes of our participant. We need to make sure that we actually see the eyes and that they are centered in the screen. In addition is important to notice that under the eye position there is a green bar. The black line on it represents the distance of the participant head from the eye-tracker (the more on the right, the further from the screen; the more on the left, the closer to it). Ideally the black line should be in the center (overlapping the white thick line). This would indicate that the head of the participant is at an ideal distance (usually 65cm).
 
-Once we are satisfied with the position of the eye-tracker and the infant we can press `spacebar` to proceed to the next step!!
+Once we are satisfied with the position of the eye-tracker and the infant we can press `spacebar` to proceed to the next step!! Before doing that we will stop the presentation of
+
+```{python}
+# stop the attention grabber
+VideoGrabber.setAutoDraw(False)
+VideoGrabber.stop()
+```
 
 ### Calibration
 
 Ok, now that we are happy with the setup let's actually run the calibration. It only takes two steps.
 
-First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the centre.
+First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the center.
 
 The easiest way to define them is by using Psychopy's normalized unit.
 
@@ -213,20 +221,22 @@ import os
 from psychopy import visual, sound
 
 # import Psychopy tobii infant
+os.chdir(r"C:\Users\tomma\Desktop\EyeTracking\Files\Calibration")
 from psychopy_tobii_infant import TobiiInfantController
+
 
 #%% window and stimuli
 winsize = [1920, 1080]
-win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = "#a6a6a6")
+win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = "#a6a6a6", unit='pix')
 
 # visual stimuli
-CALISTIMS = glob.glob("..\\..\\resources\\EyetrackingCalibration\\*.png")
+CALISTIMS = glob.glob("CalibrationStim\\*.png")
 
 # video
-VideoGrabber = visual.MovieStim3(win, "..\\..\\resources\\EyetrackingCalibration\\Attentiongrabber.mp4", loop=True, size=[800,450],volume =0.4, unit = 'pix')  
+VideoGrabber = visual.MovieStim(win, "CalibrationStim\\Attentiongrabber.mp4", loop=True, size=[800,450],volume =0.4, unit = 'pix')  
 
 # sound
-Sound = sound.Sound(directory + "..\\..\\resources\\EyetrackingCalibration\\\\audio.wav")
+Sound = sound.Sound(directory + "CalibrationStim\\audio.wav")
 
 
 #%% Center face - screen
@@ -238,6 +248,10 @@ VideoGrabber.play()
 # show the relative position of the subject to the eyetracker
 EyeTracker.show_status()
 
+# stop the attention grabber
+VideoGrabber.setAutoDraw(False)
+VideoGrabber.stop()
+
 
 #%% Calibration
 
@@ -246,4 +260,5 @@ CALINORMP = [(-0.4, 0.4), (-0.4, -0.4), (0.0, 0.0), (0.4, 0.4), (0.4, -0.4)]
 CALIPOINTS = [(x * winsize[0], y * winsize[1]) for x, y in CALINORMP]
 
 success = controller.run_calibration(CALIPOINTS, CALISTIMS, audio = Sound)
+win.flip()
 ```
