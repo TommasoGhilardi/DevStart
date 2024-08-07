@@ -322,7 +322,6 @@ import os
 from psychopy import core, visual, sound, event
 
 
-
 #%% Load and prepare stimuli
 
 # Setting directory of our experiment
