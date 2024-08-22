@@ -1,4 +1,8 @@
 
+
+[![DOI](https://zenodo.org/badge/501816247.svg)](https://zenodo.org/doi/10.5281/zenodo.13361295)
+
+
 # DEVSTART <a href="[https://dplyr.tidyverse.org](https://tommasoghilardi.github.io/DevStart/)"><img src='images/LOGO.png' width='200' align="right" /></a>
 
 **Getting Started with Developmental Cognitive Science**
