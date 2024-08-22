@@ -74,7 +74,7 @@ We received several questions about working with videos and PsychoPy while doing
 
 -   If you need to change the codec of the video, you can re-encode it using a tool like
 
--    [Handbrake](https://handbrake.fr) (remember to set the constant framerate in the video option)
+-   [Handbrake](https://handbrake.fr) (remember to set the constant framerate in the video option)
 
 Below, you'll find a code example that adapts our [Create an eye-tracking experiment](/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd) tutorial to work with a video file. The main differences are:
 
