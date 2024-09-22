@@ -1,41 +1,254 @@
 ---
 title: "Linear Models"
 execute:
-  eval: false
+  eval: true
 
 author-meta: Tommaso Ghilardi
 description-meta: "Learn what a linear model is, how to run it and how to check its assumptions"
-keywords: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
+keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
+
+categories:
+  - Stats
+  - R
+  - linear models
 ---
 
-Welcome to the first tutorial on data analysis!!!
-
-Today we are going to talk about one of the most flexible statistical methods: Linear models.
+Welcome to the first tutorial on data analysis!!! Today we are going to talk about one of the most flexible statistical methods: Linear models.
 
 Let’s be clear, WE ARE NOT STATISTICIANS!!!!
 
 We’ll be discussing linear models in a very accessible and practical manner. Our explanations might not align with the rigorous definitions statisticians are accustomed to, and for that, we apologize in advance! However, our aim is to provide a stepping stone for you to grasp the concept of linear models and similar analyses. Let’s get started!
 
+::: callout-note
+and only R [![](https://www.r-project.org/Rlogo.png){style="float:left ; margin-right:10px;margin-bottom:10px;" width="31" height="21"}](https://www.r-project.org/)
+
+In the tutorials regarding stats, we will use R (and R-Studio as the IDE). The concepts and procedures are the same in other programming languages (e.g., Python, Julia). However, we choose R for a simple reason. R is just better at most statistical things!!
+
+Deal with it!
+:::
+
 # What is a linear model?
 
-A linear model is a simple statistical test that tries to find the best line that represent the relations between two variables
+A linear model is a simple statistical test that tries to find the best line that represent the relations between two variables ( or more).
 
 [![image found on towardsdatascience.com](https://miro.medium.com/v2/resize:fit:640/format:webp/1*MtuQBTW0-XbjA2RrP2z3Kw.gif){fig-align="center"}](https://towardsdatascience.com/linear-regression-5100fe32993a)
 
+What's truly fascinating about linear models is their versatility. They start off incredibly simple, but their complexity can grow exponentially! This makes them a remarkably flexible tool in the world of data analysis.
+
+Think of linear models as the foundation of a house. You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion. This adaptability allows us to perform a wide range of analyses, from straightforward relationships to intricate, multi-faceted studies.
+
+In essence, linear models offer a perfect balance: they're accessible enough for beginners to grasp, yet powerful enough to satisfy the needs of advanced researchers. As we dive deeper into this topic, you'll see just how these seemingly simple tools can unlock complex insights in your data.
+
+# Hands-on
+
+OK, enough chitchat - let's start with a practical example. We'll be working with a data set we created specifically for this tutorial. As mentioned, we're going to begin with a very basic model, and in the upcoming tutorials, we'll gradually increase both the complexity and accuracy of our approach.
+
+So, if you notice something that doesn't seem quite perfect at this stage, don't worry! It's all part of the plan. Our goal is to guide you step-by-step towards building the ideal model. Just remember, this process takes time!
+
+## Import data
+
+You can download the data that we will use in this tutorial from here:
+
+{{< downloadthis ../../resources/Stats/LM_SimulatedData.csv label="LM_SimulatedData.csv" dname= "lmdata" type="secondary" >}}
+
+Once downloaded we need to import it in our R session. Here we read our csv and we print a small preview of it.
+
 ```{r}
-library(tidyverse)
+df = read.csv("..\\..\\resources\\Stats\\LM_SimulatedData.csv")
+head(df)
+```
+
+You can see that the data is really simple! We have 4 columns:
+
+-   `subject` column that tell us form which participant the data was collected
+
+-   `time` the passing time
+
+-   `performance` the variable of interest, the one that we want to model
+
+-   `tool` which tool was being used
+
+::: callout-important
+## Long format
+
+One important information that we need to keep in mind is that to run `lm()` in R we need the data in a long format and not a wide format.
+
+In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example `performance`) has 1 row for observation but the other columns usually have repeated entries ( e.g. `subject` , `time`, `tool`)
+
+Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time points. While this can be visually appealing for humans, it's not optimal for our linear modeling needs.
+
+If your data is currently in wide format, don't worry! R provides tools like the [tidyr](https://tidyr.tidyverse.org/index.html) package with functions such as [pivot_longer()](https://tidyr.tidyverse.org/reference/pivot_longer.html) to easily convert your data from wide to long format.
+:::
+
+## Formula
+
+To run models in R we usually use formulas! Sounds complex doesn't it?!? Well it is not, let me guide you through it.
+
+In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the one we're interested in studying. In this case, it's the `performance` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to model the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables we believe may influence our dependent variable. To test whether `time` predicts performance, we can use the formula:
+
+`performance ~ time`. This basic structure allows us to examine a single predictor.
+
+We can extend this model by adding another variable, such as `tool`, to see if it also predicts performance:
+
+`performance ~ time + tool`. This formulation tells the model to assess whether either `time` or `tool` predicts `performance`, treating them as independent predictors.
+
+To examine the interaction between these variables, we use a slightly different syntax:
+
+`performance ~ time : tool`. This instructs the model to evaluate whether the interaction between the two variables predicts `performance`.
+
+It's important to note that using `:` only tests the interaction, not the individual effects of each variable. To include both main effects and their interaction, we can use the formula:
+
+`performance ~ time + tool + time:tool`.
+
+R offers a shorthand for this complete model using the `*` operator. The formula:
+
+`performance ~ time * tool` is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.
+
+These formulas are for simple linear models. Different types of models add small and different pieces to this basic structure. We will see in the next tutorial how to handle these "add-ons". Now that we have seen how to make a proper formula let's use it in our model!!
+
+## Run the model
+
+OK, now we have our amazing data! Let's run this Linear model.
+
+It's extremely simple. We will use the function `lm()` and we will pass our data `df` and the formula we just made together!!
+
+After fitting the model we extract the summary of it. This is how we will get all the information we need.
+
+```{r}
+mod = lm(performance ~ time*tool, data = df)
+summary(mod)
+```
+
+Perfect this was super simple!! We can use the output of the model to understand whether the variable are predicting the performance. What we need is the pvalue that is the last column of the **Coefficients section.** If the pvalue is below 0.05 it means we have our effect if it is above it means we don't. [YES EVEN IF IT IS 0.051!!!]{.text-danger-emphasis}
+
+When looking at model outputs, people often zero in on the p-value. However, there's much more to unpack in a model summary! For now, we'll just skim the surface of model summary interpretation. It's true that the model provides p-values, which serve as indicators of whether there's evidence for an effect of our variables on the dependent variable. But it's crucial to understand the full scope of the model output. That's why we've created a separate tutorial to guide you through the intricacies of model interpretation. For now, let's wrap up this current tutorial. Afterwards, we'll dive together into the art of deciphering model results.
+
+### Model checks
+
+So now we have run our model and seen the summary... That's great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require few data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won't be valid.
+
+What are these assumptions?? Well they depend a lot on the model you are running. We won't go into much details as there are very good website that explain them<sup>[1](https://bookdown.org/pingapang9/linear_models_bookdown/assumptions.html)</sup> ,<sup>[2](https://www.statology.org/linear-regression-assumptions/)</sup>, in this simple linear mode they are:
+
+1.  **Linear relationship:** There exists a linear relationship between the independent variable, x, and the dependent variable, y.
+
+2.  **Independence:** The residuals are independent. In particular, there is no correlation between consecutive residuals in time series data.
+
+3.  **Homoscedasticity/Homogeneity of variance:** The residuals have constant variance at every level of x.
+
+4.  **Normality:** The residuals of the model are normally distributed.
+
+Again this is not a theoretical tutorial. So we won't go into details as which are the assumptions (please read some of the link provided tho!!) but we will show you how to actually check these assumptions.
+
+There is a super easy and convenient way we usually check these assumptions. Using the [easystats](https://easystats.github.io/easystats/) library.
+
+::: callout-note
+## [Easystats](https://easystats.github.io/easystats/)
+
+Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://cran.r-project.org/web/packages/report/index.html), [**correlation**](https://cran.r-project.org/web/packages/correlation/index.html), [**modelbased**](https://cran.r-project.org/web/packages/modelbased/index.html), [**bayestestR**](https://cran.r-project.org/web/packages/bayestestR/index.html), [**effectsize**](https://cran.r-project.org/web/packages/effectsize/index.html), [**see**](https://cran.r-project.org/web/packages/see/index.html), [**parameters**](https://cran.r-project.org/web/packages/parameters/index.html), [**performance**](https://cran.r-project.org/web/packages/performance/index.html), [**insight**](https://cran.r-project.org/web/packages/insight/index.html), [**datawizard**](https://cran.r-project.org/web/packages/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats**.
+
+In this tutorial here we will use the function from the package [**performance**](https://cran.r-project.org/web/packages/performance/index.html)**.** This is a package to check model performance. However instead of importing [**performance**](https://cran.r-project.org/web/packages/performance/index.html)we will import **Easystats** that will import all of the packages mentioned above.
+:::
+
+So now we import `easystats` and we use the function [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) to indeed check the model assumptions.
+
+```{r}
+#| fig-height: 8
+#| fig-width: 12
+#| fig-dpi: 300
+#| warning: false
+
+library(easystats)
+check_model(mod)
+```
+
+Perfect all done!! We have a plot of the model assumptions and we can check if they are met!! But what do these plot represent? Here below we created a table that mirrors each plot with it explanation in it. These are brief and simple explanations. If you want to understand more about the [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) function we suggest you to read the documentation about it and also the [very nice vignette](https://easystats.github.io/performance/articles/check_model.html) that the package provides.
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Load necessary packages
 library(gt)
-df = read.csv('C:\\Users\\tomma\\Desktop\\Docu\\SimulateData.csv')
+library(gtExtras)
+library(glue)
+
+# Create a dataframe that resembles the content of the image
+data <- data.frame(
+  Column1 = c(
+    glue("**Posterior predictive checks**<br>Compare simulated data from the fitted model to actual data. This reveals systematic discrepancies, helping assess if the model captures key data features and if the chosen distribution family is appropriate."),
+    glue("**Homoscedasticity/Homogeneity of variance**<br>Checks for homoscedasticity (constant variance). Residuals should spread evenly around a horizontal line across all predictor values. Uneven spread suggests variance inconsistencies, potentially requiring model adjustments."),
+    glue("**Multi-Collinearity**<br>Evaluates predictor independence. High collinearity indicates redundant predictors or possible unobserved variables influencing multiple predictors, which can affect interpretation and model stability.")
+  ),
+  Column2 = c(
+    glue("**Linearity**<br>Checks if predictors have a linear relationship with the outcome. A straight, horizontal line suggests the model specification is appropriate. Curved or sloped lines indicate potential non-linear relationships, signaling the need for model adjustments."),
+    glue("**Outliers**<br>Identifies influential observations using Cook's distance. Points beyond the dashed lines are outliers that may excessively impact model estimates, warranting further investigation or potential removal."),
+    glue("**Normality of residuals**<br>Uses Q-Q plots to assess if residuals follow a normal distribution. Points should align with the reference line; deviations suggest the model poorly predicts certain outcome ranges, potentially violating normality assumptions.")
+  )
+)
+
+# Create the gt table, apply the custom theme, and add additional styling
+table <- gt(data) %>%
+  fmt_markdown(columns = everything()) %>%
+  gt_theme_nytimes() %>%
+  # Add a title to the table and ensure it is centered
+  tab_header(
+    title = md("**Model Diagnostic Checks**")
+  ) %>%
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_title(groups = "title")
+  ) %>%
+  # Hide the headers by setting empty labels
+  cols_label(
+    Column1 = "",
+    Column2 = ""
+  ) %>%
+  # Add borders around all cells
+  tab_style(
+    style = cell_borders(sides = "all", color = "black", weight = px(1)),
+    locations = cells_body()
+  ) %>%
+  # Add borders around the entire table
+  tab_options(
+    table.border.top.style = "solid",
+    table.border.top.color = "black",
+    table.border.top.width = px(1),
+    table.border.bottom.style = "solid",
+    table.border.bottom.color = "black",
+    table.border.bottom.width = px(1),
+    table.border.left.style = "solid",
+    table.border.left.color = "black",
+    table.border.left.width = px(1),
+    table.border.right.style = "solid",
+    table.border.right.color = "black",
+    table.border.right.width = px(1),
+    column_labels.hidden = TRUE
+  )
+
+# Print the table
+table
 ```
 
-Let's take a look at the data we have just read.
+::: callout-tip
+One of the awesome features of `easystats` is its broad support for various model types. What's the big deal? Well, it means that the `check_model()` function adapts its checks based on the specific model you're using! This flexibility makes it an incredibly powerful and user-friendly tool. Pretty much any model you've just run (or at least most of them) can be fed into the `check_model()` function, allowing you to easily verify if it meets the necessary assumptions.
+
+**Keep in mind: Always be aware of which assumptions your model should satisfy. We're not suggesting you use this function blindly! Instead, we're showing you how to efficiently plot all relevant assumptions in one go. It's simpler and quicker!!**
+:::
+
+### Statistical tests
+
+You've probably noticed that we've been relying on visual checks so far. In our view, this is often the best approach, as statistical tests for model assumptions can sometimes be overly stringent. However, there may be situations where you need to provide statistical evidence to support your model assumptions. This often happens when a reviewer (let's call them Reviewer 2, shall we?) insists on seeing numerical proof. Fortunately, `easystats` has got your back.
+
+Here are some examples of what you can use:
 
 ```{r}
-head(df)%>%gt()
+check_normality(mod)
 ```
 
-Our dataframe includes potential salaries from university employment. The ‘Salary’ column indicates the salary amount, while the ‘Experience’ column denotes the years of experience.
+To check the normality of our residuals and:
 
-Depending on the years of experience we may expect to earn more money.... but is that the case???
+```{r}
+check_homogeneity(mod)
+```
 
-We can use a linear model to check if that is actually the case.
+to check homoscedasticity/homogeneity of variance. Again you can find all the function in the [**performance**](https://cran.r-project.org/web/packages/performance/index.html)package (part fo the Easystats collection)

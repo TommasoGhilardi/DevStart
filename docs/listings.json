@@ -9,7 +9,10 @@
       "/CONTENT/EyeTracking/EyetrackingCalibration.html",
       "/CONTENT/EyeTracking/FromFixationsToData.html",
       "/CONTENT/EyeTracking/I2MC_tutorial.html",
-      "/CONTENT/EyeTracking/Intro_eyetracking.html"
+      "/CONTENT/EyeTracking/Intro_eyetracking.html",
+      "/CONTENT/Stats/InterpretingModelResults.html",
+      "/CONTENT/Stats/LinearModels.html",
+      "/CONTENT/Stats/LMM.html"
     ]
   }
 ]

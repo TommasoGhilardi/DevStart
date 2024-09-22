@@ -6,6 +6,7 @@ execute:
   freeze: auto
 
 website:
+
   favicon: images/ICON.png
   title: "DevStart"
   description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
@@ -13,7 +14,7 @@ website:
   repo-url: "https://github.com/TommasoGhilardi/DevStart"
   image: "images/LOGO.png"
   google-analytics: "G-G5XSH1GLW7"
-  
+
   
   # Cards
   open-graph:
@@ -76,10 +77,16 @@ website:
           - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
+      # - section: "Stats"
+      #   contents:
+      #     - CONTENT/Stats/LinearModels.qmd
+      #     - CONTENT/Stats/InterpretingModelResults.qmd
       - section: "Workshops"
         contents:
           #- CONTENT/Workshops/BCCCD2024.qmd
           - CONTENT/Workshops/GAP_2024.qmd
+
+
 
 
   ## Footer
@@ -116,7 +123,7 @@ format:
       toggle: true
       caption: none
     highlight-style: zenburn
-
+    code-block-background: true
     code-block-border-left: "#00B3B3"
 editor: visual
 

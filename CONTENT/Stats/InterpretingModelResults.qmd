@@ -1,0 +1,44 @@
+---
+title: "Interpreting Model Results"
+
+author: "Tommaso Ghilardi"
+author-meta: "Tommaso Ghilardi"
+
+execute:
+  eval: true
+
+description-meta: "Learn what a the summary of a linear model means!"
+keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
+---
+
+In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.
+
+### Interpreting the results
+
+Very cool!! we have our result!!
+
+But what is it saying?? As you can see the summary is divided in subsections. Lets go trough them piece by piece.
+
+-   **Call**:
+
+    This section just report the function call that we passed to `lm()`.
+
+-   **Residuals**:
+
+    This section reports the residuals of the model. Residuals represent the difference between the observed values and the values predicted by the model. Essentially, how much variability remains after fitting our variable to the model.
+
+-   **Coefficients**:
+
+    This section displays the estimated coefficients of the regression model,the stand error of the estimation, the t-value and finally the p-value!
+
+-   **Model Fit:**
+
+    The last section reports different statistics about the model fit:
+
+    -   **Residual standard error:** Average distance between observed values and the regression line. Smaller is better.
+
+    -   **Multiple R-Squared:** Proportion of response variable variance explained by predictors. Ranges from 0 to 1; closer to 1 is better.
+
+    -   **Adjusted R-squared:** R-squared modified for the number of predictors. Useful for comparing models with different numbers of predictors.
+
+    -   **F-statistic and p-value:** Indicate if the model provides a better fit than a model with no predictors. A p-value \< 0.05 suggests the model is useful.

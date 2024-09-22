@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Workshops/GAP_2024.html</loc>
-    <lastmod>2024-08-08T13:56:53.729Z</lastmod>
+    <lastmod>2024-08-22T13:36:25.746Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LMM.html</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</loc>
-    <lastmod>2024-07-31T11:28:32.238Z</lastmod>
+    <lastmod>2024-07-31T19:39:19.438Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/I2MC_tutorial.html</loc>
-    <lastmod>2024-07-31T11:27:38.006Z</lastmod>
+    <lastmod>2024-07-31T19:39:19.438Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/EyetrackingCalibration.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/ContentList.html</loc>
-    <lastmod>2024-07-31T14:37:56.281Z</lastmod>
+    <lastmod>2024-08-30T15:47:48.033Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html</loc>
@@ -38,11 +38,11 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData.html</loc>
-    <lastmod>2024-07-31T11:27:33.998Z</lastmod>
+    <lastmod>2024-07-31T19:39:19.438Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/Intro_eyetracking.html</loc>
-    <lastmod>2024-07-31T11:27:47.294Z</lastmod>
+    <lastmod>2024-07-31T19:39:19.438Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPsychopy.html</loc>
@@ -50,10 +50,14 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels.html</loc>
-    <lastmod>2024-07-31T08:54:45.440Z</lastmod>
+    <lastmod>2024-09-22T09:29:11.165Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Workshops/BCCCD2024.html</loc>
     <lastmod>2024-07-29T20:49:55.097Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/InterpretingModelResults.html</loc>
+    <lastmod>2024-09-22T09:29:14.804Z</lastmod>
   </url>
 </urlset>

@@ -28,11 +28,9 @@ $toc-color: #008080;
 
     --figure-img-border: 1px solid #dee2e6;
     --figure-img-shadow: 1px 1px 10px #dee2e6;
-
-    --code-block-color: #495057; /* Dark gray for code blocks */
-    --code-block-bg: #f8f9fa; /* Light gray background for code blocks */
-    --code-color: #d63384; /* Soft pink for inline code */
-    --code-bg: #f8f9fa; /* Light gray background for inline code */
+    
+    --bs-code-color: #7d12ba;
+    --bs-code-bg: #DFE2E2; /* Light Gray */
 
     --hl-code-comments: #6c757d; /* Gray for code comments */
 
@@ -66,7 +64,57 @@ $toc-color: #008080;
 }
 
 
-/* Sidebar */
+// INLINE CODE COLOR
+p code:not(.sourceCode), 
+li code:not(.sourceCode), 
+td code:not(.sourceCode) {
+    background-color: var(--bs-code-bg);
+    color: var(--bs-code-color);
+    padding: .2em;
+    border-radius: 3px;
+}
+
+
+
+
+// CODE OUTPUT BACKGROUND
+$code-output-bg: #f0f2f4; // Replace with your desired background color
+$code-output-color: #2d2d2d; // Replace with your desired text color
+$code-output-border-left-color: #A9C3C6; // Replace with your desired left border color
+
+// Apply styles to .cell-output.cell-output-stdout only
+.cell-output.cell-output-stdout {
+    background-color: $code-output-bg;
+    color: $code-output-color;
+    padding: 1px 4px 1px 4px; // Increase bottom padding to 10px
+    margin-bottom: 5px; // Add space below the cell output
+    border-top: none; 
+    border-left: 2px solid $code-output-border-left-color;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 1px; // Optional: for squared corners
+    overflow: auto; // Ensure long code doesn't overflow the container
+}
+
+// Ensure no borders on pre elements
+pre {
+    border: none; // Remove any borders on pre elements
+    background: transparent; // Make sure the background is transparent if you don't want any background
+    padding: 0; // Remove padding if there's any applied by default
+}
+
+// Ensure no extra borders on the inner code element
+pre code {
+    border: none; // Remove any borders on the inner code element
+    background: transparent; // Make sure the background is transparent
+    padding: 0; // Remove padding if there's any applied by default
+    color: inherit; // Ensure the text color inherits from the container
+}
+
+
+
+
+// SIDEBAR
 #quarto-sidebar,
 #quarto-content .sidebar-navigation {
     .sidebar-item-container {
@@ -92,6 +140,27 @@ $toc-color: #008080;
     }
 }
 
+
+// SIDEBAR STYLING
+
+/* Style the section headers bold */
+#quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
+    font-weight: bold;
+}
+
+
+.sidebar-logo {
+  max-width: 12em;
+  padding-bottom: .5em;
+}
+
+/* Increase size of sidebar tools icons */
+.sidebar-navigation .quarto-navigation-tool {
+  font-size: 1.1em; // Increase this value to make icons bigger
+}
+
+
+// TOC
 /* Page Headings in TOC on Right Side */
 #quarto-margin-sidebar,
 #quarto-content .margin-sidebar,
@@ -115,21 +184,44 @@ $toc-color: #008080;
 
 
 
-/* Style the section headers bold */
-#quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
-    font-weight: bold;
+// CUSTOM INFO CARD
+.custom-card {
+    background-color: #008080; /* Custom background color */
+    color: white; /* Text color */
+    border: none; /* Remove the border */
+    margin: 2px 0; /* Adjust margin for spacing */
+}
+
+.custom-card-header {
+    background-color: #00a2a2; /* Custom header background color */
+    color: white; /* Header text color */
+    border-bottom: none; /* Remove the bottom border of the header */
+    padding: 0.5rem; /* Reduce padding in the header */
+}
+
+.card-body {
+    padding: 0.5rem; /* Adjust padding for the body */
+}
+
+.card-title {
+    margin-top: 0; /* Remove any margin at the top */
+    margin-bottom: 0.25rem; /* Reduce margin at the bottom */
+    font-size: 1.25rem; /* Adjust font size if needed */
+}
+
+.card-text {
+    margin-bottom: 0; /* Adjust text spacing */
+    margin-top: 0.25rem; /* Ensure there's minimal space between title and text */
 }
 
 
-.sidebar-logo {
-  max-width: 12em;
-  padding-bottom: .5em;
-}
 
-/* Increase size of sidebar tools icons */
-.sidebar-navigation .quarto-navigation-tool {
-  font-size: 1.1em; // Increase this value to make icons bigger
-}
+
+
+
+
+
+
 
 
 
