@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/index.html</loc>
-    <lastmod>2024-08-22T13:37:25.422Z</lastmod>
+    <lastmod>2024-09-22T09:50:30.799Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Workshops/GAP_2024.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LMM.html</loc>
-    <lastmod>2024-07-16T21:53:30.000Z</lastmod>
+    <lastmod>2024-09-22T15:21:04.259Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</loc>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels.html</loc>
-    <lastmod>2024-09-22T09:29:11.165Z</lastmod>
+    <lastmod>2024-09-22T15:22:11.791Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Workshops/BCCCD2024.html</loc>
@@ -58,6 +58,6 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/InterpretingModelResults.html</loc>
-    <lastmod>2024-09-22T09:29:14.804Z</lastmod>
+    <lastmod>2024-09-22T21:56:18.079Z</lastmod>
   </url>
 </urlset>

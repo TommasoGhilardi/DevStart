@@ -123,7 +123,7 @@ Perfect this was super simple!! We can use the output of the model to understand
 
 When looking at model outputs, people often zero in on the p-value. However, there's much more to unpack in a model summary! For now, we'll just skim the surface of model summary interpretation. It's true that the model provides p-values, which serve as indicators of whether there's evidence for an effect of our variables on the dependent variable. But it's crucial to understand the full scope of the model output. That's why we've created a separate tutorial to guide you through the intricacies of model interpretation. For now, let's wrap up this current tutorial. Afterwards, we'll dive together into the art of deciphering model results.
 
-### Model checks
+## Model checks
 
 So now we have run our model and seen the summary... That's great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require few data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won't be valid.
 
@@ -142,7 +142,7 @@ Again this is not a theoretical tutorial. So we won't go into details as which a
 There is a super easy and convenient way we usually check these assumptions. Using the [easystats](https://easystats.github.io/easystats/) library.
 
 ::: callout-note
-## [Easystats](https://easystats.github.io/easystats/)
+[**Easystats**](https://easystats.github.io/easystats/)
 
 Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://cran.r-project.org/web/packages/report/index.html), [**correlation**](https://cran.r-project.org/web/packages/correlation/index.html), [**modelbased**](https://cran.r-project.org/web/packages/modelbased/index.html), [**bayestestR**](https://cran.r-project.org/web/packages/bayestestR/index.html), [**effectsize**](https://cran.r-project.org/web/packages/effectsize/index.html), [**see**](https://cran.r-project.org/web/packages/see/index.html), [**parameters**](https://cran.r-project.org/web/packages/parameters/index.html), [**performance**](https://cran.r-project.org/web/packages/performance/index.html), [**insight**](https://cran.r-project.org/web/packages/insight/index.html), [**datawizard**](https://cran.r-project.org/web/packages/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats**.
 
@@ -251,4 +251,21 @@ To check the normality of our residuals and:
 check_homogeneity(mod)
 ```
 
-to check homoscedasticity/homogeneity of variance. Again you can find all the function in the [**performance**](https://cran.r-project.org/web/packages/performance/index.html)package (part fo the Easystats collection)
+to check homoscedasticity/homogeneity of variance. Again you can find all the function in the [**performance**](https://cran.r-project.org/web/packages/performance/index.html) package (part fo the Easystats collection)
+
+## Interpret Results
+
+But how to interpret these results?
+
+```{r}
+library(ggplot2)
+
+model_p = parameters(mod)
+
+ggplot()+
+  # Intercept
+  geom_point(aes(x = 0, y = model_p[1,2]), size = pi * model_p[1,3]^2, alpha = 0.3, color = 'darkred')+
+  geom_point(aes(x = 0, y = model_p[1,2]), color = 'darkred')+
+
+  coord_cartesian(xlim = c(-5,5), ylim = c(-5,5))
+```
