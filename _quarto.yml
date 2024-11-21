@@ -77,10 +77,10 @@ website:
           - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
-      - section: "Stats"
-        contents:
-          - CONTENT/Stats/LinearModels.qmd
-          - CONTENT/Stats/InterpretingModelResults.qmd
+      # - section: "Stats"
+      #   contents:
+      #     - CONTENT/Stats/LinearModels.qmd
+      #     - CONTENT/Stats/InterpretingModelResults.qmd
       # - section: "Workshops"
       #   contents:
       #     #- CONTENT/Workshops/BCCCD2024.qmd
