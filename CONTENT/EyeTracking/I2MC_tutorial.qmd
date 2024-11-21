@@ -5,7 +5,7 @@ execute:
 jupyter:
   kernel: "python3"
 pagetitle: "Using I2MC for robust fixation extraction"
-author-meta: Tommaso Ghilardi
+author-meta: "Tommaso Ghilardi"
 description-meta: "Learn how to use I2MC for robust fixation extraction in eye-tracking data analysis."
 keywords: "eye-tracking, I2MC, fixation detection, data analysis, tutorial, python, DevStart, developmental science, tutorial, eye fixations"
 categories:

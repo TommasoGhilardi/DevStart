@@ -16,8 +16,8 @@
 <height>167</height>
 <width>144</width>
 </image>
-<generator>quarto-1.4.555</generator>
-<lastBuildDate>Sun, 22 Sep 2024 09:29:34 GMT</lastBuildDate>
+<generator>quarto-1.5.47</generator>
+<lastBuildDate>Thu, 21 Nov 2024 22:06:26 GMT</lastBuildDate>
 <item>
   <title>Create your first paradigm</title>
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</link>
@@ -55,7 +55,7 @@ Stimuli!
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation:</h2>
 <p>First things first, let’s import the relevant libraries and define the path to where our stimuli are. PsychoPy has a lot of different modules that allow us to interface with different types of stimuli and systems. For this tutorial we need the following:</p>
-<div id="bdc019a3" class="cell" data-execution_count="1">
+<div id="0e9f379f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import some libraries from PsychoPy and others</span></span>
@@ -72,7 +72,7 @@ font-style: inherit;">import</span> core, visual, sound, event </span></code></p
 <section id="stimuli-1" class="level2">
 <h2 class="anchored" data-anchor-id="stimuli-1">Stimuli:</h2>
 <p>The next step is to create the window. The window is what we will show the stimuli in; it is the canvas on which to draw objects. For now, we will create a small window of 960*540 pixels. In this way, we will able to see the stimuli and still interact with the rest of our PC interface. In a real experiment, we would probably set the window dimension to the entirety of the display (fullscr=True) and maybe on a secondary screen (screen = 1).</p>
-<div id="a3b0c86c" class="cell" data-execution_count="2">
+<div id="7ccf2065" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Winsize</span></span>
@@ -190,7 +190,7 @@ font-style: inherit;">'/Users/tomma/Desktop'</span></span></code></pre></div></l
 <p>Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. <strong>We’ll follow this rule in all our scripts, so keep it in mind – it’s a key detail for error-free scripting!</strong></p>
 </div>
 </div>
-<div id="db344aff" class="cell" data-execution_count="3">
+<div id="62a810e7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Load and prepare stimuli</span></span>
@@ -408,18 +408,18 @@ font-style: inherit;">1</span> ]</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="show-a-visual-stimulus">Show a visual stimulus:</h2>
 <p>Now we want to show a stimulus in the center of our window. To do so, we will have to use the function “draw”. As the name suggests this function draws the stimulus that we want on the window that we have created.</p>
 <p>Let’s start with displaying the fixation cross in the center.</p>
-<div id="6a6670b6" class="cell" data-execution_count="4">
+<div id="65dd517c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Draw the fixation</span></span>
 <span id="cb7-2">fixation.draw()</span></code></pre></div>
 </div>
 <p>Do you see the fixation cross?????? Probably not!! This is because we have drawn the fixation cross but we have not refreshed the window. Psychopy allows you to draw as many stimuli as you want on a window but the changes are only shown when you “refresh” the window. To do so we need to use the “flip” function.</p>
-<div id="674a2b5a" class="cell" data-execution_count="5">
+<div id="f8b23592" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">win.flip()</span></code></pre></div>
 </div>
 <p>Perfect!!!! The fixation cross is there. Before each flip, we need to draw our objects. Otherwise, we will only see the basic window with nothing in it. Let’s try!!! flip the window now.</p>
-<div id="ebb8956e" class="cell" data-execution_count="6">
+<div id="2b1dc712" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Flipping the window (refreshing)</span></span>
@@ -427,11 +427,13 @@ font-style: inherit;"># Flipping the window (refreshing)</span></span>
 </div>
 <p>The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new in each frame. This means that the speed limit of our presentation is the actual frame rate of our display. <em>If we have a 60Hz display we can present an image 60 times in a second.</em></p>
 <p>So if we want to present our fixation for an entire second we would have to draw and flip it 60 times (our display has a refresh rate of 60Hz)! Let’s try:</p>
-<div id="514de81e" class="cell" data-execution_count="7">
+<div id="b9ff2d2f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> _ <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
@@ -445,7 +447,7 @@ font-style: inherit;"># we re-flip at the end to clean the window</span></span><
 </div>
 <p>Now we have shown the fixation for 1 second and then it disappeared. Nice!! However, you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flipped the window, and then waited for 1s. But now you have an idea of how to show animated stimuli or even videos!!! <strong>AMAZING!!!</strong>.</p>
 <p>Now let’s try to show the fixation for 1s by just waiting.</p>
-<div id="1c093b5e" class="cell" data-execution_count="8">
+<div id="c2bc9d89" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">fixation.draw()</span>
 <span id="cb11-2">win.flip()</span>
 <span id="cb11-3">core.wait(<span class="dv" style="color: #AD0000;
@@ -461,7 +463,7 @@ font-style: inherit;"># we re-flip at the end to clean the window</span></span><
 <section id="play-a-sound" class="level2">
 <h2 class="anchored" data-anchor-id="play-a-sound">Play a sound:</h2>
 <p>We have seen how to show a stimulus let’s now play the sounds that we have imported. This is extremely simple, we can just <code>play()</code> them:</p>
-<div id="91ab5660" class="cell" data-execution_count="9">
+<div id="ae1f73d8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">winning_sound.play()</span>
 <span id="cb12-2">core.wait(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -493,7 +495,7 @@ Warning
 <li><p>we present the reward or the non-reward depending on the cue for 2s.</p></li>
 </ul>
 <p>In the end, we also close the window.</p>
-<div id="b476c014" class="cell" data-execution_count="10">
+<div id="82a5041d" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">###### 1st Trial ######</span></span>
@@ -595,7 +597,7 @@ font-style: inherit;"># let's close the window at the end of the trial</span></s
 <p>Amazing, we’ve got two trials! But, these trials are back-to-back, which isn’t typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a <code>core.wait(1)</code>, which would pause the script for a second. However, I’d like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.</p>
 <p>To implement this ISI, we’ll create a psychopy <code>core.Clock()</code>. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We’ll then use a <code>while</code> loop to monitor the elapsed time and break this loop once a second has passed.</p>
 <p>The <code>while</code> loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.</p>
-<div id="5b62850e" class="cell" data-execution_count="11">
+<div id="cdf7b109" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">### ISI</span></span>
@@ -606,6 +608,7 @@ background-color: null;
 font-style: inherit;"># start clock</span></span>
 <span id="cb14-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">while</span> clock.getTime() <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
@@ -613,6 +616,7 @@ background-color: null;
 font-style: inherit;">1</span>:</span>
 <span id="cb14-4">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">pass</span></span></code></pre></div>
 </div>
 <p>Perfect we can now add this at the end of our trials!!</p>
@@ -622,7 +626,7 @@ font-style: inherit;">pass</span></span></code></pre></div>
 <p>Fantastic, we’ve nearly have our study! However, studies often don’t run to completion, especially when we’re working with infants and children. More often than not, we need to halt the study prematurely. This could be due to the participant becoming fatigued or distracted, or perhaps we need to tweak some settings.</p>
 <p>How can we accomplish this? Of course, we could just shut down Python and let the experiment crash… but surely, there’s a more elegant solution… And indeed, there is! In fact, there are numerous methods to achieve this, and we’re going to demonstrate one of the most straightforward and flexible ones to you.</p>
 <p>We can use the&nbsp;<code>event.getKeys()</code>&nbsp;function to ask Psychopy to report any key that has been pressed during our trial. In our case, we will check if the&nbsp;ESC&nbsp;key has been pressed and if it has, we will simply close the window and stop the study.</p>
-<div id="e913878c" class="cell" data-execution_count="12">
+<div id="a4bb098c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">### Check for closing experiment</span></span>
@@ -633,10 +637,12 @@ background-color: null;
 font-style: inherit;"># collect list of pressed keys</span></span>
 <span id="cb15-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'escape'</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> keys:</span>
 <span id="cb15-4">    win.close()  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -664,7 +670,7 @@ Important
 <h2 class="anchored" data-anchor-id="create-an-entire-experiment">Create an entire experiment</h2>
 <p>In an experiment, we want more than 1 trial. Let’s then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of <code>0</code> and <code>1</code>. where <code>0</code> would identify a rewarding trial and <code>1</code> would index a non-rewarding trial.</p>
 <p>To properly utilize this list of <code>0</code> and <code>1</code>, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:</p>
-<div id="d3a6dc08" class="cell" data-execution_count="13">
+<div id="5656f489" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create list of trials in which 0 means winning and 1 means losing</span></span>
@@ -726,7 +732,7 @@ Caution
 <p>If you are testing this script on your laptop and do not want to lose the ability to interact with it until the experiment is finished, keep the same window size and position as the previous lines of code.</p>
 </div>
 </div>
-<div id="7d3b5034" class="cell" data-execution_count="14">
+<div id="6c9352f2" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import some libraries from PsychoPy and others</span></span>
@@ -996,8 +1002,10 @@ font-style: inherit;">#%% Trials</span></span>
 <span id="cb17-39"></span>
 <span id="cb17-40"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> trial <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> Trials:</span>
 <span id="cb17-41"></span>
 <span id="cb17-42">    <span class="co" style="color: #5E5E5E;
@@ -1053,6 +1061,7 @@ background-color: null;
 font-style: inherit;"># start clock</span></span>
 <span id="cb17-65">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">while</span> clock.getTime() <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
@@ -1060,6 +1069,7 @@ background-color: null;
 font-style: inherit;">1</span>:</span>
 <span id="cb17-66">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">pass</span></span>
 <span id="cb17-67">      </span>
 <span id="cb17-68">    <span class="co" style="color: #5E5E5E;
@@ -1072,10 +1082,12 @@ background-color: null;
 font-style: inherit;"># collect list of pressed keys</span></span>
 <span id="cb17-70">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'escape'</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> keys:</span>
 <span id="cb17-71">        win.close()  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1101,7 +1113,7 @@ font-style: inherit;"># stop study</span></span>
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Starting with PsychoPy</title>
@@ -1163,7 +1175,7 @@ font-style: inherit;">conda</span> env list</span></code></pre></div>
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPsychopy.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Starting with Python</title>
@@ -1286,7 +1298,7 @@ font-style: inherit;">-f</span> environment.yml</span></code></pre></div>
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Create an eye-tracking experiment</title>
@@ -1327,7 +1339,7 @@ font-style: inherit;">pip</span> install tobii_research</span></code></pre></div
 <p>So how does this library work, how do we connect to the eye-tracker and collect our data? Very good questions!</p>
 <p>The <code>tobii_research</code> documentation is quite extensive and describes in detail a lot of functions and data classes that are very useful. However, we don’t need much to start our experiment.</p>
 <p>First we need to identify all the eye trackers connected to our computer. Yes, plural, <code>tobii_research</code> will return a list of all the eye trackers connected to our computer. 99.99999999% of the time you will only have 1 eye tracker connected, so we can just select the first (and usually only) eye tracker found.</p>
-<div id="2c9fa6d7" class="cell" data-execution_count="1">
+<div id="817827c6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import tobii_research library</span></span>
@@ -1369,9 +1381,10 @@ font-style: inherit;">0</span>]</span></code></pre></div>
 <li><p>the <code>left_eye.gaze_point.validity</code>, this is a value that tells us whether we think the recognition is ok or not</p></li>
 </ul>
 <p>Here is our callback function:</p>
-<div id="a514639b" class="cell" data-execution_count="2">
+<div id="08e18451" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb3-2"></span>
 <span id="cb3-3">    <span class="co" style="color: #5E5E5E;
@@ -1414,7 +1427,7 @@ background-color: null;
 font-style: inherit;">=</span> gaze_data.right_eye.gaze_point.validity</span></code></pre></div>
 </div>
 <p>How we said, this function will be called every time tobii has a new data-point. COOL!! Now we need to tell tobii to run this function we have created. This is very simple, we can just do the following:</p>
-<div id="369570b8" class="cell" data-execution_count="3">
+<div id="1de6f2c6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Start the callback function</span></span>
@@ -1428,16 +1441,19 @@ font-style: inherit;"># Start the callback function</span></span>
 <p>Luckily there is a simple way we can achieve this. We can set a text string that our callback function can access and include in our data. To make sure that our callback function can access this variable we will use the <code>global</code> keyword. This makes sure that we can read/modify a variable that exists outside of the function.</p>
 <p>In this way, each time the callback function will be run, it will also have access to the trigger variable. We save the trigger to the <code>ev</code> variable and we set it back to an empty string <code>""</code> .</p>
 <p>This means that we can set the trigger to whatever string we want and when we set it it will be picked up by the callback function.</p>
-<div id="f3519157" class="cell" data-execution_count="4">
+<div id="05e5137c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb5-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> trigger</span>
 <span id="cb5-3"></span>
 <span id="cb5-4">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">len</span>(trigger)<span class="op" style="color: #5E5E5E;
@@ -1452,6 +1468,7 @@ background-color: null;
 font-style: inherit;">''</span></span>
 <span id="cb5-6">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb5-7">        ev <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1553,19 +1570,23 @@ font-style: inherit;">'Presented Stimulus'</span></span></code></pre></div>
 <p>For this reason, we typically adjust the data to position the origin in the bottom left corner. This can be achieved by subtracting the gaze coordinates from the maximum window height size.</p>
 <p>In addition to the origin point issue, the gaze coordinates are reported between 0 and 1. It’s often more convenient to handle data in pixels, so we can transform our data into pixels. This is done by multiplying the obtained coordinates by the pixel dimensions of our screen.</p>
 <p>Lastly, we also modify the time column. Tobii provides data in microseconds, but such precision isn’t necessary for our purposes, so we convert it to milliseconds by dividing by 1000.</p>
-<div id="2414446f" class="cell" data-execution_count="5">
+<div id="e98e6f45" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb6-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> trigger</span>
 <span id="cb6-3">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> winsize</span>
 <span id="cb6-4"></span>
 <span id="cb6-5">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">len</span>(trigger)<span class="op" style="color: #5E5E5E;
@@ -1580,6 +1601,7 @@ background-color: null;
 font-style: inherit;">''</span></span>
 <span id="cb6-7">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb6-8">        ev <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1681,7 +1703,7 @@ font-style: inherit;">1080</span>)</span></code></pre></div>
 <p>What is the solution you ask? A mixed approach!!!!!!!<br>
 We can store our data in a list and save it during the less important parts of the study, for example the Inter Stimulus Interval (the time between a trial and another). So let’s write a function to do exactly that.</p>
 <p>Lets first create an empty list that we will fill with out data from the callback function. As before, we make sure that our callback function can access this list and append the new data we will use the <code>global</code> keyword.</p>
-<div id="a0019230" class="cell" data-execution_count="6">
+<div id="cb210c96" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create an empty list we will append our data to</span></span>
@@ -1694,19 +1716,24 @@ background-color: null;
 font-style: inherit;"># This will be called every time there is new gaze data</span></span>
 <span id="cb7-5"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb7-6">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> gaze_data_buffer</span>
 <span id="cb7-7">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> trigger</span>
 <span id="cb7-8">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> winsize</span>
 <span id="cb7-9"></span>
 <span id="cb7-10">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">len</span>(trigger)<span class="op" style="color: #5E5E5E;
@@ -1721,6 +1748,7 @@ background-color: null;
 font-style: inherit;">''</span></span>
 <span id="cb7-12">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb7-13">        ev <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1804,9 +1832,10 @@ font-style: inherit;"># Add gaze data to the buffer </span></span>
 <p>Now the gaze_data_buffer will be filled with the data we extract. Let’s save this list then.</p>
 <p>We will first make a copy of the list, and then empty the original list. In this way, we have our data stored, while the original list is empty and can be filled with new data.</p>
 <p>After creating a copy, we use <code>pandas</code> to transform the list into a data frame and save it to a csv file. Using <code>mode = 'a'</code> we tell pandas to append the new data to the existing .csv. If this is the first time we are trying to save the data the .csv does not yet exist, so pandas will create a new csv instead.</p>
-<div id="9f51c019" class="cell" data-execution_count="7">
+<div id="ec83d6e7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> write_buffer_to_file(<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">buffer</span>, output_path):</span>
@@ -1867,6 +1896,7 @@ font-style: inherit;"># Check if the file exists</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isfile(output_path)</span>
 <span id="cb8-16">    </span>
 <span id="cb8-17">    <span class="co" style="color: #5E5E5E;
@@ -1900,7 +1930,7 @@ font-style: inherit;">=</span> file_exists)</span></code></pre></div>
 <section id="import-and-functions" class="level3">
 <h3 class="anchored" data-anchor-id="import-and-functions">Import and functions</h3>
 <p>To start, let’s import the libraries and define the two functions that we create before</p>
-<div id="df7c7872" class="cell" data-execution_count="8">
+<div id="c56c5a90" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -1950,19 +1980,24 @@ background-color: null;
 font-style: inherit;"># This will be called every time there is new gaze data</span></span>
 <span id="cb9-16"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb9-17">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> trigger</span>
 <span id="cb9-18">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> gaze_data_buffer</span>
 <span id="cb9-19">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> winsize</span>
 <span id="cb9-20"></span>
 <span id="cb9-21">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">len</span>(trigger)<span class="op" style="color: #5E5E5E;
@@ -1977,6 +2012,7 @@ background-color: null;
 font-style: inherit;">''</span></span>
 <span id="cb9-23">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb9-24">        ev <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2060,6 +2096,7 @@ font-style: inherit;"># Add gaze data to the buffer </span></span>
 <span id="cb9-41">        </span>
 <span id="cb9-42"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> write_buffer_to_file(<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">buffer</span>, output_path):</span>
@@ -2120,6 +2157,7 @@ font-style: inherit;"># Check if the file exists</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isfile(output_path)</span>
 <span id="cb9-57">    </span>
 <span id="cb9-58">    <span class="co" style="color: #5E5E5E;
@@ -2141,7 +2179,7 @@ font-style: inherit;">=</span> file_exists)</span></code></pre></div>
 <section id="load-the-stimuli" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-stimuli">Load the stimuli</h3>
 <p>Now we are going to set a few settings, such as the screen size, create a Psychopy window, load the stimuli and then prepare the trial definition. This is exactly the same as we did in the previous Psychopy tutorial.</p>
-<div id="09e29cf1" class="cell" data-execution_count="9">
+<div id="b9c1c010" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Load and prepare stimuli</span></span>
@@ -2395,7 +2433,7 @@ font-style: inherit;">1</span> ]</span></code></pre></div>
 <section id="start-recording" class="level3">
 <h3 class="anchored" data-anchor-id="start-recording">Start recording</h3>
 <p>Now we are ready to look for the eye-trackers connected to the computer and select the first one that we find. Once we have selected it, we will launch our callback function to start collecting data.</p>
-<div id="4cca7852" class="cell" data-execution_count="10">
+<div id="f067386a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Record the data</span></span>
@@ -2426,15 +2464,17 @@ font-style: inherit;">#Start recording</span></span>
 <h3 class="anchored" data-anchor-id="present-our-stimuli">Present our stimuli</h3>
 <p>The eye-tracking is running! Let’s show our participant something!</p>
 <p>As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.</p>
-<div id="9ac48340" class="cell" data-execution_count="11">
+<div id="40c67f03" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Trials</span></span>
 <span id="cb12-2"></span>
 <span id="cb12-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> trial <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> Trials:</span>
 <span id="cb12-4"></span>
 <span id="cb12-5">    <span class="co" style="color: #5E5E5E;
@@ -2466,6 +2506,7 @@ font-style: inherit;">### Present the cue</span></span>
 <span id="cb12-17">    win.flip()</span>
 <span id="cb12-18">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> trial <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
@@ -2478,6 +2519,7 @@ background-color: null;
 font-style: inherit;">'Circle'</span></span>
 <span id="cb12-20">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb12-21">        trigger <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2506,6 +2548,7 @@ font-style: inherit;">### Present the reward</span></span>
 <span id="cb12-31">    win.flip()</span>
 <span id="cb12-32">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> trial <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
@@ -2518,6 +2561,7 @@ background-color: null;
 font-style: inherit;">'Reward'</span></span>
 <span id="cb12-34">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb12-35">        trigger <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2541,6 +2585,7 @@ background-color: null;
 font-style: inherit;">=</span> core.Clock()</span>
 <span id="cb12-41">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">while</span> clock.getTime() <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
@@ -2548,6 +2593,7 @@ background-color: null;
 font-style: inherit;">1</span>:</span>
 <span id="cb12-42">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">pass</span></span>
 <span id="cb12-43">    </span>
 <span id="cb12-44">    <span class="co" style="color: #5E5E5E;
@@ -2560,10 +2606,12 @@ background-color: null;
 font-style: inherit;"># collect list of pressed keys</span></span>
 <span id="cb12-46">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'escape'</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> keys:</span>
 <span id="cb12-47">        win.close()  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2574,7 +2622,7 @@ font-style: inherit;"># stop study</span></span></code></pre></div>
 </div>
 <p>As we said before in Save the data, it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html">Getting started with Psychopy</a>, we created the ISI in a different way than just a <code>clock.wait()</code> and we said that this different method would come in handy later on. This is the moment!</p>
 <p>Our <strong>ISI</strong> starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the <code>while clock.getTime() &lt; 1:  pass</code> code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.</p>
-<div id="ddb5d64d" class="cell" data-execution_count="12">
+<div id="8c042e67" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">### ISI</span></span>
@@ -2600,6 +2648,7 @@ background-color: null;
 font-style: inherit;">'.csv'</span>)</span>
 <span id="cb13-4"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">while</span> clock.getTime() <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
@@ -2607,6 +2656,7 @@ background-color: null;
 font-style: inherit;">1</span>:</span>
 <span id="cb13-5">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">pass</span></span></code></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -2627,7 +2677,7 @@ If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be lon
 <section id="stop-recording" class="level3">
 <h3 class="anchored" data-anchor-id="stop-recording">Stop recording</h3>
 <p>We’re almost there! We have imported our functions, started collecting data, sent the triggers, and saved the data. The last step will be stop data collection (or python will keep getting an endless amount of data from the eye tracker!). Do do that, We simply unsubscribe from the eye tracker to which we had subscribed to start of data collection:</p>
-<div id="2b9e97a2" class="cell" data-execution_count="13">
+<div id="cbc650fc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">win.close()</span>
 <span id="cb14-2">Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code></pre></div>
 </div>
@@ -2687,19 +2737,24 @@ background-color: null;
 font-style: inherit;"># This will be called every time there is new gaze data</span></span>
 <span id="cb15-16"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb15-17">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> trigger</span>
 <span id="cb15-18">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> gaze_data_buffer</span>
 <span id="cb15-19">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">global</span> winsize</span>
 <span id="cb15-20"></span>
 <span id="cb15-21">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">len</span>(trigger)<span class="op" style="color: #5E5E5E;
@@ -2714,6 +2769,7 @@ background-color: null;
 font-style: inherit;">''</span></span>
 <span id="cb15-23">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb15-24">        ev <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2797,6 +2853,7 @@ font-style: inherit;"># Add gaze data to the buffer </span></span>
 <span id="cb15-41">        </span>
 <span id="cb15-42"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> write_buffer_to_file(<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">buffer</span>, output_path):</span>
@@ -2857,6 +2914,7 @@ font-style: inherit;"># Check if the file exists</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isfile(output_path)</span>
 <span id="cb15-57">    </span>
 <span id="cb15-58">    <span class="co" style="color: #5E5E5E;
@@ -3154,8 +3212,10 @@ font-style: inherit;">=</span> []</span>
 <span id="cb15-106"></span>
 <span id="cb15-107"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> trial <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> Trials:</span>
 <span id="cb15-108"></span>
 <span id="cb15-109">    <span class="co" style="color: #5E5E5E;
@@ -3187,6 +3247,7 @@ font-style: inherit;">### Present the cue</span></span>
 <span id="cb15-121">    win.flip()</span>
 <span id="cb15-122">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> trial <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
@@ -3199,6 +3260,7 @@ background-color: null;
 font-style: inherit;">'Circle'</span></span>
 <span id="cb15-124">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb15-125">        trigger <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3227,6 +3289,7 @@ font-style: inherit;">### Present the reward</span></span>
 <span id="cb15-135"></span>
 <span id="cb15-136">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> trial <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
@@ -3239,6 +3302,7 @@ background-color: null;
 font-style: inherit;">'Reward'</span></span>
 <span id="cb15-138">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb15-139">        trigger <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3280,6 +3344,7 @@ background-color: null;
 font-style: inherit;">'.csv'</span>)</span>
 <span id="cb15-147">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">while</span> clock.getTime() <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
@@ -3287,6 +3352,7 @@ background-color: null;
 font-style: inherit;">1</span>:</span>
 <span id="cb15-148">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">pass</span></span>
 <span id="cb15-149">    </span>
 <span id="cb15-150">    <span class="co" style="color: #5E5E5E;
@@ -3299,10 +3365,12 @@ background-color: null;
 font-style: inherit;"># collect list of pressed keys</span></span>
 <span id="cb15-152">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'escape'</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> keys:</span>
 <span id="cb15-153">        win.close()  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3333,7 +3401,7 @@ font-style: inherit;"># stop study</span></span></code></pre></div>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Calibrating eye-tracking</title>
@@ -3413,7 +3481,7 @@ Note
 <section id="importing-the-functions" class="level3">
 <h3 class="anchored" data-anchor-id="importing-the-functions">Importing the functions</h3>
 <p>We’ll now import the required libraries and custom functions. First, we’ll set the working directory to where our stimuli and the psychopy_tobii_infant folder are located. This allows Python to access these resources. Once set, we can easily import the necessary libraries and the custom functions from psychopy_tobii_infant for our eye-tracking experiment.</p>
-<div id="3897037a" class="cell" data-execution_count="1">
+<div id="1d5974e8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -3442,7 +3510,7 @@ font-style: inherit;">import</span> TobiiInfantController</span></code></pre></d
 <h3 class="anchored" data-anchor-id="settings">Settings</h3>
 <p>Before running our calibration we need to prepare a few things!</p>
 <p>First, we create a nice window. As we explained before, this is the canvas where we will draw our stimuli.</p>
-<div id="7eef9539" class="cell" data-execution_count="2">
+<div id="f0201a87" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">winsize <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
@@ -3483,7 +3551,7 @@ font-style: inherit;">'pix'</span>)</span></code></pre></div>
 </figure>
 </div>
 <p>Let’s find them and put the in a list.</p>
-<div id="2143d6ba" class="cell" data-execution_count="3">
+<div id="1ff96e4a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># visual stimuli</span></span>
@@ -3545,7 +3613,7 @@ font-style: inherit;">audio.wav"</span>)</span></code></pre></div>
 </div>
 <p>Perfect we have found all the stimuli that we need.</p>
 <p>Now we will use the TobiiInfantController that we have imported before to connect to the eye-tracker. It is extremely simple:</p>
-<div id="1dfa3f40" class="cell" data-execution_count="4">
+<div id="164b7823" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">EyeTracker <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> TobiiInfantController(win)</span></code></pre></div>
@@ -3564,7 +3632,7 @@ font-style: inherit;">=</span> TobiiInfantController(win)</span></code></pre></d
 <p>But how to do it?? We can eyeball it but it’s not going to be easy. Luckily we can get some help!!</p>
 <p>Using <code>EyeTracker.show_status()</code> we can see the eyes of the participant in relation to the screen. Therefore we can move either the eye-tracker or the infant to make sure the gaze is parallel to the screen. Sounds good doesn’t it??!!?? However, most of the times infants won’t look at the screen if nothing interesting is presented on it. Thus we need to capture their attention!!!!!</p>
 <p>We can use the video we imported before. We set it to autodraw (each time the window is flipped a new frame will be drawn automatically) and the we start it by calling <code>play()</code>.</p>
-<div id="0af11302" class="cell" data-execution_count="5">
+<div id="80798d1c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># set video playing</span></span>
@@ -3586,7 +3654,7 @@ font-style: inherit;"># show the relative position of the subject to the eyetrac
 </div>
 <p>In the center of the screen you will see the video we imported. In this case, a video of funny dancing fruits. But more importantly, at the top we can see the eyes of our participant. We need to make sure that we actually see the eyes and that they are centered in the screen. In addition is important to notice that under the eye position there is a green bar. The black line on it represents the distance of the participant head from the eye-tracker (the more on the right, the further from the screen; the more on the left, the closer to it). Ideally the black line should be in the center (overlapping the white thick line). This would indicate that the head of the participant is at an ideal distance (usually 65cm).</p>
 <p>Once we are satisfied with the position of the eye-tracker and the infant we can press <code>spacebar</code> to proceed to the next step!! Before doing that we will stop the presentation of</p>
-<div id="d8c213fc" class="cell" data-execution_count="6">
+<div id="bd62c233" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># stop the attention grabber</span></span>
@@ -3601,7 +3669,7 @@ font-style: inherit;">False</span>)</span>
 <p>Ok, now that we are happy with the setup let’s actually run the calibration. It only takes two steps.</p>
 <p>First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the center.</p>
 <p>The easiest way to define them is by using Psychopy’s normalized unit.</p>
-<div id="c5846ad9" class="cell" data-execution_count="7">
+<div id="c0730f65" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">CALINORMP <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [(<span class="op" style="color: #5E5E5E;
@@ -3635,7 +3703,7 @@ background-color: null;
 font-style: inherit;">0.4</span>)]</span></code></pre></div>
 </div>
 <p>As we usually like to work in pixel units, we could define them in pixels or just transform our <code>CALINORMP</code> using the dimension of our window.</p>
-<div id="a833005c" class="cell" data-execution_count="8">
+<div id="9f60b7cc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">CALIPOINTS <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [(x <span class="op" style="color: #5E5E5E;
@@ -3648,12 +3716,14 @@ font-style: inherit;">*</span> winsize[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> x, y <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> CALINORMP]</span></code></pre></div>
 </div>
 <p>Perfect! Now we run our calibration by running</p>
-<div id="628c108f" class="cell" data-execution_count="9">
+<div id="88991cfa" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">success <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> controller.run_calibration(CALIPOINTS, CALISTIMS, audio <span class="op" style="color: #5E5E5E;
@@ -3692,7 +3762,7 @@ Tip
 <p>Well done!! Calibration is done!!!!</p>
 <p>Now we can start with our eye-tracking study!</p>
 <p>Here below the entire code.</p>
-<div id="84ba7c94" class="cell" data-execution_count="10">
+<div id="766b88db" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -3885,8 +3955,10 @@ font-style: inherit;">*</span> winsize[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> x, y <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> CALINORMP]</span>
 <span id="cb10-42"></span>
 <span id="cb10-43">success <span class="op" style="color: #5E5E5E;
@@ -3908,7 +3980,7 @@ font-style: inherit;">=</span> Sound)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/EyetrackingCalibration.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>From fixations to measures</title>
@@ -3919,7 +3991,7 @@ font-style: inherit;">=</span> Sound)</span>
 
 
 <p>In the previous two tutorials we <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html">collected some eye-tracking data</a> and then we <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html">used I2MC to extract the fixations</a> from that data. Let’s load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.</p>
-<div id="c6ab4740" class="cell" data-execution_count="1">
+<div id="d1d02e58" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -4052,7 +4124,7 @@ font-style: inherit;">Adult1.csv'</span>)</span></code></pre></div>
 <li><p>Tobii reports data with its origin (0,0) in the lower left corner.</p></li>
 </ul>
 <p>This inconsistency is not a problem per se, but we need to take it into account when defining the AOIs. Let’s try to define the AOIs:</p>
-<div id="572f03f1" class="cell" data-execution_count="2">
+<div id="f7a75682" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Screen resolution</span></span>
@@ -4174,7 +4246,7 @@ background-color: null;
 font-style: inherit;">=</span> [AOI1, AOI2]</span></code></pre></div>
 </div>
 <p>Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let’s get a better idea by just plotting these two AOIs and two random points <code>(600, 500)</code> and <code>(1400,1000)</code>.</p>
-<div id="21a627fb" class="cell" data-execution_count="3">
+<div id="e5aa9c33" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
@@ -4233,8 +4305,10 @@ background-color: null;
 font-style: inherit;"># Create a rectangle for each area of interest and add it to the plot</span></span>
 <span id="cb3-15"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> i, (bottom_left, top_right) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(AOIs):</span>
@@ -4330,7 +4404,7 @@ font-style: inherit;"># Show the plot</span></span>
 </figure>
 </div>
 <p>So imagine we have a point: <code>point</code> and an area: <code>area</code>, we can check if the point falls inside the area by:</p>
-<div id="8dc4a3ae" class="cell" data-execution_count="4">
+<div id="47df40ce" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Extract bottom left and top right points</span></span>
@@ -4364,6 +4438,7 @@ font-style: inherit;">&lt;=</span> x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> top_x <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">and</span> bottom_y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> y <span class="op" style="color: #5E5E5E;
@@ -4372,7 +4447,7 @@ font-style: inherit;">&lt;=</span> top_y</span></code></pre></div>
 </div>
 <p>Perfect, this will return True if the point falls inside the area and False if it falls outside. Since we have two AOIs and not just one, we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.</p>
 <p>We will run the code above in a loop using <code>enumerate</code>. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both of these two pieces of information. We will use the actual area to check if our points fall into it. Then, if it does, we will return the index of that area. Conversely, if the point doesn’t fall in any area the function will return -1.</p>
-<div id="7c484f6b" class="cell" data-execution_count="5">
+<div id="55e23500" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We define a function that simply takes the a point and a list of areas.</span></span>
@@ -4384,12 +4459,15 @@ background-color: null;
 font-style: inherit;"># of the area. If the point is in no area it returns -1</span></span>
 <span id="cb5-4"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> find_area_for_point(point, areas):</span>
 <span id="cb5-5"></span>
 <span id="cb5-6">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> i, area <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(areas):</span>
@@ -4422,12 +4500,14 @@ background-color: null;
 font-style: inherit;"># Check if the point is in the area</span></span>
 <span id="cb5-18">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> bottom_x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> top_x <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">and</span> bottom_y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> y <span class="op" style="color: #5E5E5E;
@@ -4435,9 +4515,11 @@ background-color: null;
 font-style: inherit;">&lt;=</span> top_y :</span>
 <span id="cb5-19">            <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(i)</span>
 <span id="cb5-20">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
@@ -4458,7 +4540,7 @@ font-style: inherit;">1</span>)</span></code></pre></div>
 </div>
 <p>In this case, our attention is on the target window. We’re going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its pentation. Indeed, both <strong>Saccadic latency</strong> and <strong>Lookign time</strong> occur within this time window, while we don’t really care about where the participant is looking during other phases of the task.</p>
 <p>Let’s start by finding the moment in which the target appeared:</p>
-<div id="d049dd34" class="cell" data-execution_count="6">
+<div id="d8f3a7ae" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Let's find the time we presented a reward or no reward</span></span>
@@ -4485,7 +4567,7 @@ background-color: null;
 font-style: inherit;">'Event'</span>]].values</span></code></pre></div>
 </div>
 <p>Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we’re going to add two new columns to our fixation dataframe: <code>Event</code> and <code>Event_trial</code>. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we’re going to add another column called <code>Onset</code> to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.</p>
-<div id="978f6232" class="cell" data-execution_count="7">
+<div id="82a899f4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Find the fixations that we care about</span></span>
@@ -4504,8 +4586,10 @@ font-style: inherit;">400</span></span>
 <span id="cb7-4"></span>
 <span id="cb7-5"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> i,c <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(Targets):</span>
@@ -4565,7 +4649,7 @@ font-style: inherit;">0</span>]</span></code></pre></div>
 </figure>
 </div>
 <p>We can use this to our advantage and filter all the NANs out:</p>
-<div id="086ef993" class="cell" data-execution_count="8">
+<div id="9d71a3ca" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
@@ -4597,7 +4681,7 @@ Important
 <p>Just a heads up: our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you’re dealing with multiple or moving AOIs, you’ve got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It’s all about flexibility and precision!</p>
 </div>
 </div>
-<div id="1d10908d" class="cell" data-execution_count="9">
+<div id="ea8d5ff8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">Target_fixations[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'AOIs'</span>] <span class="op" style="color: #5E5E5E;
@@ -4614,7 +4698,7 @@ background-color: null;
 font-style: inherit;">=</span> np.nan</span></code></pre></div>
 </div>
 <p>Now that we have a column with the AOIs in our Target_fixations dataframe, we can run our function <code>find_area_for_point()</code> to check in which AOI each fixation falls.</p>
-<div id="930c9835" class="cell" data-execution_count="10">
+<div id="b01f63c5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
@@ -4623,8 +4707,10 @@ background-color: null;
 font-style: inherit;"># toghether with the areas</span></span>
 <span id="cb10-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> row <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">range</span>(<span class="bu" style="color: null;
@@ -4651,7 +4737,7 @@ background-color: null;
 font-style: inherit;">=</span> find_area_for_point(Point, Areas)</span></code></pre></div>
 </div>
 <p>Perfect, we now have a dataframe that contains only the fixations of interest and tells us which AOI each fixation is in. Before we continue, let’s remove the fixations that didn’t fall in any AOI (if you remember or the function assigns -1 if the fixation is outside any AOI):</p>
-<div id="2fd119b5" class="cell" data-execution_count="11">
+<div id="2ece56eb" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filter for AOI of interest</span></span>
@@ -4673,7 +4759,7 @@ font-style: inherit;">1</span>]</span></code></pre></div>
 <p>As I mentioned at the beginning of this tutorial, one of the indices we want to extract is saccadic latency. Basically, this indicates how quickly our participants fixated on the correct target location.</p>
 <p>If we know where our participant was supposed to look, we can easily find the first fixation. Sounds simple, right?</p>
 <p>In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:</p>
-<div id="1e894b49" class="cell" data-message="false" data-execution_count="12">
+<div id="7ecb56f3" class="cell" data-message="false" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We define which is the correct AOI that the participant should have looked at.</span></span>
@@ -4718,7 +4804,7 @@ background-color: null;
 font-style: inherit;">'Looked_AOI'</span>],]</span></code></pre></div>
 </div>
 <p>Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (<code>startT</code>) the event <code>Onset</code>:</p>
-<div id="b0ff0fb3" class="cell" data-execution_count="13">
+<div id="ce474611" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">Correct_Target_fixations[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Latency'</span>] <span class="op" style="color: #5E5E5E;
@@ -4749,7 +4835,7 @@ Note
 <h2 class="anchored" data-anchor-id="first-fixation">First fixation</h2>
 <p>We have all these latency values, but we only want the first/fastest of each trial. How can we extract this information easily? We will use groupby. Groupby allows us to perform specific functions/commands on grouped sections of a data frame.</p>
 <p>Here we will groupby by Events and Event_trials and for each of these grouped pieces of dataframe we will extract the smallest (<code>min()</code>) value of latency.</p>
-<div id="84b05164" class="cell" data-execution_count="14">
+<div id="77c1d15a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We extract the first fixation of our dataframe for each event</span></span>
@@ -4767,7 +4853,7 @@ font-style: inherit;">min</span>().reset_index()</span></code></pre></div>
 </div>
 <p>Here we have our <strong>Saccadic latency</strong>!!!</p>
 <p>Once our dataset is ready, we might want to visualise the data. For example, we can plot how saccadic latency changes across trials with seaborn:</p>
-<div id="1ce5b856" class="cell" data-execution_count="15">
+<div id="e7a042c5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> seaborn <span class="im" style="color: #00769E;
@@ -4825,7 +4911,7 @@ font-style: inherit;"># Show the plot</span></span>
 <h1>Looking time</h1>
 <p>While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.</p>
 <p>We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by <code>Event</code>, <code>Event_trial</code> and <code>Looked_AOI</code>. For each of the grouped dataframes, we will extract the <code>sum()</code> of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.</p>
-<div id="33b2e1a0" class="cell" data-execution_count="16">
+<div id="95c3ea8b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
@@ -4848,7 +4934,7 @@ background-color: null;
 font-style: inherit;">sum</span>()</span></code></pre></div>
 </div>
 <p>Again, we can now visualize the data. For example, we can plot whether looking time to rewarding vs.&nbsp;non-rewarding stimuli:</p>
-<div id="f3805416" class="cell" data-execution_count="17">
+<div id="9003475d" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">plt.figure()</span>
 <span id="cb17-2"></span>
 <span id="cb17-3"><span class="co" style="color: #5E5E5E;
@@ -4939,12 +5025,15 @@ background-color: null;
 font-style: inherit;"># of the area. If the point is in no area it returns -1</span></span>
 <span id="cb18-14"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> find_area_for_point(point, areas):</span>
 <span id="cb18-15"></span>
 <span id="cb18-16">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> i, area <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(areas):</span>
@@ -4977,12 +5066,14 @@ background-color: null;
 font-style: inherit;"># Check if the point is in the area</span></span>
 <span id="cb18-28">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> bottom_x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> top_x <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">and</span> bottom_y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> y <span class="op" style="color: #5E5E5E;
@@ -4990,9 +5081,11 @@ background-color: null;
 font-style: inherit;">&lt;=</span> top_y :</span>
 <span id="cb18-29">            <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(i)</span>
 <span id="cb18-30">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
@@ -5153,8 +5246,10 @@ font-style: inherit;">400</span></span>
 <span id="cb18-59"></span>
 <span id="cb18-60"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> i,c <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(Targets):</span>
@@ -5252,8 +5347,10 @@ background-color: null;
 font-style: inherit;"># toghether with the areas</span></span>
 <span id="cb18-83"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> row <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">range</span>(<span class="bu" style="color: null;
@@ -5489,7 +5586,7 @@ font-style: inherit;"># Show the plot</span></span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Using I2MC for robust fixation extraction</title>
@@ -5527,7 +5624,7 @@ Note
 <section id="use-i2mc" class="level1">
 <h1>Use I2MC</h1>
 <p>Let’s start with importing the libraries that we will need</p>
-<div id="1569c79b" class="cell" data-execution_count="1">
+<div id="1dda1d7a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> I2MC                         <span class="co" style="color: #5E5E5E;
@@ -5560,7 +5657,7 @@ font-style: inherit;"># to make plots</span></span></code></pre></div>
 <h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from <a href="../..\resources/I2mc/DATA.zip">here</a>.</p>
 <p>Let’s create step by step our function to import the data</p>
-<div id="4d98e443" class="cell" data-execution_count="2">
+<div id="f3f656c7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Load data</span></span>
@@ -5573,7 +5670,7 @@ background-color: null;
 font-style: inherit;">','</span>)</span></code></pre></div>
 </div>
 <p>After reading the data we will create a new data-frame that we will fill with the information needed from our raw_df. this is the point that would change depending on you eye-tracked and data format. you will probably have to change the columns names to be sure to have the 5 relevant ones.</p>
-<div id="57953911" class="cell" data-execution_count="3">
+<div id="5e23e308" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create empty dataframe</span></span>
@@ -5621,7 +5718,7 @@ background-color: null;
 font-style: inherit;">'R_Y'</span>]</span></code></pre></div>
 </div>
 <p>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (&gt;1) we will consider the sample as missing</p>
-<div id="f8bb22ac" class="cell" data-execution_count="4">
+<div id="a94207b8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">###</span></span>
@@ -5785,7 +5882,7 @@ font-style: inherit;">=</span> np.NAN</span></code></pre></div>
 <section id="everything-into-a-function" class="level3">
 <h3 class="anchored" data-anchor-id="everything-into-a-function">Everything into a function</h3>
 <p>We have read the data, extracted the relevant information and done some extremely basic processing rejecting data that had to be considered non valid. Now we will wrap this code in a function to make it easier to use with I2MC:</p>
-<div id="b7d6a469" class="cell" data-execution_count="5">
+<div id="9f8e9415" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># ===================================================================</span></span>
@@ -5798,6 +5895,7 @@ font-style: inherit;"># ========================================================
 <span id="cb5-4"></span>
 <span id="cb5-5"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> tobii_TX300(fname, res<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="dv" style="color: #AD0000;
@@ -6021,13 +6119,14 @@ font-style: inherit;">=</span> np.NAN</span>
 <span id="cb5-37">    </span>
 <span id="cb5-38">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(df)</span></code></pre></div>
 </div>
 </section>
 <section id="find-our-data" class="level3">
 <h3 class="anchored" data-anchor-id="find-our-data">Find our data</h3>
 <p>Nice!! we have our import function that we will use to read our data. Now, let’s find our data! To do this, we will use the glob library, which is a handy tool for finding files in Python. Before that let’s set our working directory. The working directory is the folder where we have all our scripts and data. We can set it using the <code>os</code> library:</p>
-<div id="add06e5b" class="cell" data-execution_count="6">
+<div id="153780fa" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -6036,7 +6135,7 @@ background-color: null;
 font-style: inherit;">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span></code></pre></div>
 </div>
 <p>This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a <em>.csv</em> extension in a specific folder on our computer. Let’s import glob and then let’s find the files:</p>
-<div id="9d9eeb13" class="cell" data-execution_count="7">
+<div id="eee34ce2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> glob</span>
@@ -6073,7 +6172,7 @@ font-style: inherit;">True</span>)</span></code></pre></div>
 <section id="define-the-output-folder" class="level3">
 <h3 class="anchored" data-anchor-id="define-the-output-folder">Define the output folder</h3>
 <p>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called <em>i2mc_output</em>. Using the <em><code>os</code></em> library we make sure the output folder doesn’t exist (<code>os.path.isdir(output_fodler)</code>) and then we create it (<code>os.mkdir(output_fodler)</code>)</p>
-<div id="b2f1dc03" class="cell" data-execution_count="8">
+<div id="299fa555" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -6098,8 +6197,10 @@ background-color: null;
 font-style: inherit;"># Create the folder</span></span>
 <span id="cb8-7"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isdir(output_fodler):</span>
 <span id="cb8-8">   os.mkdir(output_fodler)</span></code></pre></div>
 </div>
@@ -6108,7 +6209,7 @@ font-style: inherit;">not</span> os.path.isdir(output_fodler):</span>
 <h3 class="anchored" data-anchor-id="i2mc-settings">I2MC settings</h3>
 <p>Now that we’ve got our data, know how to import it using glob and we have out output folder, we’re all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you’re curious about what each of these settings does, you can explore the original <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">I2MC article</a> for a detailed understanding. Here I’ve added a general explanation about what each setting does. Once you’ve read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</p>
 <p>Let’s define these settings:</p>
-<div id="fb5b7a5f" class="cell" data-execution_count="9">
+<div id="dcd71ee8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># =============================================================================</span></span>
@@ -6370,17 +6471,19 @@ font-style: inherit;"># minimum fixation duration after merging, fixations with 
 <section id="run-i2mc" class="level3">
 <h3 class="anchored" data-anchor-id="run-i2mc">Run I2MC</h3>
 <p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</p>
-<div id="cd5f02f5" class="cell" data-execution_count="10">
+<div id="a3be0e79" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Run I2MC</span></span>
 <span id="cb10-2"></span>
 <span id="cb10-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> file_idx, <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">file</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(data_files):</span>
@@ -6425,8 +6528,10 @@ background-color: null;
 font-style: inherit;">=</span> os.path.join(output_fodler, name)</span>
 <span id="cb10-11">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isdir(subj_folder):</span>
 <span id="cb10-12">       os.mkdir(subj_folder)</span>
 <span id="cb10-13">       </span>
@@ -6455,6 +6560,7 @@ background-color: null;
 font-style: inherit;">## Create a plot of the result and save them</span></span>
 <span id="cb10-21">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> do_plot_data:</span>
 <span id="cb10-22">        <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -6551,7 +6657,7 @@ Warning
 <section id="entire-script" class="level2">
 <h2 class="anchored" data-anchor-id="entire-script">Entire script</h2>
 <p>To make it simple here is the entire script that we wrote together!!!</p>
-<div id="1485ec4b" class="cell" data-execution_count="11">
+<div id="459d961e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -6580,6 +6686,7 @@ font-style: inherit;"># ========================================================
 <span id="cb11-10"></span>
 <span id="cb11-11"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> tobii_TX300(fname, res<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="dv" style="color: #AD0000;
@@ -6803,6 +6910,7 @@ font-style: inherit;">=</span> np.NAN</span>
 <span id="cb11-43"></span>
 <span id="cb11-44">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span>(df)</span>
 <span id="cb11-45"></span>
 <span id="cb11-46"></span>
@@ -6865,8 +6973,10 @@ background-color: null;
 font-style: inherit;"># Create the outputfolder</span></span>
 <span id="cb11-60"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isdir(output_fodler):</span>
 <span id="cb11-61">   os.mkdir(output_fodler)</span>
 <span id="cb11-62"></span>
@@ -7136,10 +7246,12 @@ font-style: inherit;">#%% Run I2MC</span></span>
 <span id="cb11-114"></span>
 <span id="cb11-115"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> file_idx, <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">file</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">enumerate</span>(data_files):</span>
@@ -7184,8 +7296,10 @@ background-color: null;
 font-style: inherit;">=</span> os.path.join(output_fodler, name)</span>
 <span id="cb11-123">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">not</span> os.path.isdir(subj_folder):</span>
 <span id="cb11-124">       os.mkdir(subj_folder)</span>
 <span id="cb11-125">       </span>
@@ -7214,6 +7328,7 @@ background-color: null;
 font-style: inherit;">## Create a plot of the result and save them</span></span>
 <span id="cb11-133">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> do_plot_data:</span>
 <span id="cb11-134">        <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -7275,7 +7390,7 @@ font-style: inherit;">'.csv'</span>)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/I2MC_tutorial.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 <item>
   <title>Introduction to eye-tracking</title>
@@ -7359,904 +7474,7 @@ Important
   <category>Eye-tracking</category>
   <category>Theory</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/Intro_eyetracking.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
-</item>
-<item>
-  <title>Interpreting Model Results</title>
-  <dc:creator>Tommaso Ghilardi</dc:creator>
-  <link>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/InterpretingModelResults.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.</p>
-<section id="interpreting-the-results" class="level3">
-<h3 class="anchored" data-anchor-id="interpreting-the-results">Interpreting the results</h3>
-<p>Very cool!! we have our result!!</p>
-<p>But what is it saying?? As you can see the summary is divided in subsections. Lets go trough them piece by piece.</p>
-<ul>
-<li><p><strong>Call</strong>:</p>
-<p>This section just report the function call that we passed to <code>lm()</code>.</p></li>
-<li><p><strong>Residuals</strong>:</p>
-<p>This section reports the residuals of the model. Residuals represent the difference between the observed values and the values predicted by the model. Essentially, how much variability remains after fitting our variable to the model.</p></li>
-<li><p><strong>Coefficients</strong>:</p>
-<p>This section displays the estimated coefficients of the regression model,the stand error of the estimation, the t-value and finally the p-value!</p></li>
-<li><p><strong>Model Fit:</strong></p>
-<p>The last section reports different statistics about the model fit:</p>
-<ul>
-<li><p><strong>Residual standard error:</strong> Average distance between observed values and the regression line. Smaller is better.</p></li>
-<li><p><strong>Multiple R-Squared:</strong> Proportion of response variable variance explained by predictors. Ranges from 0 to 1; closer to 1 is better.</p></li>
-<li><p><strong>Adjusted R-squared:</strong> R-squared modified for the number of predictors. Useful for comparing models with different numbers of predictors.</p></li>
-<li><p><strong>F-statistic and p-value:</strong> Indicate if the model provides a better fit than a model with no predictors. A p-value &lt; 0.05 suggests the model is useful.</p></li>
-</ul></li>
-</ul>
-
-
-<!-- -->
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/InterpretingModelResults.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
-</item>
-<item>
-  <title>Linear Models</title>
-  <link>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Welcome to the first tutorial on data analysis!!! Today we are going to talk about one of the most flexible statistical methods: Linear models.</p>
-<p>Let’s be clear, WE ARE NOT STATISTICIANS!!!!</p>
-<p>We’ll be discussing linear models in a very accessible and practical manner. Our explanations might not align with the rigorous definitions statisticians are accustomed to, and for that, we apologize in advance! However, our aim is to provide a stepping stone for you to grasp the concept of linear models and similar analyses. Let’s get started!</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>and only R <a href="https://www.r-project.org/"><img src="https://www.r-project.org/Rlogo.png" style="float:left ; margin-right:10px;margin-bottom:10px;" width="31" height="21"></a></p>
-<p>In the tutorials regarding stats, we will use R (and R-Studio as the IDE). The concepts and procedures are the same in other programming languages (e.g., Python, Julia). However, we choose R for a simple reason. R is just better at most statistical things!!</p>
-<p>Deal with it!</p>
-</div>
-</div>
-<section id="what-is-a-linear-model" class="level1">
-<h1>What is a linear model?</h1>
-<p>A linear model is a simple statistical test that tries to find the best line that represent the relations between two variables ( or more).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://towardsdatascience.com/linear-regression-5100fe32993a"><img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*MtuQBTW0-XbjA2RrP2z3Kw.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="image found on towardsdatascience.com"></a></p>
-</figure>
-</div>
-<figcaption>image found on towardsdatascience.com</figcaption>
-</figure>
-</div>
-<p>What’s truly fascinating about linear models is their versatility. They start off incredibly simple, but their complexity can grow exponentially! This makes them a remarkably flexible tool in the world of data analysis.</p>
-<p>Think of linear models as the foundation of a house. You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion. This adaptability allows us to perform a wide range of analyses, from straightforward relationships to intricate, multi-faceted studies.</p>
-<p>In essence, linear models offer a perfect balance: they’re accessible enough for beginners to grasp, yet powerful enough to satisfy the needs of advanced researchers. As we dive deeper into this topic, you’ll see just how these seemingly simple tools can unlock complex insights in your data.</p>
-</section>
-<section id="hands-on" class="level1">
-<h1>Hands-on</h1>
-<p>OK, enough chitchat - let’s start with a practical example. We’ll be working with a data set we created specifically for this tutorial. As mentioned, we’re going to begin with a very basic model, and in the upcoming tutorials, we’ll gradually increase both the complexity and accuracy of our approach.</p>
-<p>So, if you notice something that doesn’t seem quite perfect at this stage, don’t worry! It’s all part of the plan. Our goal is to guide you step-by-step towards building the ideal model. Just remember, this process takes time!</p>
-<section id="import-data" class="level2">
-<h2 class="anchored" data-anchor-id="import-data">Import data</h2>
-<p>You can download the data that we will use in this tutorial from here:</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts2023"><i class="bi bi-download"></i> LM_SimulatedData.csv </button></p>
-<p>Once downloaded we need to import it in our R session. Here we read our csv and we print a small preview of it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">df <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">read.csv</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"..</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">..</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">resources</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Stats</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">LM_SimulatedData.csv"</span>)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">head</span>(df)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  subject     time performance  tool
-1       1 50.00000    48.55307 spoon
-2       1 50.70707    42.60158 spoon
-3       1 51.41414    53.70466 spoon
-4       1 52.12121    36.23284 spoon
-5       1 52.82828    51.16266 spoon
-6       1 53.53535    59.60555 spoon</code></pre>
-</div>
-</div>
-<p>You can see that the data is really simple! We have 4 columns:</p>
-<ul>
-<li><p><code>subject</code> column that tell us form which participant the data was collected</p></li>
-<li><p><code>time</code> the passing time</p></li>
-<li><p><code>performance</code> the variable of interest, the one that we want to model</p></li>
-<li><p><code>tool</code> which tool was being used</p></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Long format
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>One important information that we need to keep in mind is that to run <code>lm()</code> in R we need the data in a long format and not a wide format.</p>
-<p>In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example <code>performance</code>) has 1 row for observation but the other columns usually have repeated entries ( e.g.&nbsp;<code>subject</code> , <code>time</code>, <code>tool</code>)</p>
-<p>Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time points. While this can be visually appealing for humans, it’s not optimal for our linear modeling needs.</p>
-<p>If your data is currently in wide format, don’t worry! R provides tools like the <a href="https://tidyr.tidyverse.org/index.html">tidyr</a> package with functions such as <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a> to easily convert your data from wide to long format.</p>
-</div>
-</div>
-</section>
-<section id="formula" class="level2">
-<h2 class="anchored" data-anchor-id="formula">Formula</h2>
-<p>To run models in R we usually use formulas! Sounds complex doesn’t it?!? Well it is not, let me guide you through it.</p>
-<p>In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the one we’re interested in studying. In this case, it’s the <code>performance</code> column. Next, we use the tilde symbol <code>~</code>. This tilde tells R that we want to model the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables we believe may influence our dependent variable. To test whether <code>time</code> predicts performance, we can use the formula:</p>
-<p><code>performance ~ time</code>. This basic structure allows us to examine a single predictor.</p>
-<p>We can extend this model by adding another variable, such as <code>tool</code>, to see if it also predicts performance:</p>
-<p><code>performance ~ time + tool</code>. This formulation tells the model to assess whether either <code>time</code> or <code>tool</code> predicts <code>performance</code>, treating them as independent predictors.</p>
-<p>To examine the interaction between these variables, we use a slightly different syntax:</p>
-<p><code>performance ~ time : tool</code>. This instructs the model to evaluate whether the interaction between the two variables predicts <code>performance</code>.</p>
-<p>It’s important to note that using <code>:</code> only tests the interaction, not the individual effects of each variable. To include both main effects and their interaction, we can use the formula:</p>
-<p><code>performance ~ time + tool + time:tool</code>.</p>
-<p>R offers a shorthand for this complete model using the <code>*</code> operator. The formula:</p>
-<p><code>performance ~ time * tool</code> is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.</p>
-<p>These formulas are for simple linear models. Different types of models add small and different pieces to this basic structure. We will see in the next tutorial how to handle these “add-ons”. Now that we have seen how to make a proper formula let’s use it in our model!!</p>
-</section>
-<section id="run-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="run-the-model">Run the model</h2>
-<p>OK, now we have our amazing data! Let’s run this Linear model.</p>
-<p>It’s extremely simple. We will use the function <code>lm()</code> and we will pass our data <code>df</code> and the formula we just made together!!</p>
-<p>After fitting the model we extract the summary of it. This is how we will get all the information we need.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mod <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">lm</span>(performance <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> time<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>tool, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> df)</span>
-<span id="cb3-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">summary</span>(mod)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = performance ~ time * tool, data = df)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--70.61 -13.06  -0.09  13.09  74.57 
-
-Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)      2.81079    1.94849   1.443   0.1492    
-time             0.03708    0.02235   1.659   0.0971 .  
-toolhammer       3.59597    2.74295   1.311   0.1899    
-toolspoon        2.78687    2.75361   1.012   0.3115    
-time:toolhammer  0.05880    0.03144   1.870   0.0615 .  
-time:toolspoon   0.39828    0.03156  12.619   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 21.51 on 6744 degrees of freedom
-  (750 observations deleted due to missingness)
-Multiple R-squared:  0.3703,    Adjusted R-squared:  0.3699 
-F-statistic: 793.3 on 5 and 6744 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>Perfect this was super simple!! We can use the output of the model to understand whether the variable are predicting the performance. What we need is the pvalue that is the last column of the <strong>Coefficients section.</strong> If the pvalue is below 0.05 it means we have our effect if it is above it means we don’t. <span class="text-danger-emphasis">YES EVEN IF IT IS 0.051!!!</span></p>
-<p>When looking at model outputs, people often zero in on the p-value. However, there’s much more to unpack in a model summary! For now, we’ll just skim the surface of model summary interpretation. It’s true that the model provides p-values, which serve as indicators of whether there’s evidence for an effect of our variables on the dependent variable. But it’s crucial to understand the full scope of the model output. That’s why we’ve created a separate tutorial to guide you through the intricacies of model interpretation. For now, let’s wrap up this current tutorial. Afterwards, we’ll dive together into the art of deciphering model results.</p>
-<section id="model-checks" class="level3">
-<h3 class="anchored" data-anchor-id="model-checks">Model checks</h3>
-<p>So now we have run our model and seen the summary… That’s great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require few data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won’t be valid.</p>
-<p>What are these assumptions?? Well they depend a lot on the model you are running. We won’t go into much details as there are very good website that explain them<sup><a href="https://bookdown.org/pingapang9/linear_models_bookdown/assumptions.html">1</a></sup> ,<sup><a href="https://www.statology.org/linear-regression-assumptions/">2</a></sup>, in this simple linear mode they are:</p>
-<ol type="1">
-<li><p><strong>Linear relationship:</strong> There exists a linear relationship between the independent variable, x, and the dependent variable, y.</p></li>
-<li><p><strong>Independence:</strong> The residuals are independent. In particular, there is no correlation between consecutive residuals in time series data.</p></li>
-<li><p><strong>Homoscedasticity/Homogeneity of variance:</strong> The residuals have constant variance at every level of x.</p></li>
-<li><p><strong>Normality:</strong> The residuals of the model are normally distributed.</p></li>
-</ol>
-<p>Again this is not a theoretical tutorial. So we won’t go into details as which are the assumptions (please read some of the link provided tho!!) but we will show you how to actually check these assumptions.</p>
-<p>There is a super easy and convenient way we usually check these assumptions. Using the <a href="https://easystats.github.io/easystats/">easystats</a> library.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="https://easystats.github.io/easystats/">Easystats</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: <a href="https://cran.r-project.org/web/packages/report/index.html"><strong>report</strong></a>, <a href="https://cran.r-project.org/web/packages/correlation/index.html"><strong>correlation</strong></a>, <a href="https://cran.r-project.org/web/packages/modelbased/index.html"><strong>modelbased</strong></a>, <a href="https://cran.r-project.org/web/packages/bayestestR/index.html"><strong>bayestestR</strong></a>, <a href="https://cran.r-project.org/web/packages/effectsize/index.html"><strong>effectsize</strong></a>, <a href="https://cran.r-project.org/web/packages/see/index.html"><strong>see</strong></a>, <a href="https://cran.r-project.org/web/packages/parameters/index.html"><strong>parameters</strong></a>, <a href="https://cran.r-project.org/web/packages/performance/index.html"><strong>performance</strong></a>, <a href="https://cran.r-project.org/web/packages/insight/index.html"><strong>insight</strong></a>, <a href="https://cran.r-project.org/web/packages/datawizard/index.html"><strong>datawizard</strong></a>. We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection <strong>Easystats</strong>.</p>
-<p>In this tutorial here we will use the function from the package <a href="https://cran.r-project.org/web/packages/performance/index.html"><strong>performance</strong></a><strong>.</strong> This is a package to check model performance. However instead of importing <a href="https://cran.r-project.org/web/packages/performance/index.html"><strong>performance</strong></a>we will import <strong>Easystats</strong> that will import all of the packages mentioned above.</p>
-</div>
-</div>
-<p>So now we import <code>easystats</code> and we use the function <a href="https://easystats.github.io/performance/reference/check_model.html"><code>check_model()</code></a> to indeed check the model assumptions.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(easystats)</span>
-<span id="cb5-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">check_model</span>(mod)</span></code></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="3600"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Perfect all done!! We have a plot of the model assumptions and we can check if they are met!! But what do these plot represent? Here below we created a table that mirrors each plot with it explanation in it. These are brief and simple explanations. If you want to understand more about the <a href="https://easystats.github.io/performance/reference/check_model.html"><code>check_model()</code></a> function we suggest you to read the documentation about it and also the <a href="https://easystats.github.io/performance/articles/check_model.html">very nice vignette</a> that the package provides.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="gjyjuwbnzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#gjyjuwbnzj table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#gjyjuwbnzj thead, #gjyjuwbnzj tbody, #gjyjuwbnzj tfoot, #gjyjuwbnzj tr, #gjyjuwbnzj td, #gjyjuwbnzj th {
-  border-style: none;
-}
-
-#gjyjuwbnzj p {
-  margin: 0;
-  padding: 0;
-}
-
-#gjyjuwbnzj .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #000000;
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-right-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #000000;
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-left-color: #000000;
-}
-
-#gjyjuwbnzj .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#gjyjuwbnzj .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#gjyjuwbnzj .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#gjyjuwbnzj .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_bottom_border {
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_col_headings {
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: none;
-  border-bottom-width: 1px;
-  border-bottom-color: #334422;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 12px;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#gjyjuwbnzj .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 12px;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#gjyjuwbnzj .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#gjyjuwbnzj .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#gjyjuwbnzj .gt_column_spanner {
-  border-bottom-style: none;
-  border-bottom-width: 1px;
-  border-bottom-color: #334422;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#gjyjuwbnzj .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#gjyjuwbnzj .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#gjyjuwbnzj .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#gjyjuwbnzj .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#gjyjuwbnzj .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#gjyjuwbnzj .gt_row {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#gjyjuwbnzj .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gjyjuwbnzj .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#gjyjuwbnzj .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#gjyjuwbnzj .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#gjyjuwbnzj .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gjyjuwbnzj .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#gjyjuwbnzj .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gjyjuwbnzj .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#gjyjuwbnzj .gt_table_body {
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-}
-
-#gjyjuwbnzj .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gjyjuwbnzj .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#gjyjuwbnzj .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gjyjuwbnzj .gt_left {
-  text-align: left;
-}
-
-#gjyjuwbnzj .gt_center {
-  text-align: center;
-}
-
-#gjyjuwbnzj .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#gjyjuwbnzj .gt_font_normal {
-  font-weight: normal;
-}
-
-#gjyjuwbnzj .gt_font_bold {
-  font-weight: bold;
-}
-
-#gjyjuwbnzj .gt_font_italic {
-  font-style: italic;
-}
-
-#gjyjuwbnzj .gt_super {
-  font-size: 65%;
-}
-
-#gjyjuwbnzj .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#gjyjuwbnzj .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#gjyjuwbnzj .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#gjyjuwbnzj .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#gjyjuwbnzj .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#gjyjuwbnzj .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#gjyjuwbnzj .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#gjyjuwbnzj .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#gjyjuwbnzj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header gt_heading">
-<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="text-align: center; font-family: 'Libre Franklin'; font-weight: 800;"><p><strong>Model Diagnostic Checks</strong></p></th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Column1" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Posterior predictive checks</strong><br>Compare simulated data from the fitted model to actual data. This reveals systematic discrepancies, helping assess if the model captures key data features and if the chosen distribution family is appropriate.</p></td>
-<td class="gt_row gt_left" headers="Column2" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Linearity</strong><br>Checks if predictors have a linear relationship with the outcome. A straight, horizontal line suggests the model specification is appropriate. Curved or sloped lines indicate potential non-linear relationships, signaling the need for model adjustments.</p></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Column1" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Homoscedasticity/Homogeneity of variance</strong><br>Checks for homoscedasticity (constant variance). Residuals should spread evenly around a horizontal line across all predictor values. Uneven spread suggests variance inconsistencies, potentially requiring model adjustments.</p></td>
-<td class="gt_row gt_left" headers="Column2" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Outliers</strong><br>Identifies influential observations using Cook’s distance. Points beyond the dashed lines are outliers that may excessively impact model estimates, warranting further investigation or potential removal.</p></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Column1" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Multi-Collinearity</strong><br>Evaluates predictor independence. High collinearity indicates redundant predictors or possible unobserved variables influencing multiple predictors, which can affect interpretation and model stability.</p></td>
-<td class="gt_row gt_left" headers="Column2" style="font-family: 'Source Sans Pro'; font-weight: 400; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black"><p><strong>Normality of residuals</strong><br>Uses Q-Q plots to assess if residuals follow a normal distribution. Points should align with the reference line; deviations suggest the model poorly predicts certain outcome ranges, potentially violating normality assumptions.</p></td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>One of the awesome features of <code>easystats</code> is its broad support for various model types. What’s the big deal? Well, it means that the <code>check_model()</code> function adapts its checks based on the specific model you’re using! This flexibility makes it an incredibly powerful and user-friendly tool. Pretty much any model you’ve just run (or at least most of them) can be fed into the <code>check_model()</code> function, allowing you to easily verify if it meets the necessary assumptions.</p>
-<p><strong>Keep in mind: Always be aware of which assumptions your model should satisfy. We’re not suggesting you use this function blindly! Instead, we’re showing you how to efficiently plot all relevant assumptions in one go. It’s simpler and quicker!!</strong></p>
-</div>
-</div>
-</section>
-<section id="statistical-tests" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-tests">Statistical tests</h3>
-<p>You’ve probably noticed that we’ve been relying on visual checks so far. In our view, this is often the best approach, as statistical tests for model assumptions can sometimes be overly stringent. However, there may be situations where you need to provide statistical evidence to support your model assumptions. This often happens when a reviewer (let’s call them Reviewer 2, shall we?) insists on seeing numerical proof. Fortunately, <code>easystats</code> has got your back.</p>
-<p>Here are some examples of what you can use:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">check_normality</span>(mod)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Warning: Non-normality of residuals detected (p = 0.002).</code></pre>
-</div>
-</div>
-<p>To check the normality of our residuals and:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">check_homogeneity</span>(mod)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Warning: Variances differ between groups (Bartlett Test, p = 0.000).</code></pre>
-</div>
-</div>
-<p>to check homoscedasticity/homogeneity of variance. Again you can find all the function in the <a href="https://cran.r-project.org/web/packages/performance/index.html"><strong>performance</strong></a>package (part fo the Easystats collection)</p>
-
-
-<!-- -->
-
-</section>
-</section>
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>Stats</category>
-  <category>R</category>
-  <category>linear models</category>
-  <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
-</item>
-<item>
-  <title>Linear mixed effect modesl</title>
-  <link>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LMM.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div style="display: flex; align-items: center;">
-    <div style="flex: 1; text-align: left;">
-        <p>Welcome to this introduction to Linear Mixed-effects Models (LMM)!! In this tutorial we will use R to run some simple LMM and we will try to understand together how to leverage these model for our analysis.
-        LMMs are amazing tools that have saved our asses countless times during our PhDs and Postdocs. They'll probably continue to be our trusty companions forever.</p>
-    </div>
-    <div style="flex: 0 0 auto; margin-left: 10px;">
-        <iframe src="https://giphy.com/embed/ygCtKUnKEW5F6LruQd" width="100" height="100" frameborder="0" allowfullscreen=""></iframe>
-        <p style="margin: 0;"><a href="https://giphy.com/gifs/TheBearFX-ygCtKUnKEW5F6LruQd"></a></p>
-    </div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please bear in mind that this tutorial is designed to be a gentle introduction to running linear mixed-effects models. It will not delve into the mathematics and statistics behind LMM. For those interested in these aspects, numerous online resources are available for further exploration.</p>
-</div>
-</div>
-<p>But why are these LMMs so amazing?</p>
-<p>Linear Mixed-Effects Models are basically linear models… but they allow us to account for both fixed and random effects, making them perfect for dealing with data that has multiple sources of variability, like repeated measures or hierarchical structures. Nice isn’t it? Amazing!!</p>
-<p>But……what are fixed and random effects 😅?</p>
-<p>Well, while fixed effects represent the consistent, predictable part of your model—the data you are interested in and actively want to explore—random effects represent the variability of different sources in your data that you haven’t explicitly measured and usually aren’t interested in, but which you believe affect your data. These random effects help you model these variations, making your predictions more reliable and robust.</p>
-<p>It probably still sounds complex, but everything will be clearer once we get our hands dirty with them! Let’s start!!!!</p>
-<section id="settings-and-data" class="level1">
-<h1>Settings and data</h1>
-<p>In this code section we will import the necessary libraries and the data that we will use for this tutorial.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(lme4)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(lmerTest)</span>
-<span id="cb1-3"></span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">setwd</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">".</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb1-5"></span>
-<span id="cb1-6"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"C:/Users/tomma/Downloads/dragons(1).RData"</span></span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/tomma/Downloads/dragons(1).RData"</code></pre>
-</div>
-</div>
-<p>The lme4 package is undoubtedly the most popular library for LMM in R. To enhance its functionality, there’s also the lmerTest package, which allows you to extract p-values from lme4 models and provides additional functions to explore your models. In my opinion, you should always use lmerTest alongside lme4. It makes everything easier.</p>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p>Now let’s import the data. You can download it from <a href="bb">here</a>. This dataset is simulated, so some of its variables might not make much sense, but it’ll do the job for this tutorial.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">getwd</span>())</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/tomma/OneDrive - Birkbeck, University of London/TomassoGhilardi/PersonalProj/Website/DevStart/CONTENT/Stats"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">load</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">".</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">resources</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\\</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">dragons.RData"</span>)</span></code></pre></div>
-</div>
-
-
-<!-- -->
-
-</section>
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LMM.html</guid>
-  <pubDate>Sun, 22 Sep 2024 09:29:34 GMT</pubDate>
+  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
 </item>
 </channel>
 </rss>

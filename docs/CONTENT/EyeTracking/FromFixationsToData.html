@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.47">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tommaso Ghilardi">
+<meta name="keywords" content="Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science">
 <meta name="description" content="Learn how to extract different eye-tracking measures from the collected data">
 
-<title>DevStart - From fixations to measures</title>
+<title>From fixations to measures – DevStart</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -132,13 +133,13 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Eye-tracking</a></li><li class="breadcrumb-item"><a href="../../CONTENT/EyeTracking/FromFixationsToData.html">From fixations to measures</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -157,7 +158,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
         <div class="sidebar-tools-main tools-wide">
     <a href="https://x.com/DevSciStart" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
@@ -190,9 +191,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Getting started:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -215,7 +216,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating an experiment:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -232,7 +233,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
       <div class="sidebar-item-container"> 
             <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Eye-tracking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -271,9 +272,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Stats</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -288,23 +289,6 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   <div class="sidebar-item-container"> 
   <a href="../../CONTENT/Stats/InterpretingModelResults.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interpreting Model Results</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Workshops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Workshops/GAP_2024.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bridging the Technological Gap Workshop (GAP)</span></a>
   </div>
 </li>
       </ul>
@@ -357,12 +341,18 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   </div>
   
 
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science</p>
+  </div>
+</div>
 
 </header>
 
 
 <p>In the previous two tutorials we <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html">collected some eye-tracking data</a> and then we <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html">used I2MC to extract the fixations</a> from that data. Let’s load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.</p>
-<div id="c6ab4740" class="cell" data-execution_count="1">
+<div id="d1d02e58" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -401,7 +391,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <li><p>Tobii reports data with its origin (0,0) in the lower left corner.</p></li>
 </ul>
 <p>This inconsistency is not a problem per se, but we need to take it into account when defining the AOIs. Let’s try to define the AOIs:</p>
-<div id="572f03f1" class="cell" data-execution_count="2">
+<div id="f7a75682" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -417,7 +407,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let’s get a better idea by just plotting these two AOIs and two random points <code>(600, 500)</code> and <code>(1400,1000)</code>.</p>
-<div id="21a627fb" class="cell" data-execution_count="3">
+<div id="e5aa9c33" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -465,7 +455,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>So imagine we have a point: <code>point</code> and an area: <code>area</code>, we can check if the point falls inside the area by:</p>
-<div id="8dc4a3ae" class="cell" data-execution_count="4">
+<div id="47df40ce" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract bottom left and top right points</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bottom_left, top_right <span class="op">=</span> area</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -481,7 +471,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </div>
 <p>Perfect, this will return True if the point falls inside the area and False if it falls outside. Since we have two AOIs and not just one, we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.</p>
 <p>We will run the code above in a loop using <code>enumerate</code>. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both of these two pieces of information. We will use the actual area to check if our points fall into it. Then, if it does, we will return the index of that area. Conversely, if the point doesn’t fall in any area the function will return -1.</p>
-<div id="7c484f6b" class="cell" data-execution_count="5">
+<div id="55e23500" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We define a function that simply takes the a point and a list of areas.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This function checks in which area this point is and return the index</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of the area. If the point is in no area it returns -1</span></span>
@@ -517,12 +507,12 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </div>
 <p>In this case, our attention is on the target window. We’re going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its pentation. Indeed, both <strong>Saccadic latency</strong> and <strong>Lookign time</strong> occur within this time window, while we don’t really care about where the participant is looking during other phases of the task.</p>
 <p>Let’s start by finding the moment in which the target appeared:</p>
-<div id="d049dd34" class="cell" data-execution_count="6">
+<div id="d8f3a7ae" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we’re going to add two new columns to our fixation dataframe: <code>Event</code> and <code>Event_trial</code>. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we’re going to add another column called <code>Onset</code> to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.</p>
-<div id="978f6232" class="cell" data-execution_count="7">
+<div id="82a899f4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
@@ -544,7 +534,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>We can use this to our advantage and filter all the NANs out:</p>
-<div id="086ef993" class="cell" data-execution_count="8">
+<div id="9d71a3ca" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -566,12 +556,12 @@ Important
 <p>Just a heads up: our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you’re dealing with multiple or moving AOIs, you’ve got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It’s all about flexibility and precision!</p>
 </div>
 </div>
-<div id="1d10908d" class="cell" data-execution_count="9">
+<div id="ea8d5ff8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Target_fixations)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have a column with the AOIs in our Target_fixations dataframe, we can run our function <code>find_area_for_point()</code> to check in which AOI each fixation falls.</p>
-<div id="930c9835" class="cell" data-execution_count="10">
+<div id="b01f63c5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
@@ -582,7 +572,7 @@ Important
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect, we now have a dataframe that contains only the fixations of interest and tells us which AOI each fixation is in. Before we continue, let’s remove the fixations that didn’t fall in any AOI (if you remember or the function assigns -1 if the fixation is outside any AOI):</p>
-<div id="2fd119b5" class="cell" data-execution_count="11">
+<div id="2ece56eb" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -592,7 +582,7 @@ Important
 <p>As I mentioned at the beginning of this tutorial, one of the indices we want to extract is saccadic latency. Basically, this indicates how quickly our participants fixated on the correct target location.</p>
 <p>If we know where our participant was supposed to look, we can easily find the first fixation. Sounds simple, right?</p>
 <p>In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:</p>
-<div id="1e894b49" class="cell" data-message="false" data-execution_count="12">
+<div id="7ecb56f3" class="cell" data-message="false" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
@@ -601,7 +591,7 @@ Important
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations.loc[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>],]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (<code>startT</code>) the event <code>Onset</code>:</p>
-<div id="b0ff0fb3" class="cell" data-execution_count="13">
+<div id="ce474611" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'startT'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'Onset'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Voilá!! as simple as this!!! Now our <code>Latency</code> column will contain the onset of the fixations in relation to the target presentation.</p>
@@ -622,13 +612,13 @@ Note
 <h2 class="anchored" data-anchor-id="first-fixation">First fixation</h2>
 <p>We have all these latency values, but we only want the first/fastest of each trial. How can we extract this information easily? We will use groupby. Groupby allows us to perform specific functions/commands on grouped sections of a data frame.</p>
 <p>Here we will groupby by Events and Event_trials and for each of these grouped pieces of dataframe we will extract the smallest (<code>min()</code>) value of latency.</p>
-<div id="84b05164" class="cell" data-execution_count="14">
+<div id="77c1d15a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we have our <strong>Saccadic latency</strong>!!!</p>
 <p>Once our dataset is ready, we might want to visualise the data. For example, we can plot how saccadic latency changes across trials with seaborn:</p>
-<div id="1ce5b856" class="cell" data-execution_count="15">
+<div id="e7a042c5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># import seaborn</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -654,12 +644,12 @@ Note
 <h1>Looking time</h1>
 <p>While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.</p>
 <p>We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by <code>Event</code>, <code>Event_trial</code> and <code>Looked_AOI</code>. For each of the grouped dataframes, we will extract the <code>sum()</code> of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.</p>
-<div id="33b2e1a0" class="cell" data-execution_count="16">
+<div id="95c3ea8b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, we can now visualize the data. For example, we can plot whether looking time to rewarding vs.&nbsp;non-rewarding stimuli:</p>
-<div id="f3805416" class="cell" data-execution_count="17">
+<div id="9003475d" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
@@ -864,18 +854,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -907,7 +886,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -966,7 +967,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1309,9 +1310,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span></span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">  kernel: "python3"</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> Tommaso Ghilardi</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> "Tommaso Ghilardi"</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="an">description-meta:</span><span class="co"> "Learn how to extract different eye-tracking measures from the collected data"</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="an">keywords-meta:</span><span class="co"> "Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science"</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> "Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science"</span></span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Eye-tracking</span></span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Python</span></span>
@@ -1782,7 +1783,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-511"><a href="#cb19-511" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
 <span id="cb19-512"><a href="#cb19-512" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb19-513"><a href="#cb19-513" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

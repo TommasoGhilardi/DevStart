@@ -75,6 +75,11 @@ td code:not(.sourceCode) {
 }
 
 
+/* HIDE KEYWORDS */
+body main > header div.keywords {
+  display: none; /* Hides the keywords */
+}
+
 
 
 // CODE OUTPUT BACKGROUND
@@ -236,3 +241,34 @@ $grid-margin-width: 300px !default;
 
 // The gutter that appears between the above columns
 $grid-column-gutter-width: 1.5rem !default;
+
+
+
+
+
+
+
+
+.tabset_cool .tabbed-pane .nav-tabs .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    font-weight: bold !important; /* Force bold style */
+}
+
+.tabset_cool .tabbed-pane .nav-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px; /* Adjust as needed */
+    margin-right: 20px; /* Space between tabs and content */
+}
+
+.tabset_cool .tabbed-pane .nav-tabs .nav-item {
+    width: 100%;
+    margin-bottom: 10px; /* Adds more space between tabs */
+}
+
+.tabset_cool .tabbed-pane .tab-content {
+    display: flex;
+}

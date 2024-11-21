@@ -4,7 +4,7 @@ title: Starting with Python
 pagetitle: Starting with Python
 author-meta: Tommaso Ghilardi
 description-meta: Learn how to insatll and manage python.
-keywords-meta: Python, Anaconda, Conda,virtual environment, Spyder, experimental psychology, tutorial, installation, DevStart, developmental science
+keywords: Python, Anaconda, Conda,virtual environment, Spyder, experimental psychology, tutorial, installation, DevStart, developmental science
 categories:
   - Setup
   - Python

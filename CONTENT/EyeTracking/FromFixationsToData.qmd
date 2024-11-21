@@ -6,9 +6,9 @@ execute:
 jupyter:
   kernel: "python3"
 
-author-meta: Tommaso Ghilardi
+author-meta: "Tommaso Ghilardi"
 description-meta: "Learn how to extract different eye-tracking measures from the collected data"
-keywords-meta: "Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science"
+keywords: "Python, latency, saccadic-latency, looking time, eye-tracking, tobii, experimental psychology, tutorial, experiment, DevStart, developmental science"
 categories:
   - Eye-tracking
   - Python

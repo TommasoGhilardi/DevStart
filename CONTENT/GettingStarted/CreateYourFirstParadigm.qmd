@@ -6,7 +6,7 @@ jupyter:
   kernel: "python3"
 author-meta: Tommaso Ghilardi
 description-meta: "Learn how to get started with PsychoPy, an open-source software package for neuroscience and experimental psychology research. Follow our step-by-step guide to create an experimental paradigm from scratch"
-keywords-meta: "PsychoPy, Python, experimental psychology, neuroscience, tutorial, experiment, DevStart, developmental science"
+keywords: "PsychoPy, Python, experimental psychology, neuroscience, tutorial, experiment, DevStart, developmental science"
 categories: Python
 ---
 

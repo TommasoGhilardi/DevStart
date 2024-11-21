@@ -1,7 +1,7 @@
 ---
 title: "Linear Models"
 execute:
-  eval: true
+  eval: false
 
 author-meta: Tommaso Ghilardi
 description-meta: "Learn what a linear model is, how to run it and how to check its assumptions"
@@ -11,6 +11,10 @@ categories:
   - Stats
   - R
   - linear models
+  
+  
+drafts: True
+draft-mode: unlinked  
 ---
 
 Welcome to the first tutorial on data analysis!!! Today we are going to talk about one of the most flexible statistical methods: Linear models.
@@ -117,6 +121,10 @@ After fitting the model we extract the summary of it. This is how we will get al
 ```{r}
 mod = lm(performance ~ time*tool, data = df)
 summary(mod)
+
+estimate_means(mod, get_datagrid(mod, numeric=0, by = 'tool'))
+
+
 ```
 
 Perfect this was super simple!! We can use the output of the model to understand whether the variable are predicting the performance. What we need is the pvalue that is the last column of the **Coefficients section.** If the pvalue is below 0.05 it means we have our effect if it is above it means we don't. [YES EVEN IF IT IS 0.051!!!]{.text-danger-emphasis}

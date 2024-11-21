@@ -5,7 +5,7 @@ execute:
 
 author-meta: Tommaso Ghilardi, Franesco Poli
 description-meta: "Learn how to install psychpy and spyder in a new econda environment"
-keywords-meta: "PsychoPy, Python, experimental psychology, tutorial, installation, DevStart, developmental science, Spyder ide, Spyder"
+keywords: "PsychoPy, Python, experimental psychology, tutorial, installation, DevStart, developmental science, Spyder ide, Spyder"
 categories:
   - Setup
   - Python

@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-  
+
 execute:
   freeze: auto
 
@@ -77,14 +77,16 @@ website:
           - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
-      # - section: "Stats"
-      #   contents:
-      #     - CONTENT/Stats/LinearModels.qmd
-      #     - CONTENT/Stats/InterpretingModelResults.qmd
-      - section: "Workshops"
+      - section: "Stats"
         contents:
-          #- CONTENT/Workshops/BCCCD2024.qmd
-          - CONTENT/Workshops/GAP_2024.qmd
+          - CONTENT/Stats/LinearModels.qmd
+          - CONTENT/Stats/InterpretingModelResults.qmd
+      # - section: "Workshops"
+      #   contents:
+      #     #- CONTENT/Workshops/BCCCD2024.qmd
+      #     - CONTENT/Workshops/GAP_2024.qmd
+      #     - CONTENT/Workshops/DevStartN1.qmd
+
 
 
 

@@ -9,6 +9,9 @@ execute:
 
 description-meta: "Learn what a the summary of a linear model means!"
 keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
+
+drafts: True
+draft-mode: unlinked
 ---
 
 In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.
