@@ -1,5 +1,6 @@
 /* css styles */
 
+/* HIDE KEYWORDS */
 body main > header div.keywords {
   display: none; /* Hides the keywords */
 }
@@ -182,13 +183,27 @@ img {
 
 /* Larger Badge Styling */
 .big-badge {
-  font-size: 1em; /* Increase font size */
+  font-size: 1em; /* Base font size for the badge */
   padding: 1em 2em; /* Add padding to make the badge larger */
+  text-align: center; /* Center-align text inside the badge */
+  line-height: 0.75; /* Add more spacing between lines */
+  border: 2px solid #c0c0c0; /* Slightly darker border color (gray shade) */
+  border-radius: 50px; /* Maintain rounded-pill shape */
 }
 
+/* Styling for the first line */
+.big-text {
+  font-size: 1.5em; /* Larger font size for the first line */
+  font-weight: bold; /* Optional: make it bold */
+  display: block; /* Ensure it's treated as a block for proper spacing */
+}
 
-
-
+/* Styling for the second line */
+.small-text {
+  font-size: 1em; /* Smaller font size for the second line */
+  font-weight: normal; /* Optional: ensure it's not bold */
+  display: block; /* Ensure it's treated as a block for proper spacing */
+}
 
 
 
@@ -266,4 +281,72 @@ img {
     .profile-container {
         grid-template-columns: 1fr;  /* Show 1 column on small screens */
     }
+}
+
+
+
+
+
+/* IMAGES FOOTER */
+
+/* IMAGES FOOTER */
+
+/* Container for the images */
+.responsive-image-container {
+  display: flex;
+  justify-content: space-between; /* Space images evenly */
+  align-items: center; /* Center vertically */
+  flex-wrap: wrap; /* Allow wrapping when screen size is small */
+  gap: 1em; /* Add some space between images */
+}
+
+/* Responsive Images */
+.responsive-image {
+  max-height: 116px; /* Ensure the images have the same height */
+  width: auto; /* Automatically adjust width to maintain aspect ratio */
+  height: auto; /* Automatically adjust height if width changes */
+  flex-shrink: 0; /* Prevent images from shrinking excessively */
+}
+
+/* Specific alignment for each image */
+.responsive-image.left {
+  align-self: flex-start; /* Align left image to the top-left */
+}
+
+.responsive-image.center {
+  align-self: center; /* Center the middle image */
+}
+
+.responsive-image.right {
+  align-self: flex-end; /* Align right image to the top-right */
+}
+
+/* Responsive Design: When the screen is smaller */
+@media (max-width: 768px) {
+  .responsive-image-container {
+    flex-direction: column; /* Stack images vertically */
+    align-items: center; /* Center the images horizontally */
+  }
+  .responsive-image {
+    max-width: 20em; /* Set a maximum width for the images */
+    max-height: none; /* Remove fixed height restriction for better scaling */
+    width: 100%; /* Scale to fit container width while respecting max-width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the images */
+  }
+}
+
+
+
+
+/* Footer Icon Styling */
+.nav-link i {
+  font-size: 2em; /* Increase the size of the icon */
+  color: inherit; /* Maintain the inherited color or set a specific color */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.nav-link:hover i {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  color: #00b3b3; /* Optional: Change color on hover */
 }
