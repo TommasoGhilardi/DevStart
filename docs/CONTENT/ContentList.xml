@@ -17,7 +17,7 @@
 <width>144</width>
 </image>
 <generator>quarto-1.5.47</generator>
-<lastBuildDate>Thu, 21 Nov 2024 22:06:26 GMT</lastBuildDate>
+<lastBuildDate>Sun, 01 Dec 2024 00:03:05 GMT</lastBuildDate>
 <item>
   <title>Create your first paradigm</title>
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</link>
@@ -55,7 +55,7 @@ Stimuli!
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation:</h2>
 <p>First things first, let’s import the relevant libraries and define the path to where our stimuli are. PsychoPy has a lot of different modules that allow us to interface with different types of stimuli and systems. For this tutorial we need the following:</p>
-<div id="0e9f379f" class="cell" data-execution_count="1">
+<div id="9eadc0f6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import some libraries from PsychoPy and others</span></span>
@@ -72,7 +72,7 @@ font-style: inherit;">import</span> core, visual, sound, event </span></code></p
 <section id="stimuli-1" class="level2">
 <h2 class="anchored" data-anchor-id="stimuli-1">Stimuli:</h2>
 <p>The next step is to create the window. The window is what we will show the stimuli in; it is the canvas on which to draw objects. For now, we will create a small window of 960*540 pixels. In this way, we will able to see the stimuli and still interact with the rest of our PC interface. In a real experiment, we would probably set the window dimension to the entirety of the display (fullscr=True) and maybe on a secondary screen (screen = 1).</p>
-<div id="7ccf2065" class="cell" data-execution_count="2">
+<div id="bb4a3d04" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Winsize</span></span>
@@ -190,7 +190,7 @@ font-style: inherit;">'/Users/tomma/Desktop'</span></span></code></pre></div></l
 <p>Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. <strong>We’ll follow this rule in all our scripts, so keep it in mind – it’s a key detail for error-free scripting!</strong></p>
 </div>
 </div>
-<div id="62a810e7" class="cell" data-execution_count="3">
+<div id="88e12137" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Load and prepare stimuli</span></span>
@@ -408,18 +408,18 @@ font-style: inherit;">1</span> ]</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="show-a-visual-stimulus">Show a visual stimulus:</h2>
 <p>Now we want to show a stimulus in the center of our window. To do so, we will have to use the function “draw”. As the name suggests this function draws the stimulus that we want on the window that we have created.</p>
 <p>Let’s start with displaying the fixation cross in the center.</p>
-<div id="65dd517c" class="cell" data-execution_count="4">
+<div id="d638f1d8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Draw the fixation</span></span>
 <span id="cb7-2">fixation.draw()</span></code></pre></div>
 </div>
 <p>Do you see the fixation cross?????? Probably not!! This is because we have drawn the fixation cross but we have not refreshed the window. Psychopy allows you to draw as many stimuli as you want on a window but the changes are only shown when you “refresh” the window. To do so we need to use the “flip” function.</p>
-<div id="f8b23592" class="cell" data-execution_count="5">
+<div id="d7a611d9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">win.flip()</span></code></pre></div>
 </div>
 <p>Perfect!!!! The fixation cross is there. Before each flip, we need to draw our objects. Otherwise, we will only see the basic window with nothing in it. Let’s try!!! flip the window now.</p>
-<div id="2b1dc712" class="cell" data-execution_count="6">
+<div id="c0c17d6d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Flipping the window (refreshing)</span></span>
@@ -427,7 +427,7 @@ font-style: inherit;"># Flipping the window (refreshing)</span></span>
 </div>
 <p>The fixation is gone again! Exactly as predicted. Flipping the window allows us to draw and show something new in each frame. This means that the speed limit of our presentation is the actual frame rate of our display. <em>If we have a 60Hz display we can present an image 60 times in a second.</em></p>
 <p>So if we want to present our fixation for an entire second we would have to draw and flip it 60 times (our display has a refresh rate of 60Hz)! Let’s try:</p>
-<div id="b9ff2d2f" class="cell" data-execution_count="7">
+<div id="ab7a3c9e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
@@ -447,7 +447,7 @@ font-style: inherit;"># we re-flip at the end to clean the window</span></span><
 </div>
 <p>Now we have shown the fixation for 1 second and then it disappeared. Nice!! However, you probably have already figured out that what we have done was unnecessary. If we want to present a static stimulus for 1s we could have just drawn it, flipped the window, and then waited for 1s. But now you have an idea of how to show animated stimuli or even videos!!! <strong>AMAZING!!!</strong>.</p>
 <p>Now let’s try to show the fixation for 1s by just waiting.</p>
-<div id="c2bc9d89" class="cell" data-execution_count="8">
+<div id="54800c11" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">fixation.draw()</span>
 <span id="cb11-2">win.flip()</span>
 <span id="cb11-3">core.wait(<span class="dv" style="color: #AD0000;
@@ -463,7 +463,7 @@ font-style: inherit;"># we re-flip at the end to clean the window</span></span><
 <section id="play-a-sound" class="level2">
 <h2 class="anchored" data-anchor-id="play-a-sound">Play a sound:</h2>
 <p>We have seen how to show a stimulus let’s now play the sounds that we have imported. This is extremely simple, we can just <code>play()</code> them:</p>
-<div id="ae1f73d8" class="cell" data-execution_count="9">
+<div id="8515f7ad" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">winning_sound.play()</span>
 <span id="cb12-2">core.wait(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -495,7 +495,7 @@ Warning
 <li><p>we present the reward or the non-reward depending on the cue for 2s.</p></li>
 </ul>
 <p>In the end, we also close the window.</p>
-<div id="82a5041d" class="cell" data-execution_count="10">
+<div id="3f50f9ed" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">###### 1st Trial ######</span></span>
@@ -597,7 +597,7 @@ font-style: inherit;"># let's close the window at the end of the trial</span></s
 <p>Amazing, we’ve got two trials! But, these trials are back-to-back, which isn’t typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a <code>core.wait(1)</code>, which would pause the script for a second. However, I’d like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.</p>
 <p>To implement this ISI, we’ll create a psychopy <code>core.Clock()</code>. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We’ll then use a <code>while</code> loop to monitor the elapsed time and break this loop once a second has passed.</p>
 <p>The <code>while</code> loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.</p>
-<div id="cdf7b109" class="cell" data-execution_count="11">
+<div id="a267faa8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">### ISI</span></span>
@@ -626,7 +626,7 @@ font-style: inherit;">pass</span></span></code></pre></div>
 <p>Fantastic, we’ve nearly have our study! However, studies often don’t run to completion, especially when we’re working with infants and children. More often than not, we need to halt the study prematurely. This could be due to the participant becoming fatigued or distracted, or perhaps we need to tweak some settings.</p>
 <p>How can we accomplish this? Of course, we could just shut down Python and let the experiment crash… but surely, there’s a more elegant solution… And indeed, there is! In fact, there are numerous methods to achieve this, and we’re going to demonstrate one of the most straightforward and flexible ones to you.</p>
 <p>We can use the&nbsp;<code>event.getKeys()</code>&nbsp;function to ask Psychopy to report any key that has been pressed during our trial. In our case, we will check if the&nbsp;ESC&nbsp;key has been pressed and if it has, we will simply close the window and stop the study.</p>
-<div id="a4bb098c" class="cell" data-execution_count="12">
+<div id="21c38d2e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">### Check for closing experiment</span></span>
@@ -670,7 +670,7 @@ Important
 <h2 class="anchored" data-anchor-id="create-an-entire-experiment">Create an entire experiment</h2>
 <p>In an experiment, we want more than 1 trial. Let’s then create an experiment with 10 trials. We just need to repeat what we have done above multiple times. However, we need to randomize the type of trials, otherwise, it would be too easy to learn. To do so, we will create a list of <code>0</code> and <code>1</code>. where <code>0</code> would identify a rewarding trial and <code>1</code> would index a non-rewarding trial.</p>
 <p>To properly utilize this list of <code>0</code> and <code>1</code>, we will need to create other lists of our stimuli. This will make it easier to call the right stimuli depending on the trial. We can do so by:</p>
-<div id="5656f489" class="cell" data-execution_count="13">
+<div id="6303dbae" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create list of trials in which 0 means winning and 1 means losing</span></span>
@@ -732,7 +732,7 @@ Caution
 <p>If you are testing this script on your laptop and do not want to lose the ability to interact with it until the experiment is finished, keep the same window size and position as the previous lines of code.</p>
 </div>
 </div>
-<div id="6c9352f2" class="cell" data-execution_count="14">
+<div id="e75a8c38" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import some libraries from PsychoPy and others</span></span>
@@ -1113,7 +1113,7 @@ font-style: inherit;"># stop study</span></span>
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Starting with PsychoPy</title>
@@ -1127,43 +1127,101 @@ font-style: inherit;"># stop study</span></span>
 <p>So, let’s start and install PsychoPy!!!</p>
 <section id="install-psychopy" class="level1">
 <h1>Install PsychoPy</h1>
-<p>As reported on the PsychoPy <a href="https://www.psychopy.org/download.html">website</a>, there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">Getting started with python</a>).</p>
-<p>Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the <a href="https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml">file</a> from their website.</p>
-<p>We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here <a href="../../resources/psychopy.yml" download="">our environment</a> from our github repository.</p>
-<p>Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="bu" style="color: null;
+<p>As reported on the PsychoPy <a href="https://www.psychopy.org/download.html">website</a>, there are multiple ways to install PsychoPy. Our favorite way to install it is using <em>conda/mamba</em> (refer to the <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">Getting started with python</a>).</p>
+<p>This installation method offers several advantages: you are not restricted to using the PsychoPy GUI, and you can easily add libraries to enhance PsychoPy’s functionality. However, this process can sometimes be challenging, as compatibility issues with certain packages may require troubleshooting. Here, we provide some tips to help you make it work. If you find this method too complex or encounter persistent issues, remember that you can always follow the tutorials on this site using the PsychoPy standalone installer, which provides a secure and reliable way to use PsychoPy.</p>
+<section id="minicondaminiforge" class="level2">
+<h2 class="anchored" data-anchor-id="minicondaminiforge">Miniconda/Miniforge</h2>
+<p>We recommend installing PsychoPy in a dedicated virtual environment where you can create and run your studies. To ensure optimal performance and avoid compatibility issues, keep this environment as clean as possible. Ideally, install PsychoPy and only the additional libraries required for your study. For any other libraries, for example for analysis, consider creating separate environments to prevent conflicts with PsychoPy</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Windows</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Mac</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<p>On windows python 3.8 seems to be a safe bet. Create a new environment:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">cd</span> C:<span class="dt" style="color: #AD0000;
+font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">\U</span>sers<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\T</span>hisPC<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\D</span>ownloads</span></code></pre></div>
-<p>And then install the conda environment:</p>
+font-style: inherit;">-n</span> psychopy python=3.8</span></code></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember if you have installed minforge instead of miniconda you can use <em>mamba</em> and <em>conda</em> interchangeably for these steps.</p>
+</div>
+</div>
+<p>once done we actually need to install psychopy in this new environment. Let’s do that, activate the environment and just type <code>pip install psychopy</code> :</p>
 <div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+font-style: inherit;">conda</span> activate psychpy</span>
+<span id="cb2-2"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">-f</span>  your_dowloaded_file.yml</span></code></pre></div>
-<p>This will take some time and will ask for confirmation but in the end you will have a nice virtual environment containing everything you need to run your experiment on PsychoPy.</p>
-<p>The virtual environment will be called “psychopy” and you can activate it just by typing:</p>
+font-style: inherit;">pip</span> install psychopy</span></code></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<p>On Mac Python 3.10 seems to work better. Thus create a new environment:</p>
 <div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">conda</span> activate psychopy</span></code></pre></div>
-<section id="check-our-new-environmnet" class="level2">
-<h2 class="anchored" data-anchor-id="check-our-new-environmnet">Check our new environmnet</h2>
-<p>We are done!! You now should have a nice conda environment called “psychoPy” with PsychoPy and few more things in it. You can always check which environment you have on your pc by typing:</p>
+font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> psychopy python=3.10</span></code></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember if you have installed minforge instead of miniconda you can use <em>mamba</em> and <em>conda</em> interchangeably for these steps.</p>
+</div>
+</div>
+<p>once done we actually need to install psychopy in this new environment. Let’s do that, activate the environment and just type <code>pip install psychopy</code> :</p>
 <div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">conda</span> env list</span></code></pre></div>
-<p>We recommend using the Psychopy environment to create and run your studies. You can use your base environment (or create additional ones) to install more libraries and analyze the data. This approach will keep everything organized and prevent compatibility issues with Psychopy.</p>
+font-style: inherit;">conda</span> activate psychpy</span>
+<span id="cb4-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install psychopy</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>It may take some time and require your confirmation during the process, but eventually, the setup will complete. Once finished, your psychopy environment will include the PsychoPy library, allowing you to import it easily using <code>import psychopy</code></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are planning to use Spyder as your Ide to interact with PsychoPy you require an additional library to interact with Spyder</p>
+<p>You can install it by:<br>
+<code>conda install spyder-kernels</code><br>
+or<br>
+<code>pip install spyder-kernels</code></p>
+<p>In case you need more information please check our <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">python installation guide</a></p>
+</div>
+</div>
 </section>
-<section id="from-conda-to.." class="level2">
-<h2 class="anchored" data-anchor-id="from-conda-to..">From conda to..</h2>
-<p>But how to use all the cool things that are in this new environment? After you activate the environment, to launch the PsychoPy Gui (also referred to as Builder) you can just type <code>psychopy</code> in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let’s be honest, if you want to code your experiment the Gui of Spyder is way better!!</p>
-<p>Thus we suggest to launch Spyder in your newly created “psychopy” environment. You can do that just by simply typing in <code>spyder</code> in your activated environment. After few seconds you should be in Spyder with all its glory !!!</p>
-<p>Good job!! in the next tutorial we will see how to use Psychopy to create our first study!! Let’s go!!!</p>
+<section id="psychopy-standalone" class="level2">
+<h2 class="anchored" data-anchor-id="psychopy-standalone">Psychopy Standalone</h2>
+<p>If you’re unable to install PsychoPy using conda/mamba or simply prefer a reliable setup with access to the intuitive PsychoPy GUI, the standalone installer is a great option.</p>
+<p>However, it’s important to note that PsychoPy offers two main ways to create experiments:</p>
+<ul>
+<li><p>The Builder: Ideal for those who prefer a graphical, point-and-click interface. <img src="https://psychopy.org/_images/builder.png" class="img-fluid quarto-figure quarto-figure-center" width="343"></p></li>
+<li><p>The Coder: Designed for users who prefer to program their experiments from scratch. <img src="https://psychopy.org/_images/coder_small.gif" class="img-fluid quarto-figure quarto-figure-center"></p></li>
+</ul>
+<p>In our tutorials, we will focus on coding experiments directly. If you’re using the PsychoPy standalone installer, <strong>you’ll need to follow along using the Coder interface</strong>.</p>
 
 
 <!-- -->
@@ -1175,7 +1233,7 @@ font-style: inherit;">conda</span> env list</span></code></pre></div>
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPsychopy.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Starting with Python</title>
@@ -1186,14 +1244,26 @@ font-style: inherit;">conda</span> env list</span></code></pre></div>
 
 
 <p>Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.</p>
-<p>In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python</p>
-<p>this is the one we recommend for its simplicity and flexibility</p>
+<p>In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility</p>
 <section id="installing-python" class="level1">
 <h1>Installing Python</h1>
 <section id="anaconda" class="level2">
 <h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
 <p>Anaconda is an open-source distribution for python. It is used for data science, machine learning, deep learning, etc. It makes simple to download and organize your python environment.</p>
-<p>To install Anaconda simply follow this <a href="https://www.anaconda.com/products/distribution">link</a>. Choose a version suitable for you and click on download. Once you complete the download, open the setup.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While Anaconda is a convenient way to obtain Python, it’s not our preferred method. That said, we’ve included it here because it’s one of the simplest options. For our recommended approach, just keep scrolling a bit further.</p>
+</div>
+</div>
+<p>To install Anaconda simply follow this <a href="https://www.anaconda.com/download/success">link</a>. Choose a version suitable for you and click on download. Once you complete the download, open the setup.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/setup1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -1207,98 +1277,182 @@ font-style: inherit;">conda</span> env list</span></code></pre></div>
 </figure>
 </div>
 </section>
-<section id="miniconda" class="level2">
-<h2 class="anchored" data-anchor-id="miniconda">Miniconda</h2>
-<p>While Anaconda is one of the most simple way to install python it is quite heavy. It install multiple programs and libraries that most of the time are unnecessary. For this reason we prefer to use Miniconda.</p>
-<p>Miniconda is a minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages. This means that fewer packages are installed and that we have more control on what to have on our PC. To use Miniconda download the installer from <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></p>
-<p>The installation is exactly the same as the one for Anaconda. After it has finished the installation you will find the Anaconda Prompt between your programs. We will use the Anaconda Prompt to install the packages and the software that we need.</p>
+<section id="minicondaminiforge" class="level2">
+<h2 class="anchored" data-anchor-id="minicondaminiforge">Miniconda/Miniforge</h2>
+<p>While Anaconda is one of the simplest ways to install Python, it can be quite heavy, as it comes with many programs and libraries that are often unnecessary. For this reason, we recommend using either Miniconda or Miniforge.</p>
+<p>Both Miniconda and Miniforge are lightweight installers for Conda. They provide a minimal setup, including only Conda, Python, and a few essential dependencies, giving you more control over what gets installed on your system and keeping your setup lean and efficient. Miniconda includes the default Conda package manager and channels, focusing on the official Conda repository. Miniforge, on the other hand, uses Conda-Forge as its default channel and comes pre-installed with Mamba, a faster and more efficient alternative to Conda for package management.</p>
+<p>Which one should you use? To simplify, if everything mentioned earlier sounds like jargon, Miniconda is a safe choice. However, if you want the fastest and typically best option, go with Miniforge.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Miniconda</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Miniforge</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<p>To use Miniconda download the installer from <a href="https://www.anaconda.com/download/success">Miniconda</a> (remember to scroll down under Anaconda)</p>
+<p>The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<p>To use Miniforge lead to <a href="https://conda-forge.org/miniforge/">Miniforge</a> and download the version right for your system. And start the installation process.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are multiple version you can download. The one you should download is at the end of the page: <strong>Miniforge3</strong></p>
+</div>
+</div>
+<p>The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>One important thing about Miniforge is that you should use mamba instead of conda for faster performance. The commands remain exactly the same—just replace conda with mamba.</p>
+</div>
+</div>
+</div>
 </section>
+</section>
+<section id="installing-python-packages" class="level1">
+<h1>Installing python packages</h1>
+<p>To pre-process and analyze the data we will need some specific packages. It is easy to install and manage packages using conda. Open the Anaconda prompt and type <code>conda install …</code>. For example, if we want to install pandas (a very useful package to handle data-frames) we would write:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> install pandas</span></code></pre></div>
+<p>After thinking about for few seconds the prompt will download the package and its dependencies. Occasionally, conda may encounter difficulties locating the precise package you need. In such cases, pip, another renowned Python package manager, can come to the rescue. You might already be aware of <code>pip</code>, versatility for installing and manage packages in Python.</p>
+<p>Let’s consider I2MC, an exceptional package processing eye-tracking data. With pip, installation is a breeze. Simply use the following command:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install I2MC</span></code></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is recommended to avoid installing packages in the base environment. Instead, create dedicated environments tailored to your needs for better dependency management and a clean, organized setup.</p>
+<p>But what are environments, and how can you manage them? Keep reading below to find out!</p>
+</div>
+</div>
+</section>
+<section id="managing-environments" class="level1">
+<h1>Managing environments</h1>
+<p>Python has different versions. Sometimes when we create scripts we needs to run a specific version of python or of other packages because some of our packages may rely on older version of python or we have conflicting dependencies with other packages. Virtual environments keep these dependencies in separate “sandboxes” so you can switch between both applications easily and get them running.</p>
+<p>One of the best features of Anaconda and Miniconda is how easily you can create and manage environments. Conda lets you create, export, list, remove, and update environments with different Python versions and packages. Let’s create an environment called <code>working</code> that we’ll use for our everyday tasks. To do this, open the Anaconda Prompt and type:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--name</span> working</span></code></pre></div>
+<p>Press <code>y</code> when asked and after few seconds we will have out new <code>working</code> environment. Now we want to tell our Anaconda prompt that we want to work on our brand new <code>working</code> environment. To do so let’s write:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate wokring</span></code></pre></div>
+<p>You’ll notice that the name on the left side of the command prompt has changed from <code>base</code> to <code>working</code>. This indicates that everything you do in the Anaconda Prompt now will apply to the <code>working</code> environment.</p>
+<p>Now we would probably want to install some packages in this new environment. Follow the tutorials above: [Installing python packages]</p>
 </section>
 <section id="sec-installspyder" class="level1">
 <h1>Installing Spyder ide</h1>
-<p>Spyder is a powerful scientific environment ide written in Python. Spyder is designed by and for scientists, engineers and data analysts. It integrates very useful functionalities (variable explorer, plotting, etc.) making it our favorite way to write and run python code.</p>
-<p>When you install the full version of Anaconda, it installs Spyder for you. However, Miniconda doesn’t come with Spyder. Fortunately, Miniconda does make it easy to install. In the Anaconda Prompt type following command and press the “enter” key:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<p>Now that we have our environment and packages set up, how can we actually use them? Sure, we could type python in the terminal and run commands there… but let’s be honest, that would be tedious and inefficient!</p>
+<p>What we need is an IDE—and our choice is Spyder! Spyder is a powerful scientific IDE written in Python, designed specifically for scientists, engineers, and data analysts. With features like a variable explorer and integrated plotting, it’s our top pick for writing and running Python code efficiently.</p>
+<p>If you install the full version of Anaconda, Spyder is included by default. However, Miniconda and Miniforge do not come with Spyder pre-installed. Fortunately, installing Spyder is simple!</p>
+<p>You have two options to install Spyder:</p>
+<ul>
+<li>Standalone Installer: A ready-to-use application that doesn’t require setting up a Python environment.</li>
+<li>Installing as a Library: Add Spyder to your Python environment using a package manager like mamba or conda.</li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">Standalone installer</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">As a library</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<p>The standalone installer is likely the easiest approach. You can install the software once and then connect it to the Python environments of your choice.</p>
+<p>To get started, visit the <a href="https://www.spyder-ide.org/">Spyder website</a>, download the appropriate installer for your operating system, and install it on your machine.</p>
+<p>Once installed, you can launch Spyder. Here it is in all its glory:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/spyder.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="946"></p>
+</figure>
+</div>
+<p>As mentioned earlier, you can configure Spyder to use any of the environments you’ve created. Simply click on <strong>Console</strong>, select <strong>New Console in Environment</strong>, and choose your desired environment. This means that the code you will now run into Spyder will access the python and the packages you have in the specific environment.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To properly run Spyder while connected to your environments, your environment needs to include a specific library.</p>
+<p>Thus you need to install it by:<br>
+<code>conda install spyder-kernels</code><br>
+or<br>
+<code>pip install spyder-kernels</code></p>
+</div>
+</div>
+<p>That’s it—now any code you run will execute within the environment you selected. Well done!<br>
+<img src="https://www.spyder-ide.org/assets/media/conda.webp" class="img-fluid" width="503"></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<p>Another option is to install Spyder as a library. To do this, open the Anaconda Prompt, type the following command, and press the <strong>Enter</strong> key:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> install <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">-c</span> conda-forge spyder</span></code></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember, if you are using Miniforge, it is configured to use the Conda-Forge channel by default. This means you can simply install Spyder with the following command <code>mamba install spyder</code></p>
+</div>
+</div>
 <p>After thinking a bit, the Anaconda prompt will prepared a bunch of files to download and ask if you’d like to proceed. Go ahead and type “y” and hit “enter” to proceed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt_spyder.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt_spyder.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="776"></p>
 </figure>
 </div>
 <p>It will take a while but after few seconds Spyder will be installed on your computer. To launch it you can click on the shortcut that should have appeared in your Start menu or by typing “spyder” in the Anaconda prompt.</p>
 <p>Here it is Spyder in all its glory:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/spyder.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/spyder.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="946"></p>
 </figure>
 </div>
-</section>
-<section id="installing-python-packages" class="level1">
-<h1>Installing python packages</h1>
-<p>To pre-process and analyze the data we will need some specific packages. It is easy to install and manage packages using conda. Open the Anaconda prompt and type <code>conda install …</code>. For example, if we want to install pandas (a very useful package to handle data-frames) we would write:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">conda</span> install pandas</span></code></pre></div>
-<p>After thinking about for few seconds the prompt will download the package and its dependencies. Occasionally, conda may encounter difficulties locating the precise package you need. In such cases, pip, another renowned Python package manager, can come to the rescue. You might already be aware of <code>pip</code>, versatility for installing and manage packages in Python.</p>
-<p>Let’s consider numpy, an exceptional package for array manipulation. With pip, installation is a breeze. Simply use the following command:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">pip</span> install numpy</span></code></pre></div>
-</section>
-<section id="managing-environments" class="level1">
-<h1>Managing environments</h1>
-<p>Python has different versions. Sometimes when we create scripts we needs to run a specific version of python because some of our packages may rely on older version of python or we have conflicting dependencies with other packages. Virtual environments keep these dependencies in separate “sandboxes” so you can switch between both applications easily and get them running.</p>
-<p>One of the best features of Anaconda and Minconda is the ease with which environments can be created and managed. Conda allows you to create, export, list, remove and update environments in which different versions of Python and/or packages are installed. Let’s create an environment called “test” with a older version of python. To do so just open the Anaconda prompt and type:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--name</span> test python=3.7</span></code></pre></div>
-<p>Press <code>y</code> when asked and after few seconds we will have out new “test” environment. Now we want to tell our Anaconda prompt that we want to work on our brand new “test” environment. To do so let’s write:</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">conda</span> activate test</span></code></pre></div>
-<p>Now we would probably want to install some packages and Spyder in this new environment. Follow the tutorials above:</p>
-<ul>
-<li><p>Installing Spyder ide</p></li>
-<li><p>Installing python packages</p></li>
-</ul>
-<section id="creating-an-environment-from-an-environment.yml-file" class="level2">
-<h2 class="anchored" data-anchor-id="creating-an-environment-from-an-environment.yml-file">Creating an environment from an environment.yml file</h2>
-<p>Another interesting feature of conda is that we can save an environment file from an environment we have created. We can later use this file to recreate the same environment with all its packages. This is very convenient when we want to have several people and several PCs with the same environment. We will provide some environment files in our tutorials. These environments have been tested for their specific use and will provide a standard environment for all the users.</p>
-<p>To create an environment from a environment file just type:</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-f</span> environment.yml</span></code></pre></div>
-<p>This again will take some time but it will create the new environment with all the packages specified in it.</p>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-f</span> environment.yml</span></code></pre></div>
+</div>
+</div>
+</div>
 
 
 <!-- -->
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Create an eye-tracking experiment</title>
@@ -3401,7 +3555,7 @@ font-style: inherit;"># stop study</span></span></code></pre></div>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Calibrating eye-tracking</title>
@@ -3980,7 +4134,7 @@ font-style: inherit;">=</span> Sound)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/EyetrackingCalibration.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>From fixations to measures</title>
@@ -5586,7 +5740,7 @@ font-style: inherit;"># Show the plot</span></span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Using I2MC for robust fixation extraction</title>
@@ -5607,6 +5761,7 @@ font-style: inherit;"># Show the plot</span></span>
 <section id="install-i2mc" class="level1">
 <h1>Install I2MC</h1>
 <p>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type <code>pip install I2MC</code>. After a few seconds, you should be ready to go!!</p>
+<p>You may need</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -5624,7 +5779,7 @@ Note
 <section id="use-i2mc" class="level1">
 <h1>Use I2MC</h1>
 <p>Let’s start with importing the libraries that we will need</p>
-<div id="1dda1d7a" class="cell" data-execution_count="1">
+<div id="c3d2ea39" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> I2MC                         <span class="co" style="color: #5E5E5E;
@@ -5657,7 +5812,7 @@ font-style: inherit;"># to make plots</span></span></code></pre></div>
 <h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from <a href="../..\resources/I2mc/DATA.zip">here</a>.</p>
 <p>Let’s create step by step our function to import the data</p>
-<div id="f3f656c7" class="cell" data-execution_count="2">
+<div id="cad7047a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Load data</span></span>
@@ -5670,7 +5825,7 @@ background-color: null;
 font-style: inherit;">','</span>)</span></code></pre></div>
 </div>
 <p>After reading the data we will create a new data-frame that we will fill with the information needed from our raw_df. this is the point that would change depending on you eye-tracked and data format. you will probably have to change the columns names to be sure to have the 5 relevant ones.</p>
-<div id="5e23e308" class="cell" data-execution_count="3">
+<div id="8f4a6d36" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create empty dataframe</span></span>
@@ -5718,7 +5873,7 @@ background-color: null;
 font-style: inherit;">'R_Y'</span>]</span></code></pre></div>
 </div>
 <p>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (&gt;1) we will consider the sample as missing</p>
-<div id="a94207b8" class="cell" data-execution_count="4">
+<div id="80f8888f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">###</span></span>
@@ -5882,7 +6037,7 @@ font-style: inherit;">=</span> np.NAN</span></code></pre></div>
 <section id="everything-into-a-function" class="level3">
 <h3 class="anchored" data-anchor-id="everything-into-a-function">Everything into a function</h3>
 <p>We have read the data, extracted the relevant information and done some extremely basic processing rejecting data that had to be considered non valid. Now we will wrap this code in a function to make it easier to use with I2MC:</p>
-<div id="9f8e9415" class="cell" data-execution_count="5">
+<div id="9114d989" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># ===================================================================</span></span>
@@ -6126,7 +6281,7 @@ font-style: inherit;">return</span>(df)</span></code></pre></div>
 <section id="find-our-data" class="level3">
 <h3 class="anchored" data-anchor-id="find-our-data">Find our data</h3>
 <p>Nice!! we have our import function that we will use to read our data. Now, let’s find our data! To do this, we will use the glob library, which is a handy tool for finding files in Python. Before that let’s set our working directory. The working directory is the folder where we have all our scripts and data. We can set it using the <code>os</code> library:</p>
-<div id="153780fa" class="cell" data-execution_count="6">
+<div id="8d5b8e80" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -6135,7 +6290,7 @@ background-color: null;
 font-style: inherit;">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span></code></pre></div>
 </div>
 <p>This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a <em>.csv</em> extension in a specific folder on our computer. Let’s import glob and then let’s find the files:</p>
-<div id="eee34ce2" class="cell" data-execution_count="7">
+<div id="8d76c2ca" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> glob</span>
@@ -6172,7 +6327,7 @@ font-style: inherit;">True</span>)</span></code></pre></div>
 <section id="define-the-output-folder" class="level3">
 <h3 class="anchored" data-anchor-id="define-the-output-folder">Define the output folder</h3>
 <p>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called <em>i2mc_output</em>. Using the <em><code>os</code></em> library we make sure the output folder doesn’t exist (<code>os.path.isdir(output_fodler)</code>) and then we create it (<code>os.mkdir(output_fodler)</code>)</p>
-<div id="299fa555" class="cell" data-execution_count="8">
+<div id="7d0bb59f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -6209,7 +6364,7 @@ font-style: inherit;">not</span> os.path.isdir(output_fodler):</span>
 <h3 class="anchored" data-anchor-id="i2mc-settings">I2MC settings</h3>
 <p>Now that we’ve got our data, know how to import it using glob and we have out output folder, we’re all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you’re curious about what each of these settings does, you can explore the original <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">I2MC article</a> for a detailed understanding. Here I’ve added a general explanation about what each setting does. Once you’ve read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</p>
 <p>Let’s define these settings:</p>
-<div id="dcd71ee8" class="cell" data-execution_count="9">
+<div id="18e86af6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># =============================================================================</span></span>
@@ -6471,7 +6626,7 @@ font-style: inherit;"># minimum fixation duration after merging, fixations with 
 <section id="run-i2mc" class="level3">
 <h3 class="anchored" data-anchor-id="run-i2mc">Run I2MC</h3>
 <p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</p>
-<div id="a3be0e79" class="cell" data-execution_count="10">
+<div id="22fded39" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#%% Run I2MC</span></span>
@@ -6657,7 +6812,7 @@ Warning
 <section id="entire-script" class="level2">
 <h2 class="anchored" data-anchor-id="entire-script">Entire script</h2>
 <p>To make it simple here is the entire script that we wrote together!!!</p>
-<div id="459d961e" class="cell" data-execution_count="11">
+<div id="04d13593" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
@@ -7390,7 +7545,7 @@ font-style: inherit;">'.csv'</span>)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/I2MC_tutorial.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 <item>
   <title>Introduction to eye-tracking</title>
@@ -7474,7 +7629,7 @@ Important
   <category>Eye-tracking</category>
   <category>Theory</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/Intro_eyetracking.html</guid>
-  <pubDate>Thu, 21 Nov 2024 22:06:26 GMT</pubDate>
+  <pubDate>Sun, 01 Dec 2024 00:03:05 GMT</pubDate>
 </item>
 </channel>
 </rss>

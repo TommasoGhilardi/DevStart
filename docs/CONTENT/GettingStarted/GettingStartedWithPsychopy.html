@@ -270,29 +270,6 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Stats</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/InterpretingModelResults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interpreting Model Results</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -305,8 +282,8 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
   <ul>
   <li><a href="#install-psychopy" id="toc-install-psychopy" class="nav-link active" data-scroll-target="#install-psychopy">Install PsychoPy</a>
   <ul class="collapse">
-  <li><a href="#check-our-new-environmnet" id="toc-check-our-new-environmnet" class="nav-link" data-scroll-target="#check-our-new-environmnet">Check our new environmnet</a></li>
-  <li><a href="#from-conda-to.." id="toc-from-conda-to.." class="nav-link" data-scroll-target="#from-conda-to..">From conda to..</a></li>
+  <li><a href="#minicondaminiforge" id="toc-minicondaminiforge" class="nav-link" data-scroll-target="#minicondaminiforge">Miniconda/Miniforge</a></li>
+  <li><a href="#psychopy-standalone" id="toc-psychopy-standalone" class="nav-link" data-scroll-target="#psychopy-standalone">Psychopy Standalone</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -347,27 +324,85 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <p>So, let’s start and install PsychoPy!!!</p>
 <section id="install-psychopy" class="level1">
 <h1>Install PsychoPy</h1>
-<p>As reported on the PsychoPy <a href="https://www.psychopy.org/download.html">website</a>, there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">Getting started with python</a>).</p>
-<p>Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the <a href="https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml">file</a> from their website.</p>
-<p>We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here <a href="../../resources/psychopy.yml" download="">our environment</a> from our github repository.</p>
-<p>Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> C:<span class="dt">\U</span>sers<span class="dt">\T</span>hisPC<span class="dt">\D</span>ownloads</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And then install the conda environment:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span>  your_dowloaded_file.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will take some time and will ask for confirmation but in the end you will have a nice virtual environment containing everything you need to run your experiment on PsychoPy.</p>
-<p>The virtual environment will be called “psychopy” and you can activate it just by typing:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychopy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="check-our-new-environmnet" class="level2">
-<h2 class="anchored" data-anchor-id="check-our-new-environmnet">Check our new environmnet</h2>
-<p>We are done!! You now should have a nice conda environment called “psychoPy” with PsychoPy and few more things in it. You can always check which environment you have on your pc by typing:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We recommend using the Psychopy environment to create and run your studies. You can use your base environment (or create additional ones) to install more libraries and analyze the data. This approach will keep everything organized and prevent compatibility issues with Psychopy.</p>
+<p>As reported on the PsychoPy <a href="https://www.psychopy.org/download.html">website</a>, there are multiple ways to install PsychoPy. Our favorite way to install it is using <em>conda/mamba</em> (refer to the <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">Getting started with python</a>).</p>
+<p>This installation method offers several advantages: you are not restricted to using the PsychoPy GUI, and you can easily add libraries to enhance PsychoPy’s functionality. However, this process can sometimes be challenging, as compatibility issues with certain packages may require troubleshooting. Here, we provide some tips to help you make it work. If you find this method too complex or encounter persistent issues, remember that you can always follow the tutorials on this site using the PsychoPy standalone installer, which provides a secure and reliable way to use PsychoPy.</p>
+<section id="minicondaminiforge" class="level2">
+<h2 class="anchored" data-anchor-id="minicondaminiforge">Miniconda/Miniforge</h2>
+<p>We recommend installing PsychoPy in a dedicated virtual environment where you can create and run your studies. To ensure optimal performance and avoid compatibility issues, keep this environment as clean as possible. Ideally, install PsychoPy and only the additional libraries required for your study. For any other libraries, for example for analysis, consider creating separate environments to prevent conflicts with PsychoPy</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Mac</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>On windows python 3.8 seems to be a safe bet. Create a new environment:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> psychopy python=3.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember if you have installed minforge instead of miniconda you can use <em>mamba</em> and <em>conda</em> interchangeably for these steps.</p>
+</div>
+</div>
+<p>once done we actually need to install psychopy in this new environment. Let’s do that, activate the environment and just type <code>pip install psychopy</code> :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychpy</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install psychopy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>On Mac Python 3.10 seems to work better. Thus create a new environment:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> psychopy python=3.10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember if you have installed minforge instead of miniconda you can use <em>mamba</em> and <em>conda</em> interchangeably for these steps.</p>
+</div>
+</div>
+<p>once done we actually need to install psychopy in this new environment. Let’s do that, activate the environment and just type <code>pip install psychopy</code> :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychpy</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install psychopy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>It may take some time and require your confirmation during the process, but eventually, the setup will complete. Once finished, your psychopy environment will include the PsychoPy library, allowing you to import it easily using <code>import psychopy</code></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are planning to use Spyder as your Ide to interact with PsychoPy you require an additional library to interact with Spyder</p>
+<p>You can install it by:<br>
+<code>conda install spyder-kernels</code><br>
+or<br>
+<code>pip install spyder-kernels</code></p>
+<p>In case you need more information please check our <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html">python installation guide</a></p>
+</div>
+</div>
 </section>
-<section id="from-conda-to.." class="level2">
-<h2 class="anchored" data-anchor-id="from-conda-to..">From conda to..</h2>
-<p>But how to use all the cool things that are in this new environment? After you activate the environment, to launch the PsychoPy Gui (also referred to as Builder) you can just type <code>psychopy</code> in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let’s be honest, if you want to code your experiment the Gui of Spyder is way better!!</p>
-<p>Thus we suggest to launch Spyder in your newly created “psychopy” environment. You can do that just by simply typing in <code>spyder</code> in your activated environment. After few seconds you should be in Spyder with all its glory !!!</p>
-<p>Good job!! in the next tutorial we will see how to use Psychopy to create our first study!! Let’s go!!!</p>
+<section id="psychopy-standalone" class="level2">
+<h2 class="anchored" data-anchor-id="psychopy-standalone">Psychopy Standalone</h2>
+<p>If you’re unable to install PsychoPy using conda/mamba or simply prefer a reliable setup with access to the intuitive PsychoPy GUI, the standalone installer is a great option.</p>
+<p>However, it’s important to note that PsychoPy offers two main ways to create experiments:</p>
+<ul>
+<li><p>The Builder: Ideal for those who prefer a graphical, point-and-click interface. <img src="https://psychopy.org/_images/builder.png" class="img-fluid quarto-figure quarto-figure-center" width="343"></p></li>
+<li><p>The Coder: Designed for users who prefer to program their experiments from scratch. <img src="https://psychopy.org/_images/coder_small.gif" class="img-fluid quarto-figure quarto-figure-center"></p></li>
+</ul>
+<p>In our tutorials, we will focus on coding experiments directly. If you’re using the PsychoPy standalone installer, <strong>you’ll need to follow along using the Coder interface</strong>.</p>
 
 
 <!-- -->
@@ -878,49 +913,78 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># Install PsychoPy</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>As reported on the PsychoPy <span class="co">[</span><span class="ot">website</span><span class="co">](https://www.psychopy.org/download.html)</span>, there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the <span class="co">[</span><span class="ot">Getting started with python</span><span class="co">](GettingStartedWithPython.qmd)</span>).</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>As reported on the PsychoPy <span class="co">[</span><span class="ot">website</span><span class="co">](https://www.psychopy.org/download.html)</span>, there are multiple ways to install PsychoPy. Our favorite way to install it is using *conda/mamba* (refer to the <span class="co">[</span><span class="ot">Getting started with python</span><span class="co">](GettingStartedWithPython.qmd)</span>).</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the <span class="co">[</span><span class="ot">file</span><span class="co">](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml)</span> from their website.</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>This installation method offers several advantages: you are not restricted to using the PsychoPy GUI, and you can easily add libraries to enhance PsychoPy's functionality. However, this process can sometimes be challenging, as compatibility issues with certain packages may require troubleshooting. Here, we provide some tips to help you make it work. If you find this method too complex or encounter persistent issues, remember that you can always follow the tutorials on this site using the PsychoPy standalone installer, which provides a secure and reliable way to use PsychoPy.</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here &lt;a href="/resources/psychopy.yml" download&gt;our environment&lt;/a&gt; from our github repository.</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Miniconda/Miniforge</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>We recommend installing PsychoPy in a dedicated virtual environment where you can create and run your studies. To ensure optimal performance and avoid compatibility issues, keep this environment as clean as possible. Ideally, install PsychoPy and only the additional libraries required for your study. For any other libraries, for example for analysis, consider creating separate environments to prevent conflicts with PsychoPy</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> C:<span class="dt">\U</span>sers<span class="dt">\T</span>hisPC<span class="dt">\D</span>ownloads</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>And then install the conda environment:</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span>  your_dowloaded_file.yml</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>This will take some time and will ask for confirmation but in the end you will have a nice virtual environment containing everything you need to run your experiment on PsychoPy.</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>The virtual environment will be called "psychopy" and you can activate it just by typing:</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychopy</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Check our new environmnet</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>::::: panel-tabset</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Windows</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>On windows python 3.8 seems to be a safe bet. Create a new environment:</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> psychopy python=3.8</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>Remember if you have installed minforge instead of miniconda you can use *mamba* and *conda* interchangeably for these steps.</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>once done we actually need to install psychopy in this new environment. Let's do that, activate the environment and just type <span class="in">`pip install psychopy`</span> :</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychpy</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install psychopy</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>We are done!! You now should have a nice conda environment called "psychoPy" with PsychoPy and few more things in it. You can always check which environment you have on your pc by typing:</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mac</span></span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env list</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>We recommend using the Psychopy environment to create and run your studies. You can use your base environment (or create additional ones) to install more libraries and analyze the data. This approach will keep everything organized and prevent compatibility issues with Psychopy.</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>On Mac Python 3.10 seems to work better. Thus create a new environment:</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> psychopy python=3.10</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## From conda to..</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>But how to use all the cool things that are in this new environment? After you activate the environment, to launch the PsychoPy Gui (also referred to as Builder) you can just type <span class="in">`psychopy`</span> in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let's be honest, if you want to code your experiment the Gui of Spyder is way better!!</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>Remember if you have installed minforge instead of miniconda you can use *mamba* and *conda* interchangeably for these steps.</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>Thus we suggest to launch Spyder in your newly created "psychopy" environment. You can do that just by simply typing in <span class="in">`spyder`</span> in your activated environment. After few seconds you should be in Spyder with all its glory !!!</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>once done we actually need to install psychopy in this new environment. Let's do that, activate the environment and just type <span class="in">`pip install psychopy`</span> :</span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>Good job!! in the next tutorial we will see how to use Psychopy to create our first study!! Let's go!!!</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate psychpy</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install psychopy</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>It may take some time and require your confirmation during the process, but eventually, the setup will complete. Once finished, your psychopy environment will include the PsychoPy library, allowing you to import it easily using <span class="in">`import psychopy`</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>If you are planning to use Spyder as your Ide to interact with PsychoPy you require an additional library to interact with Spyder</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>You can install it by:\</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="in">`conda install spyder-kernels`</span>\</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>or\</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="in">`pip install spyder-kernels`</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>In case you need more information please check our <span class="co">[</span><span class="ot">python installation guide</span><span class="co">](GettingStartedWithPython.qmd)</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Psychopy Standalone</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>If you're unable to install PsychoPy using conda/mamba or simply prefer a reliable setup with access to the intuitive PsychoPy GUI, the standalone installer is a great option.</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>However, it's important to note that PsychoPy offers two main ways to create experiments:</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The Builder: Ideal for those who prefer a graphical, point-and-click interface. <span class="al">![](https://psychopy.org/_images/builder.png)</span>{fig-align="center" width="343"}</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The Coder: Designed for users who prefer to program their experiments from scratch. <span class="al">![](https://psychopy.org/_images/coder_small.gif)</span>{fig-align="center"}</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>In our tutorials, we will focus on coding experiments directly. If you're using the PsychoPy standalone installer, **you'll need to follow along using the Coder interface**.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -931,7 +995,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link active" href="https://github.com/TommasoGhilardi/DevStart" aria-current="page">
+    <a class="nav-link" href="https://github.com/TommasoGhilardi/DevStart">
       <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
     </a>

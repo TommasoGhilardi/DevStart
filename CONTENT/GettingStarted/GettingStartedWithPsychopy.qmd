@@ -17,46 +17,75 @@ So, let's start and install PsychoPy!!!
 
 # Install PsychoPy
 
-As reported on the PsychoPy [website](https://www.psychopy.org/download.html), there are multiple ways to install PsychoPy. Our favorite way to install it is using conda (refer to the [Getting started with python](GettingStartedWithPython.qmd)).
+As reported on the PsychoPy [website](https://www.psychopy.org/download.html), there are multiple ways to install PsychoPy. Our favorite way to install it is using *conda/mamba* (refer to the [Getting started with python](GettingStartedWithPython.qmd)).
 
-Psychopy offers a nice .yml file that will install a basic environment for running Psychopy. You can download the [file](https://raw.githubusercontent.com/psychopy/psychopy/master/conda/psychopy-env.yml) from their website.
+This installation method offers several advantages: you are not restricted to using the PsychoPy GUI, and you can easily add libraries to enhance PsychoPy's functionality. However, this process can sometimes be challenging, as compatibility issues with certain packages may require troubleshooting. Here, we provide some tips to help you make it work. If you find this method too complex or encounter persistent issues, remember that you can always follow the tutorials on this site using the PsychoPy standalone installer, which provides a secure and reliable way to use PsychoPy.
 
-We have also made a more complete environment, which contains Psychopy as well as Spyder (which is a python IDE) and tobii_research (which allows you to interact with an eye-tracker). You can download here <a href="/resources/psychopy.yml" download>our environment</a> from our github repository.
+## Miniconda/Miniforge
 
-Now open the Anaconda prompt. Make sure to set the directory to where the .yml file is, for example
+We recommend installing PsychoPy in a dedicated virtual environment where you can create and run your studies. To ensure optimal performance and avoid compatibility issues, keep this environment as clean as possible. Ideally, install PsychoPy and only the additional libraries required for your study. For any other libraries, for example for analysis, consider creating separate environments to prevent conflicts with PsychoPy
 
-``` bash
-cd C:\Users\ThisPC\Downloads
-```
+::::: panel-tabset
+## Windows
 
-And then install the conda environment:
-
-``` bash
-conda env create -f  your_dowloaded_file.yml
-```
-
-This will take some time and will ask for confirmation but in the end you will have a nice virtual environment containing everything you need to run your experiment on PsychoPy.
-
-The virtual environment will be called "psychopy" and you can activate it just by typing:
+On windows python 3.8 seems to be a safe bet. Create a new environment:
 
 ``` bash
-conda activate psychopy
+conda create -n psychopy python=3.8
 ```
 
-## Check our new environmnet
+::: callout-note
+Remember if you have installed minforge instead of miniconda you can use *mamba* and *conda* interchangeably for these steps.
+:::
 
-We are done!! You now should have a nice conda environment called "psychoPy" with PsychoPy and few more things in it. You can always check which environment you have on your pc by typing:
+once done we actually need to install psychopy in this new environment. Let's do that, activate the environment and just type `pip install psychopy` :
 
 ``` bash
-conda env list
+conda activate psychpy
+pip install psychopy
 ```
 
-We recommend using the Psychopy environment to create and run your studies. You can use your base environment (or create additional ones) to install more libraries and analyze the data. This approach will keep everything organized and prevent compatibility issues with Psychopy.
+## Mac
 
-## From conda to..
+On Mac Python 3.10 seems to work better. Thus create a new environment:
 
-But how to use all the cool things that are in this new environment? After you activate the environment, to launch the PsychoPy Gui (also referred to as Builder) you can just type `psychopy` in your Anaconda prompt and PsychoPy will launch. You are definitely free to try the Builder or the Coder that PsychoPy offers, however we usually prefer to write and launch our scripts from Spyder, let's be honest, if you want to code your experiment the Gui of Spyder is way better!!
+``` bash
+conda create -n psychopy python=3.10
+```
 
-Thus we suggest to launch Spyder in your newly created "psychopy" environment. You can do that just by simply typing in `spyder` in your activated environment. After few seconds you should be in Spyder with all its glory !!!
+::: callout-note
+Remember if you have installed minforge instead of miniconda you can use *mamba* and *conda* interchangeably for these steps.
+:::
 
-Good job!! in the next tutorial we will see how to use Psychopy to create our first study!! Let's go!!!
+once done we actually need to install psychopy in this new environment. Let's do that, activate the environment and just type `pip install psychopy` :
+
+``` bash
+conda activate psychpy
+pip install psychopy
+```
+:::::
+
+It may take some time and require your confirmation during the process, but eventually, the setup will complete. Once finished, your psychopy environment will include the PsychoPy library, allowing you to import it easily using `import psychopy`
+
+::: callout-caution
+If you are planning to use Spyder as your Ide to interact with PsychoPy you require an additional library to interact with Spyder
+
+You can install it by:\
+`conda install spyder-kernels`\
+or\
+`pip install spyder-kernels`
+
+In case you need more information please check our [python installation guide](GettingStartedWithPython.qmd)
+:::
+
+## Psychopy Standalone
+
+If you're unable to install PsychoPy using conda/mamba or simply prefer a reliable setup with access to the intuitive PsychoPy GUI, the standalone installer is a great option.
+
+However, it's important to note that PsychoPy offers two main ways to create experiments:
+
+-   The Builder: Ideal for those who prefer a graphical, point-and-click interface. ![](https://psychopy.org/_images/builder.png){fig-align="center" width="343"}
+
+-   The Coder: Designed for users who prefer to program their experiments from scratch. ![](https://psychopy.org/_images/coder_small.gif){fig-align="center"}
+
+In our tutorials, we will focus on coding experiments directly. If you're using the PsychoPy standalone installer, **you'll need to follow along using the Coder interface**.

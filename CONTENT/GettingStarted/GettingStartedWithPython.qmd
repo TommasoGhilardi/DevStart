@@ -12,9 +12,7 @@ categories:
 
 Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.
 
-In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python
-
-this is the one we recommend for its simplicity and flexibility
+In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility
 
 # Installing Python
 
@@ -22,7 +20,11 @@ this is the one we recommend for its simplicity and flexibility
 
 Anaconda is an open-source distribution for python. It is used for data science, machine learning, deep learning, etc. It makes simple to download and organize your python environment.
 
-To install Anaconda simply follow this [link](https://www.anaconda.com/products/distribution). Choose a version suitable for you and click on download. Once you complete the download, open the setup.
+::: callout-caution
+While Anaconda is a convenient way to obtain Python, it’s not our preferred method. That said, we’ve included it here because it’s one of the simplest options. For our recommended approach, just keep scrolling a bit further.
+:::
+
+To install Anaconda simply follow this [link](https://www.anaconda.com/download/success). Choose a version suitable for you and click on download. Once you complete the download, open the setup.
 
 ![](/images/GettingStartedWithPython/setup1.png){fig-align="center"}
 
@@ -32,35 +34,37 @@ After the installation is complete, launch the Anaconda navigator. The Anaconda 
 
 ![](/images/GettingStartedWithPython/setup3.png){fig-align="center"}
 
+## Miniconda/Miniforge
+
+While Anaconda is one of the simplest ways to install Python, it can be quite heavy, as it comes with many programs and libraries that are often unnecessary. For this reason, we recommend using either Miniconda or Miniforge.
+
+Both Miniconda and Miniforge are lightweight installers for Conda. They provide a minimal setup, including only Conda, Python, and a few essential dependencies, giving you more control over what gets installed on your system and keeping your setup lean and efficient. Miniconda includes the default Conda package manager and channels, focusing on the official Conda repository. Miniforge, on the other hand, uses Conda-Forge as its default channel and comes pre-installed with Mamba, a faster and more efficient alternative to Conda for package management.
+
+Which one should you use? To simplify, if everything mentioned earlier sounds like jargon, Miniconda is a safe choice. However, if you want the fastest and typically best option, go with Miniforge.
+
+:::: panel-tabset
 ## Miniconda
 
-While Anaconda is one of the most simple way to install python it is quite heavy. It install multiple programs and libraries that most of the time are unnecessary. For this reason we prefer to use Miniconda.
+To use Miniconda download the installer from [Miniconda](https://www.anaconda.com/download/success) (remember to scroll down under Anaconda)
 
-Miniconda is a minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages. This means that fewer packages are installed and that we have more control on what to have on our PC. To use Miniconda download the installer from [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
-
-The installation is exactly the same as the one for Anaconda. After it has finished the installation you will find the Anaconda Prompt between your programs. We will use the Anaconda Prompt to install the packages and the software that we need.
+The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).
 
 ![](/images/GettingStartedWithPython/prompt.png){fig-align="center"}
 
-# Installing Spyder ide {#sec-installspyder}
+## Miniforge
 
-Spyder is a powerful scientific environment ide written in Python. Spyder is designed by and for scientists, engineers and data analysts. It integrates very useful functionalities (variable explorer, plotting, etc.) making it our favorite way to write and run python code.
+To use Miniforge lead to [Miniforge](https://conda-forge.org/miniforge/) and download the version right for your system. And start the installation process.
 
-When you install the full version of Anaconda, it installs Spyder for you. However, Miniconda doesn't come with Spyder. Fortunately, Miniconda does make it easy to install. In the Anaconda Prompt type following command and press the "enter" key:
+::: callout-caution
+There are multiple version you can download. The one you should download is at the end of the page: **Miniforge3**
+:::
 
-``` bash
-conda install -c conda-forge spyder
-```
+The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).
 
-After thinking a bit, the Anaconda prompt will prepared a bunch of files to download and ask if you'd like to proceed. Go ahead and type "y" and hit "enter" to proceed.
+![](/images/GettingStartedWithPython/prompt.png){fig-align="center"}
 
-![](/images/GettingStartedWithPython/prompt_spyder.png){fig-align="center"}
-
-It will take a while but after few seconds Spyder will be installed on your computer. To launch it you can click on the shortcut that should have appeared in your Start menu or by typing "spyder" in the Anaconda prompt.
-
-Here it is Spyder in all its glory:
-
-![](/images/GettingStartedWithPython/spyder.png){fig-align="center"}
+One important thing about Miniforge is that you should use mamba instead of conda for faster performance. The commands remain exactly the same—just replace conda with mamba.
+::::
 
 # Installing python packages
 
@@ -72,46 +76,95 @@ conda install pandas
 
 After thinking about for few seconds the prompt will download the package and its dependencies. Occasionally, conda may encounter difficulties locating the precise package you need. In such cases, pip, another renowned Python package manager, can come to the rescue. You might already be aware of `pip`, versatility for installing and manage packages in Python.
 
-Let's consider numpy, an exceptional package for array manipulation. With pip, installation is a breeze. Simply use the following command:
+Let's consider I2MC, an exceptional package processing eye-tracking data. With pip, installation is a breeze. Simply use the following command:
 
 ``` bash
-pip install numpy
+pip install I2MC
 ```
+
+::: callout-warning
+It is recommended to avoid installing packages in the base environment. Instead, create dedicated environments tailored to your needs for better dependency management and a clean, organized setup.
+
+But what are environments, and how can you manage them? Keep reading below to find out!
+:::
 
 # Managing environments
 
-Python has different versions. Sometimes when we create scripts we needs to run a specific version of python because some of our packages may rely on older version of python or we have conflicting dependencies with other packages. Virtual environments keep these dependencies in separate "sandboxes" so you can switch between both applications easily and get them running.
+Python has different versions. Sometimes when we create scripts we needs to run a specific version of python or of other packages because some of our packages may rely on older version of python or we have conflicting dependencies with other packages. Virtual environments keep these dependencies in separate "sandboxes" so you can switch between both applications easily and get them running.
 
-One of the best features of Anaconda and Minconda is the ease with which environments can be created and managed. Conda allows you to create, export, list, remove and update environments in which different versions of Python and/or packages are installed. Let's create an environment called "test" with a older version of python. To do so just open the Anaconda prompt and type:
-
-``` bash
-conda create --name test python=3.7
-```
-
-Press `y` when asked and after few seconds we will have out new "test" environment. Now we want to tell our Anaconda prompt that we want to work on our brand new "test" environment. To do so let's write:
+One of the best features of Anaconda and Miniconda is how easily you can create and manage environments. Conda lets you create, export, list, remove, and update environments with different Python versions and packages. Let’s create an environment called `working` that we’ll use for our everyday tasks. To do this, open the Anaconda Prompt and type:
 
 ``` bash
-conda activate test
+conda create --name working
 ```
 
-Now we would probably want to install some packages and Spyder in this new environment. Follow the tutorials above:
-
--   [Installing Spyder ide](#sec-installspyder)
-
--   [Installing python packages]
-
-## Creating an environment from an environment.yml file
-
-Another interesting feature of conda is that we can save an environment file from an environment we have created. We can later use this file to recreate the same environment with all its packages. This is very convenient when we want to have several people and several PCs with the same environment. We will provide some environment files in our tutorials. These environments have been tested for their specific use and will provide a standard environment for all the users.
-
-To create an environment from a environment file just type:
+Press `y` when asked and after few seconds we will have out new `working` environment. Now we want to tell our Anaconda prompt that we want to work on our brand new `working` environment. To do so let's write:
 
 ``` bash
-conda env create -f environment.yml
+conda activate wokring
 ```
 
-This again will take some time but it will create the new environment with all the packages specified in it.
+You’ll notice that the name on the left side of the command prompt has changed from `base` to `working`. This indicates that everything you do in the Anaconda Prompt now will apply to the `working` environment.
+
+Now we would probably want to install some packages in this new environment. Follow the tutorials above: \[Installing python packages\]
+
+# Installing Spyder ide {#sec-installspyder}
+
+Now that we have our environment and packages set up, how can we actually use them? Sure, we could type python in the terminal and run commands there... but let’s be honest, that would be tedious and inefficient!
+
+What we need is an IDE—and our choice is Spyder! Spyder is a powerful scientific IDE written in Python, designed specifically for scientists, engineers, and data analysts. With features like a variable explorer and integrated plotting, it’s our top pick for writing and running Python code efficiently.
+
+If you install the full version of Anaconda, Spyder is included by default. However, Miniconda and Miniforge do not come with Spyder pre-installed. Fortunately, installing Spyder is simple!
+
+You have two options to install Spyder:
+
+-   Standalone Installer: A ready-to-use application that doesn’t require setting up a Python environment.
+-   Installing as a Library: Add Spyder to your Python environment using a package manager like mamba or conda.
+
+::::: panel-tabset
+## Standalone installer
+
+The standalone installer is likely the easiest approach. You can install the software once and then connect it to the Python environments of your choice.
+
+To get started, visit the [Spyder website](https://www.spyder-ide.org/), download the appropriate installer for your operating system, and install it on your machine.
+
+Once installed, you can launch Spyder. Here it is in all its glory:
+
+![](/images/GettingStartedWithPython/spyder.png){fig-align="center" width="946"}
+
+As mentioned earlier, you can configure Spyder to use any of the environments you’ve created. Simply click on **Console**, select **New Console in Environment**, and choose your desired environment. This means that the code you will now run into Spyder will access the python and the packages you have in the specific environment.
+
+::: callout-caution
+To properly run Spyder while connected to your environments, your environment needs to include a specific library.
+
+Thus you need to install it by:\
+`conda install spyder-kernels`\
+or\
+`pip install spyder-kernels`
+:::
+
+That’s it—now any code you run will execute within the environment you selected. Well done!\
+![](https://www.spyder-ide.org/assets/media/conda.webp){width="503"}
+
+## As a library
+
+Another option is to install Spyder as a library. To do this, open the Anaconda Prompt, type the following command, and press the **Enter** key:
 
 ``` bash
-conda env create -f environment.yml
+conda install -c conda-forge spyder
 ```
+
+::: callout-tip
+Remember, if you are using Miniforge, it is configured to use the Conda-Forge channel by default. This means you can simply install Spyder with the following command `mamba install spyder`
+:::
+
+After thinking a bit, the Anaconda prompt will prepared a bunch of files to download and ask if you'd like to proceed. Go ahead and type "y" and hit "enter" to proceed.
+
+![](/images/GettingStartedWithPython/prompt_spyder.png){fig-align="center" width="776"}
+
+It will take a while but after few seconds Spyder will be installed on your computer. To launch it you can click on the shortcut that should have appeared in your Start menu or by typing "spyder" in the Anaconda prompt.
+
+Here it is Spyder in all its glory:
+
+![](/images/GettingStartedWithPython/spyder.png){fig-align="center" width="946"}
+:::::

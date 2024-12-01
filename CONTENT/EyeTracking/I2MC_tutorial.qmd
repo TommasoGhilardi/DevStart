@@ -29,6 +29,8 @@ Now that we've introduced I2MC, let's get our hands dirty and see how to use it!
 
 Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type `pip install I2MC`. After a few seconds, you should be ready to go!!
 
+You may need
+
 ::: callout-note
 I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: [I2MC Matlab!](https://github.com/royhessels/I2MC)
 :::

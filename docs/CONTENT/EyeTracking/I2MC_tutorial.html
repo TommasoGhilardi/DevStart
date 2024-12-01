@@ -270,29 +270,6 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Stats</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/InterpretingModelResults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interpreting Model Results</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -364,6 +341,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <section id="install-i2mc" class="level1">
 <h1>Install I2MC</h1>
 <p>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type <code>pip install I2MC</code>. After a few seconds, you should be ready to go!!</p>
+<p>You may need</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -381,7 +359,7 @@ Note
 <section id="use-i2mc" class="level1">
 <h1>Use I2MC</h1>
 <p>Let’s start with importing the libraries that we will need</p>
-<div id="1dda1d7a" class="cell" data-execution_count="1">
+<div id="c3d2ea39" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC                         <span class="co"># I2MC</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd                 <span class="co"># panda help us read csv</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                  <span class="co"># to handle arrays</span></span>
@@ -392,12 +370,12 @@ Note
 <h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from <a href="../..\resources/I2mc/DATA.zip">here</a>.</p>
 <p>Let’s create step by step our function to import the data</p>
-<div id="f3f656c7" class="cell" data-execution_count="2">
+<div id="cad7047a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> pd.read_csv(PATH_TO_DATA, delimiter<span class="op">=</span><span class="st">','</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After reading the data we will create a new data-frame that we will fill with the information needed from our raw_df. this is the point that would change depending on you eye-tracked and data format. you will probably have to change the columns names to be sure to have the 5 relevant ones.</p>
-<div id="5e23e308" class="cell" data-execution_count="3">
+<div id="8f4a6d36" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create empty dataframe</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -409,7 +387,7 @@ Note
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (&gt;1) we will consider the sample as missing</p>
-<div id="a94207b8" class="cell" data-execution_count="4">
+<div id="80f8888f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">###</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
@@ -433,7 +411,7 @@ Note
 <section id="everything-into-a-function" class="level3">
 <h3 class="anchored" data-anchor-id="everything-into-a-function">Everything into a function</h3>
 <p>We have read the data, extracted the relevant information and done some extremely basic processing rejecting data that had to be considered non valid. Now we will wrap this code in a function to make it easier to use with I2MC:</p>
-<div id="9f8e9415" class="cell" data-execution_count="5">
+<div id="9114d989" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================================</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================================</span></span>
@@ -477,12 +455,12 @@ Note
 <section id="find-our-data" class="level3">
 <h3 class="anchored" data-anchor-id="find-our-data">Find our data</h3>
 <p>Nice!! we have our import function that we will use to read our data. Now, let’s find our data! To do this, we will use the glob library, which is a handy tool for finding files in Python. Before that let’s set our working directory. The working directory is the folder where we have all our scripts and data. We can set it using the <code>os</code> library:</p>
-<div id="153780fa" class="cell" data-execution_count="6">
+<div id="8d5b8e80" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a <em>.csv</em> extension in a specific folder on our computer. Let’s import glob and then let’s find the files:</p>
-<div id="eee34ce2" class="cell" data-execution_count="7">
+<div id="8d76c2ca" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -497,7 +475,7 @@ Note
 <section id="define-the-output-folder" class="level3">
 <h3 class="anchored" data-anchor-id="define-the-output-folder">Define the output folder</h3>
 <p>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called <em>i2mc_output</em>. Using the <em><code>os</code></em> library we make sure the output folder doesn’t exist (<code>os.path.isdir(output_fodler)</code>) and then we create it (<code>os.mkdir(output_fodler)</code>)</p>
-<div id="299fa555" class="cell" data-execution_count="8">
+<div id="7d0bb59f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
@@ -512,7 +490,7 @@ Note
 <h3 class="anchored" data-anchor-id="i2mc-settings">I2MC settings</h3>
 <p>Now that we’ve got our data, know how to import it using glob and we have out output folder, we’re all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you’re curious about what each of these settings does, you can explore the original <a href="https://link.springer.com/article/10.3758/s13428-016-0822-1">I2MC article</a> for a detailed understanding. Here I’ve added a general explanation about what each setting does. Once you’ve read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</p>
 <p>Let’s define these settings:</p>
-<div id="dcd71ee8" class="cell" data-execution_count="9">
+<div id="18e86af6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -564,7 +542,7 @@ Note
 <section id="run-i2mc" class="level3">
 <h3 class="anchored" data-anchor-id="run-i2mc">Run I2MC</h3>
 <p>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</p>
-<div id="a3be0e79" class="cell" data-execution_count="10">
+<div id="22fded39" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
@@ -645,7 +623,7 @@ Warning
 <section id="entire-script" class="level2">
 <h2 class="anchored" data-anchor-id="entire-script">Entire script</h2>
 <p>To make it simple here is the entire script that we wrote together!!!</p>
-<div id="459d961e" class="cell" data-execution_count="11">
+<div id="04d13593" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC</span>
@@ -1314,450 +1292,452 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>Installing I2MC in Python is extremely easy. As explained in the tutorial to install Python, just open the miniconda terminal, activate the environment you want to install I2MC in, and type <span class="in">`pip install I2MC`</span>. After a few seconds, you should be ready to go!!</span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: <span class="co">[</span><span class="ot">I2MC Matlab!</span><span class="co">](https://github.com/royhessels/I2MC)</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Use I2MC</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>You may need</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>I2MC has been originally written for Matlab. So for you crazy people who would prefer to use Matlab you can find instructions to download and use I2MC here: <span class="co">[</span><span class="ot">I2MC Matlab!</span><span class="co">](https://github.com/royhessels/I2MC)</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Let's start with importing the libraries that we will need</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="fu"># Use I2MC</span></span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC                         <span class="co"># I2MC</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd                 <span class="co"># panda help us read csv</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                  <span class="co"># to handle arrays</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot  <span class="im">as</span> plt    <span class="co"># to make plots</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>This was too easy now, let's start to really get into it.</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>Let's start with importing the libraries that we will need</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC                         <span class="co"># I2MC</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd                 <span class="co"># panda help us read csv</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                  <span class="co"># to handle arrays</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot  <span class="im">as</span> plt    <span class="co"># to make plots</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import data</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>This was too easy now, let's start to really get into it.</span>
 <span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from <span class="co">[</span><span class="ot">here</span><span class="co">](/resources/I2mc/DATA.zip)</span>.</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import data</span></span>
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>Let's create step by step our function to import the data</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>Now we will write a simple function to import our data. This step unfortunately will have to be adapted depending on the system you used to collect the data and the data structure you will have in the end. For this tutorial, you can use your data-set (probably you will have to adapt the importing function) or use our data that you can download from <span class="co">[</span><span class="ot">here</span><span class="co">](/resources/I2mc/DATA.zip)</span>.</span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> pd.read_csv(PATH_TO_DATA, delimiter<span class="op">=</span><span class="st">','</span>)</span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>After reading the data we will create a new data-frame that we will fill with the information needed from our raw_df. this is the point that would change depending on you eye-tracked and data format. you will probably have to change the columns names to be sure to have the 5 relevant ones.</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>Let's create step by step our function to import the data</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> pd.read_csv(PATH_TO_DATA, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Create empty dataframe</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract required data</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (<span class="sc">\&gt;</span>1) we will consider the sample as missing</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>After reading the data we will create a new data-frame that we will fill with the information needed from our raw_df. this is the point that would change depending on you eye-tracked and data format. you will probably have to change the columns names to be sure to have the 5 relevant ones.</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Create empty dataframe</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract required data</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a><span class="co">###</span></span>
-<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a><span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="co"># distance outside the monitor.</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Left eye</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Right eye</span></span>
-<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>**Perfect!!!**</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>After selecting the relevant data we will perform some very basic processing. Sometimes there could be weird peaks where one sample is (very) far outside the monitor. Here, we will count as missing any data that is more than one monitor distance outside the monitor. Tobii gives us the validity index of the measured eye, here when the validity is too low (<span class="sc">\&gt;</span>1) we will consider the sample as missing</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a><span class="co">###</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="co"># distance outside the monitor.</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Left eye</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Right eye</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Everything into a function</span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>**Perfect!!!**</span>
 <span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>We have read the data, extracted the relevant information and done some extremely basic processing rejecting data that had to be considered non valid. Now we will wrap this code in a function to make it easier to use with I2MC:</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a><span class="fu">### Everything into a function</span></span>
 <span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================================</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>We have read the data, extracted the relevant information and done some extremely basic processing rejecting data that had to be considered non valid. Now we will wrap this code in a function to make it easier to use with I2MC:</span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================================</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tobii_TX300(fname, res<span class="op">=</span>[<span class="dv">1920</span>,<span class="dv">1080</span>]):</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================================</span></span>
 <span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load all data</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(fname, delimiter<span class="op">=</span><span class="st">','</span>)</span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract required data</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>    <span class="co">###</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>    <span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distance outside the monitor.</span></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left eye</span></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>    lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>    lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>    lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right eye</span></span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>    rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>    rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>    rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(df)</span>
-<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### Find our data</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tobii_TX300(fname, res<span class="op">=</span>[<span class="dv">1920</span>,<span class="dv">1080</span>]):</span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load all data</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(fname, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract required data</span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>    <span class="co">###</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>    <span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distance outside the monitor.</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left eye</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>    lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>    lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>    lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right eye</span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>    rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(df)</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a>Nice!! we have our import function that we will use to read our data. Now, let's find our data! To do this, we will use the glob library, which is a handy tool for finding files in Python. Before that let's set our working directory. The working directory is the folder where we have all our scripts and data. We can set it using the <span class="in">`os`</span> library:</span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Find our data</span></span>
 <span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span>
-<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a>This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a *.csv* extension in a specific folder on our computer. Let's import glob and then let's find the files:</span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a>Nice!! we have our import function that we will use to read our data. Now, let's find our data! To do this, we will use the glob library, which is a handy tool for finding files in Python. Before that let's set our working directory. The working directory is the folder where we have all our scripts and data. We can set it using the <span class="in">`os`</span> library:</span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
-<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`DATA\\RAW\\`</span>: This is the path where we want to start our search.</span>
-<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`\\*`</span>: This special symbol tells Python to search in all the subfolders (folders within folders) under our starting path.</span>
-<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`\\*.csv`</span>: We're asking Python to look for files with names ending in ".csv".</span>
-<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`recursive=True`</span>: This option means that Python should search for files not just in the immediate subfolders but in all the subfolders within subfolders, and so on.</span>
-<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a>So, when we run this code, Python will find and give us a list of all the ".csv" files located in any subfolder within our specified path. This makes it really convenient to find and work with lots of files at once.</span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a>This is my directory, you will have something different, you need to change it to where your data are. Once you are done with that we can use glob to find our data files. In the code below, we are telling Python to look for files with a *.csv* extension in a specific folder on our computer. Let's import glob and then let's find the files:</span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`DATA\\RAW\\`</span>: This is the path where we want to start our search.</span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`\\*`</span>: This special symbol tells Python to search in all the subfolders (folders within folders) under our starting path.</span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`\\*.csv`</span>: We're asking Python to look for files with names ending in ".csv".</span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`recursive=True`</span>: This option means that Python should search for files not just in the immediate subfolders but in all the subfolders within subfolders, and so on.</span>
 <span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Define the output folder</span></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a>So, when we run this code, Python will find and give us a list of all the ".csv" files located in any subfolder within our specified path. This makes it really convenient to find and work with lots of files at once.</span>
 <span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called *i2mc_output*. Using the *`os`* library we make sure the output folder doesn't exist (<span class="in">`os.path.isdir(output_fodler)`</span>) and then we create it (<span class="in">`os.mkdir(output_fodler)`</span>)</span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Define the output folder</span></span>
 <span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
-<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'DATA</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
-<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the folder</span></span>
-<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
-<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span>
-<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="fu">### I2MC settings</span></span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a>Before doing anything else I would suggest creating a folder where we will save the output of I2MC. We will create a folder called *i2mc_output*. Using the *`os`* library we make sure the output folder doesn't exist (<span class="in">`os.path.isdir(output_fodler)`</span>) and then we create it (<span class="in">`os.mkdir(output_fodler)`</span>)</span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'DATA</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the folder</span></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>Now that we've got our data, know how to import it using glob and we have out output folder, we're all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you're curious about what each of these settings does, you can explore the original <span class="co">[</span><span class="ot">I2MC article</span><span class="co">](https://link.springer.com/article/10.3758/s13428-016-0822-1)</span> for a detailed understanding. Here I've added a general explanation about what each setting does. Once you've read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a><span class="fu">### I2MC settings</span></span>
 <span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a>Let's define these settings:</span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a>Now that we've got our data, know how to import it using glob and we have out output folder, we're all set to run I2MC. But wait, before we dive in, we need to set up a few things. These settings are like the instructions we give to I2MC before it does its magic. The default settings usually work just fine for most situations. You can keep them as they are and proceed. If you're curious about what each of these settings does, you can explore the original <span class="co">[</span><span class="ot">I2MC article</span><span class="co">](https://link.springer.com/article/10.3758/s13428-016-0822-1)</span> for a detailed understanding. Here I've added a general explanation about what each setting does. Once you've read through the instructions and have a clear understanding, you can customize the settings to match your specific requirements.</span>
 <span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
-<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
-<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
-<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
-<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
-<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> np.NAN          <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
-<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> np.NAN          <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
-<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
-<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
-<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
-<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
-<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
-<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
-<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
-<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
-<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
-<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as a png file in the output folder.</span></span>
-<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
-<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
-<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
-<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
-<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
-<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
-<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
-<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
-<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
-<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
-<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
-<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
-<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
-<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
-<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
-<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
-<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop the algorithm from eating into saccades</span></span>
-<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
-<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
-<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
-<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a><span class="fu">### Run I2MC</span></span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a>Let's define these settings:</span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> np.NAN          <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> np.NAN          <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as a png file in the output folder.</span></span>
+<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
+<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
+<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop the algorithm from eating into saccades</span></span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a><span class="fu">### Run I2MC</span></span>
 <span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
-<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
-<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files)))</span>
-<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
-<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
-<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
-<span id="cb12-271"><a href="#cb12-271" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
-<span id="cb12-272"><a href="#cb12-272" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
-<span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
-<span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb12-275"><a href="#cb12-275" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
-<span id="cb12-276"><a href="#cb12-276" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
-<span id="cb12-277"><a href="#cb12-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-278"><a href="#cb12-278" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
-<span id="cb12-279"><a href="#cb12-279" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt)</span>
-<span id="cb12-280"><a href="#cb12-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
-<span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
-<span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
-<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
-<span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
-<span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
-<span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
-<span id="cb12-288"><a href="#cb12-288" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
-<span id="cb12-289"><a href="#cb12-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-290"><a href="#cb12-290" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
-<span id="cb12-291"><a href="#cb12-291" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
-<span id="cb12-292"><a href="#cb12-292" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
-<span id="cb12-293"><a href="#cb12-293" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
-<span id="cb12-294"><a href="#cb12-294" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span>
-<span id="cb12-295"><a href="#cb12-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-296"><a href="#cb12-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-297"><a href="#cb12-297" aria-hidden="true" tabindex="-1"></a><span class="fu">## WE ARE DONE!!!!!</span></span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>Now we can finally run I2MC on all our files. To do so we will make for loop that will iterate between all the files and: - create a folder for each subject - import the data with the function created before - run I2MC on the file - save the output file and the plot.</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
+<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
+<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files)))</span>
+<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
+<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
+<span id="cb12-271"><a href="#cb12-271" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-272"><a href="#cb12-272" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
+<span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
+<span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
+<span id="cb12-275"><a href="#cb12-275" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
+<span id="cb12-276"><a href="#cb12-276" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb12-277"><a href="#cb12-277" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
+<span id="cb12-278"><a href="#cb12-278" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb12-279"><a href="#cb12-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-280"><a href="#cb12-280" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
+<span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt)</span>
+<span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
+<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
+<span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
+<span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
+<span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb12-288"><a href="#cb12-288" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
+<span id="cb12-289"><a href="#cb12-289" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
+<span id="cb12-290"><a href="#cb12-290" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
+<span id="cb12-291"><a href="#cb12-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-292"><a href="#cb12-292" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
+<span id="cb12-293"><a href="#cb12-293" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
+<span id="cb12-294"><a href="#cb12-294" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
+<span id="cb12-295"><a href="#cb12-295" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb12-296"><a href="#cb12-296" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span>
+<span id="cb12-297"><a href="#cb12-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-298"><a href="#cb12-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-299"><a href="#cb12-299" aria-hidden="true" tabindex="-1"></a>Congratulations on reaching this point! By now, you should have new files containing valuable information from I2MC.</span>
+<span id="cb12-299"><a href="#cb12-299" aria-hidden="true" tabindex="-1"></a><span class="fu">## WE ARE DONE!!!!!</span></span>
 <span id="cb12-300"><a href="#cb12-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a>But what exactly does I2MC tell us?</span>
+<span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a>Congratulations on reaching this point! By now, you should have new files containing valuable information from I2MC.</span>
 <span id="cb12-302"><a href="#cb12-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a>I2MC provides us with a data frame that contains various pieces of information:</span>
+<span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a>But what exactly does I2MC tell us?</span>
 <span id="cb12-304"><a href="#cb12-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-305"><a href="#cb12-305" aria-hidden="true" tabindex="-1"></a>**What I2MC Returns:**</span>
+<span id="cb12-305"><a href="#cb12-305" aria-hidden="true" tabindex="-1"></a>I2MC provides us with a data frame that contains various pieces of information:</span>
 <span id="cb12-306"><a href="#cb12-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-307"><a href="#cb12-307" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`cutoff`</span>: A number representing the cutoff used for fixation detection.</span>
+<span id="cb12-307"><a href="#cb12-307" aria-hidden="true" tabindex="-1"></a>**What I2MC Returns:**</span>
 <span id="cb12-308"><a href="#cb12-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-309"><a href="#cb12-309" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`start`</span>: An array holding the indices where fixations start.</span>
+<span id="cb12-309"><a href="#cb12-309" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`cutoff`</span>: A number representing the cutoff used for fixation detection.</span>
 <span id="cb12-310"><a href="#cb12-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-311"><a href="#cb12-311" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`end`</span>: An array holding the indices where fixations end.</span>
+<span id="cb12-311"><a href="#cb12-311" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`start`</span>: An array holding the indices where fixations start.</span>
 <span id="cb12-312"><a href="#cb12-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-313"><a href="#cb12-313" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`startT`</span>: An array containing the times when fixations start.</span>
+<span id="cb12-313"><a href="#cb12-313" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`end`</span>: An array holding the indices where fixations end.</span>
 <span id="cb12-314"><a href="#cb12-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-315"><a href="#cb12-315" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`endT`</span>: An array containing the times when fixations end.</span>
+<span id="cb12-315"><a href="#cb12-315" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`startT`</span>: An array containing the times when fixations start.</span>
 <span id="cb12-316"><a href="#cb12-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-317"><a href="#cb12-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`dur`</span>: An array storing the durations of fixations.</span>
+<span id="cb12-317"><a href="#cb12-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`endT`</span>: An array containing the times when fixations end.</span>
 <span id="cb12-318"><a href="#cb12-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-319"><a href="#cb12-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`xpos`</span>: An array representing the median horizontal position for each fixation in the trial.</span>
+<span id="cb12-319"><a href="#cb12-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`dur`</span>: An array storing the durations of fixations.</span>
 <span id="cb12-320"><a href="#cb12-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-321"><a href="#cb12-321" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`ypos`</span>: An array representing the median vertical position for each fixation in the trial.</span>
+<span id="cb12-321"><a href="#cb12-321" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`xpos`</span>: An array representing the median horizontal position for each fixation in the trial.</span>
 <span id="cb12-322"><a href="#cb12-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-323"><a href="#cb12-323" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`flankdataloss`</span>: A boolean value (1 or 0) indicating whether a fixation is flanked by data loss (1) or not (0).</span>
+<span id="cb12-323"><a href="#cb12-323" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`ypos`</span>: An array representing the median vertical position for each fixation in the trial.</span>
 <span id="cb12-324"><a href="#cb12-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-325"><a href="#cb12-325" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fracinterped`</span>: A fraction that tells us the amount of data loss or interpolated data in the fixation data.</span>
+<span id="cb12-325"><a href="#cb12-325" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`flankdataloss`</span>: A boolean value (1 or 0) indicating whether a fixation is flanked by data loss (1) or not (0).</span>
 <span id="cb12-326"><a href="#cb12-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-327"><a href="#cb12-327" aria-hidden="true" tabindex="-1"></a>In simple terms, I2MC helps us understand where and for how long a person's gaze remains fixed during an eye-tracking experiment. This is just the first step. Now that we have our fixations, we'll need to use them to extract the information we're interested in. Typically, this involves using the raw data to understand what was happening at each specific time point and using the data from I2MC to determine where the participant was looking at that time. This will be covered in a new tutorial. For now, you've successfully completed the preprocessing of your eye-tracking data, extracting a robust estimation of participants' fixations!!</span>
+<span id="cb12-327"><a href="#cb12-327" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fracinterped`</span>: A fraction that tells us the amount of data loss or interpolated data in the fixation data.</span>
 <span id="cb12-328"><a href="#cb12-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-329"><a href="#cb12-329" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb12-330"><a href="#cb12-330" aria-hidden="true" tabindex="-1"></a>Caution: This tutorial is simplified and assumes the following:</span>
-<span id="cb12-331"><a href="#cb12-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-332"><a href="#cb12-332" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Each participant has only one file (1 trial).</span>
+<span id="cb12-329"><a href="#cb12-329" aria-hidden="true" tabindex="-1"></a>In simple terms, I2MC helps us understand where and for how long a person's gaze remains fixed during an eye-tracking experiment. This is just the first step. Now that we have our fixations, we'll need to use them to extract the information we're interested in. Typically, this involves using the raw data to understand what was happening at each specific time point and using the data from I2MC to determine where the participant was looking at that time. This will be covered in a new tutorial. For now, you've successfully completed the preprocessing of your eye-tracking data, extracting a robust estimation of participants' fixations!!</span>
+<span id="cb12-330"><a href="#cb12-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-331"><a href="#cb12-331" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb12-332"><a href="#cb12-332" aria-hidden="true" tabindex="-1"></a>Caution: This tutorial is simplified and assumes the following:</span>
 <span id="cb12-333"><a href="#cb12-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-334"><a href="#cb12-334" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>All files contain data.</span>
+<span id="cb12-334"><a href="#cb12-334" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Each participant has only one file (1 trial).</span>
 <span id="cb12-335"><a href="#cb12-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-336"><a href="#cb12-336" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The data is relatively clean (I2MC won't throw any errors).</span>
+<span id="cb12-336"><a href="#cb12-336" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>All files contain data.</span>
 <span id="cb12-337"><a href="#cb12-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-338"><a href="#cb12-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>And so on.</span>
+<span id="cb12-338"><a href="#cb12-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The data is relatively clean (I2MC won't throw any errors).</span>
 <span id="cb12-339"><a href="#cb12-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-340"><a href="#cb12-340" aria-hidden="true" tabindex="-1"></a>**If your data doesn't match these assumptions, you may need to modify the script to handle any discrepancies.**</span>
+<span id="cb12-340"><a href="#cb12-340" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>And so on.</span>
 <span id="cb12-341"><a href="#cb12-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-342"><a href="#cb12-342" aria-hidden="true" tabindex="-1"></a>For a more comprehensive example and in-depth usage, check out the <span class="co">[</span><span class="ot">I2MC repository</span><span class="co">](https://github.com/dcnieho/I2MC_Python/tree/master/example)</span>. It provides a more complete example with data checks for missing data and potential errors. Now that you've understood the basics here, interpreting that example should be much easier. If you encounter any issues while running the script, you can give that example a try or reach out to us via email!!!</span>
-<span id="cb12-343"><a href="#cb12-343" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb12-344"><a href="#cb12-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-345"><a href="#cb12-345" aria-hidden="true" tabindex="-1"></a><span class="fu">## Entire script</span></span>
+<span id="cb12-342"><a href="#cb12-342" aria-hidden="true" tabindex="-1"></a>**If your data doesn't match these assumptions, you may need to modify the script to handle any discrepancies.**</span>
+<span id="cb12-343"><a href="#cb12-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-344"><a href="#cb12-344" aria-hidden="true" tabindex="-1"></a>For a more comprehensive example and in-depth usage, check out the <span class="co">[</span><span class="ot">I2MC repository</span><span class="co">](https://github.com/dcnieho/I2MC_Python/tree/master/example)</span>. It provides a more complete example with data checks for missing data and potential errors. Now that you've understood the basics here, interpreting that example should be much easier. If you encounter any issues while running the script, you can give that example a try or reach out to us via email!!!</span>
+<span id="cb12-345"><a href="#cb12-345" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb12-346"><a href="#cb12-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-347"><a href="#cb12-347" aria-hidden="true" tabindex="-1"></a>To make it simple here is the entire script that we wrote together!!!</span>
+<span id="cb12-347"><a href="#cb12-347" aria-hidden="true" tabindex="-1"></a><span class="fu">## Entire script</span></span>
 <span id="cb12-348"><a href="#cb12-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-351"><a href="#cb12-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb12-352"><a href="#cb12-352" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb12-353"><a href="#cb12-353" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
-<span id="cb12-354"><a href="#cb12-354" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC</span>
-<span id="cb12-355"><a href="#cb12-355" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-356"><a href="#cb12-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-357"><a href="#cb12-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-358"><a href="#cb12-358" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-359"><a href="#cb12-359" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
+<span id="cb12-349"><a href="#cb12-349" aria-hidden="true" tabindex="-1"></a>To make it simple here is the entire script that we wrote together!!!</span>
+<span id="cb12-350"><a href="#cb12-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-353"><a href="#cb12-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-354"><a href="#cb12-354" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-355"><a href="#cb12-355" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb12-356"><a href="#cb12-356" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> I2MC</span>
+<span id="cb12-357"><a href="#cb12-357" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-358"><a href="#cb12-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-359"><a href="#cb12-359" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-360"><a href="#cb12-360" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-361"><a href="#cb12-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-362"><a href="#cb12-362" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tobii_TX300(fname, res<span class="op">=</span>[<span class="dv">1920</span>,<span class="dv">1080</span>]):</span>
+<span id="cb12-361"><a href="#cb12-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from Tobii TX300</span></span>
+<span id="cb12-362"><a href="#cb12-362" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
 <span id="cb12-363"><a href="#cb12-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-364"><a href="#cb12-364" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load all data</span></span>
-<span id="cb12-365"><a href="#cb12-365" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(fname, delimiter<span class="op">=</span><span class="st">','</span>)</span>
-<span id="cb12-366"><a href="#cb12-366" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb12-367"><a href="#cb12-367" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-368"><a href="#cb12-368" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract required data</span></span>
-<span id="cb12-369"><a href="#cb12-369" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
-<span id="cb12-370"><a href="#cb12-370" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
-<span id="cb12-371"><a href="#cb12-371" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
-<span id="cb12-372"><a href="#cb12-372" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
-<span id="cb12-373"><a href="#cb12-373" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
-<span id="cb12-374"><a href="#cb12-374" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-375"><a href="#cb12-375" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-376"><a href="#cb12-376" aria-hidden="true" tabindex="-1"></a>    <span class="co">###</span></span>
-<span id="cb12-377"><a href="#cb12-377" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
-<span id="cb12-378"><a href="#cb12-378" aria-hidden="true" tabindex="-1"></a>    <span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
-<span id="cb12-379"><a href="#cb12-379" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distance outside the monitor.</span></span>
-<span id="cb12-380"><a href="#cb12-380" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-381"><a href="#cb12-381" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left eye</span></span>
-<span id="cb12-382"><a href="#cb12-382" aria-hidden="true" tabindex="-1"></a>    lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-383"><a href="#cb12-383" aria-hidden="true" tabindex="-1"></a>    lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-384"><a href="#cb12-384" aria-hidden="true" tabindex="-1"></a>    lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-385"><a href="#cb12-385" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-386"><a href="#cb12-386" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-387"><a href="#cb12-387" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-388"><a href="#cb12-388" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right eye</span></span>
-<span id="cb12-389"><a href="#cb12-389" aria-hidden="true" tabindex="-1"></a>    rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
-<span id="cb12-390"><a href="#cb12-390" aria-hidden="true" tabindex="-1"></a>    rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
-<span id="cb12-391"><a href="#cb12-391" aria-hidden="true" tabindex="-1"></a>    rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb12-392"><a href="#cb12-392" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-393"><a href="#cb12-393" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
-<span id="cb12-394"><a href="#cb12-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-395"><a href="#cb12-395" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(df)</span>
+<span id="cb12-364"><a href="#cb12-364" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tobii_TX300(fname, res<span class="op">=</span>[<span class="dv">1920</span>,<span class="dv">1080</span>]):</span>
+<span id="cb12-365"><a href="#cb12-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-366"><a href="#cb12-366" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load all data</span></span>
+<span id="cb12-367"><a href="#cb12-367" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(fname, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb12-368"><a href="#cb12-368" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb12-369"><a href="#cb12-369" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-370"><a href="#cb12-370" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract required data</span></span>
+<span id="cb12-371"><a href="#cb12-371" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'time'</span>] <span class="op">=</span> raw_df[<span class="st">'time'</span>]</span>
+<span id="cb12-372"><a href="#cb12-372" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_X'</span>] <span class="op">=</span> raw_df[<span class="st">'L_X'</span>]</span>
+<span id="cb12-373"><a href="#cb12-373" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'L_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'L_Y'</span>]</span>
+<span id="cb12-374"><a href="#cb12-374" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_X'</span>] <span class="op">=</span> raw_df[<span class="st">'R_X'</span>]</span>
+<span id="cb12-375"><a href="#cb12-375" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'R_Y'</span>] <span class="op">=</span> raw_df[<span class="st">'R_Y'</span>]</span>
+<span id="cb12-376"><a href="#cb12-376" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-377"><a href="#cb12-377" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-378"><a href="#cb12-378" aria-hidden="true" tabindex="-1"></a>    <span class="co">###</span></span>
+<span id="cb12-379"><a href="#cb12-379" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sometimes we have weird peaks where one sample is (very) far outside the</span></span>
+<span id="cb12-380"><a href="#cb12-380" aria-hidden="true" tabindex="-1"></a>    <span class="co"># monitor. Here, count as missing any data that is more than one monitor</span></span>
+<span id="cb12-381"><a href="#cb12-381" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distance outside the monitor.</span></span>
+<span id="cb12-382"><a href="#cb12-382" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-383"><a href="#cb12-383" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left eye</span></span>
+<span id="cb12-384"><a href="#cb12-384" aria-hidden="true" tabindex="-1"></a>    lMiss1 <span class="op">=</span> (df[<span class="st">'L_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'L_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-385"><a href="#cb12-385" aria-hidden="true" tabindex="-1"></a>    lMiss2 <span class="op">=</span> (df[<span class="st">'L_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'L_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-386"><a href="#cb12-386" aria-hidden="true" tabindex="-1"></a>    lMiss  <span class="op">=</span> lMiss1 <span class="op">|</span> lMiss2 <span class="op">|</span> (raw_df[<span class="st">'L_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-387"><a href="#cb12-387" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-388"><a href="#cb12-388" aria-hidden="true" tabindex="-1"></a>    df.loc[lMiss,<span class="st">'L_Y'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-389"><a href="#cb12-389" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-390"><a href="#cb12-390" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right eye</span></span>
+<span id="cb12-391"><a href="#cb12-391" aria-hidden="true" tabindex="-1"></a>    rMiss1 <span class="op">=</span> (df[<span class="st">'R_X'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">0</span>]) <span class="op">|</span> (df[<span class="st">'R_X'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">0</span>])</span>
+<span id="cb12-392"><a href="#cb12-392" aria-hidden="true" tabindex="-1"></a>    rMiss2 <span class="op">=</span> (df[<span class="st">'R_Y'</span>] <span class="op">&lt;</span> <span class="op">-</span>res[<span class="dv">1</span>]) <span class="op">|</span> (df[<span class="st">'R_Y'</span>]<span class="op">&gt;</span><span class="dv">2</span><span class="op">*</span>res[<span class="dv">1</span>])</span>
+<span id="cb12-393"><a href="#cb12-393" aria-hidden="true" tabindex="-1"></a>    rMiss  <span class="op">=</span> rMiss1 <span class="op">|</span> rMiss2 <span class="op">|</span> (raw_df[<span class="st">'R_V'</span>] <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb12-394"><a href="#cb12-394" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_X'</span>] <span class="op">=</span> np.NAN</span>
+<span id="cb12-395"><a href="#cb12-395" aria-hidden="true" tabindex="-1"></a>    df.loc[rMiss,<span class="st">'R_Y'</span>] <span class="op">=</span> np.NAN</span>
 <span id="cb12-396"><a href="#cb12-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-397"><a href="#cb12-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-397"><a href="#cb12-397" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(df)</span>
 <span id="cb12-398"><a href="#cb12-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-399"><a href="#cb12-399" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Preparation</span></span>
+<span id="cb12-399"><a href="#cb12-399" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-400"><a href="#cb12-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a><span class="co"># Settign the working directory</span></span>
-<span id="cb12-402"><a href="#cb12-402" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span>
-<span id="cb12-403"><a href="#cb12-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-404"><a href="#cb12-404" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the files</span></span>
-<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>) <span class="co"># find all the files</span></span>
-<span id="cb12-406"><a href="#cb12-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-407"><a href="#cb12-407" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
-<span id="cb12-408"><a href="#cb12-408" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'DATA</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
-<span id="cb12-409"><a href="#cb12-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-410"><a href="#cb12-410" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the outputfolder</span></span>
-<span id="cb12-411"><a href="#cb12-411" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
-<span id="cb12-412"><a href="#cb12-412" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span>
-<span id="cb12-413"><a href="#cb12-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-414"><a href="#cb12-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-415"><a href="#cb12-415" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-416"><a href="#cb12-416" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
-<span id="cb12-417"><a href="#cb12-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-418"><a href="#cb12-418" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
-<span id="cb12-419"><a href="#cb12-419" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
-<span id="cb12-420"><a href="#cb12-420" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
-<span id="cb12-421"><a href="#cb12-421" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
-<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> np.NAN                <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
-<span id="cb12-423"><a href="#cb12-423" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> np.NAN                <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
-<span id="cb12-424"><a href="#cb12-424" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
-<span id="cb12-425"><a href="#cb12-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-426"><a href="#cb12-426" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
-<span id="cb12-427"><a href="#cb12-427" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
-<span id="cb12-428"><a href="#cb12-428" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
-<span id="cb12-429"><a href="#cb12-429" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
-<span id="cb12-430"><a href="#cb12-430" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
-<span id="cb12-431"><a href="#cb12-431" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
-<span id="cb12-432"><a href="#cb12-432" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
-<span id="cb12-433"><a href="#cb12-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-434"><a href="#cb12-434" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
-<span id="cb12-435"><a href="#cb12-435" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
-<span id="cb12-436"><a href="#cb12-436" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
-<span id="cb12-437"><a href="#cb12-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
-<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
-<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
-<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
-<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
-<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
-<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
-<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
-<span id="cb12-449"><a href="#cb12-449" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
-<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
-<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
-<span id="cb12-452"><a href="#cb12-452" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
-<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
-<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
-<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
-<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
-<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
-<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
-<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
-<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Preparation</span></span>
+<span id="cb12-402"><a href="#cb12-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-403"><a href="#cb12-403" aria-hidden="true" tabindex="-1"></a><span class="co"># Settign the working directory</span></span>
+<span id="cb12-404"><a href="#cb12-404" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD\Workshop'</span>)</span>
+<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-406"><a href="#cb12-406" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the files</span></span>
+<span id="cb12-407"><a href="#cb12-407" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> glob.glob(<span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">**</span><span class="ch">\\</span><span class="st">*.csv'</span>, recursive <span class="op">=</span> <span class="va">True</span>) <span class="co"># find all the files</span></span>
+<span id="cb12-408"><a href="#cb12-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-409"><a href="#cb12-409" aria-hidden="true" tabindex="-1"></a><span class="co"># define the output folder</span></span>
+<span id="cb12-410"><a href="#cb12-410" aria-hidden="true" tabindex="-1"></a>output_fodler <span class="op">=</span> <span class="st">'DATA</span><span class="ch">\\</span><span class="st">i2mc_output'</span> <span class="co"># define folder path\name</span></span>
+<span id="cb12-411"><a href="#cb12-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-412"><a href="#cb12-412" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the outputfolder</span></span>
+<span id="cb12-413"><a href="#cb12-413" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.isdir(output_fodler):</span>
+<span id="cb12-414"><a href="#cb12-414" aria-hidden="true" tabindex="-1"></a>   os.mkdir(output_fodler)</span>
+<span id="cb12-415"><a href="#cb12-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-416"><a href="#cb12-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-417"><a href="#cb12-417" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb12-418"><a href="#cb12-418" aria-hidden="true" tabindex="-1"></a><span class="co"># NECESSARY VARIABLES</span></span>
+<span id="cb12-419"><a href="#cb12-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-420"><a href="#cb12-420" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> {}</span>
+<span id="cb12-421"><a href="#cb12-421" aria-hidden="true" tabindex="-1"></a><span class="co"># General variables for eye-tracking data</span></span>
+<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'xres'</span>]         <span class="op">=</span> <span class="fl">1920.0</span>                <span class="co"># maximum value of horizontal resolution in pixels</span></span>
+<span id="cb12-423"><a href="#cb12-423" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'yres'</span>]         <span class="op">=</span> <span class="fl">1080.0</span>                <span class="co"># maximum value of vertical resolution in pixels</span></span>
+<span id="cb12-424"><a href="#cb12-424" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingx'</span>]     <span class="op">=</span> np.NAN                <span class="co"># missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss</span></span>
+<span id="cb12-425"><a href="#cb12-425" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'missingy'</span>]     <span class="op">=</span> np.NAN                <span class="co"># missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss</span></span>
+<span id="cb12-426"><a href="#cb12-426" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'freq'</span>]         <span class="op">=</span> <span class="fl">300.0</span>                 <span class="co"># sampling frequency of data (check that this value matches with values actually obtained from measurement!)</span></span>
+<span id="cb12-427"><a href="#cb12-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-428"><a href="#cb12-428" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables for the calculation of visual angle</span></span>
+<span id="cb12-429"><a href="#cb12-429" aria-hidden="true" tabindex="-1"></a><span class="co"># These values are used to calculate noise measures (RMS and BCEA) of</span></span>
+<span id="cb12-430"><a href="#cb12-430" aria-hidden="true" tabindex="-1"></a><span class="co"># fixations. The may be left as is, but don't use the noise measures then.</span></span>
+<span id="cb12-431"><a href="#cb12-431" aria-hidden="true" tabindex="-1"></a><span class="co"># If either or both are empty, the noise measures are provided in pixels</span></span>
+<span id="cb12-432"><a href="#cb12-432" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of degrees.</span></span>
+<span id="cb12-433"><a href="#cb12-433" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'scrSz'</span>]        <span class="op">=</span> [<span class="fl">50.9174</span>, <span class="fl">28.6411</span>]    <span class="co"># screen size in cm</span></span>
+<span id="cb12-434"><a href="#cb12-434" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'disttoscreen'</span>] <span class="op">=</span> <span class="fl">65.0</span>                  <span class="co"># distance to screen in cm.</span></span>
+<span id="cb12-435"><a href="#cb12-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-436"><a href="#cb12-436" aria-hidden="true" tabindex="-1"></a><span class="co"># Options of example script</span></span>
+<span id="cb12-437"><a href="#cb12-437" aria-hidden="true" tabindex="-1"></a>do_plot_data <span class="op">=</span> <span class="va">True</span> <span class="co"># if set to True, plot of fixation detection for each trial will be saved as png-file in output folder.</span></span>
+<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a><span class="co"># the figures works best for short trials (up to around 20 seconds)</span></span>
+<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL VARIABLES</span></span>
+<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a><span class="co"># The settings below may be used to adopt the default settings of the</span></span>
+<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a><span class="co"># algorithm. Do this only if you know what you're doing.</span></span>
+<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a><span class="co"># # STEFFEN INTERPOLATION</span></span>
+<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtimeInterp'</span>]     <span class="op">=</span> <span class="fl">0.1</span>                           <span class="co"># max duration (s) of missing values for interpolation to occur</span></span>
+<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'edgeSampInterp'</span>]       <span class="op">=</span> <span class="dv">2</span>                             <span class="co"># amount of data (number of samples) at edges needed for interpolation</span></span>
+<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxdisp'</span>]              <span class="op">=</span> opt[<span class="st">'xres'</span>]<span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)    <span class="co"># maximum displacement during missing for interpolation to be possible</span></span>
+<span id="cb12-449"><a href="#cb12-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a><span class="co"># # K-MEANS CLUSTERING</span></span>
+<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'windowtime'</span>]           <span class="op">=</span> <span class="fl">0.2</span>                           <span class="co"># time window (s) over which to calculate 2-means clustering (choose value so that max. 1 saccade can occur)</span></span>
+<span id="cb12-452"><a href="#cb12-452" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'steptime'</span>]             <span class="op">=</span> <span class="fl">0.02</span>                          <span class="co"># time window shift (s) for each iteration. Use zero for sample by sample processing</span></span>
+<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxerrors'</span>]            <span class="op">=</span> <span class="dv">100</span>                           <span class="co"># maximum number of errors allowed in k-means clustering procedure before proceeding to next file</span></span>
+<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsamples'</span>]          <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'downsampFilter'</span>]       <span class="op">=</span> <span class="va">False</span>                         <span class="co"># use chebychev filter when downsampling? Its what matlab's downsampling functions do, but could cause trouble (ringing) with the hard edges in eye-movement data</span></span>
+<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a><span class="co"># # FIXATION DETERMINATION</span></span>
+<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'cutoffstd'</span>]            <span class="op">=</span> <span class="fl">2.0</span>                           <span class="co"># number of standard deviations above mean k-means weights will be used as fixation cutoff</span></span>
+<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'onoffsetThresh'</span>]       <span class="op">=</span> <span class="fl">3.0</span>                           <span class="co"># number of MAD away from median fixation duration. Will be used to walk forward at fixation starts and backward at fixation ends to refine their placement and stop algorithm from eating into saccades</span></span>
+<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeDist'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum Euclidean distance in pixels between fixations for merging</span></span>
+<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'maxMergeTime'</span>]         <span class="op">=</span> <span class="fl">30.0</span>                          <span class="co"># maximum time in ms between fixations for merging</span></span>
+<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a>opt[<span class="st">'minFixDur'</span>]            <span class="op">=</span> <span class="fl">40.0</span>                          <span class="co"># minimum fixation duration after merging, fixations with shorter duration are removed from output</span></span>
 <span id="cb12-463"><a href="#cb12-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
+<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-465"><a href="#cb12-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
-<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files)))</span>
-<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
-<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
-<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
-<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
-<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
-<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
-<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
-<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
-<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
-<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt)</span>
-<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
-<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
-<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
-<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
-<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
-<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
-<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
-<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
-<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
-<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
-<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
-<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
-<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span>
-<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Run I2MC</span></span>
+<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_idx, <span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(data_files):</span>
+<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Processing file </span><span class="sc">{}</span><span class="st"> of </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(file_idx <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(data_files)))</span>
+<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the name form the file path</span></span>
+<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> os.path.splitext(os.path.basename(<span class="bu">file</span>))[<span class="dv">0</span>]</span>
+<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the folder the specific subject</span></span>
+<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a>    subj_folder <span class="op">=</span> os.path.join(output_fodler, name)</span>
+<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isdir(subj_folder):</span>
+<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a>       os.mkdir(subj_folder)</span>
+<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Import data</span></span>
+<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> tobii_TX300(<span class="bu">file</span>, [opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run I2MC on the data</span></span>
+<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>    fix,_,_ <span class="op">=</span> I2MC.I2MC(data,opt)</span>
+<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Create a plot of the result and save them</span></span>
+<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> do_plot_data:</span>
+<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pre-allocate name for saving file</span></span>
+<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a>        save_plot <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.png'</span>)</span>
+<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> I2MC.plot.data_and_fixations(data, fix, fix_as_line<span class="op">=</span><span class="va">True</span>, res<span class="op">=</span>[opt[<span class="st">'xres'</span>], opt[<span class="st">'yres'</span>]])</span>
+<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a>        <span class="co"># save figure and close</span></span>
+<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a>        f.savefig(save_plot)</span>
+<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a>        plt.close(f)</span>
+<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write data to file after make it a dataframe</span></span>
+<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a>    fix[<span class="st">'participant'</span>] <span class="op">=</span> name</span>
+<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a>    fix_df <span class="op">=</span> pd.DataFrame(fix)</span>
+<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a>    save_file <span class="op">=</span> os.path.join(subj_folder, name<span class="op">+</span><span class="st">'.csv'</span>)</span>
+<span id="cb12-498"><a href="#cb12-498" aria-hidden="true" tabindex="-1"></a>    fix_df.to_csv(save_file)</span>
+<span id="cb12-499"><a href="#cb12-499" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
