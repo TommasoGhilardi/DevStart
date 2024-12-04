@@ -68,7 +68,15 @@ One important thing about Miniforge is that you should use mamba instead of cond
 
 # Installing python packages
 
-To pre-process and analyze the data we will need some specific packages. It is easy to install and manage packages using conda. Open the Anaconda prompt and type `conda install …`. For example, if we want to install pandas (a very useful package to handle data-frames) we would write:
+To pre-process and analyze the data we will need some specific packages. It is easy to install and manage packages using conda.
+
+::: callout-warning
+It is recommended to avoid installing packages in the base environment. Instead, create dedicated environments tailored to your needs for better dependency management and a clean, organized setup.
+
+But what are environments, and how can you manage them? Keep reading below to find out!
+:::
+
+Open the Anaconda prompt and type `conda install …`. For example, if we want to install pandas (a very useful package to handle data-frames) we would write:
 
 ``` bash
 conda install pandas
@@ -82,20 +90,14 @@ Let's consider I2MC, an exceptional package processing eye-tracking data. With p
 pip install I2MC
 ```
 
-::: callout-warning
-It is recommended to avoid installing packages in the base environment. Instead, create dedicated environments tailored to your needs for better dependency management and a clean, organized setup.
-
-But what are environments, and how can you manage them? Keep reading below to find out!
-:::
-
 # Managing environments
 
 Python has different versions. Sometimes when we create scripts we needs to run a specific version of python or of other packages because some of our packages may rely on older version of python or we have conflicting dependencies with other packages. Virtual environments keep these dependencies in separate "sandboxes" so you can switch between both applications easily and get them running.
 
-One of the best features of Anaconda and Miniconda is how easily you can create and manage environments. Conda lets you create, export, list, remove, and update environments with different Python versions and packages. Let’s create an environment called `working` that we’ll use for our everyday tasks. To do this, open the Anaconda Prompt and type:
+One of the best features of Anaconda and Miniconda is how easily you can create and manage environments. Conda lets you create, export, list, remove, and update environments with different Python versions and packages. Let’s create an environment called `working` that we’ll use for our everyday tasks and let's make sure to have python in it. To do this, open the Anaconda Prompt and type:
 
 ``` bash
-conda create --name working
+conda create --name working python
 ```
 
 Press `y` when asked and after few seconds we will have out new `working` environment. Now we want to tell our Anaconda prompt that we want to work on our brand new `working` environment. To do so let's write:

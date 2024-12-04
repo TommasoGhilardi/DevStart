@@ -84,16 +84,16 @@ After selecting the relevant data we will perform some very basic processing. So
 # Left eye
 lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
 lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
-df.loc[lMiss,'L_X'] = np.NAN
-df.loc[lMiss,'L_Y'] = np.NAN
+lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] == False)
+df.loc[lMiss,'L_X'] = np.nan
+df.loc[lMiss,'L_Y'] = np.nan
 
 # Right eye
 rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
 rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
-df.loc[rMiss,'R_X'] = np.NAN
-df.loc[rMiss,'R_Y'] = np.NAN
+rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] == False)
+df.loc[rMiss,'R_X'] = np.nan
+df.loc[rMiss,'R_Y'] = np.nan
 ```
 
 **Perfect!!!**
@@ -129,16 +129,16 @@ def tobii_TX300(fname, res=[1920,1080]):
     # Left eye
     lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
     lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
-    df.loc[lMiss,'L_X'] = np.NAN
-    df.loc[lMiss,'L_Y'] = np.NAN
+    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] == False)
+    df.loc[lMiss,'L_X'] = np.nan
+    df.loc[lMiss,'L_Y'] = np.nan
     
     # Right eye
     rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
     rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
-    df.loc[rMiss,'R_X'] = np.NAN
-    df.loc[rMiss,'R_Y'] = np.NAN
+    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] == False)
+    df.loc[rMiss,'R_X'] = np.nan
+    df.loc[rMiss,'R_Y'] = np.nan
     
     return(df)
 ```
@@ -195,8 +195,8 @@ opt = {}
 # General variables for eye-tracking data
 opt['xres']         = 1920.0                # maximum value of horizontal resolution in pixels
 opt['yres']         = 1080.0                # maximum value of vertical resolution in pixels
-opt['missingx']     = np.NAN          # missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss
-opt['missingy']     = np.NAN          # missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss
+opt['missingx']     = np.nan          # missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss
+opt['missingy']     = np.nan          # missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss
 opt['freq']         = 300.0                 # sampling frequency of data (check that this value matches with values actually obtained from measurement!)
 
 # Variables for the calculation of visual angle
@@ -361,16 +361,16 @@ def tobii_TX300(fname, res=[1920,1080]):
     # Left eye
     lMiss1 = (df['L_X'] < -res[0]) | (df['L_X']>2*res[0])
     lMiss2 = (df['L_Y'] < -res[1]) | (df['L_Y']>2*res[1])
-    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] > 1)
-    df.loc[lMiss,'L_X'] = np.NAN
-    df.loc[lMiss,'L_Y'] = np.NAN
+    lMiss  = lMiss1 | lMiss2 | (raw_df['L_V'] == False)
+    df.loc[lMiss,'L_X'] = np.nan
+    df.loc[lMiss,'L_Y'] = np.nan
     
     # Right eye
     rMiss1 = (df['R_X'] < -res[0]) | (df['R_X']>2*res[0])
     rMiss2 = (df['R_Y'] < -res[1]) | (df['R_Y']>2*res[1])
-    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] > 1)
-    df.loc[rMiss,'R_X'] = np.NAN
-    df.loc[rMiss,'R_Y'] = np.NAN
+    rMiss  = rMiss1 | rMiss2 | (raw_df['R_V'] == False)
+    df.loc[rMiss,'R_X'] = np.nan
+    df.loc[rMiss,'R_Y'] = np.nan
 
     return(df)
 
@@ -399,8 +399,8 @@ opt = {}
 # General variables for eye-tracking data
 opt['xres']         = 1920.0                # maximum value of horizontal resolution in pixels
 opt['yres']         = 1080.0                # maximum value of vertical resolution in pixels
-opt['missingx']     = np.NAN                # missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss
-opt['missingy']     = np.NAN                # missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss
+opt['missingx']     = np.nan                # missing value for horizontal position in eye-tracking data (example data uses -xres). used throughout the algorithm as signal for data loss
+opt['missingy']     = np.nan                # missing value for vertical position in eye-tracking data (example data uses -yres). used throughout algorithm as signal for data loss
 opt['freq']         = 300.0                 # sampling frequency of data (check that this value matches with values actually obtained from measurement!)
 
 # Variables for the calculation of visual angle

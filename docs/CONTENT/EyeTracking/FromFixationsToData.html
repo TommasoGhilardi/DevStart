@@ -328,7 +328,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 
 
 <p>In the previous two tutorials we <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html">collected some eye-tracking data</a> and then we <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html">used I2MC to extract the fixations</a> from that data. Let’s load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.</p>
-<div id="d1d02e58" class="cell" data-execution_count="1">
+<div id="b2faa457" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -367,7 +367,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <li><p>Tobii reports data with its origin (0,0) in the lower left corner.</p></li>
 </ul>
 <p>This inconsistency is not a problem per se, but we need to take it into account when defining the AOIs. Let’s try to define the AOIs:</p>
-<div id="f7a75682" class="cell" data-execution_count="2">
+<div id="da1242af" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -383,7 +383,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nice!! This step is essential. We have created two AOIs. We will use them to define whether each fixation of our participant was within either of these two AOIs. Let’s get a better idea by just plotting these two AOIs and two random points <code>(600, 500)</code> and <code>(1400,1000)</code>.</p>
-<div id="e5aa9c33" class="cell" data-execution_count="3">
+<div id="0d6af74e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -431,7 +431,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>So imagine we have a point: <code>point</code> and an area: <code>area</code>, we can check if the point falls inside the area by:</p>
-<div id="47df40ce" class="cell" data-execution_count="4">
+<div id="ccd7542f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract bottom left and top right points</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bottom_left, top_right <span class="op">=</span> area</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -447,7 +447,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </div>
 <p>Perfect, this will return True if the point falls inside the area and False if it falls outside. Since we have two AOIs and not just one, we want to make things a bit fancier. We will create a function that checks if a point falls within a list of areas, and tells us which area it falls in.</p>
 <p>We will run the code above in a loop using <code>enumerate</code>. This extracts two elements to our loop: the index of the element and the element itself. In our case the index of the area and the area itself. This is very useful as we can then use both of these two pieces of information. We will use the actual area to check if our points fall into it. Then, if it does, we will return the index of that area. Conversely, if the point doesn’t fall in any area the function will return -1.</p>
-<div id="55e23500" class="cell" data-execution_count="5">
+<div id="895cdc59" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We define a function that simply takes the a point and a list of areas.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This function checks in which area this point is and return the index</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of the area. If the point is in no area it returns -1</span></span>
@@ -483,12 +483,12 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </div>
 <p>In this case, our attention is on the target window. We’re going to establish a time window that begins 750ms before the target appears and continues for 2000ms after its pentation. Indeed, both <strong>Saccadic latency</strong> and <strong>Lookign time</strong> occur within this time window, while we don’t really care about where the participant is looking during other phases of the task.</p>
 <p>Let’s start by finding the moment in which the target appeared:</p>
-<div id="d8f3a7ae" class="cell" data-execution_count="6">
+<div id="ff127e2a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we’re going to add two new columns to our fixation dataframe: <code>Event</code> and <code>Event_trial</code>. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we’re going to add another column called <code>Onset</code> to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.</p>
-<div id="82a899f4" class="cell" data-execution_count="7">
+<div id="13775366" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
@@ -510,7 +510,7 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>We can use this to our advantage and filter all the NANs out:</p>
-<div id="9d71a3ca" class="cell" data-execution_count="8">
+<div id="a7495e55" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -532,12 +532,12 @@ Important
 <p>Just a heads up: our study design is pretty straightforward with only two stable Areas of Interest (AOIs). But if you’re dealing with multiple or moving AOIs, you’ve got options. You can add them to each row of the dataframe, depending on the event or trial. This way, you get more control over which area to inspect at any given moment of the study. It’s all about flexibility and precision!</p>
 </div>
 </div>
-<div id="ea8d5ff8" class="cell" data-execution_count="9">
+<div id="e2a314db" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Target_fixations)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have a column with the AOIs in our Target_fixations dataframe, we can run our function <code>find_area_for_point()</code> to check in which AOI each fixation falls.</p>
-<div id="b01f63c5" class="cell" data-execution_count="10">
+<div id="325d602b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
@@ -548,7 +548,7 @@ Important
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect, we now have a dataframe that contains only the fixations of interest and tells us which AOI each fixation is in. Before we continue, let’s remove the fixations that didn’t fall in any AOI (if you remember or the function assigns -1 if the fixation is outside any AOI):</p>
-<div id="2ece56eb" class="cell" data-execution_count="11">
+<div id="a5517221" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -558,7 +558,7 @@ Important
 <p>As I mentioned at the beginning of this tutorial, one of the indices we want to extract is saccadic latency. Basically, this indicates how quickly our participants fixated on the correct target location.</p>
 <p>If we know where our participant was supposed to look, we can easily find the first fixation. Sounds simple, right?</p>
 <p>In our paradigm, the non-rewarding stimulus was always presented on the left (the first AOI we defined) and the rewarding stimulus was always presented on the right (the second AOI we defined). Thus we can add this information to our dataframe and then use it to filter out the wrong fixations:</p>
-<div id="7ecb56f3" class="cell" data-message="false" data-execution_count="12">
+<div id="cc607cc8" class="cell" data-message="false" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
@@ -567,7 +567,7 @@ Important
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations.loc[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>],]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can finally extract the saccadic latency by simply subtracting from the onset of the fixations (<code>startT</code>) the event <code>Onset</code>:</p>
-<div id="ce474611" class="cell" data-execution_count="13">
+<div id="36f0c5ef" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'startT'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'Onset'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Voilá!! as simple as this!!! Now our <code>Latency</code> column will contain the onset of the fixations in relation to the target presentation.</p>
@@ -588,13 +588,13 @@ Note
 <h2 class="anchored" data-anchor-id="first-fixation">First fixation</h2>
 <p>We have all these latency values, but we only want the first/fastest of each trial. How can we extract this information easily? We will use groupby. Groupby allows us to perform specific functions/commands on grouped sections of a data frame.</p>
 <p>Here we will groupby by Events and Event_trials and for each of these grouped pieces of dataframe we will extract the smallest (<code>min()</code>) value of latency.</p>
-<div id="77c1d15a" class="cell" data-execution_count="14">
+<div id="296b93c4" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we have our <strong>Saccadic latency</strong>!!!</p>
 <p>Once our dataset is ready, we might want to visualise the data. For example, we can plot how saccadic latency changes across trials with seaborn:</p>
-<div id="e7a042c5" class="cell" data-execution_count="15">
+<div id="b335acf6" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># import seaborn</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -620,12 +620,12 @@ Note
 <h1>Looking time</h1>
 <p>While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.</p>
 <p>We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by <code>Event</code>, <code>Event_trial</code> and <code>Looked_AOI</code>. For each of the grouped dataframes, we will extract the <code>sum()</code> of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.</p>
-<div id="95c3ea8b" class="cell" data-execution_count="16">
+<div id="f3c0f34f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, we can now visualize the data. For example, we can plot whether looking time to rewarding vs.&nbsp;non-rewarding stimuli:</p>
-<div id="9003475d" class="cell" data-execution_count="17">
+<div id="1f93b1d9" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
@@ -684,110 +684,121 @@ Here below the entire script!!<br>
 <span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Settings and reading data</span></span>
 <span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixation data extracted from I2MC</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>Fixations <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">i2mc_output</span><span class="ch">\\</span><span class="st">Adult1</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
 <span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixation data extracted from I2MC</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>Fixations <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">i2mc_output</span><span class="ch">\\</span><span class="st">Adult1</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co"># The original RAW data</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>Raw_data <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The original RAW data</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>Raw_data <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Areas of interest</span></span>
 <span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Recording from 0 and in Seconds</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>Raw_data[<span class="st">'time'</span>] <span class="op">=</span> Raw_data[<span class="st">'time'</span>] <span class="op">-</span> Raw_data.loc[<span class="dv">0</span>,<span class="st">'time'</span>]</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
 <span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Time of interest</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable realted to AOIs and target position</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>dimension_of_AOI <span class="op">=</span> <span class="dv">600</span><span class="op">/</span><span class="dv">2</span>  <span class="co">#the dimension of the AOIs, divided by 2</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>Target_position <span class="op">=</span> <span class="dv">500</span> <span class="co">#the position of the targets relative to the centre (e.g., 500 pixels on the right from the centre)</span></span>
 <span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Create areas of intescreensizet</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>AOI1 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
 <span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>AOI2 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span>
 <span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,c <span class="kw">in</span> <span class="bu">enumerate</span>(Targets):</span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which row meets our conditions</span></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&gt;=</span> c[<span class="dv">0</span>]<span class="op">+</span>pre) <span class="op">&amp;</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&lt;</span> c[<span class="dv">0</span>]<span class="op">+</span>post)</span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the rows with have found with more info</span></span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event'</span>] <span class="op">=</span> c[<span class="dv">1</span>]</span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event_trial'</span>] <span class="op">=</span> i</span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Onset'</span>] <span class="op">=</span>  c[<span class="dv">0</span>]</span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Put things together</span></span>
-<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the AOIs to dataframe</span></span>
-<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Latency_fixations)</span>
-<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span>
-<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
-<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
-<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
-<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>    Point <span class="op">=</span> Target_fixations.loc[row, [<span class="st">'xpos'</span>, <span class="st">'ypos'</span>]].values</span>
-<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>    Areas <span class="op">=</span> Target_fixations.loc[row, <span class="st">'AOIs'</span>]</span>
-<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span>
-<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Saccadic Latency</span></span>
-<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="co"># We select only the correct fixations</span></span>
-<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>]]</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Time of interest</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,c <span class="kw">in</span> <span class="bu">enumerate</span>(Targets):</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which row meets our conditions</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&gt;=</span> c[<span class="dv">0</span>]<span class="op">+</span>pre) <span class="op">&amp;</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&lt;</span> c[<span class="dv">0</span>]<span class="op">+</span>post)</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the rows with have found with more info</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event'</span>] <span class="op">=</span> c[<span class="dv">1</span>]</span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event_trial'</span>] <span class="op">=</span> i</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Onset'</span>] <span class="op">=</span>  c[<span class="dv">0</span>]</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Put things together</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the AOIs to dataframe</span></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Target_fixations)</span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>    Point <span class="op">=</span> Target_fixations.loc[row, [<span class="st">'xpos'</span>, <span class="st">'ypos'</span>]].values</span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>    Areas <span class="op">=</span> Target_fixations.loc[row, <span class="st">'AOIs'</span>]</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the fixation to the correct AOI</span></span>
-<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span>
-<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
-<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
-<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>SaccadicLatency, x<span class="op">=</span><span class="st">"Event_trial"</span>, y<span class="op">=</span><span class="st">"Latency"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
-<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
-<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Saccadic Latency</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="co"># We select only the correct fixations</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>]]</span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the fixation to the correct AOI</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Looking time</span></span>
-<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
-<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span>
-<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
-<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>LookingTime, x<span class="op">=</span><span class="st">"Event"</span>, y<span class="op">=</span><span class="st">"dur"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>SaccadicLatency, x<span class="op">=</span><span class="st">"Event_trial"</span>, y<span class="op">=</span><span class="st">"Latency"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
-<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Looking time</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>LookingTime, x<span class="op">=</span><span class="st">"Event"</span>, y<span class="op">=</span><span class="st">"dur"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 <!-- -->
@@ -1651,111 +1662,122 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-406"><a href="#cb19-406" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-407"><a href="#cb19-407" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Settings and reading data</span></span>
 <span id="cb19-408"><a href="#cb19-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-409"><a href="#cb19-409" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
-<span id="cb19-410"><a href="#cb19-410" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
+<span id="cb19-409"><a href="#cb19-409" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixation data extracted from I2MC</span></span>
+<span id="cb19-410"><a href="#cb19-410" aria-hidden="true" tabindex="-1"></a>Fixations <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">i2mc_output</span><span class="ch">\\</span><span class="st">Adult1</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
 <span id="cb19-411"><a href="#cb19-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-412"><a href="#cb19-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-413"><a href="#cb19-413" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixation data extracted from I2MC</span></span>
-<span id="cb19-414"><a href="#cb19-414" aria-hidden="true" tabindex="-1"></a>Fixations <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">i2mc_output</span><span class="ch">\\</span><span class="st">Adult1</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb19-412"><a href="#cb19-412" aria-hidden="true" tabindex="-1"></a><span class="co"># The original RAW data</span></span>
+<span id="cb19-413"><a href="#cb19-413" aria-hidden="true" tabindex="-1"></a>Raw_data <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb19-414"><a href="#cb19-414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-415"><a href="#cb19-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-416"><a href="#cb19-416" aria-hidden="true" tabindex="-1"></a><span class="co"># The original RAW data</span></span>
-<span id="cb19-417"><a href="#cb19-417" aria-hidden="true" tabindex="-1"></a>Raw_data <span class="op">=</span> pd.read_csv(<span class="st">'..</span><span class="ch">\\</span><span class="st">..</span><span class="ch">\\</span><span class="st">resources</span><span class="ch">\\</span><span class="st">FromFixationToData</span><span class="ch">\\</span><span class="st">DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">Adult1.csv'</span>)</span>
+<span id="cb19-416"><a href="#cb19-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-417"><a href="#cb19-417" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Areas of interest</span></span>
 <span id="cb19-418"><a href="#cb19-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-419"><a href="#cb19-419" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Recording from 0 and in Seconds</span></span>
-<span id="cb19-420"><a href="#cb19-420" aria-hidden="true" tabindex="-1"></a>Raw_data[<span class="st">'time'</span>] <span class="op">=</span> Raw_data[<span class="st">'time'</span>] <span class="op">-</span> Raw_data.loc[<span class="dv">0</span>,<span class="st">'time'</span>]</span>
+<span id="cb19-419"><a href="#cb19-419" aria-hidden="true" tabindex="-1"></a><span class="co"># Screen resolution</span></span>
+<span id="cb19-420"><a href="#cb19-420" aria-hidden="true" tabindex="-1"></a>screensize <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>) </span>
 <span id="cb19-421"><a href="#cb19-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-422"><a href="#cb19-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-423"><a href="#cb19-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-424"><a href="#cb19-424" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Time of interest</span></span>
+<span id="cb19-422"><a href="#cb19-422" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable realted to AOIs and target position</span></span>
+<span id="cb19-423"><a href="#cb19-423" aria-hidden="true" tabindex="-1"></a>dimension_of_AOI <span class="op">=</span> <span class="dv">600</span><span class="op">/</span><span class="dv">2</span>  <span class="co">#the dimension of the AOIs, divided by 2</span></span>
+<span id="cb19-424"><a href="#cb19-424" aria-hidden="true" tabindex="-1"></a>Target_position <span class="op">=</span> <span class="dv">500</span> <span class="co">#the position of the targets relative to the centre (e.g., 500 pixels on the right from the centre)</span></span>
 <span id="cb19-425"><a href="#cb19-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-426"><a href="#cb19-426" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
-<span id="cb19-427"><a href="#cb19-427" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span>
+<span id="cb19-426"><a href="#cb19-426" aria-hidden="true" tabindex="-1"></a><span class="co"># Create areas of intescreensizet</span></span>
+<span id="cb19-427"><a href="#cb19-427" aria-hidden="true" tabindex="-1"></a>AOI1 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
 <span id="cb19-428"><a href="#cb19-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-429"><a href="#cb19-429" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
-<span id="cb19-430"><a href="#cb19-430" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
-<span id="cb19-431"><a href="#cb19-431" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb19-429"><a href="#cb19-429" aria-hidden="true" tabindex="-1"></a>AOI2 <span class="op">=</span>[[screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">-</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span><span class="op">-</span>dimension_of_AOI], [screensize[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> Target_position <span class="op">+</span> dimension_of_AOI, screensize[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> dimension_of_AOI]]</span>
+<span id="cb19-430"><a href="#cb19-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-431"><a href="#cb19-431" aria-hidden="true" tabindex="-1"></a>AOIs <span class="op">=</span> [AOI1, AOI2]</span>
 <span id="cb19-432"><a href="#cb19-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-433"><a href="#cb19-433" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,c <span class="kw">in</span> <span class="bu">enumerate</span>(Targets):</span>
-<span id="cb19-434"><a href="#cb19-434" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-435"><a href="#cb19-435" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which row meets our conditions</span></span>
-<span id="cb19-436"><a href="#cb19-436" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&gt;=</span> c[<span class="dv">0</span>]<span class="op">+</span>pre) <span class="op">&amp;</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&lt;</span> c[<span class="dv">0</span>]<span class="op">+</span>post)</span>
-<span id="cb19-437"><a href="#cb19-437" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-438"><a href="#cb19-438" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the rows with have found with more info</span></span>
-<span id="cb19-439"><a href="#cb19-439" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event'</span>] <span class="op">=</span> c[<span class="dv">1</span>]</span>
-<span id="cb19-440"><a href="#cb19-440" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event_trial'</span>] <span class="op">=</span> i</span>
-<span id="cb19-441"><a href="#cb19-441" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Onset'</span>] <span class="op">=</span>  c[<span class="dv">0</span>]</span>
-<span id="cb19-442"><a href="#cb19-442" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-443"><a href="#cb19-443" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
-<span id="cb19-444"><a href="#cb19-444" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb19-445"><a href="#cb19-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-446"><a href="#cb19-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-447"><a href="#cb19-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-448"><a href="#cb19-448" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Put things together</span></span>
-<span id="cb19-449"><a href="#cb19-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-450"><a href="#cb19-450" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the AOIs to dataframe</span></span>
-<span id="cb19-451"><a href="#cb19-451" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Latency_fixations)</span>
-<span id="cb19-452"><a href="#cb19-452" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span>
-<span id="cb19-453"><a href="#cb19-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-454"><a href="#cb19-454" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
-<span id="cb19-455"><a href="#cb19-455" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
-<span id="cb19-456"><a href="#cb19-456" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
-<span id="cb19-457"><a href="#cb19-457" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-458"><a href="#cb19-458" aria-hidden="true" tabindex="-1"></a>    Point <span class="op">=</span> Target_fixations.loc[row, [<span class="st">'xpos'</span>, <span class="st">'ypos'</span>]].values</span>
-<span id="cb19-459"><a href="#cb19-459" aria-hidden="true" tabindex="-1"></a>    Areas <span class="op">=</span> Target_fixations.loc[row, <span class="st">'AOIs'</span>]</span>
-<span id="cb19-460"><a href="#cb19-460" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-461"><a href="#cb19-461" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span>
-<span id="cb19-462"><a href="#cb19-462" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-463"><a href="#cb19-463" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
-<span id="cb19-464"><a href="#cb19-464" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb19-465"><a href="#cb19-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-466"><a href="#cb19-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-467"><a href="#cb19-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-468"><a href="#cb19-468" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Saccadic Latency</span></span>
-<span id="cb19-469"><a href="#cb19-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-470"><a href="#cb19-470" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
-<span id="cb19-471"><a href="#cb19-471" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb19-472"><a href="#cb19-472" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb19-473"><a href="#cb19-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-474"><a href="#cb19-474" aria-hidden="true" tabindex="-1"></a><span class="co"># We select only the correct fixations</span></span>
-<span id="cb19-475"><a href="#cb19-475" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>]]</span>
+<span id="cb19-433"><a href="#cb19-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-434"><a href="#cb19-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-435"><a href="#cb19-435" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Time of interest</span></span>
+<span id="cb19-436"><a href="#cb19-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-437"><a href="#cb19-437" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the time we presented a reward or no reward</span></span>
+<span id="cb19-438"><a href="#cb19-438" aria-hidden="true" tabindex="-1"></a>Targets <span class="op">=</span> Raw_data.loc[(Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>) <span class="op">|</span> (Raw_data[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>), [<span class="st">'time'</span>, <span class="st">'Event'</span>]].values</span>
+<span id="cb19-439"><a href="#cb19-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-440"><a href="#cb19-440" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fixations that we care about</span></span>
+<span id="cb19-441"><a href="#cb19-441" aria-hidden="true" tabindex="-1"></a>pre  <span class="op">=</span> <span class="op">-</span><span class="dv">750</span></span>
+<span id="cb19-442"><a href="#cb19-442" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb19-443"><a href="#cb19-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-444"><a href="#cb19-444" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,c <span class="kw">in</span> <span class="bu">enumerate</span>(Targets):</span>
+<span id="cb19-445"><a href="#cb19-445" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-446"><a href="#cb19-446" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which row meets our conditions</span></span>
+<span id="cb19-447"><a href="#cb19-447" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&gt;=</span> c[<span class="dv">0</span>]<span class="op">+</span>pre) <span class="op">&amp;</span> (Fixations[<span class="st">'startT'</span>] <span class="op">&lt;</span> c[<span class="dv">0</span>]<span class="op">+</span>post)</span>
+<span id="cb19-448"><a href="#cb19-448" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-449"><a href="#cb19-449" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the rows with have found with more info</span></span>
+<span id="cb19-450"><a href="#cb19-450" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event'</span>] <span class="op">=</span> c[<span class="dv">1</span>]</span>
+<span id="cb19-451"><a href="#cb19-451" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Event_trial'</span>] <span class="op">=</span> i</span>
+<span id="cb19-452"><a href="#cb19-452" aria-hidden="true" tabindex="-1"></a>    Fixations.loc[mask, <span class="st">'Onset'</span>] <span class="op">=</span>  c[<span class="dv">0</span>]</span>
+<span id="cb19-453"><a href="#cb19-453" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-454"><a href="#cb19-454" aria-hidden="true" tabindex="-1"></a><span class="co"># We can drop the NANs to have only the fixations that interest us!!!!</span></span>
+<span id="cb19-455"><a href="#cb19-455" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Fixations[Fixations[<span class="st">'Event'</span>].notna()].reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb19-456"><a href="#cb19-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-457"><a href="#cb19-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-458"><a href="#cb19-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-459"><a href="#cb19-459" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Put things together</span></span>
+<span id="cb19-460"><a href="#cb19-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-461"><a href="#cb19-461" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the AOIs to dataframe</span></span>
+<span id="cb19-462"><a href="#cb19-462" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'AOIs'</span>] <span class="op">=</span> [AOIs]<span class="op">*</span> <span class="bu">len</span>(Target_fixations)</span>
+<span id="cb19-463"><a href="#cb19-463" aria-hidden="true" tabindex="-1"></a>Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">=</span> np.nan</span>
+<span id="cb19-464"><a href="#cb19-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-465"><a href="#cb19-465" aria-hidden="true" tabindex="-1"></a><span class="co"># We run the function  for each row. We pass each xpos and ypos to the function</span></span>
+<span id="cb19-466"><a href="#cb19-466" aria-hidden="true" tabindex="-1"></a><span class="co"># toghether with the areas</span></span>
+<span id="cb19-467"><a href="#cb19-467" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(Target_fixations)):</span>
+<span id="cb19-468"><a href="#cb19-468" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-469"><a href="#cb19-469" aria-hidden="true" tabindex="-1"></a>    Point <span class="op">=</span> Target_fixations.loc[row, [<span class="st">'xpos'</span>, <span class="st">'ypos'</span>]].values</span>
+<span id="cb19-470"><a href="#cb19-470" aria-hidden="true" tabindex="-1"></a>    Areas <span class="op">=</span> Target_fixations.loc[row, <span class="st">'AOIs'</span>]</span>
+<span id="cb19-471"><a href="#cb19-471" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-472"><a href="#cb19-472" aria-hidden="true" tabindex="-1"></a>    Target_fixations.loc[row, <span class="st">'Looked_AOI'</span>] <span class="op">=</span> find_area_for_point(Point, Areas)</span>
+<span id="cb19-473"><a href="#cb19-473" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-474"><a href="#cb19-474" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for AOI of interest</span></span>
+<span id="cb19-475"><a href="#cb19-475" aria-hidden="true" tabindex="-1"></a>Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Looked_AOI'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb19-476"><a href="#cb19-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-477"><a href="#cb19-477" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the fixation to the correct AOI</span></span>
-<span id="cb19-478"><a href="#cb19-478" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span>
-<span id="cb19-479"><a href="#cb19-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-480"><a href="#cb19-480" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
-<span id="cb19-481"><a href="#cb19-481" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span>
-<span id="cb19-482"><a href="#cb19-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-483"><a href="#cb19-483" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
-<span id="cb19-484"><a href="#cb19-484" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb19-485"><a href="#cb19-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-486"><a href="#cb19-486" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
-<span id="cb19-487"><a href="#cb19-487" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>SaccadicLatency, x<span class="op">=</span><span class="st">"Event_trial"</span>, y<span class="op">=</span><span class="st">"Latency"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
-<span id="cb19-488"><a href="#cb19-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-489"><a href="#cb19-489" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
-<span id="cb19-490"><a href="#cb19-490" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb19-491"><a href="#cb19-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-492"><a href="#cb19-492" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb19-493"><a href="#cb19-493" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-494"><a href="#cb19-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-495"><a href="#cb19-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-477"><a href="#cb19-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-478"><a href="#cb19-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-479"><a href="#cb19-479" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Saccadic Latency</span></span>
+<span id="cb19-480"><a href="#cb19-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-481"><a href="#cb19-481" aria-hidden="true" tabindex="-1"></a><span class="co"># We define which is the correct AOI that the participant should have looked at.</span></span>
+<span id="cb19-482"><a href="#cb19-482" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'NoReward'</span>, <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-483"><a href="#cb19-483" aria-hidden="true" tabindex="-1"></a>Target_fixations.loc[Target_fixations[<span class="st">'Event'</span>] <span class="op">==</span> <span class="st">'Reward'</span>  , <span class="st">'Correct_Aoi'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb19-484"><a href="#cb19-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-485"><a href="#cb19-485" aria-hidden="true" tabindex="-1"></a><span class="co"># We select only the correct fixations</span></span>
+<span id="cb19-486"><a href="#cb19-486" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations <span class="op">=</span> Target_fixations[Target_fixations[<span class="st">'Correct_Aoi'</span>] <span class="op">==</span> Target_fixations[<span class="st">'Looked_AOI'</span>]]</span>
+<span id="cb19-487"><a href="#cb19-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-488"><a href="#cb19-488" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the fixation to the correct AOI</span></span>
+<span id="cb19-489"><a href="#cb19-489" aria-hidden="true" tabindex="-1"></a>Correct_Target_fixations[<span class="st">'Latency'</span>] <span class="op">=</span> Correct_Target_fixations[<span class="st">'Onset'</span>] <span class="op">-</span> Correct_Target_fixations[<span class="st">'startT'</span>]</span>
+<span id="cb19-490"><a href="#cb19-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-491"><a href="#cb19-491" aria-hidden="true" tabindex="-1"></a><span class="co"># We extract the first fixation of our dataframe for each event</span></span>
+<span id="cb19-492"><a href="#cb19-492" aria-hidden="true" tabindex="-1"></a>SaccadicLatency <span class="op">=</span> Correct_Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>])[<span class="st">'Latency'</span>].<span class="bu">min</span>().reset_index()</span>
+<span id="cb19-493"><a href="#cb19-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-494"><a href="#cb19-494" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
+<span id="cb19-495"><a href="#cb19-495" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb19-496"><a href="#cb19-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-497"><a href="#cb19-497" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Looking time</span></span>
-<span id="cb19-498"><a href="#cb19-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-499"><a href="#cb19-499" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
-<span id="cb19-500"><a href="#cb19-500" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span>
-<span id="cb19-501"><a href="#cb19-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-502"><a href="#cb19-502" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
-<span id="cb19-503"><a href="#cb19-503" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb19-504"><a href="#cb19-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-505"><a href="#cb19-505" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
-<span id="cb19-506"><a href="#cb19-506" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>LookingTime, x<span class="op">=</span><span class="st">"Event"</span>, y<span class="op">=</span><span class="st">"dur"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb19-497"><a href="#cb19-497" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb19-498"><a href="#cb19-498" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>SaccadicLatency, x<span class="op">=</span><span class="st">"Event_trial"</span>, y<span class="op">=</span><span class="st">"Latency"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb19-499"><a href="#cb19-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-500"><a href="#cb19-500" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
+<span id="cb19-501"><a href="#cb19-501" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb19-502"><a href="#cb19-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-503"><a href="#cb19-503" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb19-504"><a href="#cb19-504" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-505"><a href="#cb19-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-506"><a href="#cb19-506" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-507"><a href="#cb19-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-508"><a href="#cb19-508" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
-<span id="cb19-509"><a href="#cb19-509" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
-<span id="cb19-510"><a href="#cb19-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-511"><a href="#cb19-511" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb19-512"><a href="#cb19-512" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-513"><a href="#cb19-513" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-508"><a href="#cb19-508" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Looking time</span></span>
+<span id="cb19-509"><a href="#cb19-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-510"><a href="#cb19-510" aria-hidden="true" tabindex="-1"></a><span class="co"># Using groupby we can extract the sum of the duration of the fixation for each reward and trial</span></span>
+<span id="cb19-511"><a href="#cb19-511" aria-hidden="true" tabindex="-1"></a>LookingTime <span class="op">=</span> Target_fixations.groupby([<span class="st">'Event'</span>, <span class="st">'Event_trial'</span>, <span class="st">'Looked_AOI'</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">'dur'</span>].<span class="bu">sum</span>()</span>
+<span id="cb19-512"><a href="#cb19-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-513"><a href="#cb19-513" aria-hidden="true" tabindex="-1"></a><span class="co">### PLOT</span></span>
+<span id="cb19-514"><a href="#cb19-514" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb19-515"><a href="#cb19-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-516"><a href="#cb19-516" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot</span></span>
+<span id="cb19-517"><a href="#cb19-517" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>LookingTime, x<span class="op">=</span><span class="st">"Event"</span>, y<span class="op">=</span><span class="st">"dur"</span>, hue<span class="op">=</span><span class="st">'Event'</span>)</span>
+<span id="cb19-518"><a href="#cb19-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-519"><a href="#cb19-519" aria-hidden="true" tabindex="-1"></a><span class="co"># Place the legend </span></span>
+<span id="cb19-520"><a href="#cb19-520" aria-hidden="true" tabindex="-1"></a>sns.move_legend(ax,loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
+<span id="cb19-521"><a href="#cb19-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-522"><a href="#cb19-522" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb19-523"><a href="#cb19-523" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-524"><a href="#cb19-524" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

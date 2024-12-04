@@ -374,18 +374,29 @@ def find_area_for_point(point, areas):
 
 #%% Settings and reading data
 
-# Screen resolution
-screensize = (1920, 1080) 
-
-
 # The fixation data extracted from I2MC
 Fixations = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\i2mc_output\\Adult1\\Adult1.csv')
 
 # The original RAW data
 Raw_data = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\RAW\\Adult1.csv')
 
-# Start Recording from 0 and in Seconds
-Raw_data['time'] = Raw_data['time'] - Raw_data.loc[0,'time']
+
+
+#%% Areas of interest
+
+# Screen resolution
+screensize = (1920, 1080) 
+
+# Define the variable realted to AOIs and target position
+dimension_of_AOI = 600/2  #the dimension of the AOIs, divided by 2
+Target_position = 500 #the position of the targets relative to the centre (e.g., 500 pixels on the right from the centre)
+
+# Create areas of intescreensizet
+AOI1 =[[screensize[0]/2 - Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 - Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
+
+AOI2 =[[screensize[0]/2 + Target_position - dimension_of_AOI, screensize[1]/2-dimension_of_AOI], [screensize[0]/2 + Target_position + dimension_of_AOI, screensize[1]/2 + dimension_of_AOI]]
+
+AOIs = [AOI1, AOI2]
 
 
 
@@ -416,7 +427,7 @@ Target_fixations = Fixations[Fixations['Event'].notna()].reset_index(drop = True
 #%% Put things together
 
 # Add the AOIs to dataframe
-Target_fixations['AOIs'] = [AOIs]* len(Latency_fixations)
+Target_fixations['AOIs'] = [AOIs]* len(Target_fixations)
 Target_fixations['Looked_AOI'] = np.nan
 
 # We run the function  for each row. We pass each xpos and ypos to the function

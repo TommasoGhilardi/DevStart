@@ -37,7 +37,10 @@ First things first, let's import the relevant libraries and define the path to w
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-from psychopy import core, visual, sound, event 
+
+from psychopy import core, event, visual, prefs
+prefs.hardware['audioLib'] = ['PTB']
+from psychopy import sound
 ```
 
 ## Stimuli:
@@ -319,8 +322,10 @@ If you are testing this script on your laptop and do not want to lose the abilit
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-from psychopy import core, visual, sound, event
 
+from psychopy import core, event, visual, prefs
+prefs.hardware['audioLib'] = ['PTB']
+from psychopy import sound
 
 #%% Load and prepare stimuli
 
