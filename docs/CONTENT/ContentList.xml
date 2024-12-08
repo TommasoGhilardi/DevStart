@@ -17,7 +17,7 @@
 <width>144</width>
 </image>
 <generator>quarto-1.5.47</generator>
-<lastBuildDate>Sun, 08 Dec 2024 19:14:29 GMT</lastBuildDate>
+<lastBuildDate>Sun, 08 Dec 2024 23:56:39 GMT</lastBuildDate>
 <item>
   <title>Create your first paradigm</title>
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</link>
@@ -1138,7 +1138,7 @@ font-style: inherit;"># stop study</span></span>
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/CreateYourFirstParadigm.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Starting with PsychoPy</title>
@@ -1258,7 +1258,7 @@ or<br>
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPsychopy.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Starting with Python</title>
@@ -1478,7 +1478,7 @@ Tip
   <category>Setup</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Create an eye-tracking experiment</title>
@@ -3581,7 +3581,7 @@ font-style: inherit;"># stop study</span></span></code></pre></div>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Calibrating eye-tracking</title>
@@ -4160,7 +4160,7 @@ font-style: inherit;">=</span> Sound)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/EyetrackingCalibration.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>From fixations to measures</title>
@@ -5863,7 +5863,7 @@ font-style: inherit;"># Show the plot</span></span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/FromFixationsToData.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Using I2MC for robust fixation extraction</title>
@@ -7668,7 +7668,7 @@ font-style: inherit;">'.csv'</span>)</span>
   <category>Eye-tracking</category>
   <category>Python</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/I2MC_tutorial.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 <item>
   <title>Introduction to eye-tracking</title>
@@ -7752,7 +7752,7 @@ Important
   <category>Eye-tracking</category>
   <category>Theory</category>
   <guid>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/Intro_eyetracking.html</guid>
-  <pubDate>Sun, 08 Dec 2024 19:14:29 GMT</pubDate>
+  <pubDate>Sun, 08 Dec 2024 23:56:39 GMT</pubDate>
 </item>
 </channel>
 </rss>
