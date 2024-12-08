@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./resources/LOGO_workshop.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -100,9 +101,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0E8JS425JQ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0E8JS425JQ', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="About – DevStart_Workshop">
+<meta name="twitter:description" content="Eye-Tracking Workshop for Developmental Scientists. Eye-tracking is a powerful tool for studying cognition, particularly in developmental science where participants like infants and young children cannot verbally communicate their thoughts. This comprehensive two-day workshop is designed to equip developmental scientists with the skills needed to effectively design, implement, and analyze eye-tracking experiments.">
+<meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/Workshops/resources/LOGO_workshop.png">
+<meta name="twitter:creator" content="@tommasoghi">
+<meta name="twitter:site" content="@DevSciStart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="2490">
+<meta name="twitter:image-width" content="3000">
 </head>
 
 <body class="nav-fixed">
@@ -285,7 +303,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/tommasoghilardi\.github\.io\/DevStart\/Workshops\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

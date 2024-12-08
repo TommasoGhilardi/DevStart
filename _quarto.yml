@@ -81,7 +81,13 @@ website:
       #   contents:
       #     - CONTENT/Stats/LinearModels.qmd
       #     - CONTENT/Stats/InterpretingModelResults.qmd
-      # - section: "Workshops"
+      - section: "Workshops"
+        href: https://tommasoghilardi.github.io/DevStart/Workshops/
+        contents:
+          - text: "Eye-Tracking Workshop for Developmental Scientists"
+            href: https://tommasoghilardi.github.io/DevStart/Workshops/
+          - text: "BTG 2024"
+            href: https://tommasoghilardi.github.io/DevStart/Workshops/PreviousWokshops/BTG2024.html
       #   contents:
       #     #- CONTENT/Workshops/BCCCD2024.qmd
       #     - CONTENT/Workshops/GAP_2024.qmd
