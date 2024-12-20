@@ -77,6 +77,7 @@ website:
           - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
+          - CONTENT/EyeTracking/PupillometryPreprocessing.qmd
       # - section: "Stats"
       #   contents:
       #     - CONTENT/Stats/LinearModels.qmd
