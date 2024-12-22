@@ -25,7 +25,7 @@ website:
   twitter-card: 
     title: "DevStart"
     card-style: summary
-    description: "Language, stats, R"
+    description: "DevStart, getting started with developmental science"
     site: "@DevSciStart"
     image: "images/ICON.png"
   
@@ -77,7 +77,8 @@ website:
           - CONTENT/EyeTracking/EyetrackingCalibration.qmd
           - CONTENT/EyeTracking/I2MC_tutorial.qmd
           - CONTENT/EyeTracking/FromFixationsToData.qmd
-          - CONTENT/EyeTracking/PupillometryPreprocessing.qmd
+          - CONTENT/EyeTracking/PupilPreprocessing.qmd
+          - CONTENT/EyeTracking/PupilDataAnalysis.qmd
       # - section: "Stats"
       #   contents:
       #     - CONTENT/Stats/LinearModels.qmd
