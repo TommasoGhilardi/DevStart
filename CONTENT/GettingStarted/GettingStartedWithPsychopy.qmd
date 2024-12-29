@@ -1,5 +1,6 @@
 ---
 title: "Starting with PsychoPy"
+date: "12/27/2023"
 execute:
   eval: false
 

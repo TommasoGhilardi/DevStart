@@ -1,5 +1,6 @@
 ---
 title: "Introduction to eye-tracking"
+date: "03/20/2024"
   
 author-meta: "Francesco Poli"
 description-meta: "Learn the fundamentals of eye-tracking in developmental cognitive science. Understand how to build experiments, record data, and analyze results."

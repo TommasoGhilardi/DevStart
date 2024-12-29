@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -112,9 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -176,7 +176,7 @@ window.Quarto = {
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/images/ICON.png">
 <meta property="og:site_name" content="DevStart">
 <meta name="twitter:title" content="DevStart">
-<meta name="twitter:description" content="Language, stats, R">
+<meta name="twitter:description" content="DevStart, getting started with developmental science">
 <meta name="twitter:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/images/ICON.png">
 <meta name="twitter:site" content="@DevSciStart">
 <meta name="twitter:card" content="summary">
@@ -191,7 +191,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Eye-tracking">Eye-tracking <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Setup">Setup <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Theory">Theory <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="Additive models">Additive models <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Eye-tracking">Eye-tracking <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Modelling">Modelling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Pre-processing">Pre-processing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Pupillometry">Pupillometry <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(7)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Setup">Setup <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Stats">Stats <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Theory">Theory <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -230,6 +230,12 @@ window.Quarto = {
          <option value="listing-title" data-direction="asc">
           Title
         </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
          <option value="listing-author" data-direction="asc">
           Author
         </option>
@@ -241,60 +247,7 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Python" data-listing-file-modified-sort="1733273723000" data-listing-reading-time-sort="14" data-listing-word-count-sort="2751">
-<a href="../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="..\images\GettingStartedWithPsychopy\Design.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Create your first paradigm
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="card-text listing-description">
-We will create a very simple and basic experiment that will be the stepping stone for some of the future tutorials. In the future tutorials we will show you how to extend…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Setup,Python" data-listing-file-modified-sort="1734815156322" data-listing-reading-time-sort="3" data-listing-word-count-sort="530">
-<a href="../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Starting with PsychoPy
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Setup'); return false;">
-Setup
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="card-text listing-description">
-PsychoPy is an open-source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It’s one of…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="Setup,Python" data-listing-file-modified-sort="1734813210523" data-listing-reading-time-sort="7" data-listing-word-count-sort="1387">
+<div class="g-col-1" data-index="0" data-categories="Setup,Python" data-listing-date-sort="1698624000000" data-listing-file-modified-sort="1735432631979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1387">
 <a href="../CONTENT/GettingStarted/GettingStartedWithPython.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="..\images\GettingStartedWithPython\setup1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -313,128 +266,78 @@ Python
 <div class="card-text listing-description">
 Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Oct 30, 2023
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Eye-tracking,Python" data-listing-file-modified-sort="1732287453000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4322">
-<a href="../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="..\images\CreateAnEyetrackingExperiment\Origins.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Create an eye-tracking experiment
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
-Eye-tracking
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="card-text listing-description">
-This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the Getting started with…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="Eye-tracking,Python" data-listing-file-modified-sort="1732287453000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1960">
-<a href="../CONTENT/EyeTracking/EyetrackingCalibration.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="1" data-categories="Setup,Python" data-listing-date-sort="1703635200000" data-listing-file-modified-sort="1735432614461" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="530">
+<a href="../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Calibrating eye-tracking
+Starting with PsychoPy
 </h5>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
-Eye-tracking
+<div class="listing-category" onclick="window.quartoListingCategory('Setup'); return false;">
+Setup
 </div>
 <div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
 Python
 </div>
 </div>
 <div class="card-text listing-description">
-Before running an eye-tracking study, we usually need to do a calibration. What is a calibration you ask??
+PsychoPy is an open-source software package written in the Python programming language primarily for use in neuroscience and experimental psychology research. It’s one of…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Dec 27, 2023
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Eye-tracking,Python" data-listing-file-modified-sort="1733272938000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3210">
-<a href="../CONTENT/EyeTracking/FromFixationsToData.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="2" data-categories="Python" data-listing-date-sort="1708041600000" data-listing-file-modified-sort="1735432602412" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2751">
+<a href="../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="EyeTracking\FromFixationsToData_files\figure-html\cell-4-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="..\images\GettingStartedWithPsychopy\Design.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-From fixations to measures
+Create your first paradigm
 </h5>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
-Eye-tracking
-</div>
 <div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
 Python
 </div>
 </div>
 <div class="card-text listing-description">
-In the previous two tutorials we collected some eye-tracking data and then we used I2MC to extract the fixations from that data. Let’s load the data we recorded and…
+We will create a very simple and basic experiment that will be the stepping stone for some of the future tutorials. In the future tutorials we will show you how to extend…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Feb 16, 2024
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="Eye-tracking,Python" data-listing-file-modified-sort="1733273306000" data-listing-reading-time-sort="24" data-listing-word-count-sort="4690">
-<a href="../CONTENT/EyeTracking/I2MC_tutorial.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Using I2MC for robust fixation extraction
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
-Eye-tracking
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="card-text listing-description">
-When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person’s eyes are looking at a particular point of interest for a…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="Eye-tracking,Theory" data-listing-file-modified-sort="1732287453000" data-listing-reading-time-sort="3" data-listing-word-count-sort="562">
+<div class="g-col-1" data-index="3" data-categories="Eye-tracking,Theory" data-listing-date-sort="1710892800000" data-listing-file-modified-sort="1735432514521" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="562">
 <a href="../CONTENT/EyeTracking/Intro_eyetracking.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="..\images\Introduction_eyetracking\Design.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -453,9 +356,207 @@ Theory
 <div class="card-text listing-description">
 Eye tracking is a great tool to study cognition. It is especially suitable for developmental studies, as infants and young children might have advanced cognitive abilities…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Mar 20, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Eye-tracking,Python" data-listing-date-sort="1716159600000" data-listing-file-modified-sort="1735432487287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4322">
+<a href="../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="..\images\CreateAnEyetrackingExperiment\Origins.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Create an eye-tracking experiment
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
+Eye-tracking
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+</div>
+<div class="card-text listing-description">
+This page will show you how to collect eye-tracking data in a simple Psychopy paradigm. We will use the same paradigm that we built together in the Getting started with…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+May 20, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="Eye-tracking,Python" data-listing-date-sort="1721343600000" data-listing-file-modified-sort="1735432469016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4690">
+<a href="../CONTENT/EyeTracking/I2MC_tutorial.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Using I2MC for robust fixation extraction
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
+Eye-tracking
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+</div>
+<div class="card-text listing-description">
+When it comes to eye-tracking data, a fundamental role is played by fixations. A fixation indicates that a person’s eyes are looking at a particular point of interest for a…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 19, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="Eye-tracking,Python" data-listing-date-sort="1725663600000" data-listing-file-modified-sort="1735432455956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3210">
+<a href="../CONTENT/EyeTracking/FromFixationsToData.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="EyeTracking\FromFixationsToData_files\figure-html\cell-4-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+From fixations to measures
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
+Eye-tracking
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+</div>
+<div class="card-text listing-description">
+In the previous two tutorials we collected some eye-tracking data and then we used I2MC to extract the fixations from that data. Let’s load the data we recorded and…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Sep 7, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="Eye-tracking,Python" data-listing-date-sort="1729292400000" data-listing-file-modified-sort="1735432367182" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1960">
+<a href="../CONTENT/EyeTracking/EyetrackingCalibration.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Calibrating eye-tracking
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Eye-tracking'); return false;">
+Eye-tracking
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+</div>
+<div class="card-text listing-description">
+Before running an eye-tracking study, we usually need to do a calibration. What is a calibration you ask??
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Oct 19, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="Stats,R,Modelling,Additive models" data-listing-date-sort="1734480000000" data-listing-file-modified-sort="1735432049354" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2825">
+<a href="../CONTENT/EyeTracking/PupilDataAnalysis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="EyeTracking\PupilDataAnalysis_files\figure-html\unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Pupil Data Analysis
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Stats'); return false;">
+Stats
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Modelling'); return false;">
+Modelling
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Additive models'); return false;">
+Additive models
+</div>
+</div>
+<div class="card-text listing-description">
+If you have collected and pre-processed your pupil data, the long awaited moment arrived: It’s finally time to analyse your data and get your results!!!
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 18, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="Pupillometry,R,Pre-processing" data-listing-date-sort="1734480000000" data-listing-file-modified-sort="1735432045281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="38" data-listing-word-count-sort="7491">
+<a href="../CONTENT/EyeTracking/PupilPreprocessing.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="EyeTracking\PupilPreprocessing_files\figure-html\PlotRaw-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Pupil data pre-processing
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Pupillometry'); return false;">
+Pupillometry
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Pre-processing'); return false;">
+Pre-processing
+</div>
+</div>
+<div class="card-text listing-description">
+Welcome to your first step into the world of pupillometry! In this tutorial, we’ll walk you through how to preprocess pupil data using a handy R package called PupillometryR.…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 18, 2024
 </div>
 </div>
 </div>

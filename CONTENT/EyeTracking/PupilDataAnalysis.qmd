@@ -1,5 +1,8 @@
 ---
 title: "Pupil Data Analysis"
+date: "12/18/2024"
+
+
 author-meta: Francesco Poli
 description-meta: "Learn how to analyse pupil data, from a simple linear model to generalised additive models"
 keywords-meta: "R, pupillometry, gam, additive models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
@@ -8,10 +11,7 @@ categories:
   - R
   - Modelling
   - Additive models
-
 lightbox: true
-draft: True
-draft-mode: unlinked  
 ---
 
 If you have collected and pre-processed your pupil data, the long awaited moment arrived: It's finally time to analyse your data and get your results!!!
@@ -19,7 +19,7 @@ If you have collected and pre-processed your pupil data, the long awaited moment
 In this tutorial we will do two types of analysis. The first one is more simple, and the second is more advanced. For some research questions, simple analyses are enough: they are intuitive and easy to understand. However, pupil data is actually very rich and complex, and more sophisticated analyses can sometimes help to really get the most out of your data and let them shine!
 
 ::: callout-note
-We have [a tutorial on linear models](LinearModels.qmd)! If you are a beginner when it comes to statistical analyses, we advise you to follow that one first. Even if it is not about pupil data, it contains all the basics that won't be touched upon here.
+We’re currently working on a tutorial about linear mixed-effect models, but it’s not ready yet! If you’re new to statistical analyses, we highly recommend this tutorial: [Introduction to linear mixed models](https://ourcodingclub.github.io/tutorials/mixed-models/). While it doesn’t focus on pupil data specifically, it covers all the essential basics that won’t be addressed here and can be incredibly helpful.
 :::
 
 Before starting any type of analysis, let's import the data and take a quick look at it.
@@ -28,9 +28,9 @@ Before starting any type of analysis, let's import the data and take a quick loo
 
 The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: [Pre-processing pupil data](PupillometryPreprocessing.qmd). In case you did not save the result of the pre-processing you can download them from here :
 
-{{< downloadthis ../../resources/Pupillometry/ProcessedPupilData.csv label="ProcessedPupilData.csv" dname= "data" type="secondary" >}}
+{{< downloadthis ../../resources/Pupillometry/Processed/Peocessed_PupilData.csv label="Peocessed_PupilData.csv" dname= "data" type="secondary" >}}
 
-Now that you have the data, let's import it along with the necessary libraries. We'll also ensure that the `Events` and `Subjects` columns are properly set as factors (categorical for easier analysis. Here's how:
+Now that you have the data, let's import it along with the necessary libraries. We'll also ensure that the `Event` and `Subjects` columns are properly set as factors (categorical for easier analysis. Here's how:
 
 ```{r}
 #| message: false
@@ -38,10 +38,10 @@ Now that you have the data, let's import it along with the necessary libraries. 
 library(tidyverse)  # Data manipulation and visualization
 library(easystats)  # Easy statistical modeling
 
-data = read.csv("..\\..\\resources\\Pupillometry\\ProcessedPupilData.csv")
+data = read.csv("..\\..\\resources\\Pupillometry\\Processed\\PupilData.csv")
 
-# Make sure Events and Subject are factors
-data$Events = as.factor(data$Events)
+# Make sure Event and Subject are factors
+data$Event = as.factor(data$Event)
 data$Subject = as.factor(data$Subject)
 
 head(data)
@@ -51,7 +51,7 @@ For a detailed description of the data, you can have a look at the tutorial on [
 
 -   `mean_pupil` indicates what the pupil size was at every moment in time (every 50 milliseconds, 20Hz). This is our dependent variable.
 
--   `Time` indicates the specific moment in time within each trial
+-   `time` indicates the specific moment in time within each trial
 
 -   `TrialN` indicates the trial number
 
@@ -69,13 +69,13 @@ If we want to test multiple groups, we can use a t-test, an ANOVA or... A linear
 
 We want to compare the means across conditions but... We don't have means yet! We have a much richer dataset, that contains hundreds of datapoints with milliseconds precision. For this first simple analysis, we just want one average measure of pupil dilation for each trial instead. We can compute this using the `tidyverse` library (that is container of multiple packages) a powerful collection of packages for wrangling and visualuzating dataframes in R.
 
-Here, we group the data by Subject, Events, and TrialN, then summarize it within these groups by calculating the mean values.
+Here, we group the data by Subject, Event, and TrialN, then summarize it within these groups by calculating the mean values.
 
 ```{r}
 #| message: false
 #| warning: false
 averaged_data = data %>%
-  group_by(Subject, Events, TrialN) %>%
+  group_by(Subject, Event, TrialN) %>%
   summarise(mean_pupil = mean(mean_pupil, na.rm = TRUE))
 
 head(averaged_data)
@@ -83,7 +83,7 @@ head(averaged_data)
 
 ### Linear mixed-effect model
 
-With a single value for each participant, condition, and trial (averaged across time points), we are now ready to proceed with our analysis. Even if the word "Linear mixed-effect model" might sound scary, the model is actually very simple. We take our experimental conditions (Events) and check whether they affect pupil size (mean_pupil). To account for individual differences in pupil response intensity, we include participants as a random intercept.
+With a single value for each participant, condition, and trial (averaged across time points), we are now ready to proceed with our analysis. Even if the word "Linear mixed-effect model" might sound scary, the model is actually very simple. We take our experimental conditions (Event) and check whether they affect pupil size (mean_pupil). To account for individual differences in pupil response intensity, we include participants as a random intercept.
 
 Let's give it a go!!!
 
@@ -93,14 +93,14 @@ Let's give it a go!!!
 library(lmerTest)   # Mixed-effect models library
 
 # The actual model
-model_avg = lmer(mean_pupil ~ Events + (1|Subject), data = averaged_data)
+model_avg = lmer(mean_pupil ~ Event + (1|Subject), data = averaged_data)
 
 summary(model_avg) # summary of the model
 ```
 
 We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you’re curious about how to interpret mixed-effects model outputs, you can check out this excellent guide: [Linear mixed-effects models](https://mspeekenbrink.github.io/sdam-r-companion/linear-mixed-effects-models.html). It provides a great foundation. **And keep an eye out for our upcoming page dedicated to mixed-effects modeling, where we’ll break everything down step by step!**
 
-The key takeaway here is that there’s a significatn difference between the **Events**. Specifically, the **Square** cue appears to result in smaller pupil dilation compared to the **Circle** event (which serves as the reference level for the intercept). **COOL!**
+The key takeaway here is that there’s a significatn difference between the **Event**. Specifically, the **Square** cue appears to result in smaller pupil dilation compared to the **Circle** event (which serves as the reference level for the intercept). **COOL!**
 
 Let’s visualize the effect!!
 
@@ -111,10 +111,10 @@ Let’s visualize the effect!!
 #| fig-align: center
 #| fig-height: 20
 #| fig-width: 30
-# Create a data grid for Events and Time
-datagrid = get_datagrid(model_avg, by = c('Events'))
+# Create a data grid for Event and time
+datagrid = get_datagrid(model_avg, by = c('Event'))
 
-# Compute model-based expected values for each level of Events
+# Compute model-based expected values for each level of Event
 pred = estimate_expectation(datagrid)
 
 # 'pred' now contains predicted values and confidence intervals for each event condition.
@@ -122,14 +122,14 @@ pred = estimate_expectation(datagrid)
 
 ggplot() +
   # Observed data (jittered points to show distribution)
-  geom_jitter(data = averaged_data, aes(x=Events, y=mean_pupil, color=Events), width=0.1, alpha=0.5, size = 5) +
+  geom_jitter(data = averaged_data, aes(x=Event, y=mean_pupil, color=Event), width=0.1, alpha=0.5, size = 5) +
   
   # Model-based predictions: points for Predicted values
-  geom_point(data=pred, aes(x=Events, y=Predicted, fill=Events), 
+  geom_point(data=pred, aes(x=Event, y=Predicted, fill=Event), 
              shape=21, size=10) +
   
   # Error bars for the confidence intervals
-  geom_errorbar(data=pred, aes(x=Events, ymin=Predicted - SE, ymax=Predicted + SE, color=Events), 
+  geom_errorbar(data=pred, aes(x=Event, ymin=Predicted - SE, ymax=Predicted + SE, color=Event), 
                 width=0.2, lwd=1.5) +
   
   theme_bw(base_size = 45)+
@@ -150,7 +150,7 @@ This is something that we cannot do with linear models. For example, in this cas
 ```{r}
 #| message: false
 #| warning: false
-linear_model = lmer(mean_pupil ~ Events * Time + (1|Subject), data = data) 
+linear_model = lmer(mean_pupil ~ Event * time + (1|Subject), data = data) 
 ```
 
 Note that, compared to the previous model, we have made two changes: First, we have changed the data. While before we were using averages, now we use the richer data set; Second, we added time as a predictor. We are saying that mean_pupil might be changing *linearly* across time... But this is very silly!!! To understand how silly it is, let's have a look at the data over time.
@@ -164,11 +164,11 @@ Note that, compared to the previous model, we have made two changes: First, we h
 #| fig-width: 30
 # Let's first compute average pupil size at each time point by condition
 data_avg_time = data %>%
-  group_by(Events, Time) %>%
+  group_by(Event, time) %>%
   summarise(mean_pupil = mean(mean_pupil, na.rm=TRUE))
 
 # Now let's plot these averages over time
-ggplot(data_avg_time, aes(x=Time, y=mean_pupil, color=Events)) +
+ggplot(data_avg_time, aes(x=time, y=mean_pupil, color=Event)) +
   geom_line(lwd=1.5) +
   
   theme_bw(base_size = 45)+
@@ -176,7 +176,7 @@ ggplot(data_avg_time, aes(x=Time, y=mean_pupil, color=Events)) +
         legend.title = element_blank()) +
   guides(color = guide_legend(override.aes = list(lwd = 20))) +
 
-  labs(x = "Time (ms)",
+  labs(x = "time (ms)",
        y = "Baseline-Corrected Pupil Size") 
 
 ```
@@ -190,8 +190,8 @@ Here’s the data averaged by condition at each time point. As you can clearly s
 #| fig-height: 20
 #| fig-width: 30
 
-# Create a data grid for Events and Time
-datagrid = get_datagrid(linear_model, by = c('Events','Time'))
+# Create a data grid for Event and time
+datagrid = get_datagrid(linear_model, by = c('Event','time'))
 
 # Estimate expectation and uncertainty (Predicted and SE)
 Est = estimate_expectation(linear_model, datagrid)
@@ -199,21 +199,21 @@ Est = estimate_expectation(linear_model, datagrid)
 # Plot predictions with confidence intervals and the observed data
 ggplot() +
   # Real data line
-  geom_line(data = data_avg_time, aes(x=Time, y=mean_pupil, color=Events), lwd=1.5) +
+  geom_line(data = data_avg_time, aes(x=time, y=mean_pupil, color=Event), lwd=1.5) +
   
   # Predicted ribbons
-  geom_ribbon(data = Est, aes(x=Time, ymin = Predicted - SE, ymax = Predicted + SE,
-                              fill = Events), alpha = 0.2) +
+  geom_ribbon(data = Est, aes(x=time, ymin = Predicted - SE, ymax = Predicted + SE,
+                              fill = Event), alpha = 0.2) +
   
   # Predicted lines
-  geom_line(data = Est, aes(x=Time, y=Predicted, color=Events), lwd=1.8,linetype = "dashed") +
+  geom_line(data = Est, aes(x=time, y=Predicted, color=Event), lwd=1.8,linetype = "dashed") +
   
   theme_bw(base_size = 45)+
   theme(legend.position = 'bottom',
         legend.title = element_blank()) +
   guides(color = guide_legend(override.aes = list(lwd = 20))) +
   labs(title = "Linear Model Predictions vs. Data",
-       x = "Time (ms)",
+       x = "time (ms)",
        y = "Baseline-corrected Pupil Size")
 ```
 
@@ -289,19 +289,19 @@ To run a GAM, the syntax is relatively similar to what we used in the linear mod
 library("mgcv")
 
 # Additive model
-additive_model = bam(mean_pupil ~ Events
-                     + s(Time, by=Events, k=20)
-                     + s(Time, Subject, bs='fs', m=1),
+additive_model = bam(mean_pupil ~ Event
+                     + s(time, by=Event, k=20)
+                     + s(time, Subject, bs='fs', m=1),
                      data=data)
 ```
 
 Let's break the formula down:
 
--   `mean_pupil ~ Events`: Here, I treat Condition as a main effect, just like we did before.
+-   `mean_pupil ~ Event`: Here, I treat Condition as a main effect, just like we did before.
 
--   `s(Time, by=Events, k=20)`: This is where the magic happens. By wrapping `Time` in `s()`, we are telling the model: “*Don’t assume that changes in pupil size over time are linear. Instead, estimate a smooth, wiggly function.*” The argument `by=Events` means: “*Do this separately for each condition, so that each condition gets its own smooth curve over time.*” Finally, `k=20` controls how wiggly the curve can be (technically, how many ‘knots’ or flexibility points the smoothing function is allowed to have). In practice, we are allowing the model to capture complex, non-linear patterns of pupil size changes over time for each condition.
+-   `s(time, by=Event, k=20)`: This is where the magic happens. By wrapping `time` in `s()`, we are telling the model: “*Don’t assume that changes in pupil size over time are linear. Instead, estimate a smooth, wiggly function.*” The argument `by=Event` means: “*Do this separately for each condition, so that each condition gets its own smooth curve over time.*” Finally, `k=20` controls how wiggly the curve can be (technically, how many ‘knots’ or flexibility points the smoothing function is allowed to have). In practice, we are allowing the model to capture complex, non-linear patterns of pupil size changes over time for each condition.
 
--   `s(Time, Subject, bs='fs', m=1)`: Here, we go one step further and acknowledge that each participant might have their own unique shape of the time course. By using `bs='fs'`, I am specifying a ‘factor smooth’, which means: “*For each subject, estimate their own smooth function over time.*” Setting `m=1` is a specific parameter choice that defines how we penalize wiggliness. Essentially, this term is allowing us to capture individual differences in how pupil size changes over time, over and above the general pattern captured by the main smooth. It's something like the random effect we have seen before in the linear mixed-effect model.
+-   `s(time, Subject, bs='fs', m=1)`: Here, we go one step further and acknowledge that each participant might have their own unique shape of the time course. By using `bs='fs'`, I am specifying a ‘factor smooth’, which means: “*For each subject, estimate their own smooth function over time.*” Setting `m=1` is a specific parameter choice that defines how we penalize wiggliness. Essentially, this term is allowing us to capture individual differences in how pupil size changes over time, over and above the general pattern captured by the main smooth. It's something like the random effect we have seen before in the linear mixed-effect model.
 
 Now that we have run our first GAM, we can see how well it predicts the data!
 
@@ -315,27 +315,27 @@ Now that we have run our first GAM, we can see how well it predicts the data!
 datagrid = get_datagrid(additive_model, length = 100, include_random = T)
 
 # Estimate expectation and uncertainty (Predicted and SE)
-Est = estimate_expectation(additive_model, datagrid, exclude=c("s(Time,Subject)"))
+Est = estimate_expectation(additive_model, datagrid, exclude=c("s(time,Subject)"))
 
 
 # Plot predictions with confidence intervals and the observed data
 ggplot() +
   # Real data line
-  geom_line(data = data_avg_time, aes(x=Time, y=mean_pupil, color=Events), size=1.5) +
+  geom_line(data = data_avg_time, aes(x=time, y=mean_pupil, color=Event), size=1.5) +
   
   # Predicted ribbons
-  geom_ribbon(data = Est, aes(x=Time, ymin = CI_low, ymax = CI_high,
-                              fill = Events), alpha = 0.2) +
+  geom_ribbon(data = Est, aes(x=time, ymin = CI_low, ymax = CI_high,
+                              fill = Event), alpha = 0.2) +
   
   # Predicted lines
-  geom_line(data = Est, aes(x=Time, y=Predicted, color=Events), size=1.8, linetype = "dashed") +
+  geom_line(data = Est, aes(x=time, y=Predicted, color=Event), size=1.8, linetype = "dashed") +
   
   theme_bw(base_size = 45)+
   theme(legend.position = 'bottom',
         legend.title = element_blank()) +
   guides(color = guide_legend(override.aes = list(lwd = 20))) +
   labs(title = "Additive model Predictions vs. Data",
-       x = "Time (ms)",
+       x = "time (ms)",
        y = "Baseline-corrected Pupil Size")
 ```
 
@@ -347,7 +347,7 @@ This looks so much better!!! The line fit so much better to the data!! We can al
 summary(additive_model) 
 ```
 
-The fixed effects (*Parametric coefficients*) show a strong negative effect for `EventSquare`, indicating that pupil size for Square is significantly lower than for Circle. This suggests that pupil size is greater when expecting a rewarding stimulus compared to a non-rewarding one.
+The fixed effects (*Parametric coefficients*) show a strong negative effect for `Eventquare`, indicating that pupil size for Square is significantly lower than for Circle. This suggests that pupil size is greater when expecting a rewarding stimulus compared to a non-rewarding one.
 
 The smooth terms indicate whether the non-linear relationships modeled by s() explain significant variance in the data. A significant smooth term confirms that the function captures meaningful, non-linear patterns beyond random noise or simpler terms. While fixed effects are typically more important for hypothesis testing, it’s crucial to ensure the model specification captures the data's fluctuations accurately.
 

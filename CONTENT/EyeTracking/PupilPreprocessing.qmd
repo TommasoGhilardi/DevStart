@@ -1,6 +1,7 @@
 ---
 title: "Pupil data pre-processing "
-  
+date: "12/18/2024"
+
 author-meta: "Tommaso Ghilardi"
 description-meta: "Learn the fundamentals of pupil dilation processing using PupillometryR"
 keywords: "pupil dilation, pupillometry, eye-tracking, experiments, infant research, DevStart, developmental science"
@@ -9,14 +10,15 @@ categories:
   - R
   - Pre-processing
 lightbox: true
-
-draft: True
-draft-mode: unlinked 
 ---
 
 Welcome to your first step into the world of pupillometry! In this tutorial, we’ll walk you through how to preprocess pupil data using a handy R package called [PupillometryR](http://samforbes.me/PupillometryR/index.html). This package makes it simple to clean and even analyze your pupil data with just a few lines of R code.
 
-To keep things straightforward, we’ll be working with a simulated dataset that you can download right here (insert link). This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the "[Introduction to eye-tracking](Intro_eyetracking.qmd)" guide before diving in.
+To keep things straightforward, we’ll be working with a simulated dataset that you can download right here:
+
+{{< downloadthis ../../resources/Pupillometry/RAW/PupilData.zip label="PupilData.zip" dname= "Raw data" type="secondary" >}}
+
+Download and unzip this folder. This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the "[Introduction to eye-tracking](Intro_eyetracking.qmd)" guide before diving in.
 
 This tutorial serves as a foundation for understanding how to preprocess pupil data. Once you've grasped the essentials, we encourage you to explore the full range of functions and features [PupillometryR](http://samforbes.me/PupillometryR) has to offer.
 
@@ -28,46 +30,59 @@ Let's begin by importing the necessary libraries and loading the downloaded data
 #| echo: false
 #| message: false
 #| warning: false
-
-setwd("C:\\Users\\tomma\\OneDrive - Birkbeck, University of London\\Personal\\Web\\DevStart\\resources\\Pupillometry")
 library(PupillometryR)  # Library to process pupil signal
 library(tidyverse)  # Library to wrangle dataframes
 library(patchwork)
 ```
 
-Perfect now let's read our dataframe
+Great! Now, let’s locate and load all our data files. We’ll use `list.files()` to identify all the `.csv` files in our folder. Make sure to update the file path to match the location where your data is stored.
+
+```{r}
+csv_files = list.files(
+  path       = "..\\..\\resources\\Pupillometry\\RAW",
+  pattern    = "\\.csv$",   # regex pattern to match .csv files
+  full.names = TRUE         # returns the full file paths
+)
+```
+
+`csv_files` is now a list containing all the `.csv` files we’ve identified. To better understand our dataset, let’s start by focusing on the first file, representing the first subject, and inspect its structure. This will give us a clear overview before we proceed further.
 
 ```{r ReadData}
-Raw_data = read.csv("..\\..\\resources\\Pupillometry\\PupilData.csv")
+Raw_data = read.csv(csv_files[1])
 head(Raw_data) # database peak
 ```
 
-Our dataframe consists of several easily interpretable columns. **Time** represents elapsed time in milliseconds, **Subject** identifies the participant, and **Events** indicates when and which stimuli were presented. **TrialN** tracks the trial number, while **PupilL** and **PupilR** measure pupil dilation for the left and right eyes, respectively, in millimeters.
+Our dataframe consists of several easily interpretable columns. **time** represents elapsed time in milliseconds, **Subject** identifies the participant, and **Event** indicates when and which stimuli were presented. **TrialN** tracks the trial number, while **L_P** and **R_P** measure pupil dilation for the left and right eyes, respectively, in millimeters.
 
 Let's plot the data! Visualizing it first is always a crucial step as it provides an initial understanding of its structure and key patterns.
 
 ```{r PlotRaw}
 #| warnings: false
 #| fig-width: 20
-#| fig-height: 10
-ggplot(Raw_data, aes(x = Time, y = PupilR))+
-  geom_line(aes(y = PupilR, color = 'Pupil Right'), lwd = 1.2) +
-  geom_line(aes(y = PupilL, color = 'Pupil Left'), lwd = 1.2) +
-  geom_vline(data = Raw_data |> dplyr::filter(!is.na(Events)) , aes(xintercept = Time, color = Events), linetype = 'dashed') +
-
-  facet_wrap(~Subject)+
-  theme_bw(base_size = 35)+
-  ylim(1,6)+
-  scale_color_manual(values = c('Pupil Right' = '#4A6274', 'Pupil Left' = '#E2725A'))+
-  theme(legend.position = 'bottom') +
-  guides(color = guide_legend(override.aes = list(lwd = 20)))  # Make legend lines thicker
+#| fig-height: 14
+ggplot(Raw_data, aes(x = time, y = R_P)) +
+  geom_line(aes(y = R_P, color = 'Pupil Right'), lwd = 1.2) +
+  geom_line(aes(y = L_P, color = 'Pupil Left'), lwd = 1.2) +
+  geom_vline(data = Raw_data |> dplyr::filter(!is.na(Event)), aes(xintercept = time, linetype = Event), lwd = 1.3) +
+  
+  theme_bw(base_size = 45) +
+  ylim(1, 6) +
+  labs(color= 'Signal', y='Pupil size')+
+  scale_color_manual(
+    values = c('Pupil Right' = '#4A6274', 'Pupil Left' = '#E2725A') )  +
+  theme(
+    legend.position = 'bottom'  ) +
+  guides(
+    color = guide_legend(override.aes = list(lwd = 20)),
+    linetype = guide_legend(override.aes = list(lwd = 1.2))
+  )
 ```
 
 ## Prepare the data
 
-Now that we've visualized the data, you’ve probably noticed two things:
+Nice!! Now we have some sense of our data!! And....you’ve probably noticed two things:
 
-1.  **So many events!** That’s intentional — it’s better to have too many triggers than miss something important. But don’t worry, for our pupil dilation analysis, we only care about two key events: **Circle** and **Square** (check the paradigm intro if you need a refresher on why that is).
+1.  **So many events!** That’s intentional — it’s better to have too many triggers than miss something important. When we recorded the data, we saved all possible events to ensure nothing was overlooked. But don’t worry, for our pupil dilation analysis, we only care about two key events: **Circle** and **Square** (check the [paradigm intro](CreateAnEyetrackingExperiment.qmd) if you need a refresher on why this is)
 
 2.  **Single-sample events!** Like in most studies, events are marked at a single time point (when the stimulus is presented). But PupilometryR needs a different structure — it expects the event value to be repeated for every row while the event is happening.
 
@@ -75,75 +90,154 @@ So, how do we fix this? First, let’s isolate the rows in our dataframe where t
 
 ```{r FindEvents}
 Events_to_keep = c('Circle','Square')
-Events = filter(Raw_data, Events %in% Events_to_keep) # filter data
+Events = filter(Raw_data, Event %in% Events_to_keep) # filter data
 head(Events) # database peak
 ```
 
 Perfect! Now onto the second point: we need to repeat the events we just selected for the entire duration we want to analyze. But what’s this duration? We want to cover the full cue presentation (2 seconds), plus an extra 0.1 seconds before the stimulus appears. Why? This pre-stimulus period will serve as our baseline, which we’ll use later in the analysis.
 
-So, let’s define how much time to include before and after the stimulus. We’ll also set the framerate of our data (**300Hz**) and create a time vector that starts from the pre-stimulus period and continues in steps of 1/Hz, with a total length equal to Pre_stim + Post_stim. In addition we also create a copy of our raw data called Trial_data. We do this so the original data stays intact, and all our edits happen on the copy
+So, let’s define how much time to include before and after the stimulus. We’ll also set the framerate of our data (**300Hz**) and create a time vector that starts from the pre-stimulus period and continues in steps of 1/Hz, with a total length equal to Pre_stim + Post_stim.
 
 ```{r EventsSettings}
 # Settings to cut events
-Pre_stim = 100 # pre stimulus time
-Post_stim = 2000 # post stimulus time
 Fs = 300 # framerate
+Step = 1000/Fs
 
-Time = seq(from = -Pre_stim, by=1000/Fs, length.out = (Pre_stim+Post_stim)/1000*300-1) # time vector
+Pre_stim = 100 # pre stimulus time (100ms)
+Post_stim = 2000 # post stimulus time (2000ms)
+Pre_stim_samples = Pre_stim/Step  # pre stimulus in samples
+Post_stim_samples = Post_stim/Step  # post stimulus in samples
 
-# create copy of the raw data
-Trial_data = Raw_data 
+# Time vector based on the event duration
+Time = seq(from = -Pre_stim, by=Step, length.out = (Pre_stim+Post_stim)/Step) # time vector
 ```
 
 Here’s where the magic happens. We loop through each event listed in our **Events** dataframe. Each row in Events corresponds to a specific event (like a "Circle" or "Square" cue) that occurred for a specific subject during a specific trial.
 
-For each event, we extract three key details:
-
--   **Subject** (to know which participant the event is for)
+For each event, we extract 2 key details:
 
 -   **Event** (to know if it's a Circle or Square cue)
 
 -   **TrialN** (to know which trial this event is part of)
 
-Next, we identify the rows of interest in our dataframe. We look for rows where the Subject matches the current participant, and the Time falls within the window from Pre_stim to Post_stim relative to the event's start.
+Next, we identify the rows of interest in our main dataframe. First, we locate the row where the time is closest to the onset of the event. Then, we select a range of rows that fall within the **Pre_stim** and **Post_stim** window around the event.
 
 Finally, we use these identified rows to add the event information. The Time, Event, and TrialN values are repeated across all the rows in this window, ensuring every row in the event window is properly labeled.
 
-```{r ExtendEvents}
-# Loop for each event of each subject
+```{r FixingEvents}
+# Loop for each event 
 for (trial in 1:nrow(Events)){
 
     # Extract the information
-    Sub = Events[trial, 'Subject']
-    Event = Events[trial, 'Events']
-    TrialN = Events[trial, 'TrialN']
-    Onset = Events[trial, 'Time']
-
+    Event = Events[trial,]$Event
+    TrialN = Events[trial,]$TrialN
     
-    # Find the rows to update based on subject and time
-    rows_to_update = which(Trial_data$Subject == Sub &
-                           Trial_data$Time >= (Onset - Pre_stim) &
-                           Trial_data$Time < (Onset + Post_stim))
-   
+    # Event onset information
+    Onset = Events[trial,]$time
+    Onset_index = which.min(abs(Raw_data$time - Onset))
+    
+    # Find the rows to update based on pre post samples
+    rows_to_update = seq(Onset_index - Pre_stim_samples,
+                         Onset_index + Post_stim_samples-1)
+    
     # Repeat the values of interest for all the rows
-    Trial_data[rows_to_update, 'Time'] = Time
-    Trial_data[rows_to_update, 'Events'] = Event
-    Trial_data[rows_to_update, 'TrialN'] = TrialN
+    Raw_data[rows_to_update, 'time'] = Time
+    Raw_data[rows_to_update, 'Event'] = Event
+    Raw_data[rows_to_update, 'TrialN'] = TrialN
 }
 ```
 
 Perfect! We’ve successfully extended the event information backward and forward based on our Pre_stim and Post_stim windows. Now, it’s time to clean things up.
 
-Since we only care about the rows that are part of our trial of interest, we’ll remove all the rows that don’t belong to these event windows. This will leave us with a clean, focused dataset that only contains the data relevant to our analysis.
+Since we only care about the rows that are part of our trial of interest —and because the event information is now repeated for each row during its duration— we’ll remove all the rows that don’t belong to these event windows. This will leave us with a clean, focused dataset that only contains the data relevant to our a
 
 ```{r FilterEvents}
 #| message: false
 #| warning: false
-Trial_data = Trial_data %>% 
-    filter(Events %in% Events_to_keep)
+Trial_data = Raw_data %>% 
+    filter(Event %in% Events_to_keep)
 ```
 
-Very good job reaching to this point!! if you believe it or not this was the hardest part!! We have now our different dataset!! let's take a look:
+### For all subjects
+
+Great job making it this far! Fixing the data to make it usable in **PupillometryR** is definitely one of the trickiest parts. But... we’ve only done this for **one subject** so far—oops! 😅 No worries, though. Let’s automate this process by putting everything into a **loop** for each subject. In this loop, we’ll fix the event structure for each subject, store each subject’s processed dataframe in a list, and finally combine all these dataframes into one single dataframe for further analysis. Let’s make it happen!
+
+```{r FixingEventsSubjectLoop}
+#| message: false
+#| warning: false
+# Libraries and files --------------------------------------------------------------------
+
+library(PupillometryR)  # Library to process pupil signal
+library(tidyverse)  # Library to wrangle dataframes
+library(patchwork)
+
+csv_files = list.files(
+  path       = "..\\..\\resources\\Pupillometry\\RAW",
+  pattern    = "\\.csv$",   # regex pattern to match .csv files
+  full.names = TRUE         # returns the full file paths
+)
+
+
+# Event settings --------------------------------------------------------------------
+
+Fs = 300 # framerate
+Step = 1000/Fs
+
+Pre_stim = 100 # pre stimulus time (100ms)
+Post_stim = 2000 # post stimulus time (2000ms)
+Pre_stim_samples = Pre_stim/Step  # pre stimulus in samples
+Post_stim_samples = Post_stim/Step  # post stimulus in samples
+
+# Time vector based on the event duration
+Time = seq(from = -Pre_stim, by=Step, length.out = (Pre_stim+Post_stim)/Step) # time vector
+
+
+# Event fixes --------------------------------------------------------------------
+
+List_of_subject_dataframes = list() # Empty list to be filled with dataframes
+
+# Loop for each subject
+for (sub in 1:length(csv_files)) {
+  
+  Raw_data = read.csv(csv_files[sub]) # Raw data
+  Events = filter(Raw_data, Event %in% Events_to_keep) # Events
+  
+  
+  # Loop for each event 
+  for (trial in 1:nrow(Events)){
+  
+      # Extract the information
+      Event = Events[trial,]$Event
+      TrialN = Events[trial,]$TrialN
+      
+      # Event onset information
+      Onset = Events[trial,]$time
+      Onset_index = which.min(abs(Raw_data$time - Onset))
+      
+      # Find the rows to update based on pre post samples
+      rows_to_update = seq(Onset_index - Pre_stim_samples,
+                           Onset_index + Post_stim_samples-1)
+      
+      # Repeat the values of interest for all the rows
+      Raw_data[rows_to_update, 'time'] = Time
+      Raw_data[rows_to_update, 'Event'] = Event
+      Raw_data[rows_to_update, 'TrialN'] = TrialN
+  }
+  
+  
+  # Filter only events of interest
+  Trial_data = Raw_data %>% 
+    filter(Event %in% Events_to_keep)
+  
+  # Add daframe to list
+  List_of_subject_dataframes[[sub]] = Trial_data
+}
+
+# Combine the list of dataframes into 1 dataframe
+Trial_data = bind_rows(List_of_subject_dataframes)
+```
+
+Now we have our dataset all fixed and organized for each subject. Let’s take a look!
 
 ```{r PlotEvents}
 #| message: false
@@ -152,9 +246,9 @@ Very good job reaching to this point!! if you believe it or not this was the har
 #| fig-width: 40
 #| fig-height: 25
 #| fig-dpi: 300
-ggplot(Trial_data, aes(x = Time, y = PupilR, group = TrialN)) +
-  geom_line(aes(y = PupilR, color = 'Pupil Right'), lwd = 1.2) +
-  geom_line(aes(y = PupilL, color = 'Pupil Left'), lwd = 1.2) +
+ggplot(Trial_data, aes(x = time, y = R_P, group = TrialN)) +
+  geom_line(aes(y = R_P, color = 'Pupil Right'), lwd = 1.2) +
+  geom_line(aes(y = L_P, color = 'Pupil Left'), lwd = 1.2) +
   geom_vline(aes(xintercept = 0), linetype = 'dashed', color = 'black', lwd = 1.2) +
   facet_wrap(~Subject) +
   
@@ -168,7 +262,9 @@ ggplot(Trial_data, aes(x = Time, y = PupilR, group = TrialN)) +
   guides(color = guide_legend(override.aes = list(lwd = 20))) 
 ```
 
-### Make pupillometryR data
+As you can see, the data structure is now completely transformed. We’ve segmented the data into distinct time windows, with each segment starting at **-0.1 seconds (-100 ms)** and extending to **2 seconds (2000 ms)**. This new structure ensures consistency across all segments, making the data ready for further analysis.
+
+### Make PupillometryR data
 
 Ok, now it’s time to start working with **PupillometryR**! 🎉
 
@@ -180,8 +276,8 @@ In the previous steps, we changed our event structure, and you might be wonderin
 PupilR_data = make_pupillometryr_data(data = Trial_data,
                                  subject = Subject,
                                  trial = TrialN,
-                                 time = Time,
-                                 condition = Events)
+                                 time = time,
+                                 condition = Event)
 ```
 
 Here, we’re simply using the **`make_pupillometryr_data()`** function to pass in our data and specify which columns contain the key information. This tells PupillometryR where to find the crucial details, like subject IDs, events, and pupil measurements, so it knows how to structure and process the data properly.
@@ -196,7 +292,7 @@ But here’s a heads-up — not all functions can keep these extra columns every
 
 One cool feature of the data created using **`make_pupillometryr_data()`** is that it comes with a simple, built-in `plot` function. This makes it super easy to visualize your data without needing to write tons of code. The plot function works by averaging the data over the `group` variable. So we can group over subject or condition. Here we use the `group` variable to focus on the **condition** and average over the subjects.
 
-In this example, we’re plotting the PupilL (left pupil) data, grouped by condition. The `plot()` function is actually just a ggplot2 wrapper, which means you can customize to a certain extent like any other ggplot. That’s why we can add elements to it, like **`theme_bw()`**, which gives the plot a cleaner, black-and-white look. Give it a go without adding anything and then learn to customize it!!
+In this example, we’re plotting the L_P (left pupil) data, grouped by condition. The `plot()` function is actually just a ggplot2 wrapper, which means you can customize to a certain extent like any other ggplot. That’s why we can add elements to it, like **`theme_bw()`**, which gives the plot a cleaner, black-and-white look. Give it a go without adding anything and then learn to customize it!!
 
 ::: callout-tip
 **Pro tip!** If you want more control over your plots, you can always use ggplot2. Remember, the Pupil data is just a regular dataframe, so you can plot it in any way you like!
@@ -207,7 +303,7 @@ In this example, we’re plotting the PupilL (left pupil) data, grouped by condi
 #| warning: false
 #| fig-height: 25
 #| fig-width: 40
-plot(PupilR_data, pupil = PupilL, group = 'condition', geom = 'line') +
+plot(PupilR_data, pupil = L_P, group = 'condition', geom = 'line') +
   theme_bw(base_size = 45) +
   theme(
     legend.position = 'bottom', 
@@ -227,22 +323,22 @@ Now that we have our pupillometry data in the required format we can actually st
 
 ### Regress
 
-The first step is to regress **PupilL** against **PupilR** (and vice versa) using a simple linear regression. This corrects small inconsistencies in pupil data caused by noise. The regression is done separately for each participant, trial, and time point, ensuring smoother and more consistent pupil dilation measurements.
+The first step is to regress **L_P** against **R_P** (and vice versa) using a simple linear regression. This corrects small inconsistencies in pupil data caused by noise. The regression is done separately for each participant, trial, and time point, ensuring smoother and more consistent pupil dilation measurements.
 
 ```{r Regression}
 #| error: true
 #| message: false
 #| warning: false
 Regressed_data = regress_data(data = PupilR_data,
-                                pupil1 = PupilL,
-                                pupil2 = PupilR)
+                                pupil1 = L_P,
+                                pupil2 = R_P)
 ```
 
 **Pwa pwa pwaaaaa...!!**🤦‍♂️ We got an error!
 
 What’s it saying? It’s telling us that one of the trials is completely full of **NAs**, and since there’s no data to work with, the function fails. This happens **a lot** when testing infants — they don’t always do what we expect, like watching the screen. Instead, they move around or look away.
 
-We’ll deal with missing data properly later, but for now, we need a quick fix. What can we do? We can simply drop any trials where both pupils (PupilL and PupilR) are entirely NA. This way, we avoid errors and keep the analysis moving.
+We’ll deal with missing data properly later, but for now, we need a quick fix. What can we do? We can simply drop any trials where both pupils (L_P and R_P) are entirely NA. This way, we avoid errors and keep the analysis moving.
 
 So let's filter our data and then redo the last two steps (make PupilR_data and then regress data)
 
@@ -252,19 +348,19 @@ So let's filter our data and then redo the last two steps (make PupilR_data and 
 # Filter the trial data
 Trial_data = Trial_data %>%
     group_by(Subject, TrialN) %>%  # group by Subject and TrialN
-    filter(!all(is.na(PupilL) & is.na( PupilR))) %>% # filter out if both PupilR and PupilL are all NA
+    filter(!all(is.na(L_P) & is.na(R_P))) %>% # filter out if both R_P and L_P are all NA
     ungroup()  # Remove grouping
 
 # Make pupilloemtryR data
 PupilR_data = make_pupillometryr_data(data = Trial_data,
                                  subject = Subject,
                                  trial = TrialN,
-                                 time = Time,
-                                 condition = Events)
+                                 time = time,
+                                 condition = Event)
 # Regress data
 Regressed_data = regress_data(data = PupilR_data,
-                               pupil1 = PupilL,
-                                pupil2 = PupilR)
+                               pupil1 = L_P,
+                                pupil2 = R_P)
 ```
 
 And now everything worked!! Perfect!
@@ -279,8 +375,8 @@ As the next steps we will average the two pupil signals. This will create a new 
 #| fig-height: 25
 #| fig-width: 40
 Mean_data = calculate_mean_pupil_size(data = Regressed_data, 
-                                       pupil1 = PupilL, 
-                                       pupil2 = PupilR)
+                                       pupil1 = L_P, 
+                                       pupil2 = R_P)
 
 plot(Mean_data, pupil = mean_pupil, group = 'condition', geom = 'line')+
   theme_bw(base_size = 45) +
@@ -354,13 +450,15 @@ This gives us a new dataframe that shows the amount of missing data for each sub
 This function lets you set two % thresholds — one for trials and one for subjects. Here, we’ll set it to reject trials with more than 25% missing data (keep at least 75% of the data) and reject subjects with more than 25% missing data. This way, we ensure our analysis is based on clean, high-quality data.
 
 ```{r TrialRejection}
-#| message: false
+#| message: true
 #| warning: false
 Clean_data = clean_missing_data(Downsampled_data,
                                  pupil = mean_pupil,
                                  trial_threshold = .75,
                                  subject_trial_threshold = .75)
 ```
+
+See?! PupillometryR shows us exactly how many trials and subjects are being excluded from our dataframe based on our thresholds. Cool!
 
 ::: callout-warning
 Note that this function calculates the percentage of missing trials based only on the trials present in the dataframe. For example, if a participant only completed one trial (and watched it perfectly) before the session had to stop, the percentage would be calculated on that single trial, and the participant wouldn’t be rejected.
@@ -379,7 +477,7 @@ To handle this, we’ll use interpolation to fill in the missing points. Interpo
 #| warning: false
 #| fig-height: 25
 #| fig-width: 40
-ggplot(Clean_data, aes(x = Time, y = mean_pupil, group = TrialN, color= Events))+
+ggplot(Clean_data, aes(x = time, y = mean_pupil, group = TrialN, color= Event))+
   geom_line( lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -405,7 +503,7 @@ Int_data = interpolate_data(data = Clean_data,
                              pupil = mean_pupil,
                              type = 'linear')
 
-ggplot(Int_data, aes(x = Time, y = mean_pupil, group = TrialN, color = Events))+
+ggplot(Int_data, aes(x = time, y = mean_pupil, group = TrialN, color = Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -444,7 +542,7 @@ Blink_data = detect_blinks_by_velocity(
     extend_forward = 50,
     extend_back = 50)
 
-ggplot(Blink_data, aes(x = Time, y = mean_pupil, group = TrialN, color=Events))+
+ggplot(Blink_data, aes(x = time, y = mean_pupil, group = TrialN, color=Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -470,7 +568,7 @@ Int_data = interpolate_data(data = Blink_data,
                              pupil = mean_pupil,
                              type = 'linear')
 
-ggplot(Int_data, aes(x = Time, y = mean_pupil, group = TrialN, color=Events))+
+ggplot(Int_data, aes(x = time, y = mean_pupil, group = TrialN, color=Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -488,14 +586,14 @@ ggplot(Int_data, aes(x = Time, y = mean_pupil, group = TrialN, color=Events))+
 Look how beautiful our signal is now!! 😍 Good job!!!
 
 ::: callout-caution
-It’s not always the case that blinks will have a rapid drop in pupil size followed by missing values. Sometimes, you’ll just get missing values straight away. This can depend on the eye tracker, sampling rate, and even the population you’re testing (like infants who might look away suddenly). Because of this, blink detection may not always be necessary. The best approach is to check your data before deciding. And how do you check it? Plotting! Plotting your signal is the best way to see if blinks are causing rapid drops or if you’re just dealing with missing data. Let the data guide your decisions.
+You won’t always run into blink issues like this. Downsampling and filtering usually handle rapid changes during earlier preprocessing steps. Whether this happens can depend on the tracker, sampling rate, or even the population you’re testing. **In this simulated data, we exaggerated the blink effects on purpose to show you how to spot and fix them!** Thus, blink detection may not always be necessary. The best approach is to check your data before deciding. And how do you check it? **Plotting**! Plotting your signal is the best way to see if blinks are causing rapid drops or if you’re just dealing with missing data. Let the data guide your decisions.
 :::
 
 ### Baseline Correction
 
 Good job getting this far!! We’re now at the final step of our pre-processing: baseline correction.
 
-Baseline correction helps remove variability between trials and participants, like differences in baseline pupil size caused by individual differences, fatigue, or random fluctuations. By doing this, we can focus only on the variability caused by our paradigm. This step ensures that any changes we see in pupil size are truly driven by the experimental conditions, not irrelevant noise. To further adjust the data, we’ll subtract the calculated baseline, ensuring the values start at **0** instead of **-100**.
+Baseline correction helps remove variability between trials and participants, like differences in baseline pupil size caused by individual differences, fatigue, or random fluctuations. By doing this, we can focus only on the variability caused by our paradigm. This step ensures that any changes we see in pupil size are truly driven by the experimental conditions, not irrelevant noise. To further adjust the data, we’ll subtract the calculated baseline, ensuring the values start at **0** instead of **-100**. Finally, to make the next steps of analysis easier, we’ll select only the columns of interest, dropping any irrelevant ones.
 
 Let’s get it done!
 
@@ -510,7 +608,8 @@ Base_data = baseline_data(data = Int_data,
                            stop = 0)
 
 # Remove the baseline
-Final_data = subset_data(Base_data, start = 0)
+Final_data = subset_data(Base_data, start = 0) %>% 
+  select(Subject, Event, TrialN, mean_pupil, time)
 ```
 
 Let's plot it to see what baseline correction and removal are actually doing!! We will plot both the average signal using the `plot` function (with some addition information about color and theme) and using ggplot to plot the data for each subject separately.
@@ -525,7 +624,7 @@ One = plot(Final_data, pupil = mean_pupil, group = 'condition')+
   theme(legend.position = 'none')
 
 
-Two = ggplot(Final_data, aes(x = Time, y = mean_pupil, group = TrialN, color = Events))+
+Two = ggplot(Final_data, aes(x = time, y = mean_pupil, group = TrialN, color = Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -549,7 +648,7 @@ This tutorial will not cover the analysis of pupil dilation. We’ll stop here s
 ```{r Save}
 #| message: false
 #| warning: false
-write.csv(Final_data, "..\\..\\resources\\Pupillometry\\ProcessedPupilData.csv")
+write.csv(Final_data, "..\\..\\resources\\Pupillometry\\Processed\\Peocessed_PupilData.csv")
 ```
 
 There are multiple ways to analyze pupil data, and we’ll show you some of our favorite methods in a dedicated tutorial: **Analyze Pupil Dilation**.
@@ -560,105 +659,121 @@ Here below we report the whole code we went trough this tutorial as an unique sc
 
 ```{r FinalCode}
 #| eval: false
-# Setting and Libraries -----------------------------------------------------------------
+# Libraries and files --------------------------------------------------------------------
 
-library(PupillometryR)
-library(tidyverse)
+library(PupillometryR)  # Library to process pupil signal
+library(tidyverse)  # Library to wrangle dataframes
 library(patchwork)
 
-
-# Read Data -----------------------------------------------------------------
-
-Raw_data = read.csv("..\\..\\resources\\Pupillometry\\PupilData.csv")
-
-head(Raw_data)
-
-## Plot Raw Data -----------------------------------------------------------------
-
-ggplot(Raw_data, aes(x = Time, y = PupilR)) +
-  geom_line(aes(y = PupilR, color = 'Pupil Right'), lwd = 1.2) +
-  geom_line(aes(y = PupilL, color = 'Pupil Left'), lwd = 1.2) +
-  geom_vline(data = Raw_data |> dplyr::filter(!is.na(Events)), aes(xintercept = Time, color = Events), linetype = 'dashed') +
-  facet_wrap(~Subject) +
-  theme_bw(base_size = 35) +
-  ylim(1, 6) +
-  scale_color_manual(values = c('Pupil Right' = '#4A6274', 'Pupil Left' = '#E2725A')) +
-  theme(legend.position = 'bottom') +
-  guides(color = guide_legend(override.aes = list(lwd = 20)))
+csv_files = list.files(
+  path       = "..\\..\\resources\\Pupillometry\\RAW",
+  pattern    = "\\.csv$",   # regex pattern to match .csv files
+  full.names = TRUE         # returns the full file paths
+)
 
 
-# Prepare Data -----------------------------------------------------------------
+# Prepare data --------------------------------------------------------------------
 
-## Extract Events -----------------------------------------------------------------
+## Event settings --------------------------------------------------------------------
 
-Events_to_keep = c('Circle','Square')
+# Settings to cut events
+Fs = 300 # framerate
+Step = 1000/Fs
 
-Events = filter(Raw_data, Events %in% Events_to_keep)
+Pre_stim = 100 # pre stimulus time (100ms)
+Post_stim = 2000 # post stimulus time (2000ms)
+Pre_stim_samples = Pre_stim/Step  # pre stimulus in samples
+Post_stim_samples = Post_stim/Step  # post stimulus in samples
 
-head(Events)
-
-
-## Event Settings -----------------------------------------------------------------
-
-Pre_stim = 100
-
-Post_stim = 2000
-
-Fs = 300
-
-Time = seq(from = -Pre_stim, by = 1000 / Fs, length.out = (Pre_stim + Post_stim) / 1000 * 300 - 1)
-
-Trial_data = Raw_data
+# Time vector based on the event duration
+Time = seq(from = -Pre_stim, by=Step, length.out = (Pre_stim+Post_stim)/Step) # time vector
 
 
-## Extend Events -----------------------------------------------------------------
+## Event fixes --------------------------------------------------------------------
 
-for (trial in 1:nrow(Events)) {
-  Sub = Events[trial, 'Subject']
-  Event = Events[trial, 'Events']
-  TrialN = Events[trial, 'TrialN']
-  Onset = Events[trial, 'Time']
-  rows_to_update = which(Trial_data$Subject == Sub &
-                           Trial_data$Time >= (Onset - Pre_stim) &
-                           Trial_data$Time < (Onset + Post_stim))
-  Trial_data[rows_to_update, 'Time'] = Time
-  Trial_data[rows_to_update, 'Events'] = Event
-  Trial_data[rows_to_update, 'TrialN'] = TrialN
+List_of_subject_dataframes = list() # Empty list to be filled with dataframes
+
+# Loop for each subject
+for (sub in 1:length(csv_files)) {
+  
+  Raw_data = read.csv(csv_files[sub]) # Raw data
+  Events = filter(Raw_data, Event %in% Events_to_keep) # Events
+
+  
+  # Loop for each event 
+  for (trial in 1:nrow(Events)){
+  
+      # Extract the information
+      Event = Events[trial,]$Event
+      TrialN = Events[trial,]$TrialN
+      
+      # Event onset information
+      Onset = Events[trial,]$time
+      Onset_index = which.min(abs(Raw_data$time - Onset))
+      
+      # Find the rows to update based on pre post samples
+      rows_to_update = seq(Onset_index - Pre_stim_samples,
+                           Onset_index + Post_stim_samples-1)
+      
+      # Repeat the values of interest for all the rows
+      Raw_data[rows_to_update, 'time'] = Time
+      Raw_data[rows_to_update, 'Event'] = Event
+      Raw_data[rows_to_update, 'TrialN'] = TrialN
+  }
+  
+  
+  # Filter only events of interest
+  Trial_data = Raw_data %>% 
+    filter(Event %in% Events_to_keep)
+  
+  # Add daframe to list
+  List_of_subject_dataframes[[sub]] = Trial_data
 }
 
-
-## Filter Events -----------------------------------------------------------------
-
-Trial_data = Trial_data %>% 
-  filter(Events %in% Events_to_keep)
+# Combine the list of dataframes into 1 dataframe
+Trial_data = bind_rows(List_of_subject_dataframes)
 
 
-### Plot Events -----------------------------------------------------------------
+### Plot Raw Data -----------------------------------------------------------------
 
-ggplot(Trial_data, aes(x = Time, y = PupilR, group = TrialN)) +
-  geom_line(aes(y = PupilR, color = 'Pupil Right'), lwd = 1.2) +
-  geom_line(aes(y = PupilL, color = 'Pupil Left'), lwd = 1.2) +
-  geom_vline(aes(xintercept = 0), linetype = 'dashed', color = 'black', lwd = 1.2) +
-  facet_wrap(~Subject) +
+ggplot(Raw_data, aes(x = time, y = R_P)) +
+  geom_line(aes(y = R_P, color = 'Pupil Right'), lwd = 1.2) +
+  geom_line(aes(y = L_P, color = 'Pupil Left'), lwd = 1.2) +
+  geom_vline(data = Raw_data |> dplyr::filter(!is.na(Event)), aes(xintercept = time, linetype = Event), lwd = 1.3) +
+  
+  theme_bw(base_size = 45) +
   ylim(1, 6) +
-  scale_color_manual(values = c('Pupil Right' = '#4A6274', 'Pupil Left' = '#E2725A')) +
-  theme_bw(base_size = 35) +
-  theme(legend.position = 'bottom', legend.title = element_blank()) +
-  guides(color = guide_legend(override.aes = list(lwd = 20)))
+  labs(color= 'Signal', y='Pupil size')+
+  scale_color_manual(
+    values = c('Pupil Right' = '#4A6274', 'Pupil Left' = '#E2725A') )  +
+  theme(
+    legend.position = 'bottom'  ) +
+  guides(
+    color = guide_legend(override.aes = list(lwd = 20)),
+    linetype = guide_legend(override.aes = list(lwd = 1.2))
+  )
+
 
 
 # Pre-processing -----------------------------------------------------------------
 
-## Make PupillometryR Data -----------------------------------------------------------------
+## Filter Out Trials with all NA -----------------------------------------------------------------
 
+Trial_data = Trial_data %>%
+  group_by(Subject, TrialN) %>%
+  filter(!all(is.na(L_P) & is.na(R_P))) %>%
+  ungroup()
+
+
+## Make PupillometryR Data -----------------------------------------------------------------
 PupilR_data = make_pupillometryr_data(data = Trial_data,
                                       subject = Subject,
                                       trial = TrialN,
-                                      time = Time,
-                                      condition = Events)
+                                      time = time,
+                                      condition = Event)
 
 ### Plot ------------------------------------------------------------------
-plot(PupilR_data, pupil = PupilL, group = 'condition', geom = 'line') +
+plot(PupilR_data, pupil = L_P, group = 'condition', geom = 'line') +
   theme_bw(base_size = 45) +
   theme(
     legend.position = 'bottom', 
@@ -666,37 +781,18 @@ plot(PupilR_data, pupil = PupilL, group = 'condition', geom = 'line') +
   guides(color = guide_legend(override.aes = list(lwd = 20))) 
 
 
-
 ## Regress Data -----------------------------------------------------------------
 
 Regressed_data = regress_data(data = PupilR_data,
-                               pupil1 = PupilL,
-                               pupil2 = PupilR)
-
-
-## Filter Out Trials with NA -----------------------------------------------------------------
-
-Trial_data = Trial_data %>%
-  group_by(Subject, TrialN) %>%
-  filter(!all(is.na(PupilL) & is.na(PupilR))) %>%
-  ungroup()
-
-PupilR_data = make_pupillometryr_data(data = Trial_data,
-                                      subject = Subject,
-                                      trial = TrialN,
-                                      time = Time,
-                                      condition = Events)
-
-Regressed_data = regress_data(data = PupilR_data,
-                               pupil1 = PupilL,
-                               pupil2 = PupilR)
+                               pupil1 = L_P,
+                               pupil2 = R_P)
 
 
 ## Calculate Mean Pupil -----------------------------------------------------------------
 
 Mean_data = calculate_mean_pupil_size(data = Regressed_data, 
-                                       pupil1 = PupilL, 
-                                       pupil2 = PupilR)
+                                       pupil1 = L_P, 
+                                       pupil2 = R_P)
 
 ### Plot --------------------------------------------------------------------
 
@@ -760,7 +856,7 @@ Clean_data = clean_missing_data(Downsampled_data,
 
 ### Plot --------------------------------------------------------------------
 
-ggplot(Clean_data, aes(x = Time, y = mean_pupil, group = TrialN, color= Events))+
+ggplot(Clean_data, aes(x = Time, y = mean_pupil, group = TrialN, color= Event))+
   geom_line( lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
   
@@ -785,7 +881,7 @@ Blink_data = detect_blinks_by_velocity(
 
 ### Plot --------------------------------------------------------------------
 
-ggplot(Blink_data, aes(x = Time, y = mean_pupil, group = TrialN, color=Events))+
+ggplot(Blink_data, aes(x = time, y = mean_pupil, group = TrialN, color=Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
   
@@ -807,7 +903,7 @@ Int_data = interpolate_data(data = Clean_data,
 
 ### Plot --------------------------------------------------------------------
 
-ggplot(Int_data, aes(x = Time, y = mean_pupil, group = TrialN, color = Events))+
+ggplot(Int_data, aes(x = Time, y = mean_pupil, group = TrialN, color = Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
 
@@ -839,7 +935,7 @@ One = plot(Final_data, pupil = mean_pupil, group = 'condition')+
   theme(legend.position = 'none')
 
 
-Two = ggplot(Final_data, aes(x = Time, y = mean_pupil, group = TrialN, color = Events))+
+Two = ggplot(Final_data, aes(x = time, y = mean_pupil, group = TrialN, color = Event))+
   geom_line(lwd =1.2)+
   geom_vline(aes(xintercept = 0), linetype= 'dashed', color = 'black', lwd =1.2)+
   
@@ -857,5 +953,5 @@ One / Two
 
 # Save data ---------------------------------------------------------------
 
-write.csv(Final_data, "..\\..\\resources\\Pupillometry\\ProcessedPupilData.csv")
+write.csv(Final_data, "..\\..\\resources\\Pupillometry\\Processed\\Peocessed_PupilData.csv")
 ```

@@ -1,5 +1,6 @@
 ---
 title: "From fixations to measures"
+date: "09/07/2024"
 execute:
   eval: true
 

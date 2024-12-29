@@ -1,5 +1,6 @@
 ---
 title: "Using I2MC for robust fixation extraction"
+date: "07/19/2024"
 execute:
   eval: false
 jupyter:

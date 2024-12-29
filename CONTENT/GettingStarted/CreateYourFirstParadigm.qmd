@@ -1,5 +1,6 @@
 ---
 title: "Create your first paradigm"
+date: "02/16/2024"
 execute:
   eval: false
 jupyter:

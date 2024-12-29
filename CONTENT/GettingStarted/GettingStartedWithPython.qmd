@@ -1,5 +1,6 @@
 ---
 title: Starting with Python
+date: "10/30/2023"
  
 pagetitle: Starting with Python
 author-meta: Tommaso Ghilardi
