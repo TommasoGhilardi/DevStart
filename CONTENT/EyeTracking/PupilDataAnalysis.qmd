@@ -1,6 +1,6 @@
 ---
 title: "Pupil Data Analysis"
-date: "12/18/2024"
+date: "01/02/2025"
 
 
 author-meta: Francesco Poli
@@ -26,9 +26,9 @@ Before starting any type of analysis, let's import the data and take a quick loo
 
 ## Import data
 
-The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: [Pre-processing pupil data](PupillometryPreprocessing.qmd). In case you did not save the result of the pre-processing you can download them from here :
+The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: [Pre-processing pupil data](PupilPreprocessing.qmd). In case you did not save the result of the pre-processing you can download them from here :
 
-{{< downloadthis ../../resources/Pupillometry/Processed/Peocessed_PupilData.csv label="Peocessed_PupilData.csv" dname= "data" type="secondary" >}}
+{{< downloadthis ../../resources/Pupillometry/Processed/Processed_PupilData.csv label="Peocessed_PupilData.csv" dname= "data" type="secondary" >}}
 
 Now that you have the data, let's import it along with the necessary libraries. We'll also ensure that the `Event` and `Subjects` columns are properly set as factors (categorical for easier analysis. Here's how:
 
@@ -38,7 +38,7 @@ Now that you have the data, let's import it along with the necessary libraries. 
 library(tidyverse)  # Data manipulation and visualization
 library(easystats)  # Easy statistical modeling
 
-data = read.csv("..\\..\\resources\\Pupillometry\\Processed\\PupilData.csv")
+data = read.csv("..\\..\\resources\\Pupillometry\\Processed\\Processed_PupilData.csv")
 
 # Make sure Event and Subject are factors
 data$Event = as.factor(data$Event)
@@ -47,7 +47,7 @@ data$Subject = as.factor(data$Subject)
 head(data)
 ```
 
-For a detailed description of the data, you can have a look at the tutorial on [preprocessing pupil data](PupillometryPreprocessing.qmd). The key variables to focus on here are the following:
+For a detailed description of the data, you can have a look at the tutorial on [preprocessing pupil data](PupilPreprocessing.qmd). The key variables to focus on here are the following:
 
 -   `mean_pupil` indicates what the pupil size was at every moment in time (every 50 milliseconds, 20Hz). This is our dependent variable.
 
@@ -61,7 +61,7 @@ For a detailed description of the data, you can have a look at the tutorial on [
 
 ## Comparing means
 
-In many paradigms, you have two or more conditions and want to test whether your dependent variable (pupil size in this case!) is significantly different across conditions. In [our example paradigm](CreateYourFirstParadigm.qmd), we may want to test whether, on average, pupil size while looking at the rewarding cue (the circle) is greater than pupil size while looking at the non-rewarding cue (the square). This would mean that even before the reward is presented, infants have learned that a reward will be coming and dilate their pupils in response to it! Pretty cool, uh?
+In many paradigms, you have two or more conditions and want to test whether your dependent variable (pupil size in this case!) is significantly different across conditions. In [our example paradigm](..\GettingStarted\CreateYourFirstParadigm.qmd), we may want to test whether, on average, pupil size while looking at the rewarding cue (the circle) is greater than pupil size while looking at the non-rewarding cue (the square). This would mean that even before the reward is presented, infants have learned that a reward will be coming and dilate their pupils in response to it! Pretty cool, uh?
 
 If we want to test multiple groups, we can use a t-test, an ANOVA or... A linear model! Here, we'll be using a special type of linear model, a mixed-effect model - which is infinitely better for many many reasons \[add link\].
 
@@ -80,6 +80,10 @@ averaged_data = data %>%
 
 head(averaged_data)
 ```
+
+::: callout-important
+In this step, we used the **average** to calculate an index for each trial, meaning we averaged the pupil dilation over the trial duration. However, this is not the only option. Other approaches include extracting the **peak** value (`max(mean_pupil, na.rm = TRUE)`) or calculating the **sum** of the signal (`sum(mean_pupil, na.rm = TRUE)`), which can also represent the **area under the curve (AUC)** for the trial.
+:::
 
 ### Linear mixed-effect model
 
@@ -354,5 +358,9 @@ The smooth terms indicate whether the non-linear relationships modeled by s() ex
 You did it!!! You started from a simpler model and little by little you built a very complex Generalized Additive Model!! Amazing work!!!
 
 ::: callout-warning
-This is just a very basic tutorial!!! We owe much of what we know to [this paper](https://journals.sagepub.com/doi/10.1177/2331216519832483), which goes much more in depth with GAMs (still using the `mgcv` package), reviewing different ways of fitting the models, handling auto-correlations and making sure that the GAMs you run are actually correct and robust. Please read the paper!!!!
+**This is just a very basic tutorial!**
+
+There are additional checks and considerations to keep in mind when using additive models to model pupil dilation data. We plan to extend this tutorial over time to include more details.
+
+Luckily, there are researchers who have already explored and explained these steps thoroughly. [This paper](https://journals.sagepub.com/doi/10.1177/2331216519832483), in particular, has greatly informed our approach. It dives deeper into the use of GAMs (still with the **mgcv** package), reviewing techniques for fitting models, addressing auto-correlations, and ensuring the accuracy and robustness of your GAMs. We highly recommend reading this paper to deepen your understanding!
 :::
