@@ -22,6 +22,43 @@ Download and unzip this folder. This dataset is based on the experimental design
 
 This tutorial serves as a foundation for understanding how to preprocess pupil data. Once you've grasped the essentials, we encourage you to explore the full range of functions and features [PupillometryR](http://samforbes.me/PupillometryR) has to offer.
 
+::: callout-note
+In this and upcoming tutorials, we’ll use **dplyr**, a package included in the **tidyverse** collection. **dplyr** is designed for efficient manipulation of dataframes and makes it easy to perform operations using the **Magrittr pipe (`%>%`)**. This pipe allows you to chain multiple operations on a dataframe in a seamless flow, avoiding intermediate steps or temporary variables.
+
+We’ll focus on basic **dplyr** functions for now, including:
+
+-   **`filter()`**: Used to subset rows based on specific conditions.\
+    *Example*: Keep rows where `data %>% filter( Event == "Circle")`.
+
+-    **`mutate()`**: Adds or modifies columns in the dataframe.\
+    *Example*: Create a new column `data %>% mutate(mean_pupil_norm = mean_pupil / 100)`.
+
+-    **`group_by()`**: Groups the dataframe by one or more columns for grouped operations.\
+    *Example*: Group data by `data %>% group_by(Subject, Event)`.
+
+-    **`summarize()`**: Aggregates data within groups to compute summary statistics.\
+    *Example*: Calculate the mean pupil size for each group.
+
+**Basic Syntax**
+
+The syntax begins by passing a dataframe into the pipe (`%>%`) and then applying one or more operations. These functions directly manipulate the dataframe without requiring it (or its columns) to be explicitly referenced in each step.
+
+Here’s an example:
+
+```{r}
+#| eval: false
+#| warning: false
+data2 = data %>%
+    filter(Events == "Circle") %>%
+    group_by(Subject) %>%
+    summarize(mean_pupil = mean(mean_pupil, na.rm = TRUE)) 
+```
+
+This code filters rows where `Events == "Circle"`, groups data by `Subject`, and calculates the mean pupil size for each subject, creating a new dataframe, `data2`, in a concise and readable flow. 🚀
+
+This is just the tip of the iceberg ❄️—**dplyr** is an incredible tool! If you want to explore its full potential, check out this tutorial: [R dplyr Tutorial \| Learn with Examples](https://sparkbyexamples.com/r-programming/r-dplyr-tutorial-learn-with-examples/)
+:::
+
 ## Read the data
 
 Let's begin by importing the necessary libraries and loading the downloaded dataframe.
@@ -151,7 +188,7 @@ for (trial in 1:nrow(Events)){
 
 Perfect! We’ve successfully extended the event information backward and forward based on our Pre_stim and Post_stim windows. Now, it’s time to clean things up.
 
-Since we only care about the rows that are part of our trial of interest —and because the event information is now repeated for each row during its duration— we’ll remove all the rows that don’t belong to these event windows. This will leave us with a clean, focused dataset that only contains the data relevant to our a
+Since we only care about the rows that are part of our trial of interest —and because the event information is now repeated for each row during its duration— we’ll remove all the rows that don’t belong to these event windows. This will leave us with a clean, focused dataset that only contains the data relevant to our analysis.
 
 ```{r FilterEvents}
 #| message: false
