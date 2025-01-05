@@ -16,7 +16,7 @@ Welcome to your first step into the world of pupillometry! In this tutorial, we�
 
 To keep things straightforward, we’ll be working with a simulated dataset that you can download right here:
 
-{{< downloadthis ../../resources/Pupillometry/RAW/PupilData.zip label="PupilData.zip" dname= "Raw data" type="secondary" >}}
+{{< downloadthis ../../resources/Pupillometry/RAW/PupilData.zip label="PupilData.zip" dname= "PupilData" type="secondary" >}}
 
 Download and unzip this folder. This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the "[Introduction to eye-tracking](Intro_eyetracking.qmd)" guide before diving in.
 
