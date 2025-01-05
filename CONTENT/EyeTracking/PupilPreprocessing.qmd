@@ -30,13 +30,13 @@ We’ll focus on basic **dplyr** functions for now, including:
 -   **`filter()`**: Used to subset rows based on specific conditions.\
     *Example*: Keep rows where `data %>% filter( Event == "Circle")`.
 
--    **`mutate()`**: Adds or modifies columns in the dataframe.\
+-   **`mutate()`**: Adds or modifies columns in the dataframe.\
     *Example*: Create a new column `data %>% mutate(mean_pupil_norm = mean_pupil / 100)`.
 
--    **`group_by()`**: Groups the dataframe by one or more columns for grouped operations.\
+-   **`group_by()`**: Groups the dataframe by one or more columns for grouped operations.\
     *Example*: Group data by `data %>% group_by(Subject, Event)`.
 
--    **`summarize()`**: Aggregates data within groups to compute summary statistics.\
+-   **`summarize()`**: Aggregates data within groups to compute summary statistics.\
     *Example*: Calculate the mean pupil size for each group.
 
 **Basic Syntax**
@@ -64,7 +64,6 @@ This is just the tip of the iceberg ❄️—**dplyr** is an incredible tool! If
 Let's begin by importing the necessary libraries and loading the downloaded dataframe.
 
 ```{r SettingAndLibraries}
-#| echo: false
 #| message: false
 #| warning: false
 library(PupillometryR)  # Library to process pupil signal
