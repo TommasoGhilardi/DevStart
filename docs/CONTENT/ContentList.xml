@@ -16,7 +16,7 @@
 <height>167</height>
 <width>144</width>
 </image>
-<generator>quarto-1.5.55</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Thu, 02 Jan 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Pupil Data Analysis</title>
@@ -39,7 +39,7 @@ Note
 <p>Before starting any type of analysis, let’s import the data and take a quick look at it.</p>
 <section id="import-data" class="level2"><h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: <a href="../../CONTENT/EyeTracking/PupilPreprocessing.html">Pre-processing pupil data</a>. In case you did not save the result of the pre-processing you can download them from here :</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts16756"><i class="bi bi-download"></i> Peocessed_PupilData.csv </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts12981"><i class="bi bi-download"></i> Peocessed_PupilData.csv </button></p>
 <p>Now that you have the data, let’s import it along with the necessary libraries. We’ll also ensure that the <code>Event</code> and <code>Subjects</code> columns are properly set as factors (categorical for easier analysis. Here’s how:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
@@ -137,13 +137,13 @@ font-style: inherit;">data</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  X   Subject  Event TrialN mean_pupil  time
-1 1 Subject_1 Square      2 0.02437347  0.00
-2 2 Subject_1 Square      2 0.05996201  3.30
-3 3 Subject_1 Square      2 0.05996201  6.65
-4 4 Subject_1 Square      2 0.06092957 10.00
-5 5 Subject_1 Square      2 0.06092957 13.30
-6 6 Subject_1 Square      2 0.06457876 16.65</code></pre>
+<pre><code>  X   Subject  Event TrialN mean_pupil time
+1 1 Subject_1 Square      2 0.04125765    0
+2 2 Subject_1 Square      2 0.10143081   50
+3 3 Subject_1 Square      2 0.12862906  100
+4 4 Subject_1 Square      2 0.16747935  150
+5 5 Subject_1 Square      2 0.21956792  200
+6 6 Subject_1 Square      2 0.27146304  250</code></pre>
 </div>
 </div>
 <p>For a detailed description of the data, you can have a look at the tutorial on <a href="../../CONTENT/EyeTracking/PupilPreprocessing.html">preprocessing pupil data</a>. The key variables to focus on here are the following:</p>
@@ -168,7 +168,7 @@ font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span></span>
+font-style: inherit;"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op" style="color: #5E5E5E;
@@ -183,7 +183,7 @@ font-style: inherit;">TrialN</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span></span>
+font-style: inherit;"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op" style="color: #5E5E5E;
@@ -220,12 +220,12 @@ font-style: inherit;">)</span></span></code></pre></div>
 # Groups:   Subject, Event [2]
   Subject   Event  TrialN mean_pupil
   &lt;fct&gt;     &lt;fct&gt;   &lt;int&gt;      &lt;dbl&gt;
-1 Subject_1 Circle      3     0.0437
-2 Subject_1 Circle      4     0.302 
-3 Subject_1 Circle      6     0.0512
-4 Subject_1 Circle      9    -0.0411
-5 Subject_1 Square      2    -0.109 
-6 Subject_1 Square      5     0.0489</code></pre>
+1 Subject_1 Circle      3     0.0397
+2 Subject_1 Circle      4     0.281 
+3 Subject_1 Circle      6     0.0559
+4 Subject_1 Circle      9    -0.0393
+5 Subject_1 Square      2    -0.139 
+6 Subject_1 Square      5     0.0420</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -312,28 +312,28 @@ lmerModLmerTest]
 Formula: mean_pupil ~ Event + (1 | Subject)
    Data: averaged_data
 
-REML criterion at convergence: 20
+REML criterion at convergence: 17.3
 
 Scaled residuals: 
      Min       1Q   Median       3Q      Max 
--1.90027 -0.68329 -0.03241  0.65714  2.00903 
+-1.84767 -0.66407  0.02253  0.65595  2.02017 
 
 Random effects:
  Groups   Name        Variance  Std.Dev.
- Subject  (Intercept) 0.0008169 0.02858 
- Residual             0.0747253 0.27336 
+ Subject  (Intercept) 0.0008353 0.0289  
+ Residual             0.0709333 0.2663  
 Number of obs: 55, groups:  Subject, 6
 
 Fixed effects:
             Estimate Std. Error       df t value Pr(&gt;|t|)   
-(Intercept)  0.10945    0.05392 17.96376   2.030  0.05746 . 
-EventSquare -0.20742    0.07375 48.99682  -2.812  0.00705 **
+(Intercept)  0.10770    0.05263 17.80244   2.046   0.0558 . 
+EventSquare -0.20781    0.07186 48.97131  -2.892   0.0057 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Correlation of Fixed Effects:
             (Intr)
-EventSquare -0.697</code></pre>
+EventSquare -0.695</code></pre>
 </div>
 </div>
 <p>We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you’re curious about how to interpret mixed-effects model outputs, you can check out this excellent guide: <a href="https://mspeekenbrink.github.io/sdam-r-companion/linear-mixed-effects-models.html">Linear mixed-effects models</a>. It provides a great foundation. <strong>And keep an eye out for our upcoming page dedicated to mixed-effects modeling, where we’ll break everything down step by step!</strong></p>
@@ -657,7 +657,7 @@ font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span></span>
+font-style: inherit;"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op" style="color: #5E5E5E;
@@ -670,7 +670,7 @@ font-style: inherit;">time</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span></span>
+font-style: inherit;"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op" style="color: #5E5E5E;
@@ -1978,22 +1978,22 @@ mean_pupil ~ Event + s(time, by = Event, k = 20) + s(time, Subject,
     bs = "fs", m = 1)
 
 Parametric coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.106962   0.036428   2.936  0.00332 ** 
-EventSquare -0.202138   0.003477 -58.130  &lt; 2e-16 ***
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.10594    0.03649   2.903  0.00373 ** 
+EventSquare -0.20353    0.01333 -15.267  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Approximate significance of smooth terms:
-                       edf Ref.df      F p-value    
-s(time):EventCircle  7.307  9.063 12.870 &lt; 2e-16 ***
-s(time):EventSquare  2.877  3.267  4.069 0.00525 ** 
-s(time,Subject)     40.547 53.000 73.299 &lt; 2e-16 ***
+                       edf Ref.df     F  p-value    
+s(time):EventCircle  3.959  4.883 6.306 1.31e-05 ***
+s(time):EventSquare  1.512  1.748 5.269   0.0197 *  
+s(time,Subject)     20.334 53.000 4.408  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-R-sq.(adj) =  0.222   Deviance explained = 22.3%
-fREML = 8767.1  Scale est. = 0.099062  n = 33000</code></pre>
+R-sq.(adj) =  0.215   Deviance explained = 22.4%
+fREML = 594.43  Scale est. = 0.097128  n = 2200</code></pre>
 </div>
 </div>
 <p>The fixed effects (<em>Parametric coefficients</em>) show a strong negative effect for <code>Eventquare</code>, indicating that pupil size for Square is significantly lower than for Circle. This suggests that pupil size is greater when expecting a rewarding stimulus compared to a non-rewarding one.</p>
@@ -2031,7 +2031,7 @@ Warning
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing.html</link>
   <description><![CDATA[ <p>Welcome to your first step into the world of pupillometry! In this tutorial, we’ll walk you through how to preprocess pupil data using a handy R package called <a href="http://samforbes.me/PupillometryR/index.html">PupillometryR</a>. This package makes it simple to clean and even analyze your pupil data with just a few lines of R code.</p>
 <p>To keep things straightforward, we’ll be working with a simulated dataset that you can download right here:</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts38707"><i class="bi bi-download"></i> PupilData.zip </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts24176"><i class="bi bi-download"></i> PupilData.zip </button></p>
 <p>Download and unzip this folder. This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the “<a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Introduction to eye-tracking</a>” guide before diving in.</p>
 <p>This tutorial serves as a foundation for understanding how to preprocess pupil data. Once you’ve grasped the essentials, we encourage you to explore the full range of functions and features <a href="http://samforbes.me/PupillometryR">PupillometryR</a> has to offer.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2671,21 +2671,13 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Step</span>, length.out <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Pre_stim</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">Pre_stim_samples</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">Post_stim</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Step</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">Post_stim_samples</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3095,26 +3087,17 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Step</span>, length.out <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Pre_stim</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">Pre_stim_samples</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">Post_stim</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Step</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">Post_stim_samples</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># time vector</span></span>
-<span></span>
 <span></span>
 <span><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -4211,7 +4194,7 @@ font-style: inherit;">)</span> </span></code></pre></div>
 <div class="cell">
 <div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">filtered_data</span> <span class="op" style="color: #5E5E5E;
+font-style: inherit;">Filtered_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4245,7 +4228,7 @@ font-style: inherit;"><a href="https://rdrr.io/r/graphics/plot.default.html">plo
 background-color: null;
 font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">filtered_data</span>, pupil <span class="op" style="color: #5E5E5E;
+font-style: inherit;">Filtered_data</span>, pupil <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
@@ -4333,156 +4316,11 @@ font-style: inherit;">)</span> </span></code></pre></div>
 </div>
 </div>
 <p>There are different ways to filter the data in PupillometryR we suggest you check the actual package website and make decision based on your data (<a href="http://samforbes.me/PupillometryR/reference/filter_data.html"><code>filter_data</code></a>). Here we use a median filter based on a 11 sample window.</p>
-</section><section id="downsample" class="level3"><h3 class="anchored" data-anchor-id="downsample">Downsample</h3>
-<p>As mentioned above, Pupil dilation is a slow signal, so 20Hz is enough — no need for 300Hz. Downsampling reduces file size, speeds up processing, and naturally smooths the signal by filtering out high-frequency noise, all while preserving the key information we need for analysis. To downsample to 20Hz, we’ll set the timebin size to 50 ms (since 1/20 = 0.05 seconds = 50 ms) and calculate the median for each time bin.</p>
-<div class="cell">
-<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">NewHz</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">timebinSize</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">NewHz</span></span>
-<span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Downsampled_data</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/pkg/PupillometryR/man/downsample_time_data.html">downsample_time_data</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>data <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">filtered_data</span>,</span>
-<span>                              pupil <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">mean_pupil</span>,</span>
-<span>                              timebin_size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">timebinSize</span>,</span>
-<span>                              option <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'median'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">Downsampled_data</span>, pupil <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">mean_pupil</span>, group <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'condition'</span>, geom <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'line'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>base_size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">45</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>    legend.position <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'bottom'</span>, </span>
-<span>    legend.title <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>override.aes <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>lwd <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> </span></code></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/Downsample-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/Downsample-1.png" class="img-fluid figure-img" width="3840"></a></p>
-</figure>
-</div>
-</div>
-</div>
 </section><section id="trial-rejection" class="level3"><h3 class="anchored" data-anchor-id="trial-rejection">Trial Rejection</h3>
 <p>Now that our data is smaller and smoother, it’s a good time to take a look at it. It doesn’t make sense to keep trials that are mostly missing values, nor does it make sense to keep participants with very few good trials.</p>
 <p>While you might already have info on trial counts and participant performance from other sources (like video coding), PupillometryR has a super handy function to check this directly. This way, you can quickly see how many valid trials each participant has and decide which ones to keep or drop.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Missing_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4492,7 +4330,7 @@ font-style: inherit;"><a href="https://rdrr.io/pkg/PupillometryR/man/calculate_m
 background-color: null;
 font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">Downsampled_data</span>,</span>
+font-style: inherit;">Filtered_data</span>,</span>
 <span>                                       <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">mean_pupil</span><span class="op" style="color: #5E5E5E;
@@ -4540,7 +4378,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <p>This gives us a new dataframe that shows the amount of missing data for each subject and each trial. While we could manually decide which trials and subjects to keep or remove, PupillometryR makes it easier with the <strong><code><a href="https://rdrr.io/pkg/PupillometryR/man/clean_missing_data.html">clean_missing_data()</a></code></strong> function.</p>
 <p>This function lets you set two % thresholds — one for trials and one for subjects. Here, we’ll set it to reject trials with more than 25% missing data (keep at least 75% of the data) and reject subjects with more than 25% missing data. This way, we ensure our analysis is based on clean, high-quality data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Clean_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4550,7 +4388,7 @@ font-style: inherit;"><a href="https://rdrr.io/pkg/PupillometryR/man/clean_missi
 background-color: null;
 font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">Downsampled_data</span>,</span>
+font-style: inherit;">Filtered_data</span>,</span>
 <span>                                 pupil <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
@@ -4596,7 +4434,7 @@ Warning
 <p>Now our data is clean, but… while the average signal for each condition looks smooth (as seen in our plots), the data for each individual participant is still noisy. We can still spot blinks and missing data in the signal.</p>
 <p>To handle this, we’ll use interpolation to fill in the missing points. Interpolation “connects the dots” between gaps, creating a more continuous and cleaner signal. This step is crucial because large chunks of missing data can distort our analysis, and interpolation allows us to retain more usable data from each participant.</p>
 <div class="cell">
-<div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4779,14 +4617,14 @@ background-color: null;
 font-style: inherit;">)</span> </span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/PlotBlink-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/PlotBlink-1.png" class="img-fluid figure-img" width="3840"></a></p>
+<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/PlotBlink-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/PlotBlink-1.png" class="img-fluid figure-img" width="3840"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>So to remove these missing values we can interpolate our data. Interpolating is easy with PupillometryR we can simply:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Int_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4995,7 +4833,7 @@ background-color: null;
 font-style: inherit;">)</span> </span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/WrongInterpolation-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/WrongInterpolation-1.png" class="img-fluid figure-img" width="3840"></a></p>
+<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/WrongInterpolation-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/WrongInterpolation-1.png" class="img-fluid figure-img" width="3840"></a></p>
 </figure>
 </div>
 </div>
@@ -5009,7 +4847,7 @@ font-style: inherit;">)</span> </span></code></pre></div>
 </ol>
 <p>Here, we’ll use detection by velocity. We set a velocity threshold to detect when the pupil size changes too quickly. To ensure we capture the full blink, we use <code>extend_forward</code> and <code>extend_back</code> to expand the blink window, including the fast decrease in pupil size. The key idea is to make the entire blink period NA, not just the moment the pupil disappears. This prevents interpolation from creating unrealistic artifacts. When we interpolate, the process skips over the entire blink period, resulting in a cleaner, more natural signal.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Blink_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -5225,14 +5063,14 @@ background-color: null;
 font-style: inherit;">)</span> </span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/BlinkRemoval-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/BlinkRemoval-1.png" class="img-fluid figure-img" width="3840"></a></p>
+<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/BlinkRemoval-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/BlinkRemoval-1.png" class="img-fluid figure-img" width="3840"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>See !! now the rapid shrinking disappeared and we can now interpolate</p>
 <div class="cell">
-<div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">Int_data</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -5441,7 +5279,7 @@ background-color: null;
 font-style: inherit;">)</span> </span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/Interpolation2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/Interpolation2-1.png" class="img-fluid figure-img" width="3840"></a></p>
+<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/Interpolation2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/Interpolation2-1.png" class="img-fluid figure-img" width="3840"></a></p>
 </figure>
 </div>
 </div>
@@ -5458,6 +5296,151 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p>You won’t always run into blink issues like this. Downsampling and filtering usually handle rapid changes during earlier preprocessing steps. Whether this happens can depend on the tracker, sampling rate, or even the population you’re testing. <strong>In this simulated data, we exaggerated the blink effects on purpose to show you how to spot and fix them!</strong> Thus, blink detection may not always be necessary. The best approach is to check your data before deciding. And how do you check it? <strong>Plotting</strong>! Plotting your signal is the best way to see if blinks are causing rapid drops or if you’re just dealing with missing data. Let the data guide your decisions.</p>
+</div>
+</div>
+</section><section id="downsample" class="level3"><h3 class="anchored" data-anchor-id="downsample">Downsample</h3>
+<p>As mentioned before, Pupil dilation is a slow signal, so 20Hz is enough — no need for 300Hz. Downsampling reduces file size, speeds up processing, and even naturally smooths the signal, all while preserving the key information we need for analysis. To downsample to 20Hz, we’ll set the timebin size to 50 ms (since 1000/20 = 0.05 seconds = 50 ms) and calculate the median for each time bin.</p>
+<div class="cell">
+<div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">NewHz</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">timebinSize</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">NewHz</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">Downsampled_data</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/PupillometryR/man/downsample_time_data.html">downsample_time_data</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">Int_data</span>,</span>
+<span>                              pupil <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">mean_pupil</span>,</span>
+<span>                              timebin_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">timebinSize</span>,</span>
+<span>                              option <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'median'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">Downsampled_data</span>, pupil <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">mean_pupil</span>, group <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'condition'</span>, geom <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'line'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>base_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    legend.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bottom'</span>, </span>
+<span>    legend.title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>override.aes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>lwd <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> </span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="PupilPreprocessing_files/figure-html/Downsample-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing_files/figure-html/Downsample-1.png" class="img-fluid figure-img" width="3840"></a></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="baseline-correction" class="level3"><h3 class="anchored" data-anchor-id="baseline-correction">Baseline Correction</h3>
@@ -5477,7 +5460,7 @@ font-style: inherit;">(</span>data <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">Int_data</span>,</span>
+font-style: inherit;">Downsampled_data</span>,</span>
 <span>                           pupil <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;

@@ -147,7 +147,7 @@ Pre_stim_samples = Pre_stim/Step  # pre stimulus in samples
 Post_stim_samples = Post_stim/Step  # post stimulus in samples
 
 # Time vector based on the event duration
-Time = seq(from = -Pre_stim, by=Step, length.out = (Pre_stim+Post_stim)/Step) # time vector
+Time = seq(from = -Pre_stim, by=Step, length.out = Pre_stim_samples+Post_stim_samples) # time vector
 ```
 
 Here’s where the magic happens. We loop through each event listed in our **Events** dataframe. Each row in Events corresponds to a specific event (like a "Circle" or "Square" cue) that occurred for a specific subject during a specific trial.
@@ -227,8 +227,7 @@ Pre_stim_samples = Pre_stim/Step  # pre stimulus in samples
 Post_stim_samples = Post_stim/Step  # post stimulus in samples
 
 # Time vector based on the event duration
-Time = seq(from = -Pre_stim, by=Step, length.out = (Pre_stim+Post_stim)/Step) # time vector
-
+Time = seq(from = -Pre_stim, by=Step, length.out = Pre_stim_samples+Post_stim_samples) # time vector
 
 # Event fixes --------------------------------------------------------------------
 
@@ -433,11 +432,11 @@ Now that we have a single pupil signal, we can move on to filtering it. The goal
 #| warning: false
 #| fig-height: 25
 #| fig-width: 40
-filtered_data = filter_data(data = Mean_data,
+Filtered_data = filter_data(data = Mean_data,
                              pupil = mean_pupil,
                              filter = 'median',
                              degree = 11)
-plot(filtered_data, pupil = mean_pupil, group = 'condition', geom = 'line')+
+plot(Filtered_data, pupil = mean_pupil, group = 'condition', geom = 'line')+
   theme_bw(base_size = 45) +
   theme(
     legend.position = 'bottom', 
@@ -447,30 +446,6 @@ plot(filtered_data, pupil = mean_pupil, group = 'condition', geom = 'line')+
 
 There are different ways to filter the data in PupillometryR we suggest you check the actual package website and make decision based on your data ([`filter_data`](http://samforbes.me/PupillometryR/reference/filter_data.html)). Here we use a median filter based on a 11 sample window.
 
-### Downsample
-
-As mentioned above, Pupil dilation is a slow signal, so 20Hz is enough — no need for 300Hz. Downsampling reduces file size, speeds up processing, and naturally smooths the signal by filtering out high-frequency noise, all while preserving the key information we need for analysis. To downsample to 20Hz, we’ll set the timebin size to 50 ms (since 1/20 = 0.05 seconds = 50 ms) and calculate the median for each time bin.
-
-```{r Downsample}
-#| message: false
-#| warning: false
-#| fig-height: 25
-#| fig-width: 40
-NewHz = 20
-timebinSize = 1/NewHz
-
-Downsampled_data = downsample_time_data(data = filtered_data,
-                              pupil = mean_pupil,
-                              timebin_size = timebinSize,
-                              option = 'median')
-plot(Downsampled_data, pupil = mean_pupil, group = 'condition', geom = 'line') +
-  theme_bw(base_size = 45) +
-  theme(
-    legend.position = 'bottom', 
-    legend.title = element_blank()) +
-  guides(color = guide_legend(override.aes = list(lwd = 20))) 
-```
-
 ### Trial Rejection
 
 Now that our data is smaller and smoother, it’s a good time to take a look at it. It doesn’t make sense to keep trials that are mostly missing values, nor does it make sense to keep participants with very few good trials.
@@ -478,7 +453,7 @@ Now that our data is smaller and smoother, it’s a good time to take a look at 
 While you might already have info on trial counts and participant performance from other sources (like video coding), PupillometryR has a super handy function to check this directly. This way, you can quickly see how many valid trials each participant has and decide which ones to keep or drop.
 
 ```{r MissingDataframe}
-Missing_data = calculate_missing_data(Downsampled_data,
+Missing_data = calculate_missing_data(Filtered_data,
                                        mean_pupil)
 head(Missing_data, n=20)
 ```
@@ -491,7 +466,7 @@ This function lets you set two % thresholds — one for trials and one for subje
 #| echo: true
 #| message: true
 #| warning: true
-Clean_data = clean_missing_data(Downsampled_data,
+Clean_data = clean_missing_data(Filtered_data,
                                  pupil = mean_pupil,
                                  trial_threshold = .75,
                                  subject_trial_threshold = .75)
@@ -628,6 +603,31 @@ Look how beautiful our signal is now!! 😍 Good job!!!
 You won’t always run into blink issues like this. Downsampling and filtering usually handle rapid changes during earlier preprocessing steps. Whether this happens can depend on the tracker, sampling rate, or even the population you’re testing. **In this simulated data, we exaggerated the blink effects on purpose to show you how to spot and fix them!** Thus, blink detection may not always be necessary. The best approach is to check your data before deciding. And how do you check it? **Plotting**! Plotting your signal is the best way to see if blinks are causing rapid drops or if you’re just dealing with missing data. Let the data guide your decisions.
 :::
 
+### Downsample
+
+As mentioned before, Pupil dilation is a slow signal, so 20Hz is enough — no need for 300Hz. Downsampling reduces file size, speeds up processing, and even naturally smooths the signal, all while preserving the key information we need for analysis. To downsample to 20Hz, we’ll set the timebin size to 50 ms (since 1000/20 = 0.05 seconds = 50 ms) and calculate the median for each time bin.
+
+```{r Downsample}
+#| message: false
+#| warning: false
+#| fig-height: 25
+#| fig-width: 40
+NewHz = 20
+timebinSize = 1000/NewHz
+
+Downsampled_data = downsample_time_data(data = Int_data,
+                              pupil = mean_pupil,
+                              timebin_size = timebinSize,
+                              option = 'median')
+plot(Downsampled_data, pupil = mean_pupil, group = 'condition', geom = 'line') +
+  theme_bw(base_size = 45) +
+  theme(
+    legend.position = 'bottom', 
+    legend.title = element_blank()) +
+  guides(color = guide_legend(override.aes = list(lwd = 20))) 
+```
+
+
 ### Baseline Correction
 
 Good job getting this far!! We’re now at the final step of our pre-processing: baseline correction.
@@ -641,7 +641,7 @@ Let’s get it done!
 #| warning: false
 #| fig-height: 25
 #| fig-width: 40
-Base_data = baseline_data(data = Int_data,
+Base_data = baseline_data(data = Downsampled_data,
                            pupil = mean_pupil,
                            start = -100,
                            stop = 0)
@@ -658,7 +658,7 @@ Let's plot it to see what baseline correction and removal are actually doing!! W
 #| warning: false
 #| fig-height: 25
 #| fig-width: 40
-One = plot(Final_data, pupil = mean_pupil, group = 'condition')+
+One = plot(Final_data, pupil = mean_pupil, group = 'condition', geom = 'line')+
   theme_bw(base_size = 45) +
   theme(legend.position = 'none')
 
