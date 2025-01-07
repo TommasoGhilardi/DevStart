@@ -627,7 +627,6 @@ plot(Downsampled_data, pupil = mean_pupil, group = 'condition', geom = 'line') +
   guides(color = guide_legend(override.aes = list(lwd = 20))) 
 ```
 
-
 ### Baseline Correction
 
 Good job getting this far!! We’re now at the final step of our pre-processing: baseline correction.

@@ -28,7 +28,7 @@ Before starting any type of analysis, let's import the data and take a quick loo
 
 The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: [Pre-processing pupil data](PupilPreprocessing.qmd). In case you did not save the result of the pre-processing you can download them from here :
 
-{{< downloadthis ../../resources/Pupillometry/Processed/Processed_PupilData.csv label="Peocessed_PupilData.csv" dname= "data" type="secondary" >}}
+{{< downloadthis ../../resources/Pupillometry/Processed/Processed_PupilData.csv label="Preprocessed_PupilData.csv" type="secondary" >}}
 
 Now that you have the data, let's import it along with the necessary libraries. We'll also ensure that the `Event` and `Subjects` columns are properly set as factors (categorical for easier analysis. Here's how:
 

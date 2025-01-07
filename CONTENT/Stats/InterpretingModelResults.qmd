@@ -59,7 +59,7 @@ The Coefficient section if indubitably the most important section of the summary
 
 ### (Intercept)
 
-The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (`time` and `tool`) are 0. Now you may ask...how can `tool` be 0? It is a categorical variable, it can't be 0!!!!
+The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (`time` and `tool`) are 0. Now you may ask...how can `tool` be 0? It is a categorical variable, it can't be 0!!!! `time == 0`...sure ....but `tool`??
 
 You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the `hammer`and `spoon` level of the `tool`variable but nothing about the `brush` level. This is because the `brush` level has been selected by the model as the reference level and it is thus represented in the intercept value!
 
@@ -86,21 +86,36 @@ time_values <- seq(0, 10, by = 0.5)
 ggplot()+
   
   # Cartesian lines
-  geom_vline(xintercept = 0)+
-  geom_hline(yintercept = 0)+
-  
-  # Intercept
-  annotate("point", x = 0, y = intercept_brush, size = pi * intercept_brush_se^2, alpha = 0.3, color = 'darkred') +
-  annotate("point", x = 0, y = intercept_brush, color = 'darkred') +
-  annotate("text", x = -0.5, y=intercept_brush*1.15, label='(Intercept)')+
+  geom_vline(xintercept = 0, lwd =0.4) +
+
+  geom_point(aes(x=0, y=intercept_brush), size=3, color = 'darkred')+
+  geom_errorbar(aes(x=0, y=intercept_brush, ymin= intercept_brush-intercept_brush_se, ymax= intercept_brush+intercept_brush_se), color = 'darkred', lwd=1.3)+
   
   # Plot addition information
   coord_cartesian(xlim = c(-1,5), ylim = c(-1,5))+
   labs(y = 'Performance', x = 'Time')+
-  theme_bw(base_size = 20)
+  theme_bw(base_size = 20)+
+  scale_x_continuous(
+    breaks = c(0),              # The x-values where you want ticks
+    labels = c("0\nBrush")  # Corresponding custom labels
+  )
 ```
 
-## Tools
+As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. It’s like the starting point of your model, where all the predictors (in this case, `brush` was selected as the reference or 0 level for the categorical variable) are at their reference level or baseline value.
+
+### Tools
+
+Awesome! Now that we’ve got the intercept down, let’s take a look at the rest of the model output. We’ll skip over the `time` variable for now and focus on what’s happening with the tools.
+
+At first, the results for `tool [hammer]` and `tool [spoon]` might look like they’re giving us the values for the hammer and spoon. Super easy, right?
+
+Well... not exactly!
+
+In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the tool itself.
+
+It sounds a bit confusing, but let’s break it down. The coefficient for `tool [hammer]` is actually just the difference between the intercept (2.81) and the coefficient for `tool [hammer]` (3.60). So, hammer’s total value = 2.81 + 3.60 = 6.41! Same goes for the spoon, where the total is 2.81 + 2.79 = 5.60.
+
+See? Not too bad! Let’s visualize it and make it even clearer!
 
 ```{r}
 #| fig-height: 6
@@ -121,101 +136,166 @@ intercept_spoon_se <- model_p[4,3]
 
 ggplot() +
   
+  # Cartesian lines
+  geom_vline(xintercept = 0, lwd =0.4) +
+
   # Intercept (brush)
-  annotate("point", x = 0, y = intercept_brush, size = pi * intercept_brush_se^2, alpha = 0.3, color = 'darkred') +
-  annotate("point", x = 0, y = intercept_brush, color = 'darkred', size = 4) +
+  geom_point(aes(x=0, y=intercept_brush), size=3, color = 'darkred')+
+  geom_errorbar(aes(x=0, y=intercept_brush, ymin= intercept_brush-intercept_brush_se, ymax= intercept_brush+intercept_brush_se), color = 'darkred', lwd=1.3)+
   
   # Hammer
-  annotate("point", x = 1, y = intercept_hammer, size = pi * intercept_hammer_se^2, alpha = 0.3, color = 'darkblue') +
-  annotate("point", x = 1, y = intercept_hammer, color = 'darkblue', size = 4) +
+  geom_point(aes(x=1, y=intercept_hammer), size=3, color = 'darkblue')+
+  geom_errorbar(aes(x=1, y=intercept_hammer, ymin= intercept_hammer-intercept_hammer_se, ymax= intercept_hammer+intercept_hammer_se), color = 'darkblue', lwd=1.3)+
   
   # Spoon
-  annotate("point", x = 2, y = intercept_spoon, size = pi * intercept_spoon_se^2, alpha = 0.3, color = 'darkgreen') +
-  annotate("point", x = 2, y = intercept_spoon, color = 'darkgreen', size = 4) +
+  geom_point(aes(x=2, y=intercept_spoon), size=3, color = 'darkgreen')+
+  geom_errorbar(aes(x=2, y=intercept_spoon, ymin= intercept_spoon-intercept_spoon_se, ymax= intercept_spoon+intercept_spoon_se), color = 'darkgreen', lwd=1.3)+
+
   
   # Set the limits for x and y axes
-  coord_cartesian(xlim = c(-0.1, 2.2), ylim = c(0, 7)) +
+  coord_cartesian(xlim = c(-.5,2.5), ylim = c(-1,10))+
   
   # Customize x-axis breaks
-  scale_x_continuous(breaks = c(0, 1, 2), labels = c('brush','hammer','spoon')) +
+  scale_x_continuous(breaks = c(0, 1, 2), labels = c('0\nBrush','Hammer','Spoon')) +
   
   # Labels and theme
   labs(y = 'Performance', x = 'Tools') +
   theme_bw(base_size = 20)
-
-
 ```
 
 ### Time
 
-The estimates are the slopes (the inclination) of the lines of each predictor. However they should be interpreted as a difference from the intercept.
+So, interpreting the coefficients for categorical variables wasn’t too tricky, right? But what about continuous variables like `time`?
+
+No worries, it’s actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.
+
+In simpler terms, it shows how much the outcome (in this case, `performance`) changes for each unit increase in the continuous variable (`time`). So, in our case the coefficient for `time` is 0.04, this means that for each unit increase in `time`, the performance is expected to increase by 0.04 units (assuming all other variables stay the same).
+
+Even easier..let's plot again!
 
 ```{r}
 #| fig-height: 6
 #| fig-width: 8
 #| fig-dpi: 300
 #| warning: false
+library(ggplot2)
+library(geomtextpath)
 
-
-# Define intercept and slope for the brush
-intercept_brush <- model_p[1,2]
+intercept_brush    <- model_p[1,2]
 intercept_brush_se <- model_p[1,3]
 
-slope_brush <- model_p[2,2]
+slope_brush    <- model_p[2,2]
 slope_brush_se <- model_p[2,3]
 
-# To create estimates
+# Some hypothetical time values
 time_values <- seq(-1, 4, by = 0.25)
 
-# Create a data frame
-df_brush <- data.frame(time = time_values,
-                       est_performance = intercept_brush + slope_brush * time_values)
+# Create a small data frame for the main (brush) line
+df_brush <- data.frame(
+  time            = time_values,
+  est_performance_brush = intercept_brush + slope_brush * time_values
+)
 
-
-
-# Function to create an arc between two angles with a custom center
-generate_circle_piece <- function(center = c(0, 0), radius = 1, start_angle = 0, end_angle = 90) {
-  # Convert angles to radians
-  start_rad <- start_angle * pi / 180
-  end_rad <- end_angle * pi / 180
+ggplot() +
+  # Dashed reference lines
+  geom_vline(xintercept = 0, lwd =0.4) +
+  geom_hline(yintercept = intercept_brush, linetype = "dashed", color = "darkgray") +
   
-  # Generate points for the piece of the circle
-  theta <- seq(start_rad, end_rad, length.out = 100)
-  x <- center[1] + radius * cos(theta)
-  y <- center[2] + radius * sin(theta)
+  # The main 'brush' line
+  geom_line(data = df_brush, aes(x = time, y = est_performance_brush), color = "#e04d01", size  = 1) +
   
-  # Create a data frame for the circle points
-  circle_data <- data.frame(x = x, y = y)
+  # Intercept (brush) point & error bar
+  geom_point(
+    aes(x = 0, y = intercept_brush),
+    size  = 3,
+    color = "darkred"
+  ) +
+  geom_errorbar(
+    aes(
+      x    = 0,
+      y    = intercept_brush,
+      ymin = intercept_brush - intercept_brush_se,
+      ymax = intercept_brush + intercept_brush_se
+    ),
+    color = "darkred",
+    size  = 1.3
+  ) +
   
-  return(circle_data)
-}
-# Create data for the arc with the angle calculated from the slope, using the new center
-arc_data <- generate_circle_piece(center = c(0, intercept_brush), radius = 0.5, start_angle = 0, end_angle =  atan(slope_brush) * (180 / pi))
-
-
-ggplot(df_brush, aes(x = time, y = est_performance))+
+  # Label for the intercept
+  annotate("text", x = -0.5, y = 2.825, label = "(Intercept)") +
   
-  # Cartesian lines
-  geom_vline(xintercept = 0)+
-  # geom_hline(yintercept = 0)+
-  # 
-  # Time
-  geom_path(data = arc_data, aes(x = x, y = y), color = 'green', size = 1.5) +
-  geom_hline(yintercept = intercept_brush, linetype = 'dashed', color = 'darkgray')+
-  geom_line(color = "darkred", size = 1) +
-
-  # Intercept
-  annotate("point", x = 0, y = intercept_brush, size = pi * intercept_brush_se^2, alpha = 0.3, color = 'darkred') +
-  annotate("point", x = 0, y = intercept_brush, color = 'darkred', size = 4) +
-
-  # Text
-  annotate("text", x = -0.5, y=2.825, label='(Intercept)')+
-  annotate("text", x = 0.8, y=2.82, label='time')+
-
+  # Curved arrow with a slight horizontal offset (x != xend)
+  # geom_textcurve(
+  #   # Start at (2.99, 2.83), end at (3.01, 2.89)
+  #   # so there's enough horizontal length to create a "belly."
+  #   aes(
+  #     x    = 2.99,  y    = 2.83,
+  #     xend = 3.01,  yend = 3.2
+  #   ),
+  #   label     = expression(beta ~ "Time"),  # or "\u03B2 Time"
+  #   curvature = .4,  # how “bendy” the arc is
+  #   arrow = arrow(
+  #     ends   = "both"),
+  #   colour = "#e04d01",
+  #   size   = 4,
+  #   lwd    = 1.2
+  # ) +
   
-  
-  # Plot addition information
-  # coord_cartesian(xlim = c(-1,4), ylim = c(-1,5))+
-  labs(y = 'Performance', x = 'Time')+
+  # Labels and theme
+  labs(y = 'Performance', x = 'Time') +
   theme_bw(base_size = 20)
+```
+
+### Interaction
+
+Alright, now we're getting to the final steps! Let's talk about the interaction between `time` and `tool`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
+
+We'll take it step by step and look at the first interaction we see in our model parameters. Let’s start by checking out the interaction between `time` and `tool [hammer]`.
+
+The interaction term between `time` and `tool [hammer]` tells us how the relationship between `time` and `performance` changes when we switch from the reference tool (`brush`) to the hammer. To put it simply, the coefficient for this interaction will show you how much more (or less) the effect of `time` on `performance` changes when using the hammer compared to the baseline (`brush`). If the coefficient is positive, it means that as `time` increases, `performance` increases more when using the hammer than when using the brush. If it’s negative, it means the performance increase is smaller with the hammer than with the brush.
+
+```{r}
+library(ggplot2)
+library(geomtextpath)
+
+intercept_brush    <- model_p[1,2]
+intercept_brush_se <- model_p[1,3]
+
+slope_brush    <- model_p[2,2]
+slope_brush_se <- model_p[2,3]
+
+slope_hammer = model_p[5,2]
+slope_hammer_se = model_p[5,3]
+
+slope_spoon = model_p[6,2]
+slope_spoon_se = model_p[6,3]
+
+# Some hypothetical time values
+time_values <- seq(-1, 4, by = 0.25)
+
+# Create a small data frame for the main (brush) line
+df_brush <- data.frame(
+  time            = time_values,
+  est_performance_brush = intercept_brush + slope_brush * time_values,
+  est_performance_hammer = intercept_brush + (slope_brush + slope_hammer) * time_values,
+  est_performance_spoon = intercept_brush + (slope_brush + slope_spoon) * time_values
+
+)
+
+
+
+ggplot()+
+  
+  # Dashed reference lines
+  geom_vline(xintercept = 0, lwd =0.4) +
+  geom_hline(yintercept = intercept_brush, linetype = "dashed", color = "darkgray") +
+  
+  # The main 'brush' line
+  geom_line(data = df_brush, aes(x = time, y = est_performance_brush), color = "#e04d01", size  = 1) +
+  geom_line(data = df_brush, aes(x = time, y = est_performance_hammer), color = "darkblue", size  = 1)+
+  geom_line(data = df_brush, aes(x = time, y = est_performance_spoon), color = "darkgreen", size  = 1)+
+
+  
+  theme_bw(base_size = 20)+
+  labs(y='Performance', x='Time')
 ```
