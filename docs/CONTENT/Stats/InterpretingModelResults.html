@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.47">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Tommaso Ghilardi">
 <meta name="description" content="Learn what a the summary of a linear model means!">
@@ -62,7 +62,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../images/ICON.png" rel="icon" type="image/png">
+<link href="../../resources/ICON.png" rel="icon" type="image/png">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -96,12 +98,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G5XSH1GLW7"></script><script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G5XSH1GLW7"></script><script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
+</script><script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
 </script>
 <meta property="og:title" content="DevStart">
 <meta property="og:description" content="Getting started with developmental science">
@@ -131,12 +148,9 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <a href="#coeffiecients" id="toc-coeffiecients" class="nav-link" data-scroll-target="#coeffiecients">Coeffiecients</a>
   <ul class="collapse">
 <li><a href="#intercept" id="toc-intercept" class="nav-link" data-scroll-target="#intercept">(Intercept)</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a>
-  <ul class="collapse">
-<li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time">Time</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
+  <li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time">Time</a></li>
+  <li><a href="#interaction" id="toc-interaction" class="nav-link" data-scroll-target="#interaction">Interaction</a></li>
   </ul>
 </li>
   </ul>
@@ -202,8 +216,8 @@ gtag('config', 'G-G5XSH1GLW7', { 'anonymize_ip': true});
 <div class="cell-output cell-output-stderr">
 <pre><code># Attaching packages: easystats 0.7.3 (red = needs update)
 ✖ bayestestR  0.14.0   ✖ correlation 0.8.5 
-✔ datawizard  0.13.0   ✔ effectsize  0.8.9 
-✔ insight     0.20.5   ✖ modelbased  0.8.8 
+✔ datawizard  0.13.0   ✖ effectsize  0.8.9 
+✖ insight     0.20.5   ✖ modelbased  0.8.8 
 ✖ performance 0.12.3   ✖ parameters  0.22.2
 ✔ report      0.5.9    ✔ see         0.9.0 
 
@@ -242,7 +256,7 @@ Restart the R-Session and update packages with `easystats::easystats_update()`.<
 <section id="coeffiecients" class="level2"><h2 class="anchored" data-anchor-id="coeffiecients">Coeffiecients</h2>
 <p>The Coefficient section if indubitably the most important section of the summary of our model. However what are all these numbers? Let’s go together through the most challenging information:</p>
 <section id="intercept" class="level3"><h3 class="anchored" data-anchor-id="intercept">(Intercept)</h3>
-<p>The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (<code>time</code> and <code>tool</code>) are 0. Now you may ask…how can <code>tool</code> be 0? It is a categorical variable, it can’t be 0!!!!</p>
+<p>The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (<code>time</code> and <code>tool</code>) are 0. Now you may ask…how can <code>tool</code> be 0? It is a categorical variable, it can’t be 0!!!! <code>time == 0</code>…sure ….but <code>tool</code>??</p>
 <p>You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the <code>hammer</code>and <code>spoon</code> level of the <code>tool</code>variable but nothing about the <code>brush</code> level. This is because the <code>brush</code> level has been selected by the model as the reference level and it is thus represented in the intercept value!</p>
 <p>we can simply visualize it as:<br></p>
 <div class="cell">
@@ -261,18 +275,19 @@ Restart the R-Session and update packages with `easystats::easystats_update()`.<
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Cartesian lines</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="co"># Intercept</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, size <span class="op">=</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">intercept_brush_se</span><span class="op">^</span><span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="va">intercept_brush</span><span class="op">*</span><span class="fl">1.15</span>, label<span class="op">=</span><span class="st">'(Intercept)'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lwd <span class="op">=</span><span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="va">intercept_brush</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="va">intercept_brush</span>, ymin<span class="op">=</span> <span class="va">intercept_brush</span><span class="op">-</span><span class="va">intercept_brush_se</span>, ymax<span class="op">=</span> <span class="va">intercept_brush</span><span class="op">+</span><span class="va">intercept_brush_se</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'darkred'</span>, lwd<span class="op">=</span><span class="fl">1.3</span><span class="op">)</span><span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Plot addition information</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Performance'</span>, x <span class="op">=</span> <span class="st">'Time'</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,              <span class="co"># The x-values where you want ticks</span></span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0\nBrush"</span><span class="op">)</span>  <span class="co"># Corresponding custom labels</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="InterpretingModelResults_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="2400"></p>
@@ -280,7 +295,14 @@ Restart the R-Session and update packages with `easystats::easystats_update()`.<
 </div>
 </div>
 </div>
-</section></section><section id="tools" class="level2"><h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<p>As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. It’s like the starting point of your model, where all the predictors (in this case, <code>brush</code> was selected as the reference or 0 level for the categorical variable) are at their reference level or baseline value.</p>
+</section><section id="tools" class="level3"><h3 class="anchored" data-anchor-id="tools">Tools</h3>
+<p>Awesome! Now that we’ve got the intercept down, let’s take a look at the rest of the model output. We’ll skip over the <code>time</code> variable for now and focus on what’s happening with the tools.</p>
+<p>At first, the results for <code>tool [hammer]</code> and <code>tool [spoon]</code> might look like they’re giving us the values for the hammer and spoon. Super easy, right?</p>
+<p>Well… not exactly!</p>
+<p>In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the tool itself.</p>
+<p>It sounds a bit confusing, but let’s break it down. The coefficient for <code>tool [hammer]</code> is actually just the difference between the intercept (2.81) and the coefficient for <code>tool [hammer]</code> (3.60). So, hammer’s total value = 2.81 + 3.60 = 6.41! Same goes for the spoon, where the total is 2.81 + 2.79 = 5.60.</p>
+<p>See? Not too bad! Let’s visualize it and make it even clearer!</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define intercept and slope for the brush</span></span>
 <span><span class="va">intercept_brush</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
@@ -295,23 +317,27 @@ Restart the R-Session and update packages with `easystats::easystats_update()`.<
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
+<span>  <span class="co"># Cartesian lines</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lwd <span class="op">=</span><span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span></span>
 <span>  <span class="co"># Intercept (brush)</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, size <span class="op">=</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">intercept_brush_se</span><span class="op">^</span><span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, color <span class="op">=</span> <span class="st">'darkred'</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="va">intercept_brush</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="va">intercept_brush</span>, ymin<span class="op">=</span> <span class="va">intercept_brush</span><span class="op">-</span><span class="va">intercept_brush_se</span>, ymax<span class="op">=</span> <span class="va">intercept_brush</span><span class="op">+</span><span class="va">intercept_brush_se</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'darkred'</span>, lwd<span class="op">=</span><span class="fl">1.3</span><span class="op">)</span><span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Hammer</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="va">intercept_hammer</span>, size <span class="op">=</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">intercept_hammer_se</span><span class="op">^</span><span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">'darkblue'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="va">intercept_hammer</span>, color <span class="op">=</span> <span class="st">'darkblue'</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>, y<span class="op">=</span><span class="va">intercept_hammer</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">'darkblue'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>, y<span class="op">=</span><span class="va">intercept_hammer</span>, ymin<span class="op">=</span> <span class="va">intercept_hammer</span><span class="op">-</span><span class="va">intercept_hammer_se</span>, ymax<span class="op">=</span> <span class="va">intercept_hammer</span><span class="op">+</span><span class="va">intercept_hammer_se</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'darkblue'</span>, lwd<span class="op">=</span><span class="fl">1.3</span><span class="op">)</span><span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Spoon</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="va">intercept_spoon</span>, size <span class="op">=</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">intercept_spoon_se</span><span class="op">^</span><span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">'darkgreen'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="va">intercept_spoon</span>, color <span class="op">=</span> <span class="st">'darkgreen'</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2</span>, y<span class="op">=</span><span class="va">intercept_spoon</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">'darkgreen'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2</span>, y<span class="op">=</span><span class="va">intercept_spoon</span>, ymin<span class="op">=</span> <span class="va">intercept_spoon</span><span class="op">-</span><span class="va">intercept_spoon_se</span>, ymax<span class="op">=</span> <span class="va">intercept_spoon</span><span class="op">+</span><span class="va">intercept_spoon_se</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'darkgreen'</span>, lwd<span class="op">=</span><span class="fl">1.3</span><span class="op">)</span><span class="op">+</span></span>
+<span></span>
 <span>  </span>
 <span>  <span class="co"># Set the limits for x and y axes</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>, <span class="fl">2.2</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.5</span>,<span class="fl">2.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Customize x-axis breaks</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'brush'</span>,<span class="st">'hammer'</span>,<span class="st">'spoon'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'0\nBrush'</span>,<span class="st">'Hammer'</span>,<span class="st">'Spoon'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Labels and theme</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Performance'</span>, x <span class="op">=</span> <span class="st">'Tools'</span><span class="op">)</span> <span class="op">+</span></span>
@@ -323,73 +349,136 @@ Restart the R-Session and update packages with `easystats::easystats_update()`.<
 </div>
 </div>
 </div>
-<section id="time" class="level3"><h3 class="anchored" data-anchor-id="time">Time</h3>
-<p>The estimates are the slopes (the inclination) of the lines of each predictor. However they should be interpreted as a difference from the intercept.</p>
+</section><section id="time" class="level3"><h3 class="anchored" data-anchor-id="time">Time</h3>
+<p>So, interpreting the coefficients for categorical variables wasn’t too tricky, right? But what about continuous variables like <code>time</code>?</p>
+<p>No worries, it’s actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.</p>
+<p>In simpler terms, it shows how much the outcome (in this case, <code>performance</code>) changes for each unit increase in the continuous variable (<code>time</code>). So, in our case the coefficient for <code>time</code> is 0.04, this means that for each unit increase in <code>time</code>, the performance is expected to increase by 0.04 units (assuming all other variables stay the same).</p>
+<p>Even easier..let’s plot again!</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define intercept and slope for the brush</span></span>
-<span><span class="va">intercept_brush</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allancameron.github.io/geomtextpath/">geomtextpath</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">intercept_brush</span>    <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">intercept_brush_se</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span></span>
 <span></span>
-<span><span class="va">slope_brush</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">slope_brush</span>    <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">slope_brush_se</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span></span>
 <span></span>
-<span><span class="co"># To create estimates</span></span>
+<span><span class="co"># Some hypothetical time values</span></span>
 <span><span class="va">time_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">4</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Create a data frame</span></span>
-<span><span class="va">df_brush</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>time <span class="op">=</span> <span class="va">time_values</span>,</span>
-<span>                       est_performance <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="va">slope_brush</span> <span class="op">*</span> <span class="va">time_values</span><span class="op">)</span></span>
+<span><span class="co"># Create a small data frame for the main (brush) line</span></span>
+<span><span class="va">df_brush</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  time            <span class="op">=</span> <span class="va">time_values</span>,</span>
+<span>  est_performance_brush <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="va">slope_brush</span> <span class="op">*</span> <span class="va">time_values</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span></span>
-<span></span>
-<span><span class="co"># Function to create an arc between two angles with a custom center</span></span>
-<span><span class="va">generate_circle_piece</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">center</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">radius</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">start_angle</span> <span class="op">=</span> <span class="fl">0</span>, <span class="va">end_angle</span> <span class="op">=</span> <span class="fl">90</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># Convert angles to radians</span></span>
-<span>  <span class="va">start_rad</span> <span class="op">&lt;-</span> <span class="va">start_angle</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">/</span> <span class="fl">180</span></span>
-<span>  <span class="va">end_rad</span> <span class="op">&lt;-</span> <span class="va">end_angle</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">/</span> <span class="fl">180</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># Dashed reference lines</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lwd <span class="op">=</span><span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">intercept_brush</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
-<span>  <span class="co"># Generate points for the piece of the circle</span></span>
-<span>  <span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">start_rad</span>, <span class="va">end_rad</span>, length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">center</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">radius</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></span>
-<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">center</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="va">radius</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></span>
+<span>  <span class="co"># The main 'brush' line</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_brush</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">est_performance_brush</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#e04d01"</span>, size  <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
-<span>  <span class="co"># Create a data frame for the circle points</span></span>
-<span>  <span class="va">circle_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span>
+<span>  <span class="co"># Intercept (brush) point &amp; error bar</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span><span class="op">)</span>,</span>
+<span>    size  <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"darkred"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x    <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      y    <span class="op">=</span> <span class="va">intercept_brush</span>,</span>
+<span>      ymin <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">-</span> <span class="va">intercept_brush_se</span>,</span>
+<span>      ymax <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="va">intercept_brush_se</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"darkred"</span>,</span>
+<span>    size  <span class="op">=</span> <span class="fl">1.3</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">circle_data</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co"># Create data for the arc with the angle calculated from the slope, using the new center</span></span>
-<span><span class="va">arc_data</span> <span class="op">&lt;-</span> <span class="fu">generate_circle_piece</span><span class="op">(</span>center <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">intercept_brush</span><span class="op">)</span>, radius <span class="op">=</span> <span class="fl">0.5</span>, start_angle <span class="op">=</span> <span class="fl">0</span>, end_angle <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">atan</a></span><span class="op">(</span><span class="va">slope_brush</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">180</span> <span class="op">/</span> <span class="va">pi</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_brush</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">est_performance</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># Label for the intercept</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">2.825</span>, label <span class="op">=</span> <span class="st">"(Intercept)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
-<span>  <span class="co"># Cartesian lines</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="co"># geom_hline(yintercept = 0)+</span></span>
-<span>  <span class="co"># </span></span>
-<span>  <span class="co"># Time</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">arc_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'green'</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">intercept_brush</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'darkgray'</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"darkred"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span></span>
-<span>  <span class="co"># Intercept</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, size <span class="op">=</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">intercept_brush_se</span><span class="op">^</span><span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">'darkred'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"point"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="va">intercept_brush</span>, color <span class="op">=</span> <span class="st">'darkred'</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
-<span></span>
-<span>  <span class="co"># Text</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">2.825</span>, label<span class="op">=</span><span class="st">'(Intercept)'</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">2.82</span>, label<span class="op">=</span><span class="st">'time'</span><span class="op">)</span><span class="op">+</span></span>
-<span></span>
+<span>  <span class="co"># Curved arrow with a slight horizontal offset (x != xend)</span></span>
+<span>  <span class="co"># geom_textcurve(</span></span>
+<span>  <span class="co">#   # Start at (2.99, 2.83), end at (3.01, 2.89)</span></span>
+<span>  <span class="co">#   # so there's enough horizontal length to create a "belly."</span></span>
+<span>  <span class="co">#   aes(</span></span>
+<span>  <span class="co">#     x    = 2.99,  y    = 2.83,</span></span>
+<span>  <span class="co">#     xend = 3.01,  yend = 3.2</span></span>
+<span>  <span class="co">#   ),</span></span>
+<span>  <span class="co">#   label     = expression(beta ~ "Time"),  # or "\u03B2 Time"</span></span>
+<span>  <span class="co">#   curvature = .4,  # how “bendy” the arc is</span></span>
+<span>  <span class="co">#   arrow = arrow(</span></span>
+<span>  <span class="co">#     ends   = "both"),</span></span>
+<span>  <span class="co">#   colour = "#e04d01",</span></span>
+<span>  <span class="co">#   size   = 4,</span></span>
+<span>  <span class="co">#   lwd    = 1.2</span></span>
+<span>  <span class="co"># ) +</span></span>
 <span>  </span>
-<span>  </span>
-<span>  <span class="co"># Plot addition information</span></span>
-<span>  <span class="co"># coord_cartesian(xlim = c(-1,4), ylim = c(-1,5))+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Performance'</span>, x <span class="op">=</span> <span class="st">'Time'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># Labels and theme</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Performance'</span>, x <span class="op">=</span> <span class="st">'Time'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="InterpretingModelResults_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="2400"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="interaction" class="level3"><h3 class="anchored" data-anchor-id="interaction">Interaction</h3>
+<p>Alright, now we’re getting to the final steps! Let’s talk about the interaction between <code>time</code> and <code>tool</code>! Now, we’re not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don’t worry—if you understood the previous steps, this will be a breeze!</p>
+<p>We’ll take it step by step and look at the first interaction we see in our model parameters. Let’s start by checking out the interaction between <code>time</code> and <code>tool [hammer]</code>.</p>
+<p>The interaction term between <code>time</code> and <code>tool [hammer]</code> tells us how the relationship between <code>time</code> and <code>performance</code> changes when we switch from the reference tool (<code>brush</code>) to the hammer. To put it simply, the coefficient for this interaction will show you how much more (or less) the effect of <code>time</code> on <code>performance</code> changes when using the hammer compared to the baseline (<code>brush</code>). If the coefficient is positive, it means that as <code>time</code> increases, <code>performance</code> increases more when using the hammer than when using the brush. If it’s negative, it means the performance increase is smaller with the hammer than with the brush.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allancameron.github.io/geomtextpath/">geomtextpath</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">intercept_brush</span>    <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">intercept_brush_se</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">slope_brush</span>    <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">slope_brush_se</span> <span class="op">&lt;-</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">slope_hammer</span> <span class="op">=</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">slope_hammer_se</span> <span class="op">=</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">slope_spoon</span> <span class="op">=</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">slope_spoon_se</span> <span class="op">=</span> <span class="va">model_p</span><span class="op">[</span><span class="fl">6</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Some hypothetical time values</span></span>
+<span><span class="va">time_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">4</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a small data frame for the main (brush) line</span></span>
+<span><span class="va">df_brush</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  time            <span class="op">=</span> <span class="va">time_values</span>,</span>
+<span>  est_performance_brush <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="va">slope_brush</span> <span class="op">*</span> <span class="va">time_values</span>,</span>
+<span>  est_performance_hammer <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="op">(</span><span class="va">slope_brush</span> <span class="op">+</span> <span class="va">slope_hammer</span><span class="op">)</span> <span class="op">*</span> <span class="va">time_values</span>,</span>
+<span>  est_performance_spoon <span class="op">=</span> <span class="va">intercept_brush</span> <span class="op">+</span> <span class="op">(</span><span class="va">slope_brush</span> <span class="op">+</span> <span class="va">slope_spoon</span><span class="op">)</span> <span class="op">*</span> <span class="va">time_values</span></span>
+<span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># Dashed reference lines</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lwd <span class="op">=</span><span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">intercept_brush</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># The main 'brush' line</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_brush</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">est_performance_brush</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#e04d01"</span>, size  <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_brush</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">est_performance_hammer</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkblue"</span>, size  <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_brush</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">est_performance_spoon</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkgreen"</span>, size  <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">+</span></span>
+<span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">'Performance'</span>, x<span class="op">=</span><span class="st">'Time'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="InterpretingModelResults_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -869,227 +958,307 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Interpreting Model Results"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Tommaso Ghilardi"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> "Tommaso Ghilardi"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: true</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="an">description-meta:</span><span class="co"> "Learn what a the summary of a linear model means!"</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="an">keywords-meta:</span><span class="co"> "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="an">drafts:</span><span class="co"> True</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="an">draft-mode:</span><span class="co"> unlinked</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">LM_SimulatedData.csv"</span>)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lm</span>(performance <span class="sc">~</span> time<span class="sc">*</span>tool, <span class="at">data =</span> df)</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># Interpreting the results</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>Very cool!! we have our result!!</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>But what is it saying?? As you can see the summary is divided in subsections. Lets go trough them piece by piece.</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Call**:</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    This section just report the function call that we passed to <span class="in">`lm()`</span>.</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Residuals**:</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    This section reports the residuals of the model. Residuals represent the difference between the observed values and the values predicted by the model. Essentially, how much variability remains after fitting our variable to the model.</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Coefficients**:</span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    This section displays the estimated coefficients of the regression model,the stand error of the estimation, the t-value and finally the p-value!</span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Model Fit:**</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    The last section reports different statistics about the model fit:</span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Residual standard error:** Average distance between observed values and the regression line. Smaller is better.</span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Multiple R-Squared:** Proportion of response variable variance explained by predictors. Ranges from 0 to 1; closer to 1 is better.</span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Adjusted R-squared:** R-squared modified for the number of predictors. Useful for comparing models with different numbers of predictors.</span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**F-statistic and p-value:** Indicate if the model provides a better fit than a model with no predictors. A p-value <span class="sc">\&lt;</span> 0.05 suggests the model is useful.</span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coeffiecients</span></span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>The Coefficient section if indubitably the most important section of the summary of our model. However what are all these numbers? Let's go together through the most challenging information:</span>
-<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### (Intercept)</span></span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (<span class="in">`time`</span> and <span class="in">`tool`</span>) are 0. Now you may ask...how can <span class="in">`tool`</span> be 0? It is a categorical variable, it can't be 0!!!!</span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the <span class="in">`hammer`</span>and <span class="in">`spoon`</span> level of the <span class="in">`tool`</span>variable but nothing about the <span class="in">`brush`</span> level. This is because the <span class="in">`brush`</span> level has been selected by the model as the reference level and it is thus represented in the intercept value!</span>
-<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>we can simply visualize it as:\</span>
-<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>model_p <span class="ot">=</span> <span class="fu">parameters</span>(mod)</span>
-<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Define intercept and slope for the brush</span></span>
-<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>intercept_brush <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
-<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a><span class="co"># To create estimates</span></span>
-<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>time_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cartesian lines</span></span>
-<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intercept</span></span>
-<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">size =</span> pi <span class="sc">*</span> intercept_brush_se<span class="sc">^</span><span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
-<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
-<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">y=</span>intercept_brush<span class="sc">*</span><span class="fl">1.15</span>, <span class="at">label=</span><span class="st">'(Intercept)'</span>)<span class="sc">+</span></span>
-<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot addition information</span></span>
-<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">5</span>))<span class="sc">+</span></span>
-<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Time'</span>)<span class="sc">+</span></span>
-<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
-<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tools</span></span>
-<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
-<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Define intercept and slope for the brush</span></span>
-<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>intercept_brush <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
-<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>intercept_hammer <span class="ot">&lt;-</span> model_p[<span class="dv">3</span>,<span class="dv">2</span>] <span class="sc">+</span> intercept_brush</span>
-<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>intercept_hammer_se <span class="ot">&lt;-</span> model_p[<span class="dv">3</span>,<span class="dv">3</span>]</span>
-<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a>intercept_spoon <span class="ot">&lt;-</span> model_p[<span class="dv">4</span>,<span class="dv">2</span>]<span class="sc">+</span> intercept_brush</span>
-<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a>intercept_spoon_se <span class="ot">&lt;-</span> model_p[<span class="dv">4</span>,<span class="dv">3</span>]</span>
-<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intercept (brush)</span></span>
-<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">size =</span> pi <span class="sc">*</span> intercept_brush_se<span class="sc">^</span><span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
-<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">color =</span> <span class="st">'darkred'</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hammer</span></span>
-<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> intercept_hammer, <span class="at">size =</span> pi <span class="sc">*</span> intercept_hammer_se<span class="sc">^</span><span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">'darkblue'</span>) <span class="sc">+</span></span>
-<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> intercept_hammer, <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Spoon</span></span>
-<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> intercept_spoon, <span class="at">size =</span> pi <span class="sc">*</span> intercept_spoon_se<span class="sc">^</span><span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">'darkgreen'</span>) <span class="sc">+</span></span>
-<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> intercept_spoon, <span class="at">color =</span> <span class="st">'darkgreen'</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set the limits for x and y axes</span></span>
-<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">2.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>)) <span class="sc">+</span></span>
-<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customize x-axis breaks</span></span>
-<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'brush'</span>,<span class="st">'hammer'</span>,<span class="st">'spoon'</span>)) <span class="sc">+</span></span>
-<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels and theme</span></span>
-<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Tools'</span>) <span class="sc">+</span></span>
-<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
-<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a><span class="fu">### Time</span></span>
-<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a>The estimates are the slopes (the inclination) of the lines of each predictor. However they should be interpreted as a difference from the intercept.</span>
-<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
-<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Define intercept and slope for the brush</span></span>
-<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>intercept_brush <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
-<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>slope_brush <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a>slope_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">3</span>]</span>
-<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a><span class="co"># To create estimates</span></span>
-<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a>time_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.25</span>)</span>
-<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a>df_brush <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">time =</span> time_values,</span>
-<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a>                       <span class="at">est_performance =</span> intercept_brush <span class="sc">+</span> slope_brush <span class="sc">*</span> time_values)</span>
-<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create an arc between two angles with a custom center</span></span>
-<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>generate_circle_piece <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">center =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">radius =</span> <span class="dv">1</span>, <span class="at">start_angle =</span> <span class="dv">0</span>, <span class="at">end_angle =</span> <span class="dv">90</span>) {</span>
-<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert angles to radians</span></span>
-<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>  start_rad <span class="ot">&lt;-</span> start_angle <span class="sc">*</span> pi <span class="sc">/</span> <span class="dv">180</span></span>
-<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>  end_rad <span class="ot">&lt;-</span> end_angle <span class="sc">*</span> pi <span class="sc">/</span> <span class="dv">180</span></span>
-<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate points for the piece of the circle</span></span>
-<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a>  theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(start_rad, end_rad, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> center[<span class="dv">1</span>] <span class="sc">+</span> radius <span class="sc">*</span> <span class="fu">cos</span>(theta)</span>
-<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> center[<span class="dv">2</span>] <span class="sc">+</span> radius <span class="sc">*</span> <span class="fu">sin</span>(theta)</span>
-<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a data frame for the circle points</span></span>
-<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>  circle_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
-<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(circle_data)</span>
-<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for the arc with the angle calculated from the slope, using the new center</span></span>
-<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a>arc_data <span class="ot">&lt;-</span> <span class="fu">generate_circle_piece</span>(<span class="at">center =</span> <span class="fu">c</span>(<span class="dv">0</span>, intercept_brush), <span class="at">radius =</span> <span class="fl">0.5</span>, <span class="at">start_angle =</span> <span class="dv">0</span>, <span class="at">end_angle =</span>  <span class="fu">atan</span>(slope_brush) <span class="sc">*</span> (<span class="dv">180</span> <span class="sc">/</span> pi))</span>
-<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_brush, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> est_performance))<span class="sc">+</span></span>
-<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cartesian lines</span></span>
-<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_hline(yintercept = 0)+</span></span>
-<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span></span>
-<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Time</span></span>
-<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> arc_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">'green'</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> intercept_brush, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">color =</span> <span class="st">'darkgray'</span>)<span class="sc">+</span></span>
-<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intercept</span></span>
-<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">size =</span> pi <span class="sc">*</span> intercept_brush_se<span class="sc">^</span><span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
-<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush, <span class="at">color =</span> <span class="st">'darkred'</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Text</span></span>
-<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">y=</span><span class="fl">2.825</span>, <span class="at">label=</span><span class="st">'(Intercept)'</span>)<span class="sc">+</span></span>
-<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.8</span>, <span class="at">y=</span><span class="fl">2.82</span>, <span class="at">label=</span><span class="st">'time'</span>)<span class="sc">+</span></span>
-<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot addition information</span></span>
-<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coord_cartesian(xlim = c(-1,4), ylim = c(-1,5))+</span></span>
-<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Time'</span>)<span class="sc">+</span></span>
-<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
-<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Interpreting Model Results"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Tommaso Ghilardi"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> "Tommaso Ghilardi"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: true</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="an">description-meta:</span><span class="co"> "Learn what a the summary of a linear model means!"</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="an">keywords-meta:</span><span class="co"> "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="an">drafts:</span><span class="co"> True</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="an">draft-mode:</span><span class="co"> unlinked</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">LM_SimulatedData.csv"</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lm</span>(performance <span class="sc">~</span> time<span class="sc">*</span>tool, <span class="at">data =</span> df)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># Interpreting the results</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>Very cool!! we have our result!!</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>But what is it saying?? As you can see the summary is divided in subsections. Lets go trough them piece by piece.</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Call**:</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    This section just report the function call that we passed to <span class="in">`lm()`</span>.</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Residuals**:</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    This section reports the residuals of the model. Residuals represent the difference between the observed values and the values predicted by the model. Essentially, how much variability remains after fitting our variable to the model.</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Coefficients**:</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    This section displays the estimated coefficients of the regression model,the stand error of the estimation, the t-value and finally the p-value!</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Model Fit:**</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    The last section reports different statistics about the model fit:</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Residual standard error:** Average distance between observed values and the regression line. Smaller is better.</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Multiple R-Squared:** Proportion of response variable variance explained by predictors. Ranges from 0 to 1; closer to 1 is better.</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Adjusted R-squared:** R-squared modified for the number of predictors. Useful for comparing models with different numbers of predictors.</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**F-statistic and p-value:** Indicate if the model provides a better fit than a model with no predictors. A p-value <span class="sc">\&lt;</span> 0.05 suggests the model is useful.</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coeffiecients</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>The Coefficient section if indubitably the most important section of the summary of our model. However what are all these numbers? Let's go together through the most challenging information:</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### (Intercept)</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (<span class="in">`time`</span> and <span class="in">`tool`</span>) are 0. Now you may ask...how can <span class="in">`tool`</span> be 0? It is a categorical variable, it can't be 0!!!! <span class="in">`time == 0`</span>...sure ....but <span class="in">`tool`</span>??</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the <span class="in">`hammer`</span>and <span class="in">`spoon`</span> level of the <span class="in">`tool`</span>variable but nothing about the <span class="in">`brush`</span> level. This is because the <span class="in">`brush`</span> level has been selected by the model as the reference level and it is thus represented in the intercept value!</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>we can simply visualize it as:\</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>model_p <span class="ot">=</span> <span class="fu">parameters</span>(mod)</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Define intercept and slope for the brush</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>intercept_brush <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="co"># To create estimates</span></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>time_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cartesian lines</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lwd =</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>intercept_brush), <span class="at">size=</span><span class="dv">3</span>, <span class="at">color =</span> <span class="st">'darkred'</span>)<span class="sc">+</span></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>intercept_brush, <span class="at">ymin=</span> intercept_brush<span class="sc">-</span>intercept_brush_se, <span class="at">ymax=</span> intercept_brush<span class="sc">+</span>intercept_brush_se), <span class="at">color =</span> <span class="st">'darkred'</span>, <span class="at">lwd=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot addition information</span></span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">5</span>))<span class="sc">+</span></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Time'</span>)<span class="sc">+</span></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>),              <span class="co"># The x-values where you want ticks</span></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0</span><span class="sc">\n</span><span class="st">Brush"</span>)  <span class="co"># Corresponding custom labels</span></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. It’s like the starting point of your model, where all the predictors (in this case, <span class="in">`brush`</span> was selected as the reference or 0 level for the categorical variable) are at their reference level or baseline value.</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tools</span></span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>Awesome! Now that we’ve got the intercept down, let’s take a look at the rest of the model output. We’ll skip over the <span class="in">`time`</span> variable for now and focus on what’s happening with the tools.</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>At first, the results for <span class="in">`tool [hammer]`</span> and <span class="in">`tool [spoon]`</span> might look like they’re giving us the values for the hammer and spoon. Super easy, right?</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>Well... not exactly!</span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a>In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the tool itself.</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a>It sounds a bit confusing, but let’s break it down. The coefficient for <span class="in">`tool [hammer]`</span> is actually just the difference between the intercept (2.81) and the coefficient for <span class="in">`tool [hammer]`</span> (3.60). So, hammer’s total value = 2.81 + 3.60 = 6.41! Same goes for the spoon, where the total is 2.81 + 2.79 = 5.60.</span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a>See? Not too bad! Let’s visualize it and make it even clearer!</span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Define intercept and slope for the brush</span></span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>intercept_brush <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a>intercept_hammer <span class="ot">&lt;-</span> model_p[<span class="dv">3</span>,<span class="dv">2</span>] <span class="sc">+</span> intercept_brush</span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>intercept_hammer_se <span class="ot">&lt;-</span> model_p[<span class="dv">3</span>,<span class="dv">3</span>]</span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a>intercept_spoon <span class="ot">&lt;-</span> model_p[<span class="dv">4</span>,<span class="dv">2</span>]<span class="sc">+</span> intercept_brush</span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a>intercept_spoon_se <span class="ot">&lt;-</span> model_p[<span class="dv">4</span>,<span class="dv">3</span>]</span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cartesian lines</span></span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lwd =</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intercept (brush)</span></span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>intercept_brush), <span class="at">size=</span><span class="dv">3</span>, <span class="at">color =</span> <span class="st">'darkred'</span>)<span class="sc">+</span></span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>intercept_brush, <span class="at">ymin=</span> intercept_brush<span class="sc">-</span>intercept_brush_se, <span class="at">ymax=</span> intercept_brush<span class="sc">+</span>intercept_brush_se), <span class="at">color =</span> <span class="st">'darkred'</span>, <span class="at">lwd=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hammer</span></span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>intercept_hammer), <span class="at">size=</span><span class="dv">3</span>, <span class="at">color =</span> <span class="st">'darkblue'</span>)<span class="sc">+</span></span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>intercept_hammer, <span class="at">ymin=</span> intercept_hammer<span class="sc">-</span>intercept_hammer_se, <span class="at">ymax=</span> intercept_hammer<span class="sc">+</span>intercept_hammer_se), <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">lwd=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Spoon</span></span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span>intercept_spoon), <span class="at">size=</span><span class="dv">3</span>, <span class="at">color =</span> <span class="st">'darkgreen'</span>)<span class="sc">+</span></span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span>intercept_spoon, <span class="at">ymin=</span> intercept_spoon<span class="sc">-</span>intercept_spoon_se, <span class="at">ymax=</span> intercept_spoon<span class="sc">+</span>intercept_spoon_se), <span class="at">color =</span> <span class="st">'darkgreen'</span>, <span class="at">lwd=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set the limits for x and y axes</span></span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>,<span class="fl">2.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">10</span>))<span class="sc">+</span></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customize x-axis breaks</span></span>
+<span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'0</span><span class="sc">\n</span><span class="st">Brush'</span>,<span class="st">'Hammer'</span>,<span class="st">'Spoon'</span>)) <span class="sc">+</span></span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels and theme</span></span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Tools'</span>) <span class="sc">+</span></span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### Time</span></span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a>So, interpreting the coefficients for categorical variables wasn’t too tricky, right? But what about continuous variables like <span class="in">`time`</span>?</span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a>No worries, it’s actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.</span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a>In simpler terms, it shows how much the outcome (in this case, <span class="in">`performance`</span>) changes for each unit increase in the continuous variable (<span class="in">`time`</span>). So, in our case the coefficient for <span class="in">`time`</span> is 0.04, this means that for each unit increase in <span class="in">`time`</span>, the performance is expected to increase by 0.04 units (assuming all other variables stay the same).</span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a>Even easier..let's plot again!</span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-dpi: 300</span></span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geomtextpath)</span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a>intercept_brush    <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>slope_brush    <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a>slope_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Some hypothetical time values</span></span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a>time_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.25</span>)</span>
+<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a small data frame for the main (brush) line</span></span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>df_brush <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">time            =</span> time_values,</span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">est_performance_brush =</span> intercept_brush <span class="sc">+</span> slope_brush <span class="sc">*</span> time_values</span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dashed reference lines</span></span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lwd =</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> intercept_brush, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"darkgray"</span>) <span class="sc">+</span></span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The main 'brush' line</span></span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_brush, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> est_performance_brush), <span class="at">color =</span> <span class="st">"#e04d01"</span>, <span class="at">size  =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intercept (brush) point &amp; error bar</span></span>
+<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> intercept_brush),</span>
+<span id="cb16-218"><a href="#cb16-218" aria-hidden="true" tabindex="-1"></a>    <span class="at">size  =</span> <span class="dv">3</span>,</span>
+<span id="cb16-219"><a href="#cb16-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkred"</span></span>
+<span id="cb16-220"><a href="#cb16-220" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-221"><a href="#cb16-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb16-222"><a href="#cb16-222" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb16-223"><a href="#cb16-223" aria-hidden="true" tabindex="-1"></a>      <span class="at">x    =</span> <span class="dv">0</span>,</span>
+<span id="cb16-224"><a href="#cb16-224" aria-hidden="true" tabindex="-1"></a>      <span class="at">y    =</span> intercept_brush,</span>
+<span id="cb16-225"><a href="#cb16-225" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> intercept_brush <span class="sc">-</span> intercept_brush_se,</span>
+<span id="cb16-226"><a href="#cb16-226" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> intercept_brush <span class="sc">+</span> intercept_brush_se</span>
+<span id="cb16-227"><a href="#cb16-227" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-228"><a href="#cb16-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkred"</span>,</span>
+<span id="cb16-229"><a href="#cb16-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">size  =</span> <span class="fl">1.3</span></span>
+<span id="cb16-230"><a href="#cb16-230" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-231"><a href="#cb16-231" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-232"><a href="#cb16-232" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Label for the intercept</span></span>
+<span id="cb16-233"><a href="#cb16-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">2.825</span>, <span class="at">label =</span> <span class="st">"(Intercept)"</span>) <span class="sc">+</span></span>
+<span id="cb16-234"><a href="#cb16-234" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-235"><a href="#cb16-235" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Curved arrow with a slight horizontal offset (x != xend)</span></span>
+<span id="cb16-236"><a href="#cb16-236" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_textcurve(</span></span>
+<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   # Start at (2.99, 2.83), end at (3.01, 2.89)</span></span>
+<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   # so there's enough horizontal length to create a "belly."</span></span>
+<span id="cb16-239"><a href="#cb16-239" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   aes(</span></span>
+<span id="cb16-240"><a href="#cb16-240" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     x    = 2.99,  y    = 2.83,</span></span>
+<span id="cb16-241"><a href="#cb16-241" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     xend = 3.01,  yend = 3.2</span></span>
+<span id="cb16-242"><a href="#cb16-242" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   ),</span></span>
+<span id="cb16-243"><a href="#cb16-243" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   label     = expression(beta ~ "Time"),  # or "\u03B2 Time"</span></span>
+<span id="cb16-244"><a href="#cb16-244" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   curvature = .4,  # how “bendy” the arc is</span></span>
+<span id="cb16-245"><a href="#cb16-245" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   arrow = arrow(</span></span>
+<span id="cb16-246"><a href="#cb16-246" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     ends   = "both"),</span></span>
+<span id="cb16-247"><a href="#cb16-247" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   colour = "#e04d01",</span></span>
+<span id="cb16-248"><a href="#cb16-248" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   size   = 4,</span></span>
+<span id="cb16-249"><a href="#cb16-249" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   lwd    = 1.2</span></span>
+<span id="cb16-250"><a href="#cb16-250" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ) +</span></span>
+<span id="cb16-251"><a href="#cb16-251" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-252"><a href="#cb16-252" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels and theme</span></span>
+<span id="cb16-253"><a href="#cb16-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'Performance'</span>, <span class="at">x =</span> <span class="st">'Time'</span>) <span class="sc">+</span></span>
+<span id="cb16-254"><a href="#cb16-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
+<span id="cb16-255"><a href="#cb16-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-256"><a href="#cb16-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-257"><a href="#cb16-257" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interaction</span></span>
+<span id="cb16-258"><a href="#cb16-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a>Alright, now we're getting to the final steps! Let's talk about the interaction between <span class="in">`time`</span> and <span class="in">`tool`</span>! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!</span>
+<span id="cb16-260"><a href="#cb16-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-261"><a href="#cb16-261" aria-hidden="true" tabindex="-1"></a>We'll take it step by step and look at the first interaction we see in our model parameters. Let’s start by checking out the interaction between <span class="in">`time`</span> and <span class="in">`tool [hammer]`</span>.</span>
+<span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-263"><a href="#cb16-263" aria-hidden="true" tabindex="-1"></a>The interaction term between <span class="in">`time`</span> and <span class="in">`tool [hammer]`</span> tells us how the relationship between <span class="in">`time`</span> and <span class="in">`performance`</span> changes when we switch from the reference tool (<span class="in">`brush`</span>) to the hammer. To put it simply, the coefficient for this interaction will show you how much more (or less) the effect of <span class="in">`time`</span> on <span class="in">`performance`</span> changes when using the hammer compared to the baseline (<span class="in">`brush`</span>). If the coefficient is positive, it means that as <span class="in">`time`</span> increases, <span class="in">`performance`</span> increases more when using the hammer than when using the brush. If it’s negative, it means the performance increase is smaller with the hammer than with the brush.</span>
+<span id="cb16-264"><a href="#cb16-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-267"><a href="#cb16-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-268"><a href="#cb16-268" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-269"><a href="#cb16-269" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geomtextpath)</span>
+<span id="cb16-270"><a href="#cb16-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-271"><a href="#cb16-271" aria-hidden="true" tabindex="-1"></a>intercept_brush    <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-272"><a href="#cb16-272" aria-hidden="true" tabindex="-1"></a>intercept_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">1</span>,<span class="dv">3</span>]</span>
+<span id="cb16-273"><a href="#cb16-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-274"><a href="#cb16-274" aria-hidden="true" tabindex="-1"></a>slope_brush    <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb16-275"><a href="#cb16-275" aria-hidden="true" tabindex="-1"></a>slope_brush_se <span class="ot">&lt;-</span> model_p[<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb16-276"><a href="#cb16-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a>slope_hammer <span class="ot">=</span> model_p[<span class="dv">5</span>,<span class="dv">2</span>]</span>
+<span id="cb16-278"><a href="#cb16-278" aria-hidden="true" tabindex="-1"></a>slope_hammer_se <span class="ot">=</span> model_p[<span class="dv">5</span>,<span class="dv">3</span>]</span>
+<span id="cb16-279"><a href="#cb16-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-280"><a href="#cb16-280" aria-hidden="true" tabindex="-1"></a>slope_spoon <span class="ot">=</span> model_p[<span class="dv">6</span>,<span class="dv">2</span>]</span>
+<span id="cb16-281"><a href="#cb16-281" aria-hidden="true" tabindex="-1"></a>slope_spoon_se <span class="ot">=</span> model_p[<span class="dv">6</span>,<span class="dv">3</span>]</span>
+<span id="cb16-282"><a href="#cb16-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-283"><a href="#cb16-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Some hypothetical time values</span></span>
+<span id="cb16-284"><a href="#cb16-284" aria-hidden="true" tabindex="-1"></a>time_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.25</span>)</span>
+<span id="cb16-285"><a href="#cb16-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-286"><a href="#cb16-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a small data frame for the main (brush) line</span></span>
+<span id="cb16-287"><a href="#cb16-287" aria-hidden="true" tabindex="-1"></a>df_brush <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-288"><a href="#cb16-288" aria-hidden="true" tabindex="-1"></a>  <span class="at">time            =</span> time_values,</span>
+<span id="cb16-289"><a href="#cb16-289" aria-hidden="true" tabindex="-1"></a>  <span class="at">est_performance_brush =</span> intercept_brush <span class="sc">+</span> slope_brush <span class="sc">*</span> time_values,</span>
+<span id="cb16-290"><a href="#cb16-290" aria-hidden="true" tabindex="-1"></a>  <span class="at">est_performance_hammer =</span> intercept_brush <span class="sc">+</span> (slope_brush <span class="sc">+</span> slope_hammer) <span class="sc">*</span> time_values,</span>
+<span id="cb16-291"><a href="#cb16-291" aria-hidden="true" tabindex="-1"></a>  <span class="at">est_performance_spoon =</span> intercept_brush <span class="sc">+</span> (slope_brush <span class="sc">+</span> slope_spoon) <span class="sc">*</span> time_values</span>
+<span id="cb16-292"><a href="#cb16-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-293"><a href="#cb16-293" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-294"><a href="#cb16-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-295"><a href="#cb16-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-296"><a href="#cb16-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-297"><a href="#cb16-297" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb16-298"><a href="#cb16-298" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-299"><a href="#cb16-299" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dashed reference lines</span></span>
+<span id="cb16-300"><a href="#cb16-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lwd =</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb16-301"><a href="#cb16-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> intercept_brush, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"darkgray"</span>) <span class="sc">+</span></span>
+<span id="cb16-302"><a href="#cb16-302" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-303"><a href="#cb16-303" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The main 'brush' line</span></span>
+<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_brush, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> est_performance_brush), <span class="at">color =</span> <span class="st">"#e04d01"</span>, <span class="at">size  =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-305"><a href="#cb16-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_brush, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> est_performance_hammer), <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size  =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb16-306"><a href="#cb16-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_brush, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> est_performance_spoon), <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size  =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb16-307"><a href="#cb16-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-308"><a href="#cb16-308" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-309"><a href="#cb16-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb16-310"><a href="#cb16-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Performance'</span>, <span class="at">x=</span><span class="st">'Time'</span>)</span>
+<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1112,7 +1281,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-</div>
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

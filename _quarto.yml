@@ -9,13 +9,19 @@ execute:
 
 website:
 
-  favicon: images/ICON.png
+  cookie-consent:
+    type: implied
+    style: simple 
+    palette: dark
+  google-analytics:
+    tracking-id: "G-G5XSH1GLW7"
+
+  favicon: resources/ICON.png
   title: "DevStart"
   description: "DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master's students and PhDs to postdocs."
   site-url: "https://tommasoghilardi.github.io/DevStart/"
   repo-url: "https://github.com/TommasoGhilardi/DevStart"
-  image: "images/LOGO.png"
-  google-analytics: "G-G5XSH1GLW7"
+  image: resources/LOGO.png
 
   
   # Cards

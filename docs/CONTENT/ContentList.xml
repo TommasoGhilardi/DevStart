@@ -10,13 +10,13 @@
 <atom:link href="https://tommasoghilardi.github.io/DevStart/CONTENT/ContentList.xml" rel="self" type="application/rss+xml"/>
 <description>DevStart is an online hands-on manual for anyone who is approaching developmental psychology and developmental cognitive neuroscience for the first time, from master&#39;s students and PhDs to postdocs.</description>
 <image>
-<url>https://tommasoghilardi.github.io/DevStart/images/LOGO.png</url>
+<url>https://tommasoghilardi.github.io/DevStart/resources/LOGO.png</url>
 <title>DevStart</title>
 <link>https://tommasoghilardi.github.io/DevStart/CONTENT/ContentList.html</link>
 <height>167</height>
 <width>144</width>
 </image>
-<generator>quarto-1.5.57</generator>
+<generator>quarto-1.5.47</generator>
 <lastBuildDate>Thu, 02 Jan 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Pupil Data Analysis</title>
@@ -39,7 +39,7 @@ Note
 <p>Before starting any type of analysis, let’s import the data and take a quick look at it.</p>
 <section id="import-data" class="level2"><h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: <a href="../../CONTENT/EyeTracking/PupilPreprocessing.html">Pre-processing pupil data</a>. In case you did not save the result of the pre-processing you can download them from here :</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts60952"><i class="bi bi-download"></i> Peocessed_PupilData.csv </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts24793"><i class="bi bi-download"></i> Preprocessed_PupilData.csv </button></p>
 <p>Now that you have the data, let’s import it along with the necessary libraries. We’ll also ensure that the <code>Event</code> and <code>Subjects</code> columns are properly set as factors (categorical for easier analysis. Here’s how:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
@@ -2031,7 +2031,7 @@ Warning
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing.html</link>
   <description><![CDATA[ <p>Welcome to your first step into the world of pupillometry! In this tutorial, we’ll walk you through how to preprocess pupil data using a handy R package called <a href="http://samforbes.me/PupillometryR/index.html">PupillometryR</a>. This package makes it simple to clean and even analyze your pupil data with just a few lines of R code.</p>
 <p>To keep things straightforward, we’ll be working with a simulated dataset that you can download right here:</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts59490"><i class="bi bi-download"></i> PupilData.zip </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts43027"><i class="bi bi-download"></i> PupilData.zip </button></p>
 <p>Download and unzip this folder. This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the “<a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Introduction to eye-tracking</a>” guide before diving in.</p>
 <p>This tutorial serves as a foundation for understanding how to preprocess pupil data. Once you’ve grasped the essentials, we encourage you to explore the full range of functions and features <a href="http://samforbes.me/PupillometryR">PupillometryR</a> has to offer.</p>
 <div class="callout callout-style-default callout-note callout-titled">
