@@ -88,6 +88,8 @@ simulated_data <- trial_data %>%
       random_error                                  # Residual error
   )
 
+print(getwd())
+# write.csv(simulated_data, ".\\.\\simulated_data.csv", row.names = FALSE)
 
 # Visualize the Simulated Data --------------------------------------------
 
@@ -136,3 +138,4 @@ ggplot(Est, aes(x = trial_number, y = Predicted, color = categorical_condition, 
   geom_ribbon(aes(ymin = Predicted-SE, ymax = Predicted+SE), alpha = 0.4) +
   geom_line() +
   theme_bw()
+

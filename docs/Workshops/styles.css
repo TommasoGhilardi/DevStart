@@ -288,53 +288,40 @@ img {
 
 
 /* IMAGES FOOTER */
-
-/* IMAGES FOOTER */
-
 /* Container for the images */
 .responsive-image-container {
   display: flex;
-  justify-content: space-between; /* Space images evenly */
-  align-items: center; /* Center vertically */
-  flex-wrap: wrap; /* Allow wrapping when screen size is small */
-  gap: 1em; /* Add some space between images */
+  justify-content: space-evenly; /* Evenly distribute images */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 /* Responsive Images */
 .responsive-image {
-  max-height: 116px; /* Ensure the images have the same height */
-  width: auto; /* Automatically adjust width to maintain aspect ratio */
-  height: auto; /* Automatically adjust height if width changes */
-  flex-shrink: 0; /* Prevent images from shrinking excessively */
-}
-
-/* Specific alignment for each image */
-.responsive-image.left {
-  align-self: flex-start; /* Align left image to the top-left */
-}
-
-.responsive-image.center {
-  align-self: center; /* Center the middle image */
-}
-
-.responsive-image.right {
-  align-self: flex-end; /* Align right image to the top-right */
+  height: 116px; /* Ensures all images have the same height */
+  width: auto; /* Maintains aspect ratio */
 }
 
 /* Responsive Design: When the screen is smaller */
 @media (max-width: 768px) {
   .responsive-image-container {
     flex-direction: column; /* Stack images vertically */
-    align-items: center; /* Center the images horizontally */
+    align-items: center;
   }
   .responsive-image {
-    max-width: 20em; /* Set a maximum width for the images */
-    max-height: none; /* Remove fixed height restriction for better scaling */
-    width: 100%; /* Scale to fit container width while respecting max-width */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0 auto; /* Center the images */
+    height: auto; /* Allow flexible height on small screens */
+    max-height: 116px; /* Prevents images from getting too tall */
+    max-width: 80%; /* Ensures images don’t overflow */
+    width: auto;
+    margin: 0 auto;
   }
 }
+
+
+
+
+
 
 
 
