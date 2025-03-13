@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearModels.html</loc>
-    <lastmod>2024-11-22T14:57:33.996Z</lastmod>
+    <lastmod>2025-03-12T22:17:25.000Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/GettingStarted/GettingStartedWithPython.html</loc>
@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/InterpretingModelResults.html</loc>
-    <lastmod>2025-01-07T14:35:27.000Z</lastmod>
+    <lastmod>2025-03-09T00:08:40.720Z</lastmod>
   </url>
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LMM.html</loc>
@@ -67,5 +67,9 @@
   <url>
     <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Workshops/GAP_2024.html</loc>
     <lastmod>2024-11-22T14:57:33.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/LinearMixedModels.html</loc>
+    <lastmod>2025-03-13T22:22:30.395Z</lastmod>
   </url>
 </urlset>

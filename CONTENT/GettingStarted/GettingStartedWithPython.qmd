@@ -13,58 +13,36 @@ categories:
 
 Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.
 
-In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility
+In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility.
 
 # Installing Python
 
-## Anaconda
-
-Anaconda is an open-source distribution for python. It is used for data science, machine learning, deep learning, etc. It makes simple to download and organize your python environment.
-
-::: callout-caution
-While Anaconda is a convenient way to obtain Python, it’s not our preferred method. That said, we’ve included it here because it’s one of the simplest options. For our recommended approach, just keep scrolling a bit further.
-:::
-
-To install Anaconda simply follow this [link](https://www.anaconda.com/download/success). Choose a version suitable for you and click on download. Once you complete the download, open the setup.
-
-![](/images/GettingStartedWithPython/setup1.png){fig-align="center"}
-
-Follow the instructions in the setup.
-
-After the installation is complete, launch the Anaconda navigator. The Anaconda Navigator is a desktop GUI that comes with the anaconda distribution. Navigator allows you to launch common Python programs and easily manage conda packages, environments, and channels without using command-line commands. Navigator can search for packages on Anaconda Cloud or in a local Anaconda Repository.
-
-![](/images/GettingStartedWithPython/setup3.png){fig-align="center"}
-
-## Miniconda/Miniforge
-
-While Anaconda is one of the simplest ways to install Python, it can be quite heavy, as it comes with many programs and libraries that are often unnecessary. For this reason, we recommend using either Miniconda or Miniforge.
-
-Both Miniconda and Miniforge are lightweight installers for Conda. They provide a minimal setup, including only Conda, Python, and a few essential dependencies, giving you more control over what gets installed on your system and keeping your setup lean and efficient. Miniconda includes the default Conda package manager and channels, focusing on the official Conda repository. Miniforge, on the other hand, uses Conda-Forge as its default channel and comes pre-installed with Mamba, a faster and more efficient alternative to Conda for package management.
-
-Which one should you use? To simplify, if everything mentioned earlier sounds like jargon, Miniconda is a safe choice. However, if you want the fastest and typically best option, go with Miniforge.
-
-:::: panel-tabset
 ## Miniconda
 
-To use Miniconda download the installer from [Miniconda](https://www.anaconda.com/download/success) (remember to scroll down under Anaconda)
+Miniconda is our favorite way to install Python, and for good reason! While you've probably heard of Anaconda – that feature-packed GUI many folks use to manage Python, packages, and environments – Miniconda is its sleek, lightweight counterpart.
 
-The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).
+What makes Miniconda special? It skips all the extra GUI elements and pre-installed packages that come with Anaconda. The result? A much lighter installation that doesn't weigh down your system! With Miniconda, you get just the essentials: Conda, Python, and a few critical dependencies. This minimal setup gives you greater control over what gets installed, keeping everything lean and efficient. Plus, it includes the default Conda package manager and channels, so you still have full access to the official Conda repository for all your package needs.
+
+:::: panel-tabset
+## Windows
+
+To use Miniconda download the installer from [Miniconda](https://www.anaconda.com/download/success#miniconda) (remember to scroll down under Anaconda)
+
+The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments. To verify everything's working properly, simply type `conda`. You'll be greeted with a comprehensive list of available conda commands ready for you to explore and use (we will see below how to do so).
 
 ![](/images/GettingStartedWithPython/prompt.png){fig-align="center"}
 
-## Miniforge
+## Mac
 
-To use Miniforge lead to [Miniforge](https://conda-forge.org/miniforge/) and download the version right for your system. And start the installation process.
+To use Miniconda download the installer from [Miniconda](https://www.anaconda.com/download/success#miniconda) (remember to scroll down under Anaconda)
 
 ::: callout-caution
-There are multiple version you can download. The one you should download is at the end of the page: **Miniforge3**
+⚠️ Important
+
+**Please make sure that you select the correct version for your system!!!** Select the version depending if you have Apple Silicon or an Intel processor.
 :::
 
-The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).
-
-![](/images/GettingStartedWithPython/prompt.png){fig-align="center"}
-
-One important thing about Miniforge is that you should use mamba instead of conda for faster performance. The commands remain exactly the same—just replace conda with mamba.
+Once the installation is complete, you'll have the full power of Miniconda at your fingertips through your terminal! To verify everything's working properly, simply open your terminal and type `conda`. You'll be greeted with a comprehensive list of available conda commands ready for you to explore and use (we will see below how to do so).
 ::::
 
 # Installing python packages

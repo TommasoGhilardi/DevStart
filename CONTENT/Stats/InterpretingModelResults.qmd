@@ -16,18 +16,21 @@ draft-mode: unlinked
 
 In the previous tutorial we run our first model and we checked whether the model met the assumptions. You have to agree it was easy and fun! Now the real challenge begins.
 
+We want to understand what the model we run is telling us.
+
+First thing first let's re-run the model and check its ouptut
+
 ```{r}
-library(tidyverse)
-library(easystats)
-df = read.csv("..\\..\\resources\\Stats\\LM_SimulatedData.csv")
-mod = lm(performance ~ time*tool, data = df)
+#| message: false
+#| warning: false
+df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+mod_lm = lm(LookingTime ~ Event_trial*Event, data = df)
+summary(mod_lm)
 ```
 
 # Interpreting the results
 
-Very cool!! we have our result!!
-
-But what is it saying?? As you can see the summary is divided in subsections. Lets go trough them piece by piece.
+Here the results again. As we mentioned in the previous tutorial the pvalue is what everyone goes crazy about...but its just 1 of the information that the model is giving us. let's dive in piece by piece.
 
 -   **Call**:
 
@@ -51,7 +54,7 @@ But what is it saying?? As you can see the summary is divided in subsections. Le
 
     -   **Adjusted R-squared:** R-squared modified for the number of predictors. Useful for comparing models with different numbers of predictors.
 
-    -   **F-statistic and p-value:** Indicate if the model provides a better fit than a model with no predictors. A p-value \< 0.05 suggests the model is useful.
+    -   **T-value and p-value:** Indicate if the model provides a better fit than a model with no predictors. A p-value \< 0.05 suggests the model is useful.
 
 ## Coeffiecients
 
@@ -59,243 +62,278 @@ The Coefficient section if indubitably the most important section of the summary
 
 ### (Intercept)
 
-The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (`time` and `tool`) are 0. Now you may ask...how can `tool` be 0? It is a categorical variable, it can't be 0!!!! `time == 0`...sure ....but `tool`??
+The intercept often confuses who approaches for the first time linear models. What is it? The (Intercept) represent the reference levels where all our predictors (`Event_trial` and `Event`) are **0**. Now you may ask...how can `Event` be 0? It is a categorical variable, it can't be 0!!!! `Event_trial == 0`...sure ....but `Event`??
 
-You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the `hammer`and `spoon` level of the `tool`variable but nothing about the `brush` level. This is because the `brush` level has been selected by the model as the reference level and it is thus represented in the intercept value!
+You are correct. When a model encounters a categorical variable it selects the first level of such variable as reference level. If you take another look to our model summary you can see that there are information both for the `hammer`and `Reward` level of the `Event`variable but nothing about the **NoReward** level. This is because the **NoReward** level has been selected by the model as the reference level and it is thus represented in the intercept value!
 
 we can simply visualize it as:\
 
 ```{r}
-#| fig-height: 6
-#| fig-width: 8
-#| fig-dpi: 300
+#| echo: false
+#| message: false
 #| warning: false
-
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
 library(ggplot2)
+library(ggsignif)
+library(easystats)
+model_p = parameters(mod_lm)
 
-model_p = parameters(mod)
-
-# Define intercept and slope for the brush
+# Define intercept and slope for the NoReward
 intercept_brush <- model_p[1,2]
 intercept_brush_se <- model_p[1,3]
 
 # To create estimates
-time_values <- seq(0, 10, by = 0.5)
+time_values <- seq(0, 10, by = 2)
+# Create a named vector for colors
+color_map <- c("NoReward" = "darkred")
 
+ggplot() +
+  geom_vline(xintercept = 0, lwd = 0.4, linetype = 'dashed') +
 
-ggplot()+
+  # Add the point estimate with color mapped to a label
+  geom_pointrange(aes(x = 0, y = intercept_brush, 
+                       ymin = intercept_brush - intercept_brush_se, 
+                       ymax = intercept_brush + intercept_brush_se, 
+                       color = "NoReward"), 
+                  lwd = 1.3) +
   
-  # Cartesian lines
-  geom_vline(xintercept = 0, lwd =0.4) +
+  # Customize the color scale for the legend
+  scale_color_manual(name = "Condition", values = color_map) +
 
-  geom_point(aes(x=0, y=intercept_brush), size=3, color = 'darkred')+
-  geom_errorbar(aes(x=0, y=intercept_brush, ymin= intercept_brush-intercept_brush_se, ymax= intercept_brush+intercept_brush_se), color = 'darkred', lwd=1.3)+
-  
   # Plot addition information
-  coord_cartesian(xlim = c(-1,5), ylim = c(-1,5))+
-  labs(y = 'Performance', x = 'Time')+
-  theme_bw(base_size = 20)+
+  coord_cartesian(xlim = c(-1, 3), ylim = c(1200, 1600)) +
+  labs(y = 'Looking time', x = 'Event number') +
+  theme_classic(base_size = 20) +
+  theme(legend.position = 'bottom')+
+  # Customize x-axis labels
   scale_x_continuous(
     breaks = c(0),              # The x-values where you want ticks
-    labels = c("0\nBrush")  # Corresponding custom labels
+    labels = c("0\n(Intercept)")  # Corresponding custom labels
   )
 ```
 
-As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. It’s like the starting point of your model, where all the predictors (in this case, `brush` was selected as the reference or 0 level for the categorical variable) are at their reference level or baseline value.
+As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. It’s like the starting point of your model, where all the predictors (in this case, **NoReward** was selected as the reference or 0 level for the categorical variable) are at their reference level or baseline value.
 
 ### Tools
 
-Awesome! Now that we’ve got the intercept down, let’s take a look at the rest of the model output. We’ll skip over the `time` variable for now and focus on what’s happening with the tools.
+Awesome! Now that we’ve got the intercept down, let’s take a look at the rest of the model output. We’ll skip over the `Event_trial` variable for now and focus on what’s happening with the tools.
 
-At first, the results for `tool [hammer]` and `tool [spoon]` might look like they’re giving us the values for the hammer and spoon. Super easy, right?
+At first, the results for `Event [hammer]` and `Event [Reward]` might look like they’re giving us the values for the hammer and Reward. Super easy, right?
 
 Well... not exactly!
 
-In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the tool itself.
+**In linear models, each coefficient shows the DIFFERENCE in relation to the intercept (the 0 or the reference level), not the exact value of the Event itself.**
 
-It sounds a bit confusing, but let’s break it down. The coefficient for `tool [hammer]` is actually just the difference between the intercept (2.81) and the coefficient for `tool [hammer]` (3.60). So, hammer’s total value = 2.81 + 3.60 = 6.41! Same goes for the spoon, where the total is 2.81 + 2.79 = 5.60.
+It sounds a bit confusing, but let’s break it down. The coefficient for `Event [hammer]` is actually just the difference between the intercept (2.81) and the coefficient for `Event [hammer]` (3.60). So, hammer’s total value = 2.81 + 3.60 = 6.41! Same goes for the Reward, where the total is 2.81 + 2.79 = 5.60.
 
 See? Not too bad! Let’s visualize it and make it even clearer!
 
 ```{r}
-#| fig-height: 6
-#| fig-width: 8
-#| fig-dpi: 300
+#| echo: false
+#| message: false
 #| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+# Define intercept and slope for the NoReward
+intercept_NoReward <- model_p[1,2]
+intercept_NoReward_se <- model_p[1,3]
 
-# Define intercept and slope for the brush
-intercept_brush <- model_p[1,2]
-intercept_brush_se <- model_p[1,3]
+intercept_Reward <- model_p[3,2] + intercept_NoReward
+intercept_Reward_se <- model_p[3,3]
 
-intercept_hammer <- model_p[3,2] + intercept_brush
-intercept_hammer_se <- model_p[3,3]
+# Parameter = data.frame(b = c(intercept_NoReward, intercept_Reward),
+#                        se = c(intercept_NoReward_se, intercept_Reward_se),
+#                        event = c('NoReward','Reward'))
+# ggplot(Parameter, aes(x = event, y = b))+
+#   geom_pointrange(aes(ymin = b-se, ymax = b+se))
 
-intercept_spoon <- model_p[4,2]+ intercept_brush
-intercept_spoon_se <- model_p[4,3]
 
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue')
 
 ggplot() +
   
   # Cartesian lines
-  geom_vline(xintercept = 0, lwd =0.4) +
+  geom_vline(xintercept = 0, lwd = 0.4, linetype = 'dashed') +
 
-  # Intercept (brush)
-  geom_point(aes(x=0, y=intercept_brush), size=3, color = 'darkred')+
-  geom_errorbar(aes(x=0, y=intercept_brush, ymin= intercept_brush-intercept_brush_se, ymax= intercept_brush+intercept_brush_se), color = 'darkred', lwd=1.3)+
+  # Intercept (NoReward)
+  geom_pointrange(aes(x=-.15, y=intercept_NoReward, ymin= intercept_NoReward-intercept_NoReward_se, ymax= intercept_brush+intercept_NoReward_se, color = 'NoReward'), lwd=1.3)+
   
-  # Hammer
-  geom_point(aes(x=1, y=intercept_hammer), size=3, color = 'darkblue')+
-  geom_errorbar(aes(x=1, y=intercept_hammer, ymin= intercept_hammer-intercept_hammer_se, ymax= intercept_hammer+intercept_hammer_se), color = 'darkblue', lwd=1.3)+
+  # Reward
+  geom_pointrange(aes(x=.15, y=intercept_Reward, ymin= intercept_Reward-intercept_Reward_se, ymax= intercept_Reward+intercept_Reward_se, color = 'Reward'), lwd=1.3)+
   
-  # Spoon
-  geom_point(aes(x=2, y=intercept_spoon), size=3, color = 'darkgreen')+
-  geom_errorbar(aes(x=2, y=intercept_spoon, ymin= intercept_spoon-intercept_spoon_se, ymax= intercept_spoon+intercept_spoon_se), color = 'darkgreen', lwd=1.3)+
-
+  geom_segment(aes(x = 0, xend = 0, y = intercept_NoReward, yend = intercept_Reward), 
+               color = "black", lwd = 1.2,
+               arrow = arrow( length = unit(0.1, "inches"), ends = "both")) +
   
+  annotate("text", x = -0.05, y = 1450, label = expression(beta), size = 4) +
+  
+  # Customize the color scale for the legend
+  scale_color_manual(name = "Condition", values = color_map) +
   # Set the limits for x and y axes
-  coord_cartesian(xlim = c(-.5,2.5), ylim = c(-1,10))+
-  
-  # Customize x-axis breaks
-  scale_x_continuous(breaks = c(0, 1, 2), labels = c('0\nBrush','Hammer','Spoon')) +
+  coord_cartesian(xlim = c(-1,3), ylim = c(1200,1600))+
   
   # Labels and theme
-  labs(y = 'Performance', x = 'Tools') +
-  theme_bw(base_size = 20)
+  labs(y = 'Looking time', x = 'Event number') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = c(0),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)")  # Corresponding custom labels
+  )
 ```
 
 ### Time
 
-So, interpreting the coefficients for categorical variables wasn’t too tricky, right? But what about continuous variables like `time`?
+So, interpreting the coefficients for categorical variables wasn’t too tricky, right? But what about continuous variables like `Event_trial`?
 
 No worries, it’s actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.
 
-In simpler terms, it shows how much the outcome (in this case, `performance`) changes for each unit increase in the continuous variable (`time`). So, in our case the coefficient for `time` is 0.04, this means that for each unit increase in `time`, the performance is expected to increase by 0.04 units (assuming all other variables stay the same).
+In simpler terms, it shows how much the outcome (in this case, `LookingTime`) changes for each unit increase in the continuous variable (`Event_trial`). So, in our case the coefficient for `Event_trial` is -7.5, this means that for each unit increase in `Event_trial`, the LookingTime is expected to increase by -7.5 units (assuming all other variables stay the same).
+
+::: callout-important
+In this case the continuous effect represent how
+:::
 
 Even easier..let's plot again!
 
 ```{r}
-#| fig-height: 6
-#| fig-width: 8
-#| fig-dpi: 300
+#| echo: false
+#| message: false
 #| warning: false
-library(ggplot2)
-library(geomtextpath)
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+slope_EventTrial <- model_p[2,2]
 
-intercept_brush    <- model_p[1,2]
-intercept_brush_se <- model_p[1,3]
+# Some hypothetical Event_trial values
+time_values <- seq(-1, 20, by = 2)
 
-slope_brush    <- model_p[2,2]
-slope_brush_se <- model_p[2,3]
-
-# Some hypothetical time values
-time_values <- seq(-1, 4, by = 0.25)
-
-# Create a small data frame for the main (brush) line
-df_brush <- data.frame(
-  time            = time_values,
-  est_performance_brush = intercept_brush + slope_brush * time_values
+# Create a small data frame for the main (NoReward) line
+df_p <- data.frame(
+  time  = time_values,
+  est_performance_EventTrial = intercept_NoReward + slope_EventTrial * time_values
 )
+
+
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue', "EventTrial" = '#e04d01')
+
 
 ggplot() +
   # Dashed reference lines
-  geom_vline(xintercept = 0, lwd =0.4) +
-  geom_hline(yintercept = intercept_brush, linetype = "dashed", color = "darkgray") +
+  geom_vline(xintercept = 0, lwd =0.4,linetype = "dashed") +
+
+  # The main 'NoReward' line
+  geom_line(data = df_p, aes(x = time, y = est_performance_EventTrial, color = 'EventTrial'), size  = 1) +
   
-  # The main 'brush' line
-  geom_line(data = df_brush, aes(x = time, y = est_performance_brush), color = "#e04d01", size  = 1) +
+  # Intercept (NoReward) point & error bar
+  geom_pointrange(aes(x  =0, y = intercept_brush, ymin = intercept_brush - intercept_brush_se,ymax = intercept_brush + intercept_brush_se, color = 'NoReward' ), lwd  = 1.3) +
   
-  # Intercept (brush) point & error bar
-  geom_point(
-    aes(x = 0, y = intercept_brush),
-    size  = 3,
-    color = "darkred"
-  ) +
-  geom_errorbar(
-    aes(
-      x    = 0,
-      y    = intercept_brush,
-      ymin = intercept_brush - intercept_brush_se,
-      ymax = intercept_brush + intercept_brush_se
-    ),
-    color = "darkred",
-    size  = 1.3
-  ) +
+  # Label for the beta
+  annotate("text", x = 4.4, y = 1315, label = expression(beta), size = 4) +
   
-  # Label for the intercept
-  annotate("text", x = -0.5, y = 2.825, label = "(Intercept)") +
+  geom_path(aes(x = c(4, 4, 10), y = c(1350, 1300, 1300)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
   
-  # Curved arrow with a slight horizontal offset (x != xend)
-  # geom_textcurve(
-  #   # Start at (2.99, 2.83), end at (3.01, 2.89)
-  #   # so there's enough horizontal length to create a "belly."
-  #   aes(
-  #     x    = 2.99,  y    = 2.83,
-  #     xend = 3.01,  yend = 3.2
-  #   ),
-  #   label     = expression(beta ~ "Time"),  # or "\u03B2 Time"
-  #   curvature = .4,  # how “bendy” the arc is
-  #   arrow = arrow(
-  #     ends   = "both"),
-  #   colour = "#e04d01",
-  #   size   = 4,
-  #   lwd    = 1.2
-  # ) +
+  # Customize the color scale for the legend
+  scale_color_manual(name = "Condition", values = color_map) +
+  # Set the limits for x and y axes
+  coord_cartesian(xlim = c(-1,20), ylim = c(1200,1600))+
   
   # Labels and theme
-  labs(y = 'Performance', x = 'Time') +
-  theme_bw(base_size = 20)
+  labs(y = 'Looking time', x = 'Event number') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = seq(0,20,2),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)", as.character(seq(2,20,2)))  # Corresponding custom labels
+  )
 ```
 
 ### Interaction
 
-Alright, now we're getting to the final steps! Let's talk about the interaction between `time` and `tool`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
+Alright, now we're getting to the final steps! Let's talk about the interaction between `Event_trial` and `Event`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
 
-We'll take it step by step and look at the first interaction we see in our model parameters. Let’s start by checking out the interaction between `time` and `tool [hammer]`.
+We'll take it step by step and look at the first interaction we see in our model parameters. Let’s start by checking out the interaction between `Event_trial` and `Event [Reward]`.
 
-The interaction term between `time` and `tool [hammer]` tells us how the relationship between `time` and `performance` changes when we switch from the reference tool (`brush`) to the hammer. To put it simply, the coefficient for this interaction will show you how much more (or less) the effect of `time` on `performance` changes when using the hammer compared to the baseline (`brush`). If the coefficient is positive, it means that as `time` increases, `performance` increases more when using the hammer than when using the brush. If it’s negative, it means the performance increase is smaller with the hammer than with the brush.
+The interaction term between `Event_trial` and ``` Event [``Reward``] ``` tells us how the relationship between `Event_trial` and `LookingTime` changes when we switch from the reference Event (**NoReward**) to the **Reward**. To put it simply, the coefficient for this interaction will show you how much more (or less) the effect of `Event_trial` on `LookingTime` changes when using the hammer compared to the baseline (**NoReward**). If the coefficient is positive, it means that as `Event_trial` increases, `LookingTime` increases more when using the hammer than when using the **NoReward**. If it’s negative, it means the `LookingTime` increase is smaller with the hammer than with the **NoReward**.
 
 ```{r}
-library(ggplot2)
-library(geomtextpath)
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+# Define intercept and slope for the NoReward condition
+intercept_NoReward <- model_p[1,2]  # Intercept for NoReward
+intercept_NoReward_se <- model_p[1,3]
 
-intercept_brush    <- model_p[1,2]
-intercept_brush_se <- model_p[1,3]
+# Define intercept for Reward condition (Intercept + Reward Effect)
+intercept_Reward <- model_p[3,2] + intercept_NoReward
+intercept_Reward_se <- model_p[3,3]
 
-slope_brush    <- model_p[2,2]
-slope_brush_se <- model_p[2,3]
+# Define slopes
+slope_EventTrial <- model_p[2,2]  # Slope for Event Trial
+slope_Interaction <- model_p[4,2] # Interaction effect
 
-slope_hammer = model_p[5,2]
-slope_hammer_se = model_p[5,3]
+# Some hypothetical Event_trial values
+time_values <- seq(-1, 20, by = 2)
 
-slope_spoon = model_p[6,2]
-slope_spoon_se = model_p[6,3]
-
-# Some hypothetical time values
-time_values <- seq(-1, 4, by = 0.25)
-
-# Create a small data frame for the main (brush) line
-df_brush <- data.frame(
-  time            = time_values,
-  est_performance_brush = intercept_brush + slope_brush * time_values,
-  est_performance_hammer = intercept_brush + (slope_brush + slope_hammer) * time_values,
-  est_performance_spoon = intercept_brush + (slope_brush + slope_spoon) * time_values
-
+# Create a small data frame for plotting
+df_p <- data.frame(
+  time  = time_values,
+  est_performance_EventTrial = intercept_NoReward + slope_EventTrial * time_values,
+  est_performance_Interaction = intercept_Reward + (slope_EventTrial + slope_Interaction) * time_values
 )
+
+
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue', "EventTrial" = '#e04d01', 'Interaction' = 'darkgreen')
 
 
 
 ggplot()+
   
   # Dashed reference lines
-  geom_vline(xintercept = 0, lwd =0.4) +
-  geom_hline(yintercept = intercept_brush, linetype = "dashed", color = "darkgray") +
-  
-  # The main 'brush' line
-  geom_line(data = df_brush, aes(x = time, y = est_performance_brush), color = "#e04d01", size  = 1) +
-  geom_line(data = df_brush, aes(x = time, y = est_performance_hammer), color = "darkblue", size  = 1)+
-  geom_line(data = df_brush, aes(x = time, y = est_performance_spoon), color = "darkgreen", size  = 1)+
+  geom_vline(xintercept = 0, lwd =0.4, linetype = 'dashed') +
 
+  # The main 'NoReward' line
+  geom_line(data = df_p, aes(x = time, y = est_performance_EventTrial, color = "EventTrial"), lwd  = 1) +
+  geom_line(data = df_p, aes(x = time, y = est_performance_Interaction, color = "Interaction"), lwd  = 1)+
   
-  theme_bw(base_size = 20)+
-  labs(y='Performance', x='Time')
+  # Intercept (NoReward) point & error bar
+  geom_pointrange(aes(x =-.15, y = intercept_brush, ymin = intercept_brush - intercept_brush_se,ymax = intercept_brush + intercept_brush_se, color = 'NoReward' ), lwd  = 1.3) +
+  geom_pointrange(aes(x=.15, y=intercept_Reward, ymin= intercept_Reward-intercept_Reward_se, ymax= intercept_Reward+intercept_Reward_se, color = 'Reward'), lwd=1.3)+
+
+
+  # Label for the beta
+  annotate("text", x = 4.4, y = 1315, label = expression(beta), size = 4) +
+  geom_path(aes(x = c(4, 4, 10), y = c(1350, 1300, 1300)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
+  
+  
+    # Label for the beta
+  annotate("text", x = 6.4, y = 1415, label = expression(beta), size = 4) +
+  geom_path(aes(x = c(6, 6, 11), y = c(1440, 1400, 1400)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
+  
+  
+    # Customize the color scale for the legend
+  scale_color_manual(name = "Condition", values = color_map) +
+  # Set the limits for x and y axes
+  coord_cartesian(xlim = c(-1,20), ylim = c(1200,1600))+
+  
+  # Labels and theme
+  labs(y = 'Looking time', x = 'Event number') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = seq(0,20,4),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)", as.character(seq(4,20,4)))  # Corresponding custom labels
+  )
 ```

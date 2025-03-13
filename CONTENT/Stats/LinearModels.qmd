@@ -1,9 +1,6 @@
 ---
 title: "Linear Models"
-execute:
-  eval: false
-
-author-meta: Tommaso Ghilardi
+author-meta: "Tommaso Ghilardi"
 description-meta: "Learn what a linear model is, how to run it and how to check its assumptions"
 keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
 
@@ -11,7 +8,6 @@ categories:
   - Stats
   - R
   - linear models
-  
   
 drafts: True
 draft-mode: unlinked  
@@ -39,7 +35,9 @@ A linear model is a simple statistical test that tries to find the best line tha
 
 What's truly fascinating about linear models is their versatility. They start off incredibly simple, but their complexity can grow exponentially! This makes them a remarkably flexible tool in the world of data analysis.
 
-Think of linear models as the foundation of a house. You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion. This adaptability allows us to perform a wide range of analyses, from straightforward relationships to intricate, multi-faceted studies.
+Think of linear models as the foundation of a house. ![](/images/Stats/Lm/House.png){fig-align="right" style="float:left; margin-right:10px;margin-bottom:10px;" width="150"}
+
+You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion. This adaptability allows us to perform a wide range of analyses, from straightforward relationships to intricate, multi-faceted studies.
 
 In essence, linear models offer a perfect balance: they're accessible enough for beginners to grasp, yet powerful enough to satisfy the needs of advanced researchers. As we dive deeper into this topic, you'll see just how these seemingly simple tools can unlock complex insights in your data.
 
@@ -53,33 +51,35 @@ So, if you notice something that doesn't seem quite perfect at this stage, don't
 
 You can download the data that we will use in this tutorial from here:
 
-{{< downloadthis ../../resources/Stats/LM_SimulatedData.csv label="LM_SimulatedData.csv" dname= "lmdata" type="secondary" >}}
+{{< downloadthis ../../resources/Stats/Dataset.csv label="Dataset.csv" type="secondary" >}}
 
 Once downloaded we need to import it in our R session. Here we read our csv and we print a small preview of it.
 
 ```{r}
-df = read.csv("..\\..\\resources\\Stats\\LM_SimulatedData.csv")
+df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
 head(df)
 ```
 
 You can see that the data is really simple! We have 4 columns:
 
--   `subject` column that tell us form which participant the data was collected
+-   `Id` column that tell us form which participant the data was collected
 
--   `time` the passing time
+-   `Event` represent which condition we were in
 
--   `performance` the variable of interest, the one that we want to model
+-   `Event_trial`the passing number of trials
 
--   `tool` which tool was being used
+-   `ReactionTime` we will ignore this variable for now
+
+-   `LookingTime`the variable of interest for today, the one that we want to model
 
 ::: callout-important
 ## Long format
 
-One important information that we need to keep in mind is that to run `lm()` in R we need the data in a long format and not a wide format.
+One important information that we need to keep in mind is that to run `lm()` (and most models!!) in R we need the data in a long format and not a wide format.
 
-In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example `performance`) has 1 row for observation but the other columns usually have repeated entries ( e.g. `subject` , `time`, `tool`)
+In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example `LookingTime`) has 1 row for observation but the other columns usually have repeated entries ( e.g. `Id` , `Event_trial`, `Event`)
 
-Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time points. While this can be visually appealing for humans, it's not optimal for our linear modeling needs.
+Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time-points. While this can be visually appealing for humans, it's not optimal for our linear modeling needs.
 
 If your data is currently in wide format, don't worry! R provides tools like the [tidyr](https://tidyr.tidyverse.org/index.html) package with functions such as [pivot_longer()](https://tidyr.tidyverse.org/reference/pivot_longer.html) to easily convert your data from wide to long format.
 :::
@@ -88,25 +88,25 @@ If your data is currently in wide format, don't worry! R provides tools like the
 
 To run models in R we usually use formulas! Sounds complex doesn't it?!? Well it is not, let me guide you through it.
 
-In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the one we're interested in studying. In this case, it's the `performance` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to model the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables we believe may influence our dependent variable. To test whether `time` predicts performance, we can use the formula:
+In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the one we're interested in studying. In this case, it's the `LookingTime` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to model the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables we believe may influence our dependent variable. To test whether `Event_trial` predicts LookingTime, we can use the formula:
 
-`performance ~ time`. This basic structure allows us to examine a single predictor.
+-   `LookingTime ~ Event_trial`. This basic structure allows us to examine a single predictor.
 
-We can extend this model by adding another variable, such as `tool`, to see if it also predicts performance:
+We can extend this model by adding another variable, such as `Event`, to see if it also predicts LookingTime:
 
-`performance ~ time + tool`. This formulation tells the model to assess whether either `time` or `tool` predicts `performance`, treating them as independent predictors.
+-   `LookingTime ~ Event_trial + Event`. This formulation tells the model to assess whether either `Event_trial` or `Event` predicts `LookingTime`, treating them as independent predictors.
 
 To examine the interaction between these variables, we use a slightly different syntax:
 
-`performance ~ time : tool`. This instructs the model to evaluate whether the interaction between the two variables predicts `performance`.
+-   `LookingTime ~ Event_trial : Event`. This instructs the model to evaluate whether the interaction between the two variables predicts `LookingTime`.
 
 It's important to note that using `:` only tests the interaction, not the individual effects of each variable. To include both main effects and their interaction, we can use the formula:
 
-`performance ~ time + tool + time:tool`.
+-   `LookingTime ~ Event_trial + Event + Event_trial:Event`.
 
 R offers a shorthand for this complete model using the `*` operator. The formula:
 
-`performance ~ time * tool` is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.
+-   `LookingTime ~ Event_trial * Event` is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.
 
 These formulas are for simple linear models. Different types of models add small and different pieces to this basic structure. We will see in the next tutorial how to handle these "add-ons". Now that we have seen how to make a proper formula let's use it in our model!!
 
@@ -119,27 +119,379 @@ It's extremely simple. We will use the function `lm()` and we will pass our data
 After fitting the model we extract the summary of it. This is how we will get all the information we need.
 
 ```{r}
-mod = lm(performance ~ time*tool, data = df)
-summary(mod)
-
-estimate_means(mod, get_datagrid(mod, numeric=0, by = 'tool'))
-
-
+#| label: RunLm
+#| message: false
+#| warning: false
+mod_lm = lm(LookingTime ~ Event_trial*Event, data = df)
+summary(mod_lm)
 ```
 
-Perfect this was super simple!! We can use the output of the model to understand whether the variable are predicting the performance. What we need is the pvalue that is the last column of the **Coefficients section.** If the pvalue is below 0.05 it means we have our effect if it is above it means we don't. [YES EVEN IF IT IS 0.051!!!]{.text-danger-emphasis}
+Woohoo! This was super simple!! 🎉 We can use the output of the model to understand whether the variables are predicting LookingTime. The magic number we're looking for is the p-value, hiding in the last column of the **Coefficients section**. If the p-value is below 0.05, we've got ourselves an effect! If it's above, sadly we don't. [**AND YES, EVEN IF IT'S 0.051!!!**]{.underline} Rules are rules in the p-value game!
 
-When looking at model outputs, people often zero in on the p-value. However, there's much more to unpack in a model summary! For now, we'll just skim the surface of model summary interpretation. It's true that the model provides p-values, which serve as indicators of whether there's evidence for an effect of our variables on the dependent variable. But it's crucial to understand the full scope of the model output. That's why we've created a separate tutorial to guide you through the intricacies of model interpretation. For now, let's wrap up this current tutorial. Afterwards, we'll dive together into the art of deciphering model results.
+What goodies can we spot here? First, our **Intercept** is significant (don't worry, we'll decode this mysterious value later!). Even more exciting, we've got a significant effect of **Event_trial** – our continuous variable – (p = 0.0113) and a significant effect of **Event** (p = 0.0114). Double win! However, the interaction between Event_trial and Event is playing hard to get with that p = 0.9715. That's nowhere near significant!
 
-## Model checks
+This is already pretty cool, right?!? But here's the deal - when looking at model outputs, people often get hypnotized by p-values. **However, there's MUCH more to unpack in a model summary!** The full story of our data is waiting to be discovered in the complete model output. Let's dive in together and crack this statistical puzzle!
 
-So now we have run our model and seen the summary... That's great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require few data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won't be valid.
+# Interpret our Model
+
+Here what the summary is telling us!!
+
+-   **Call**: This section just reports the function call that we passed to `lm()`. Nothing fancy, just reminding us what we asked for!
+
+<!-- -->
+
+-   **Residuals**: This section shows the leftovers of our model - the differences between what we observed and what our model predicted. Think of residuals as the "Hmm, that's interesting" parts that our model couldn't explain. We want these to be as small as possible! 🔍
+
+<!-- -->
+
+-   **Coefficients**: This is where the real magic happens! This section displays:
+
+    -   **Estimates** - The actual numbers that tell us how much our outcome changes when we tweak each predictor (also often called beta coefficient)
+
+    -   **Standard Error** - How confident we are about those estimates (smaller = more confident!)
+
+    -   **T-value** - A measure of how many standard errors away from zero our estimate is
+
+    -   **p-value** - Our trusty friend that tells us if an effect is worth writing home about!
+
+<!-- -->
+
+-   **Model Fit**: The final act of our statistical show! Here we find:
+
+    -   **Residual standard error:** The average miss by our prediction line. Like golf, lower scores are better!
+
+    -   **Multiple R-Squared:** The percentage of LookingTime's mood swings that our predictors can explain. Ranges from 0 (clueless) to 1 (mind reader)!
+
+    -   **Adjusted R-squared:** R-squared that's been on a diet to account for having multiple predictors. Great for comparing models with different numbers of variables.
+
+    -   **F-statistics and p-value:** Tells us if our model is any better than just guessing the average. If p \< 0.05, our model deserves a round of applause!
+
+## Estimates
+
+The Estimate section is probably one of the most important parts of our model summary. While the other columns (t-values and p-values) are just numbers that tell us whether the predictor fits, the estimates tell us HOW they fit!!
+
+Let's go together through the most challenging information:
+
+### (Intercept)
+
+The intercept often confuses people who approach linear models for the first time. What exactly is it? 🤔
+
+The (Intercept) represents the reference levels where all our predictors (`Event_trial` and `Event`) are **0**. While `Event_trial` is easy to understand when it's 0 (`Event_trial` 0 in our case would be the first trial), you may be scratching your head thinking...how can `Event` be 0? It's a categorical variable, it can't be 0!!!! `Event_trial == 0`...sure....but `Event`??
+
+You are absolutely right! When a model encounters a categorical variable, it cleverly selects the first level of such variable as the reference level. If you take another look at our model summary, you can see that there's information for the **Reward** level of the `Event` variable but nothing about the **NoReward** level. This is because the **NoReward** level has been selected by the model as the reference level and is thus represented in the intercept value! 💡
+
+So our intercept (1390.1) actually represents the predicted **LookingTime** when:
+
+1.  We're on the first trial (`Event_trial` = 0)
+
+2.  We're in the **NoReward** condition
+
+The Standard Error of the estimate (29.1) tells us the precision of the estimate.
+
+::: callout-tip
+Since the intercept has a significant p-value, it means that the estimate for the **NoReward** condition at trial 0 is actually significantly different from 0. In other words, our participants are definitely looking at something during the **NoReward** condition in the first trial – their **LookingTime** isn't zero! This might seem obvious (of course they're looking!), but statistically confirming this baseline is actually meaningful.
+:::
+
+Ok, all this explanation is great...but it's much easier to visualize these Estimates!
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+library(ggplot2)
+library(easystats)
+library(ggbreak)
+model_p = parameters(mod_lm)
+
+# Define intercept and slope for the NoReward
+intercept_brush <- model_p[1,2]
+intercept_brush_se <- model_p[1,3]
+
+
+# Create a named vector for colors
+color_map <- c("NoReward" = "darkred")
+
+ggplot() +
+  geom_vline(xintercept = 0, lwd = 0.4, linetype = 'dashed') +
+  geom_pointrange(
+    aes(x = -0.15, y = intercept_brush,
+        ymin = intercept_brush - intercept_brush_se,
+        ymax = intercept_brush + intercept_brush_se,
+        color = "NoReward"),
+    lwd = 1.3
+  ) +
+  geom_segment(
+    aes(x = 0.15, xend = 0.15, y = 0, yend = intercept_brush),
+    color = "black", lwd = 1.2,
+    arrow = arrow(length = unit(0.1, "inches"), ends = "both")
+  ) +
+  annotate("text", x = 0.20, y = 1300, label = expression(beta), size = 4) +
+
+  scale_color_manual( values = color_map) +
+  labs(y = "Looking time", x = "Event number", color = '') +
+  theme_modern(base_size = 20) +
+  theme(
+    legend.position = "bottom",
+    axis.line.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    axis.text.y.right = element_blank()
+  ) +
+  # Only set x-limits via scale_x_continuous
+  scale_x_continuous(
+    limits = c(-1, 3),
+    breaks = c(-1, 0, 1, 2, 3),
+    labels = c("", "0\n(Intercept)", "", "", "")
+  ) +
+  # Let ggbreak handle y-limits and the break
+  scale_y_break(
+    breaks = c(200, 1250),
+    scale = 3,
+    space = 1
+  )+
+  ylim(0, 1550)
+```
+
+As you can see, the intercept is pretty straightforward—it gives us the estimate when everything is set to 0, both for continuous and categorical variables. The intercept is the foundation of your model, where all the predictors are at their baseline value (in this case, **NoReward** was cleverly selected as the reference or 0 level for the categorical variable).
+
+### Event
+
+Awesome! Now that we've got the intercept down, let's take a look at the rest of the model output. We'll skip over the **Event_trial** variable for now and focus on what's happening with the **Event**.
+
+At first, the results for `Event [Reward]` might look like they're giving us the values for the **Reward**. Super easy, right?!?
+
+Well... not exactly! 🤔
+
+**In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the Event itself.**
+
+It sounds a bit confusing, but let's break it down. If we want to understand what is the estimate for a **Rewarding** event we need to take the **Intercept** (1390.1) –as we mentioned that is actually the event **NoReward** – and then just simply add to it the Estimate for the `Event [Reward]` (99.8). So the model is telling us that a Rewarding event should be 1390.1 + 99.8 = 1489.9.
+
+See? Not too bad! Let's visualize it and make it even clearer!
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+# Define intercept and slope for the NoReward
+intercept_NoReward <- model_p[1,2]
+intercept_NoReward_se <- model_p[1,3]
+
+intercept_Reward <- model_p[3,2] + intercept_NoReward
+intercept_Reward_se <- model_p[3,3]
+
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue')
+
+ggplot() +
+  geom_vline(xintercept = 0, lwd = 0.4, linetype = 'dashed') +
+
+  geom_pointrange(aes(x=-.15, y=intercept_NoReward, ymin= intercept_NoReward-intercept_NoReward_se, ymax= intercept_brush+intercept_NoReward_se, color = 'NoReward'), lwd=1.3)+
+  geom_pointrange(aes(x=.15, y=intercept_Reward, ymin= intercept_Reward-intercept_Reward_se, ymax= intercept_Reward+intercept_Reward_se, color = 'Reward'), lwd=1.3)+
+  
+  geom_segment(aes(x = 0, xend = 0, y = intercept_NoReward, yend = intercept_Reward), 
+               color = "black", lwd = 1.2,
+               arrow = arrow( length = unit(0.1, "inches"), ends = "both")) +
+  annotate("text", x = -0.05, y = 1450, label = expression(beta), size = 4) +
+  
+  # Customize the color scale for the legend
+  scale_color_manual( values = color_map) +
+  coord_cartesian(xlim = c(-1,3), ylim = c(1200,1550))+
+  
+  # Labels and theme
+  labs(y = 'Looking time', x = 'Event number', color = '') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = c(0),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)")  # Corresponding custom labels
+  )
+```
+
+### Event_trial
+
+So, interpreting the coefficients for categorical variables wasn't too tricky, right? But what about continuous variables like `Event_trial`?
+
+No worries, it's actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.
+
+In simpler terms, it shows how much the outcome (in this case, `LookingTime`) changes for each unit increase in the continuous variable (`Event_trial`). So, in our case the coefficient for `Event_trial` is -7.5, this means that for each unit increase in `Event_trial`, the LookingTime is expected to decrease by 7.5 units (assuming all other variables stay the same).
+
+::: callout-important
+Remember!! This coefficient represents the effect of `Event_trial` specifically when `Event` is at its reference level (**NoReward**). In other words, this -7.5 decrease in LookingTime per trial applies specifically to the **NoReward** condition!
+:::
+
+Even easier..let's plot again!
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+slope_EventTrial <- model_p[2,2]
+
+# Some hypothetical Event_trial values
+time_values <- seq(-1, 20, by = 2)
+
+# Create a small data frame for the main (NoReward) line
+df_p <- data.frame(
+  time  = time_values,
+  est_performance_EventTrial = intercept_NoReward + slope_EventTrial * time_values
+)
+
+
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue', "EventTrial" = '#e04d01')
+
+
+ggplot() +
+  geom_vline(xintercept = 0, lwd =0.4,linetype = "dashed") +
+
+  geom_line(data = df_p, aes(x = time, y = est_performance_EventTrial), color = 'darkred', size  = 1) +
+  # geom_pointrange(aes(x  =0, y = intercept_brush, ymin = intercept_brush - intercept_brush_se,ymax = intercept_brush + intercept_brush_se, fill = 'NoReward' ),
+  #                 color = 'black', shape = 21, 
+  #                 lwd = 1.3,fatten = 8) +
+  
+  
+    
+  geom_pointrange(aes(x=0, y=intercept_brush, ymin= intercept_brush-intercept_brush_se, ymax= intercept_brush+intercept_brush_se, color = 'NoReward'), lwd=1.3)+
+  
+  annotate("text", x = 4.4, y = 1315, label = expression(beta), size = 4) +
+  geom_path(aes(x = c(4, 4, 10), y = c(1350, 1300, 1300)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
+  
+  # Customize the color scale for the legend
+  scale_color_manual(values = color_map) +
+  scale_fill_manual(values = color_map)+
+  # Set the limits for x and y axes
+  coord_cartesian(xlim = c(-1,20), ylim = c(1200,1550))+
+  
+  # Labels and theme
+  labs(y = 'Looking time', x = 'Event number', color = '') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = seq(0,20,4),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)", as.character(seq(4,20,4)))  # Corresponding custom labels
+  )
+```
+
+## Interaction
+
+Alright, now we're getting to the final step! Let's talk about the interaction between `Event_trial` and `Event`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
+
+We'll take it step by step and look at the interaction in our model parameters. The interaction term between `Event_trial` and `Event [Reward]` tells us how the relationship between `Event_trial` and `LookingTime` changes when we switch from the reference Event (**NoReward**) to the **Reward** condition.
+
+To put it simply:
+
+-   For **NoReward** events, **LookingTime** decreases by 7.5 units per trial (that's our main `Event_trial` coefficient)
+
+-   The interaction coefficient (let's say it's 0.13) tells us how this slope changes for **Reward** events
+
+So for **Reward** events, the slope would be: -7.5 + 0.13 = -7.37 units per trial.
+
+What does this mean in real terms? If the interaction coefficient is positive (like in our example), it means participants' looking time decreases more slowly during **Reward** trials compared to **NoReward** trials – the estimate is slightly less negative.
+
+::: callout-important
+In this model the interaction effect is extremely small and not significant. This means that there is actually no difference in how the Event_trial predicted Looking time in either NoReward or Reward! Looking time decreases at basically the same rate regardless of which event type we're looking at!!!
+:::
+
+While there is no significant difference, let's plot the estimated effects for **Event_trial** for both Reward and **NoReward** conditions to visualize this relationship!
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 8
+#| fig-width: 10
+# Define intercept and slope for the NoReward condition
+intercept_NoReward <- model_p[1,2]  # Intercept for NoReward
+intercept_NoReward_se <- model_p[1,3]
+
+# Define intercept for Reward condition (Intercept + Reward Effect)
+intercept_Reward <- model_p[3,2] + intercept_NoReward
+intercept_Reward_se <- model_p[3,3]
+
+# Define slopes
+slope_EventTrial <- model_p[2,2]  # Slope for Event Trial
+slope_Interaction <- model_p[4,2] # Interaction effect
+
+# Some hypothetical Event_trial values
+time_values <- seq(-1, 20, by = .05)
+# index <- which.min(abs(time_values - (-0.15)))
+
+# Create a small data frame for plotting
+df_p <- data.frame(
+  time  = time_values,
+  est_performance_EventTrial = intercept_NoReward + slope_EventTrial * time_values,
+  est_performance_Interaction = intercept_Reward + (slope_EventTrial + slope_Interaction) * time_values
+)
+
+df_p[df_p$time == -0.15,]
+
+
+color_map <- c("NoReward" = "darkred", "Reward" = 'darkblue')
+
+
+
+ggplot()+
+    geom_vline(xintercept = 0, lwd =0.4, linetype = 'dashed') +
+
+  geom_line(data = df_p, aes(x = time, y = est_performance_EventTrial), color = "darkred", lwd  = 1) +
+  geom_line(data = df_p, aes(x = time, y = est_performance_Interaction), color = "darkblue", lwd  = 1)+
+  
+  geom_pointrange(aes(x =-.15, y = intercept_brush, ymin = intercept_brush - intercept_brush_se,ymax = intercept_brush + intercept_brush_se, color = 'NoReward' ),
+                  lwd  = 1.3) +
+  geom_pointrange(aes(x=.15, y=intercept_Reward, ymin= intercept_Reward-intercept_Reward_se, ymax= intercept_Reward+intercept_Reward_se, color = 'Reward'),
+                  lwd  = 1.3)+
+
+
+  annotate("text", x = 4.4, y = 1315, label = expression(beta), size = 4) +
+  geom_path(aes(x = c(4, 4, 10), y = c(1350, 1300, 1300)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
+  
+  annotate("text", x = 6.4, y = 1415, label = expression(beta), size = 4) +
+  geom_path(aes(x = c(6, 6, 11), y = c(1440, 1400, 1400)), 
+          color = "black", lwd = 1.2, arrow = arrow( length = unit(0.1, "inches"), ends = "both"))+
+  
+  
+  scale_color_manual( values = color_map) +
+  coord_cartesian(xlim = c(-1,20), ylim = c(1200,1550))+
+  
+  # Labels and theme
+  labs(y = 'Looking time', x = 'Event number', color = '') +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')+
+    # Customize x-axis labels
+  scale_x_continuous(
+    breaks = seq(0,20,4),              # The x-values where you want ticks
+    labels = c("0\n(Intercept)", as.character(seq(4,20,4)))  # Corresponding custom labels
+  )
+```
+
+I hope that by now you got a decent understanding on how to interpret what a linear model is telling you!! Different kinds of models will add small pieces of information here and there, but the main information will still be there. Thus, if you got here, you are a step closer to becoming a stats genius!!! 🧠📊
+
+**But wait, we're not done yet!** Now it's time to check whether our model actually meets the assumptions of linear regression. Remember those plots we generated earlier? Let's make sure our statistical foundation is solid before we draw any final conclusions!
+
+# Model checks
+
+So now we have run our model and seen the summary... That's great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require some data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won't be valid.
+
+::: callout-warning
+As we mentioned at the beginning of our tutorial the model we have run in this tutorial is a very simple model that is not actully...correct!!
+:::
 
 What are these assumptions?? Well they depend a lot on the model you are running. We won't go into much details as there are very good website that explain them<sup>[1](https://bookdown.org/pingapang9/linear_models_bookdown/assumptions.html)</sup> ,<sup>[2](https://www.statology.org/linear-regression-assumptions/)</sup>, in this simple linear mode they are:
 
 1.  **Linear relationship:** There exists a linear relationship between the independent variable, x, and the dependent variable, y.
 
-2.  **Independence:** The residuals are independent. In particular, there is no correlation between consecutive residuals in time series data.
+2.  **Independence:** The residuals are independent. In particular, there is no correlation between consecutive residuals in time-series data.
 
 3.  **Homoscedasticity/Homogeneity of variance:** The residuals have constant variance at every level of x.
 
@@ -152,30 +504,33 @@ There is a super easy and convenient way we usually check these assumptions. Usi
 ::: callout-note
 [**Easystats**](https://easystats.github.io/easystats/)
 
-Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://cran.r-project.org/web/packages/report/index.html), [**correlation**](https://cran.r-project.org/web/packages/correlation/index.html), [**modelbased**](https://cran.r-project.org/web/packages/modelbased/index.html), [**bayestestR**](https://cran.r-project.org/web/packages/bayestestR/index.html), [**effectsize**](https://cran.r-project.org/web/packages/effectsize/index.html), [**see**](https://cran.r-project.org/web/packages/see/index.html), [**parameters**](https://cran.r-project.org/web/packages/parameters/index.html), [**performance**](https://cran.r-project.org/web/packages/performance/index.html), [**insight**](https://cran.r-project.org/web/packages/insight/index.html), [**datawizard**](https://cran.r-project.org/web/packages/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats**.
+Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://easystats.github.io/report/index.html), [**correlation**](https://easystats.github.io/correlation/index.html), [**modelbased**](https://easystats.github.io/modelbased/index.html), [**bayestestR**](https://easystats.github.io/bayestestR/index.html), [**effectsize**](https://easystats.github.io/effectsize/index.html), [**see**](https://easystats.github.io/see/index.html), [**parameters**](https://easystats.github.io/parameters/index.html), [**performance**](https://easystats.github.io/performance/), [**insight**](https://easystats.github.io/insight/index.html), [**datawizard**](https://easystats.github.io/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats** with `library(easystats)`.
 
-In this tutorial here we will use the function from the package [**performance**](https://cran.r-project.org/web/packages/performance/index.html)**.** This is a package to check model performance. However instead of importing [**performance**](https://cran.r-project.org/web/packages/performance/index.html)we will import **Easystats** that will import all of the packages mentioned above.
+In this tutorial here we will use the function from the package [**performance**](https://easystats.github.io/performance/)**.** This is a package to check model performance metrices. However instead of importing **performance** we will import **Easystats** that will import all of the packages mentioned above.
 :::
 
 So now we import `easystats` and we use the function [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) to indeed check the model assumptions.
 
 ```{r}
-#| fig-height: 8
-#| fig-width: 12
-#| fig-dpi: 300
+#| label: PlotCheck
+#| message: false
 #| warning: false
-
+#| fig-dpi: 300
+#| fig-height: 11
+#| fig-width: 14
 library(easystats)
-check_model(mod)
+check_model(mod_lm)
 ```
 
 Perfect all done!! We have a plot of the model assumptions and we can check if they are met!! But what do these plot represent? Here below we created a table that mirrors each plot with it explanation in it. These are brief and simple explanations. If you want to understand more about the [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) function we suggest you to read the documentation about it and also the [very nice vignette](https://easystats.github.io/performance/articles/check_model.html) that the package provides.
 
 ```{r}
+#| label: TableChecks
 #| echo: false
+#| message: false
 #| warning: false
-
-# Load necessary packages
+#| fig-height: 10
+#| fig-width: 10
 library(gt)
 library(gtExtras)
 library(glue)
@@ -195,7 +550,7 @@ data <- data.frame(
 )
 
 # Create the gt table, apply the custom theme, and add additional styling
-table <- gt(data) %>%
+gt(data) %>%
   fmt_markdown(columns = everything()) %>%
   gt_theme_nytimes() %>%
   # Add a title to the table and ensure it is centered
@@ -232,48 +587,46 @@ table <- gt(data) %>%
     table.border.right.width = px(1),
     column_labels.hidden = TRUE
   )
-
-# Print the table
-table
 ```
 
+Given these information about these plots.... don't you think there is something that doesn't add up???????? 🤔
+
+Well some assumptions are not really met aren't they!!! Look at those residuals!!! Not great...not really normal...not really straight!! 📉
+
+Do not worry!! We have fit an extremely simple model in this tutorial... as you will see in the next tutorial this model is actually WRONG!!! Just do not worry...this model has served its purpose.......for now.
+
 ::: callout-tip
-One of the awesome features of `easystats` is its broad support for various model types. What's the big deal? Well, it means that the `check_model()` function adapts its checks based on the specific model you're using! This flexibility makes it an incredibly powerful and user-friendly tool. Pretty much any model you've just run (or at least most of them) can be fed into the `check_model()` function, allowing you to easily verify if it meets the necessary assumptions.
+One of the awesome features of `easystats` is its broad support for various model types. What's the big deal? Well, it means that the `check_model()` function adapts its checks based on the specific model you're using! This flexibility makes it an incredibly powerful and user-friendly tool. Most of the linear and non-linear models (or at least most of them) can be fed into the `check_model()` function, allowing you to easily verify if it meets the necessary assumptions.
 
 **Keep in mind: Always be aware of which assumptions your model should satisfy. We're not suggesting you use this function blindly! Instead, we're showing you how to efficiently plot all relevant assumptions in one go. It's simpler and quicker!!**
 :::
 
-### Statistical tests
+## Statistical tests
 
-You've probably noticed that we've been relying on visual checks so far. In our view, this is often the best approach, as statistical tests for model assumptions can sometimes be overly stringent. However, there may be situations where you need to provide statistical evidence to support your model assumptions. This often happens when a reviewer (let's call them Reviewer 2, shall we?) insists on seeing numerical proof. Fortunately, `easystats` has got your back.
+You've probably noticed that we've been relying on visual checks so far. In our view, this is often the best approach, as statistical tests for model assumptions can sometime be overly stringent. However, there may be situations where you need to provide statistical evidence to support your model assumptions. This often happens when a reviewer (let's call them Reviewer 2, shall we?) insists on seeing numerical proof. Fortunately, `easystats` has got your back.
 
 Here are some examples of what you can use:
 
 ```{r}
-check_normality(mod)
+#| label: StatNormality
+#| warning: false
+check_normality(mod_lm)
 ```
 
 To check the normality of our residuals and:
 
 ```{r}
-check_homogeneity(mod)
+#| label: StatHomogeinity
+#| warning: false
+check_homogeneity(mod_lm)
 ```
 
-to check homoscedasticity/homogeneity of variance. Again you can find all the function in the [**performance**](https://cran.r-project.org/web/packages/performance/index.html) package (part fo the Easystats collection)
+to check homoscedasticity/homogeneity of variance. Again you can find all the function in the **performance** package (part of the Easystats collection)
 
-## Interpret Results
+# END
 
-But how to interpret these results?
+Well done reaching the end!!
 
-```{r}
-library(ggplot2)
+This was a tough one!! But again, remember these are solid foundations that will come into use so many times in the future!!
 
-model_p = parameters(mod)
-
-ggplot()+
-  # Intercept
-  geom_point(aes(x = 0, y = model_p[1,2]), size = pi * model_p[1,3]^2, alpha = 0.3, color = 'darkred')+
-  geom_point(aes(x = 0, y = model_p[1,2]), color = 'darkred')+
-
-  coord_cartesian(xlim = c(-5,5), ylim = c(-5,5))
-```
+Understanding linear models is like learning to ride a bike - it might feel wobbly at first, but once you get it, you'll never forget! You now have the skills to interpret intercepts, coefficients, p-values, and interactions, plus you know how to check if your model is actually doing what it's supposed to do.

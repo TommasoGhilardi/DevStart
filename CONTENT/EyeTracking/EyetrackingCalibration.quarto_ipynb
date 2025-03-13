@@ -1,0 +1,400 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Calibrating eye-tracking\"\n",
+        "eval: false\n",
+        "date: \"10/19/2024\"\n",
+        "\n",
+        "jupyter:\n",
+        "  kernel: \"python3\"\n",
+        "  \n",
+        "author-meta: \"Tommaso Ghilardi\"\n",
+        "description-meta: \"Learn how to extract different eye-tracking measures from the collected data\"\n",
+        "keywords: \"eye-tracking, calibration, tobii, psychopy, tobii infant, experimental psychology, tutorial, experiment, DevStart, developmental science\"\n",
+        "categories:\n",
+        "  - Eye-tracking\n",
+        "  - Python\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Calibration\n",
+        "\n",
+        "Before running an eye-tracking study, we usually need to do a calibration. What is a calibration you ask??\n",
+        "\n",
+        "Well, an eye-tracker works by using illuminators to emit near-infrared light towards the eye. This light reflects off the cornea, creating a visible glint or reflection that the eye-tracker's sensors can detect. By capturing this reflection, the eye-tracker can determine the position of the eye relative to a screen, allowing it to pinpoint where the user is looking, known as the gaze point.\n",
+        "\n",
+        "[![Image from the tobii website](https://help.tobii.com/hc/article_attachments/360036648293/How_DoesEyetrackingWork_ScreenBased.jpg){fig-align=\"center\" width=\"528\"}](https://help.tobii.com/hc/en-us/articles/360023794433-How-does-the-calibration-work)\n",
+        "\n",
+        "There are different ways to run a calibration using tobii eye-trackers. Here below the ones we have used:\n",
+        "\n",
+        "## Tobii pro\n",
+        "\n",
+        "Tobii offers a nice software called Tobii Pro, which allows you to run calibrations with considerable flexibility. However, Tobii Pro requires a paid license, which may not always be available to you. If you're fortunate enough to have a paid license for Tobii Pro, by all means, take advantage of it. But if you don't, don't worry! Keep reading, as we have alternative solutions to share with you.\n",
+        "\n",
+        "## Tobii pro eye-tracker manager\n",
+        "\n",
+        "Another possibility is to use [Tobii pro eye-tracker manager](https://connect.tobii.com/s/etm-downloads?language=en_US), an alternative software from Tobii. Unlike Tobii Pro, this application is free to use, though its features are more limited. If you're looking to use Tobii software and don't require advanced calibration options, this could be a suitable choice.\n",
+        "\n",
+        "## Psychopy tobii infant\n",
+        "\n",
+        "Finally, if you are broke (like us!) and/or you want flexibility in running your calibration, one of the best option is to use the Tobii SDK that allows us to interact with the eyetrackers using Python. However, running a calibration using the SDK is pretty complex. We are trying to write a nice script to make it easier but in the meantime we have another solution.... We can use !! Psychopy tobii infants is a nice python code that wraps around the Tobii SDK making it easy to run a calibration, especailly an infant friendly one!! This code collection allows us to use the Tobii SDK with the Psychopy library.\n",
+        "\n",
+        "Finally, if you are broke and you want flexibility in running your calibration, one of the best options is to use the Tobii SDK. How we explained in previous tutorials ([Create an eye-tracking experiment](/CONTENT/GettingStarted/CreateAnEyetrackingExperiment.qmd)), this SDK allows the interaction with eye-trackers using Python. However, implementing a calibration using the SDK can be quite challenging....... We're are trying to write an easy to explain and run code to perform calibrations, but in the meantime, we have an alternative solution!!\n",
+        "\n",
+        "Enter [Psychopy_tobii_infant](https://github.com/yh-luo/psychopy_tobii_infant)! This is a series of python functions that effectively wraps around the Tobii SDK, making it much easier to run calibrations, particularly those designed for infants. This code collection enables us to use the Tobii SDK in conjunction with the PsychoPy library, offering a more accessible approach to eye-tracking calibration!!\n",
+        "\n",
+        "In the following paragraph we will see together how to prepare and use Psychopy tobii infant to run a nice and infant friendly calibration.\n",
+        "\n",
+        "::: callout-note\n",
+        "Use Psychopy tobii infant to run studies\n",
+        "\n",
+        "One question that you could ask yourself is... can I use Psychopy tobii infants to run my eye-tracking studies?? Well yes!! We have actually used it for few of our studies. Psychopy tobii infants provides an easy intarface between tobii eye-trackers and psychopy.\n",
+        "\n",
+        "Over the years we have personally move away from it but we often come back to it for some of its handy functionalities (e.g. the calibration).\n",
+        ":::\n",
+        "\n",
+        "### Download\n",
+        "\n",
+        "Ok, let's get started!! First thing first we need to download the codes of Psychopy tobii infant. You can find them here on GitHub: <https://github.com/yh-luo/psychopy_tobii_infant>.\n",
+        "\n",
+        "On this page, you can click on ***\\<\\>Code*** and then on ***Download ZIP*** as shown below:\n",
+        "\n",
+        "[![](/images/CreateAnEyetrackingExperiment/DowloadPsychopyTobiiInfant.jpg){fig-align=\"center\"}](https://github.com/yh-luo/psychopy_tobii_infant)\n",
+        "\n",
+        "Perfect!! Now that we have downloaded the code as a zip file we need to:\n",
+        "\n",
+        "-   extract the file\n",
+        "\n",
+        "-   identify the folder *\"psychopy_tobii_infant\"*\n",
+        "\n",
+        "-   copy this folder in the same location of your eye-tracking experiment script\n",
+        "\n",
+        "You should end up like with something like this:\n",
+        "\n",
+        "![](/images/CreateAnEyetrackingExperiment/FinalConfTobiiInfant.png){fig-align=\"center\"}\n",
+        "\n",
+        "**Now we are all set and ready to go !!!!!!!!!!**\n",
+        "\n",
+        "### Importing the functions\n",
+        "\n",
+        "We'll now import the required libraries and custom functions. First, we'll set the working directory to where our stimuli and the psychopy_tobii_infant folder are located. This allows Python to access these resources. Once set, we can easily import the necessary libraries and the custom functions from psychopy_tobii_infant for our eye-tracking experiment.\n"
+      ],
+      "id": "10bd0b60"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "from psychopy import visual, sound\n",
+        "\n",
+        "os.chdir(r\"C:\\Users\\tomma\\Desktop\\EyeTracking\\Files\\Calibration\")\n",
+        "\n",
+        "# import Psychopy tobii infant\n",
+        "from psychopy_tobii_infant import TobiiInfantController"
+      ],
+      "id": "f1996f07",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Done!! Now we can use its function to run our code.\n",
+        "\n",
+        "### Settings\n",
+        "\n",
+        "Before running our calibration we need to prepare a few things!\n",
+        "\n",
+        "First, we create a nice window. As we explained before, this is the canvas where we will draw our stimuli.\n"
+      ],
+      "id": "d2e79a57"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "winsize = [1920, 1080]\n",
+        "win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = \"#a6a6a6\", unit='pix')"
+      ],
+      "id": "9067e2f5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Second we will import a few stimuli. I will explain later what we need them for, just trust me for now. If you want to follow along [these are the stimuli we have used](/resources/EyetrackingCalibration/CalibrationStim.zip). Just download them and unzip them.\n",
+        "\n",
+        "Once you have downloaded the stimuli we can use `glob` to find all the .png in the folder, read the video file and the audio file.\n",
+        "\n",
+        "The .pngs are images of cute cartoon animals that we will use in the calibration.\n",
+        "\n",
+        "![](/resources/EyetrackingCalibration/animals.jpg.png){fig-align=\"center\" width=\"347\"}\n",
+        "\n",
+        "Let's find them and put the in a list.\n"
+      ],
+      "id": "c3f1634b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# visual stimuli\n",
+        "CALISTIMS = glob.glob(\"CalibrationStim\\\\*.png\")\n",
+        "\n",
+        "# video\n",
+        "VideoGrabber = visual.MovieStim(win, \"CalibrationStim\\\\Attentiongrabber.mp4\", loop=True, size=[800,450],volume =0.4, unit = 'pix')  \n",
+        "\n",
+        "# sound\n",
+        "Sound = sound.Sound(directory + \"CalibrationStim\\\\audio.wav\")"
+      ],
+      "id": "71da7603",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Perfect we have found all the stimuli that we need.\n",
+        "\n",
+        "Now we will use the TobiiInfantController that we have imported before to connect to the eye-tracker. It is extremely simple:\n"
+      ],
+      "id": "600c2609"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "EyeTracker = TobiiInfantController(win)"
+      ],
+      "id": "4738e7f4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Perfect we now even have our eye-tracker!!\n",
+        "\n",
+        "### Find the eyes\n",
+        "\n",
+        "The first step for a proper calibration involves centering the participant's eyes on the screen and ensuring their gaze is perpendicular to it. This positioning is crucial for accurate data collection.\n",
+        "\n",
+        "You can see here two classic scenarios of infants in front of a eye-tracker. Again, the important thing is that the head and gaze of the child is perpendicular to the screen\n",
+        "\n",
+        "![](/resources/EyetrackingCalibration/Calibration.jpg){fig-align=\"center\" width=\"753\"}\n",
+        "\n",
+        "But how to do it?? We can eyeball it but it's not going to be easy. Luckily we can get some help!!\n",
+        "\n",
+        "Using `EyeTracker.show_status()` we can see the eyes of the participant in relation to the screen. Therefore we can move either the eye-tracker or the infant to make sure the gaze is parallel to the screen. Sounds good doesn't it??!!?? However, most of the times infants won't look at the screen if nothing interesting is presented on it. Thus we need to capture their attention!!!!!\n",
+        "\n",
+        "We can use the video we imported before. We set it to autodraw (each time the window is flipped a new frame will be drawn automatically) and the we start it by calling `play()`.\n"
+      ],
+      "id": "03594b8a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# set video playing\n",
+        "VideoGrabber.setAutoDraw(True)\n",
+        "VideoGrabber.play()\n",
+        "\n",
+        "# show the relative position of the subject to the eyetracker\n",
+        "EyeTracker.show_status()"
+      ],
+      "id": "a58215d8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This is what we will see:\n",
+        "\n",
+        "![](/resources/EyetrackingCalibration/ShowStatus.jpg){fig-align=\"center\" width=\"852\"}\n",
+        "\n",
+        "In the center of the screen you will see the video we imported. In this case, a video of funny dancing fruits. But more importantly, at the top we can see the eyes of our participant. We need to make sure that we actually see the eyes and that they are centered in the screen. In addition is important to notice that under the eye position there is a green bar. The black line on it represents the distance of the participant head from the eye-tracker (the more on the right, the further from the screen; the more on the left, the closer to it). Ideally the black line should be in the center (overlapping the white thick line). This would indicate that the head of the participant is at an ideal distance (usually 65cm).\n",
+        "\n",
+        "Once we are satisfied with the position of the eye-tracker and the infant we can press `spacebar` to proceed to the next step!! Before doing that we will stop the presentation of\n"
+      ],
+      "id": "e398dc11"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# stop the attention grabber\n",
+        "VideoGrabber.setAutoDraw(False)\n",
+        "VideoGrabber.stop()"
+      ],
+      "id": "6f4dc25a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Calibration\n",
+        "\n",
+        "Ok, now that we are happy with the setup let's actually run the calibration. It only takes two steps.\n",
+        "\n",
+        "First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the center.\n",
+        "\n",
+        "The easiest way to define them is by using Psychopy's normalized unit.\n"
+      ],
+      "id": "6ec92eb1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "CALINORMP = [(-0.4, 0.4), (-0.4, -0.4), (0.0, 0.0), (0.4, 0.4), (0.4, -0.4)]"
+      ],
+      "id": "e21e05bf",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we usually like to work in pixel units, we could define them in pixels or just transform our `CALINORMP` using the dimension of our window.\n"
+      ],
+      "id": "733a5326"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "CALIPOINTS = [(x * winsize[0], y * winsize[1]) for x, y in CALINORMP]"
+      ],
+      "id": "36d428fb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Perfect! Now we run our calibration by running\n"
+      ],
+      "id": "fbdb182a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "success = controller.run_calibration(CALIPOINTS, CALISTIMS, audio = Sound)"
+      ],
+      "id": "0f726d78",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ok, but what is going to happen??? After running this line we will start our calibration. Using the numbers on our keyboard (use 1\\~9 (depending on the number of calibration points) to present) we will show 1 of the `.png` stimuli that we have listed in `CALISTIMS` in the selected position. The presentation of the cartoon will be accompanied by the sound passed with `Sound`. The cartoon will start to zoom in and out in the attempt to capture the attention of the infant.\n",
+        "\n",
+        "![](/resources/EyetrackingCalibration/ZoomingStim.jpg){fig-align=\"center\" width=\"852\"}\n",
+        "\n",
+        "Once we are confident that the infant is looking at the cartoon zooming in and out you can press **Space** to collect the first calibration sample. Once that's been done, we can move to the following points. Once all point are done we can press **Enter**. This will show the result of our calibration, e.g:\n",
+        "\n",
+        "![](/resources/EyetrackingCalibration/CalibrationResults.jpg){fig-align=\"center\" width=\"852\"}\n",
+        "\n",
+        "The red and green lines represent the gaze data from the left and right eyes, respectively. Each cluster of lines corresponds to a calibration point, with the central cluster indicating the main fixation point. Tight convergence of the lines within each cluster signifies high calibration accuracy and precision, while any significant discrepancies or spread indicate potential calibration issues.\n",
+        "\n",
+        "As you may have noticed, the bottom right corner shows no data. What happened?? Well probably the infant was not looking when we pressed the **Spacebar**. How to fix it? We can simply press the number on the keyboard related to the point that failed and then press **Spacebar**. This will restart the calibration for only that point. So we can focus on getting more data for this point to add to our already collected.\n",
+        "\n",
+        "In case more points are without data –or the data is just bad– we can select multiple points or even all of them (pressing 0). If we are happy with our calibration we can just press the **Spacebar** without selecting any points.\n",
+        "\n",
+        "::: callout-tip\n",
+        "The match between the infant eye and the position on the screen is made in the exact moment you press the Space button. If you wait too long to press it, the infant might look away and beat you to it! It may appear counterintuitive, but we usually prefer to be quite fast in our calibration process. Since duration doesn't matter but timing does, you will get better results! The fast switching seems to also capture infants' attention better, meaning that they are more likely to follow the location of the cartoon with their gaze.\n",
+        "\n",
+        "Remember, infants can easily get bored with our stimuli. Thus, being rapid and sudden in showing them may work to our advantage.\n",
+        ":::\n",
+        "\n",
+        "Well done!! Calibration is done!!!!\n",
+        "\n",
+        "Now we can start with our eye-tracking study!\n",
+        "\n",
+        "Here below the entire code.\n"
+      ],
+      "id": "75ea963a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "from psychopy import visual, sound\n",
+        "\n",
+        "# import Psychopy tobii infant\n",
+        "os.chdir(r\"C:\\Users\\tomma\\Desktop\\EyeTracking\\Files\\Calibration\")\n",
+        "from psychopy_tobii_infant import TobiiInfantController\n",
+        "\n",
+        "\n",
+        "#%% window and stimuli\n",
+        "winsize = [1920, 1080]\n",
+        "win = visual.Window(winsize, fullscr=True, allowGUI=False,screen = 1, color = \"#a6a6a6\", unit='pix')\n",
+        "\n",
+        "# visual stimuli\n",
+        "CALISTIMS = glob.glob(\"CalibrationStim\\\\*.png\")\n",
+        "\n",
+        "# video\n",
+        "VideoGrabber = visual.MovieStim(win, \"CalibrationStim\\\\Attentiongrabber.mp4\", loop=True, size=[800,450],volume =0.4, unit = 'pix')  \n",
+        "\n",
+        "# sound\n",
+        "Sound = sound.Sound(directory + \"CalibrationStim\\\\audio.wav\")\n",
+        "\n",
+        "\n",
+        "#%% Center face - screen\n",
+        "\n",
+        "# set video playing\n",
+        "VideoGrabber.setAutoDraw(True)\n",
+        "VideoGrabber.play()\n",
+        "\n",
+        "# show the relative position of the subject to the eyetracker\n",
+        "EyeTracker.show_status()\n",
+        "\n",
+        "# stop the attention grabber\n",
+        "VideoGrabber.setAutoDraw(False)\n",
+        "VideoGrabber.stop()\n",
+        "\n",
+        "\n",
+        "#%% Calibration\n",
+        "\n",
+        "# define calibration points\n",
+        "CALINORMP = [(-0.4, 0.4), (-0.4, -0.4), (0.0, 0.0), (0.4, 0.4), (0.4, -0.4)]\n",
+        "CALIPOINTS = [(x * winsize[0], y * winsize[1]) for x, y in CALINORMP]\n",
+        "\n",
+        "success = controller.run_calibration(CALIPOINTS, CALISTIMS, audio = Sound)\n",
+        "win.flip()"
+      ],
+      "id": "a1d3f794",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
