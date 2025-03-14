@@ -1,129 +1,103 @@
+/*------------------------------------*/
+/* 🌐 SCSS Defaults (Variables)       */
+/*------------------------------------*/
 /*-- scss:defaults --*/
 
+// Font Families
 $font-family-sans-serif: "Roboto", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
 $font-family-monospace: "Fira Mono", "Menlo", "Andale Mono", monospace;
+
+// Base font size and heading sizes
 $font-size-root: 16px;
 $h1-font-size: 2.2em;
 $h2-font-size: 1.75em;
 $h3-font-size: 1.5em;
 $h4-font-size: 1.25em;
-$toc-color: #008080;
 
+// Layout grid settings
+$grid-sidebar-width: 320px;
+$grid-body-width: 950px;
+$grid-margin-width: 300px;
+$grid-column-gutter-width: 1.5rem;
 
-/*-- scss:rules --*/
-
+// Default theme colors and styles
 :root {
     --bs-body-font-weight: 300;
-    /*--link-color: #007bff; /* Bright blue for links */
-    --sidebar-active-color: #008080; /* Teal for active links in the sidebar and TOC */
-
-    --toc-border-color: #dee2e6;
-
-    --sidebar-fg: #495057; /* Dark gray for sidebar text */
-    --sidebar-bg-docked: #f8f9fa; /* Light gray for sidebar background */
+    
+    /* Sidebar Colors */
+    --sidebar-fg: #495057;
+    --sidebar-bg-docked: #f8f9fa;
     --sidebar-border: #dee2e6;
-    --sidebar-part-color: #0056b3; /* Darker blue for sidebar headings */
+    --sidebar-active-color: #008080;
+    --sidebar-part-color: #0056b3;
     --sidebar-input-border: #ced4da;
     --sidebar-form-bg: transparent;
 
+    /* TOC */
+    --toc-border-color: #dee2e6;
+    --bs-link-color-rgb: 0, 112, 112;
+    --bs-link-hover-color-rgb: 0, 168, 168;
+
+    /* Figures and Images */
     --figure-img-border: 1px solid #dee2e6;
     --figure-img-shadow: 1px 1px 10px #dee2e6;
-    
+
+    /* Code Colors */
     --bs-code-color: #7d12ba;
-    --bs-code-bg: #DFE2E2; /* Light Gray */
+    --bs-code-bg: #DFE2E2;
+    --hl-code-comments: #6c757d;
 
-    --hl-code-comments: #6c757d; /* Gray for code comments */
-
+    /* Header/Footer */
     --header-footer-border: #dee2e6;
 
+    /* Tables */
     --table-tr-border: #dee2e6;
-    --table-out-borders: #adb5bd; /* Light gray for table borders */
-    --table-tr-hover: rgba(0, 123, 255, 0.1); /* Light blue for table row hover */
+    --table-out-borders: #adb5bd;
+    --table-tr-hover: rgba(0, 123, 255, 0.1);
 
+    /* Reader Toggle */
     --reader-toggle-bg: #f8f9fa;
     --reader-toggle-border: #ced4da;
 
-    --callout-color: #495057; /* Dark gray for callout text */
-    --callout-warning-bg: #fff3cd; /* Light yellow for warning callouts */
-    --callout-warning-title: #856404; /* Dark yellow for warning callout titles */
-    --callout-note-bg: #cce5ff; /* Light blue for note callouts */
-    --callout-note-title: #004085; /* Dark blue for note callout titles */
-    --callout-important-bg: #f8d7da; /* Light pink for important callouts */
-    --callout-important-title: #721c24; /* Dark pink for important callout titles */
-    --callout-caution-bg: #fff3cd; /* Light yellow for caution callouts */
-    --callout-caution-title: #856404; /* Dark yellow for caution callout titles */
-    --callout-tip-bg: #d4edda; /* Light green for tip callouts */
-    --callout-tip-title: #155724; /* Dark green for tip callout titles */
+    /* Callouts */
+    --callout-color: #495057;
+    --callout-warning-bg: #fff3cd;
+    --callout-warning-title: #856404;
+    --callout-note-bg: #cce5ff;
+    --callout-note-title: #004085;
+    --callout-important-bg: #f8d7da;
+    --callout-important-title: #721c24;
+    --callout-caution-bg: #fff3cd;
+    --callout-caution-title: #856404;
+    --callout-tip-bg: #d4edda;
+    --callout-tip-title: #155724;
 
+    /* Cards */
     --listing-card-border: #ced4da;
     --listing-card-shadow: rgba(0, 0, 0, 0.05);
     --listing-card-shadow-hover: rgba(0, 0, 0, 0.1);
-    
-    --bs-link-color-rgb: 0, 112, 112;
-    --bs-link-hover-color-rgb: 0, 168, 168;
 }
 
 
-// INLINE CODE COLOR
-p code:not(.sourceCode), 
-li code:not(.sourceCode), 
-td code:not(.sourceCode) {
-    background-color: var(--bs-code-bg);
-    color: var(--bs-code-color);
-    padding: .2em;
-    border-radius: 3px;
+/*------------------------------------*/
+/* 🛠️ SCSS Rules (Custom CSS)         */
+/*------------------------------------*/
+/*-- scss:rules --*/
+
+// Ensure <strong> and <b> render as bold
+strong, b {
+    font-weight: bold !important;
 }
 
 
-/* HIDE KEYWORDS */
-body main > header div.keywords {
-  display: none; /* Hides the keywords */
-}
+/*------------------------------------*/
+/* 📚 Sidebar and Navigation Styling  */
+/*------------------------------------*/
 
-
-
-// CODE OUTPUT BACKGROUND
-$code-output-bg: #f0f2f4; // Replace with your desired background color
-$code-output-color: #2d2d2d; // Replace with your desired text color
-$code-output-border-left-color: #A9C3C6; // Replace with your desired left border color
-
-// Apply styles to .cell-output.cell-output-stdout only
-.cell-output.cell-output-stdout {
-    background-color: $code-output-bg;
-    color: $code-output-color;
-    padding: 1px 4px 1px 4px; // Increase bottom padding to 10px
-    margin-bottom: 5px; // Add space below the cell output
-    border-top: none; 
-    border-left: 2px solid $code-output-border-left-color;
-    border-right: none;
-    border-bottom: none;
-    border-radius: 1px; // Optional: for squared corners
-    overflow: auto; // Ensure long code doesn't overflow the container
-}
-
-// Ensure no borders on pre elements
-pre {
-    border: none; // Remove any borders on pre elements
-    background: transparent; // Make sure the background is transparent if you don't want any background
-    padding: 0; // Remove padding if there's any applied by default
-}
-
-// Ensure no extra borders on the inner code element
-pre code {
-    border: none; // Remove any borders on the inner code element
-    background: transparent; // Make sure the background is transparent
-    padding: 0; // Remove padding if there's any applied by default
-    color: inherit; // Ensure the text color inherits from the container
-}
-
-
-
-
-// SIDEBAR
 #quarto-sidebar,
 #quarto-content .sidebar-navigation {
     .sidebar-item-container {
-        margin-bottom: 0.9em; /* Increased space between sidebar items */
+        margin-bottom: 0.9em;
 
         a {
             color: var(--sidebar-fg);
@@ -138,42 +112,39 @@ pre code {
             padding-left: 15px;
         }
 
-        /* Making main sections bold */
         .sidebar-item {
             font-weight: bold;
         }
     }
 }
 
-
-// SIDEBAR STYLING
-
-/* Style the section headers bold */
+// Sidebar Section Headers Bold
 #quarto-sidebar .sidebar-item.sidebar-item-section > .sidebar-item-container > a {
     font-weight: bold;
 }
 
-
+// Sidebar Logo Styling
 .sidebar-logo {
-  max-width: 12em;
-  padding-bottom: .5em;
+    max-width: 12em;
+    padding-bottom: .5em;
 }
 
-/* Increase size of sidebar tools icons */
+// Sidebar Tools Icon Size
 .sidebar-navigation .quarto-navigation-tool {
-  font-size: 1.1em; // Increase this value to make icons bigger
+    font-size: 1.1em;
 }
 
 
-// TOC
-/* Page Headings in TOC on Right Side */
+/*------------------------------------*/
+/* 📖 Table of Contents (TOC)         */
+/*------------------------------------*/
+
 #quarto-margin-sidebar,
 #quarto-content .margin-sidebar,
 #quarto-sidebar #TOC {
     ul {
         li a {
-            font-family: var(--toc-font-family);
-            color: var(--sidebar-fg); /* Set color to match the default sidebar text color */
+            color: var(--sidebar-fg);
             transition: color 0.3s;
         }
 
@@ -187,88 +158,104 @@ pre code {
 }
 
 
+/*------------------------------------*/
+/* 💻 Code Block and Output Styling   */
+/*------------------------------------*/
+
+// Inline Code Styling
+p code:not(.sourceCode), 
+li code:not(.sourceCode), 
+td code:not(.sourceCode) {
+    background-color: var(--bs-code-bg);
+    color: var(--bs-code-color);
+    padding: .2em;
+    border-radius: 3px;
+}
+
+// Code Output Block Styling
+.cell-output.cell-output-stdout {
+    background-color: #f0f2f4;
+    color: #2d2d2d;
+    padding: 1px 4px;
+    margin-bottom: 5px;
+    border-left: 2px solid #A9C3C6;
+    border-radius: 1px;
+    overflow: auto;
+}
+
+// Preformatted Text Styling
+pre {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+pre code {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: inherit;
+}
 
 
-// CUSTOM INFO CARD
+/*------------------------------------*/
+/* 🧩 Custom Components (Cards, Tabs) */
+/*------------------------------------*/
+
+// Custom Card Styling
 .custom-card {
-    background-color: #008080; /* Custom background color */
-    color: white; /* Text color */
-    border: none; /* Remove the border */
-    margin: 2px 0; /* Adjust margin for spacing */
+    background-color: #008080;
+    color: white;
+    border: none;
+    margin: 2px 0;
 }
 
 .custom-card-header {
-    background-color: #00a2a2; /* Custom header background color */
-    color: white; /* Header text color */
-    border-bottom: none; /* Remove the bottom border of the header */
-    padding: 0.5rem; /* Reduce padding in the header */
+    background-color: #00a2a2;
+    padding: 0.5rem;
 }
 
 .card-body {
-    padding: 0.5rem; /* Adjust padding for the body */
+    padding: 0.5rem;
 }
 
 .card-title {
-    margin-top: 0; /* Remove any margin at the top */
-    margin-bottom: 0.25rem; /* Reduce margin at the bottom */
-    font-size: 1.25rem; /* Adjust font size if needed */
+    margin-top: 0;
+    margin-bottom: 0.25rem;
 }
 
 .card-text {
-    margin-bottom: 0; /* Adjust text spacing */
-    margin-top: 0.25rem; /* Ensure there's minimal space between title and text */
+    margin-bottom: 0;
+    margin-top: 0.25rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// The left hand sidebar
-$grid-sidebar-width: 250px !default;
-
-// The main body
-$grid-body-width: 950px !default;
-
-// The right hand margin bar
-$grid-margin-width: 300px !default;
-
-// The gutter that appears between the above columns
-$grid-column-gutter-width: 1.5rem !default;
-
-
-
-
-
-
-
-
+// Tab Pane Styling
 .tabset_cool .tabbed-pane .nav-tabs .nav-link {
     width: 100%;
     text-align: left;
     padding: 12px;
-    font-weight: bold !important; /* Force bold style */
+    font-weight: bold !important;
 }
 
 .tabset_cool .tabbed-pane .nav-tabs {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 200px; /* Adjust as needed */
-    margin-right: 20px; /* Space between tabs and content */
+    width: 200px;
 }
 
 .tabset_cool .tabbed-pane .nav-tabs .nav-item {
-    width: 100%;
-    margin-bottom: 10px; /* Adds more space between tabs */
+    margin-bottom: 10px;
 }
 
 .tabset_cool .tabbed-pane .tab-content {
     display: flex;
+}
+
+
+/*------------------------------------*/
+/* 🚫 Hide Keywords Section           */
+/*------------------------------------*/
+
+body main > header div.keywords {
+    display: none;
 }
