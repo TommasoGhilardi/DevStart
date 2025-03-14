@@ -85,7 +85,7 @@ head(averaged_data)
 In this step, we used the **average** to calculate an index for each trial, meaning we averaged the pupil dilation over the trial duration. However, this is not the only option. Other approaches include extracting the **peak** value (`max(mean_pupil, na.rm = TRUE)`) or calculating the **sum** of the signal (`sum(mean_pupil, na.rm = TRUE)`), which can also represent the **area under the curve (AUC)** for the trial.
 :::
 
-### Linear mixed-effect model
+### Linear mixed-effects model
 
 With a single value for each participant, condition, and trial (averaged across time points), we are now ready to proceed with our analysis. Even if the word "Linear mixed-effect model" might sound scary, the model is actually very simple. We take our experimental conditions (Event) and check whether they affect pupil size (mean_pupil). To account for individual differences in pupil response intensity, we include participants as a random intercept.
 
@@ -102,7 +102,9 @@ model_avg = lmer(mean_pupil ~ Event + (1|Subject), data = averaged_data)
 summary(model_avg) # summary of the model
 ```
 
-We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you’re curious about how to interpret mixed-effects model outputs, you can check out this excellent guide: [Linear mixed-effects models](https://mspeekenbrink.github.io/sdam-r-companion/linear-mixed-effects-models.html). It provides a great foundation. **And keep an eye out for our upcoming page dedicated to mixed-effects modeling, where we’ll break everything down step by step!**
+::: callout-tip
+We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you are not familiar with linear mixed-effects models you can check our introduction of [Linear models](..\Stats\LinearModels.qmd) and [Linear mixed-effects models](..\Stats\LinearMixedModels.qmd) where we try to break everything down step by step!
+:::
 
 The key takeaway here is that there’s a significatn difference between the **Event**. Specifically, the **Square** cue appears to result in smaller pupil dilation compared to the **Circle** event (which serves as the reference level for the intercept). **COOL!**
 

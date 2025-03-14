@@ -8,7 +8,7 @@ categories:
   - Stats
   - Mixed effects models
 drafts: True
-draft-mode: unlinked  
+draft-mode: linked  
 ---
 
 ```{=html}

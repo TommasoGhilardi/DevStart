@@ -10,7 +10,7 @@ categories:
   - linear models
   
 drafts: True
-draft-mode: unlinked  
+draft-mode: linked  
 ---
 
 Welcome to the first tutorial on data analysis!!! Today we are going to talk about one of the most flexible statistical methods: Linear models.
@@ -37,7 +37,7 @@ What's truly fascinating about linear models is their versatility. They start of
 
 Think of linear models as the foundation of a house. ![](/images/Stats/Lm/House.png){fig-align="right" style="float:left; margin-right:10px;margin-bottom:10px;" width="150"}
 
-You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion. This adaptability allows us to perform a wide range of analyses, from straightforward relationships to intricate, multi-faceted studies.
+You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion.
 
 In essence, linear models offer a perfect balance: they're accessible enough for beginners to grasp, yet powerful enough to satisfy the needs of advanced researchers. As we dive deeper into this topic, you'll see just how these seemingly simple tools can unlock complex insights in your data.
 
@@ -45,7 +45,7 @@ In essence, linear models offer a perfect balance: they're accessible enough for
 
 OK, enough chitchat - let's start with a practical example. We'll be working with a data set we created specifically for this tutorial. As mentioned, we're going to begin with a very basic model, and in the upcoming tutorials, we'll gradually increase both the complexity and accuracy of our approach.
 
-So, if you notice something that doesn't seem quite perfect at this stage, don't worry! It's all part of the plan. Our goal is to guide you step-by-step towards building the ideal model. Just remember, this process takes time!
+So, if you notice something that doesn't seem quite perfect at this stage, don't worry! It's all part of the plan. Our goal is to guide you step-by-step towards building the best model. Just remember, this process takes time!
 
 ## Import data
 
@@ -66,9 +66,9 @@ You can see that the data is really simple! We have 4 columns:
 
 -   `Event` represent which condition we were in
 
--   `Event_trial`the passing number of trials
+-   `Event_trial` the passing number of trials
 
--   `ReactionTime` we will ignore this variable for now
+-   `ReactionTime` how quickly participants reacted to the stimuli. We will ignore this variable for now
 
 -   `LookingTime`the variable of interest for today, the one that we want to model
 
@@ -94,7 +94,7 @@ In R, model formulas follow a specific structure. On the left side of the formul
 
 We can extend this model by adding another variable, such as `Event`, to see if it also predicts LookingTime:
 
--   `LookingTime ~ Event_trial + Event`. This formulation tells the model to assess whether either `Event_trial` or `Event` predicts `LookingTime`, treating them as independent predictors.
+-   `LookingTime ~ Event_trial + Event`. This formulation tells the model to assess whether either `Event_trial` and `Event` predicts `LookingTime`, treating them as independent predictors.
 
 To examine the interaction between these variables, we use a slightly different syntax:
 
@@ -146,25 +146,29 @@ Here what the summary is telling us!!
 
 -   **Coefficients**: This is where the real magic happens! This section displays:
 
-    -   **Estimates** - The actual numbers that tell us how much our outcome changes when we tweak each predictor (also often called beta coefficient)
+    -   **Estimates** - The actual numbers that tell us how much our outcome changes when we tweak each predictor
+
+        ::: callout-note
+        Estimates are often called **beta coefficients** and are represented using the Greek letter β (we will use this in some plots as it is easier to show)
+        :::
 
     -   **Standard Error** - How confident we are about those estimates (smaller = more confident!)
 
     -   **T-value** - A measure of how many standard errors away from zero our estimate is
 
-    -   **p-value** - Our trusty friend that tells us if an effect is worth writing home about!
+    -   **p-value** - The statistical measure that helps us determine if an effect is statistically significant
 
 <!-- -->
 
 -   **Model Fit**: The final act of our statistical show! Here we find:
 
-    -   **Residual standard error:** The average miss by our prediction line. Like golf, lower scores are better!
+    -   **Residual standard error:** The average miss by our prediction line ( lower scores are better).
 
-    -   **Multiple R-Squared:** The percentage of LookingTime's mood swings that our predictors can explain. Ranges from 0 (clueless) to 1 (mind reader)!
+    -   **Multiple R-Squared:** The proportion of variance explained by our predictors. Ranges from 0 (no explanation) to 1 (perfect explanation).
 
-    -   **Adjusted R-squared:** R-squared that's been on a diet to account for having multiple predictors. Great for comparing models with different numbers of variables.
+    -   **Adjusted R-squared:** A modified version of R-squared that accounts for the number of predictors in the model. Useful for comparing models with different numbers of variables.
 
-    -   **F-statistics and p-value:** Tells us if our model is any better than just guessing the average. If p \< 0.05, our model deserves a round of applause!
+    -   **F-statistics and p-value:** Tests whether the model as a whole is statistically significant. If p \< 0.05, the model performs significantly better than using just the intercept.
 
 ## Estimates
 
@@ -260,11 +264,11 @@ As you can see, the intercept is pretty straightforward—it gives us the estima
 
 Awesome! Now that we've got the intercept down, let's take a look at the rest of the model output. We'll skip over the **Event_trial** variable for now and focus on what's happening with the **Event**.
 
-At first, the results for `Event [Reward]` might look like they're giving us the values for the **Reward**. Super easy, right?!?
+At first, the results for `Event [Reward]` might look like they're giving us the value of looking time for the **Reward**. Super easy, right?!?
 
 Well... not exactly! 🤔
 
-**In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the Event itself.**
+**In linear models, each coefficient shows the difference in relation to the intercept (the 0 or the reference level), not the exact value of the Reward condition.**
 
 It sounds a bit confusing, but let's break it down. If we want to understand what is the estimate for a **Rewarding** event we need to take the **Intercept** (1390.1) –as we mentioned that is actually the event **NoReward** – and then just simply add to it the Estimate for the `Event [Reward]` (99.8). So the model is telling us that a Rewarding event should be 1390.1 + 99.8 = 1489.9.
 
@@ -474,6 +478,12 @@ ggplot()+
     labels = c("0\n(Intercept)", as.character(seq(4,20,4)))  # Corresponding custom labels
   )
 ```
+
+::: callout-important
+Do you notice any difference in how the slopes between the two conditions? Probably not! If you examine the model summary, you'll see the interaction effect is very small and not statistically significant.
+
+This tells us that Event_trial predicts Looking time similarly in both **NoReward** and Reward conditions. In other words, looking time decreases at essentially the same rate regardless of which event type participants observed.
+:::
 
 I hope that by now you got a decent understanding on how to interpret what a linear model is telling you!! Different kinds of models will add small pieces of information here and there, but the main information will still be there. Thus, if you got here, you are a step closer to becoming a stats genius!!! 🧠📊
 

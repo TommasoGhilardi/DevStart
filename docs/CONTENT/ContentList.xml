@@ -39,7 +39,7 @@ Note
 <p>Before starting any type of analysis, let’s import the data and take a quick look at it.</p>
 <section id="import-data" class="level2"><h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>The data used in this tutorial comes from the pre-processing tutorial of pupil dilation. If you haven’t run that tutorial yet, it’s a good idea to check it out first to ensure your data is prepared and ready for analysis: <a href="../../CONTENT/EyeTracking/PupilPreprocessing.html">Pre-processing pupil data</a>. In case you did not save the result of the pre-processing you can download them from here :</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts24793"><i class="bi bi-download"></i> Preprocessed_PupilData.csv </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts984"><i class="bi bi-download"></i> Preprocessed_PupilData.csv </button></p>
 <p>Now that you have the data, let’s import it along with the necessary libraries. We’ll also ensure that the <code>Event</code> and <code>Subjects</code> columns are properly set as factors (categorical for easier analysis. Here’s how:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
@@ -241,7 +241,7 @@ Important
 <p>In this step, we used the <strong>average</strong> to calculate an index for each trial, meaning we averaged the pupil dilation over the trial duration. However, this is not the only option. Other approaches include extracting the <strong>peak</strong> value (<code>max(mean_pupil, na.rm = TRUE)</code>) or calculating the <strong>sum</strong> of the signal (<code>sum(mean_pupil, na.rm = TRUE)</code>), which can also represent the <strong>area under the curve (AUC)</strong> for the trial.</p>
 </div>
 </div>
-</section><section id="linear-mixed-effect-model" class="level3"><h3 class="anchored" data-anchor-id="linear-mixed-effect-model">Linear mixed-effect model</h3>
+</section><section id="linear-mixed-effects-model" class="level3"><h3 class="anchored" data-anchor-id="linear-mixed-effects-model">Linear mixed-effects model</h3>
 <p>With a single value for each participant, condition, and trial (averaged across time points), we are now ready to proceed with our analysis. Even if the word “Linear mixed-effect model” might sound scary, the model is actually very simple. We take our experimental conditions (Event) and check whether they affect pupil size (mean_pupil). To account for individual differences in pupil response intensity, we include participants as a random intercept.</p>
 <p>Let’s give it a go!!!</p>
 <div class="cell">
@@ -336,7 +336,19 @@ Correlation of Fixed Effects:
 EventSquare -0.695</code></pre>
 </div>
 </div>
-<p>We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you’re curious about how to interpret mixed-effects model outputs, you can check out this excellent guide: <a href="https://mspeekenbrink.github.io/sdam-r-companion/linear-mixed-effects-models.html">Linear mixed-effects models</a>. It provides a great foundation. <strong>And keep an eye out for our upcoming page dedicated to mixed-effects modeling, where we’ll break everything down step by step!</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We won’t dive into the detailed interpretation of the results here—this isn’t the right place for that. However, if you are not familiar with linear mixed-effects models you can check our introduction of <a href="../../CONTENT/Stats/LinearModels.html">Linear models</a> and <a href="../../CONTENT/Stats/LinearMixedModels.html">Linear mixed-effects models</a> where we try to break everything down step by step!</p>
+</div>
+</div>
 <p>The key takeaway here is that there’s a significatn difference between the <strong>Event</strong>. Specifically, the <strong>Square</strong> cue appears to result in smaller pupil dilation compared to the <strong>Circle</strong> event (which serves as the reference level for the intercept). <strong>COOL!</strong></p>
 <p>Let’s visualize the effect!!</p>
 <div class="cell" data-layout-align="center">
@@ -2031,7 +2043,7 @@ Warning
   <link>https://tommasoghilardi.github.io/DevStart/CONTENT/EyeTracking/PupilPreprocessing.html</link>
   <description><![CDATA[ <p>Welcome to your first step into the world of pupillometry! In this tutorial, we’ll walk you through how to preprocess pupil data using a handy R package called <a href="http://samforbes.me/PupillometryR/index.html">PupillometryR</a>. This package makes it simple to clean and even analyze your pupil data with just a few lines of R code.</p>
 <p>To keep things straightforward, we’ll be working with a simulated dataset that you can download right here:</p>
-<p><button class="btn btn-secondary downloadthis  " id="dnldts43027"><i class="bi bi-download"></i> PupilData.zip </button></p>
+<p><button class="btn btn-secondary downloadthis  " id="dnldts50458"><i class="bi bi-download"></i> PupilData.zip </button></p>
 <p>Download and unzip this folder. This dataset is based on the experimental design we introduced earlier in our eye-tracking series. If you’re not familiar with it or need a quick refresher, we recommend checking out the “<a href="../../CONTENT/EyeTracking/Intro_eyetracking.html">Introduction to eye-tracking</a>” guide before diving in.</p>
 <p>This tutorial serves as a foundation for understanding how to preprocess pupil data. Once you’ve grasped the essentials, we encourage you to explore the full range of functions and features <a href="http://samforbes.me/PupillometryR">PupillometryR</a> has to offer.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -15757,50 +15769,19 @@ or<br>
 
 
 <p>Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.</p>
-<p>In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility</p>
+<p>In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility.</p>
 <section id="installing-python" class="level1">
 <h1>Installing Python</h1>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<p>Anaconda is an open-source distribution for python. It is used for data science, machine learning, deep learning, etc. It makes simple to download and organize your python environment.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>While Anaconda is a convenient way to obtain Python, it’s not our preferred method. That said, we’ve included it here because it’s one of the simplest options. For our recommended approach, just keep scrolling a bit further.</p>
-</div>
-</div>
-<p>To install Anaconda simply follow this <a href="https://www.anaconda.com/download/success">link</a>. Choose a version suitable for you and click on download. Once you complete the download, open the setup.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/setup1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<p>Follow the instructions in the setup.</p>
-<p>After the installation is complete, launch the Anaconda navigator. The Anaconda Navigator is a desktop GUI that comes with the anaconda distribution. Navigator allows you to launch common Python programs and easily manage conda packages, environments, and channels without using command-line commands. Navigator can search for packages on Anaconda Cloud or in a local Anaconda Repository.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/setup3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="minicondaminiforge" class="level2">
-<h2 class="anchored" data-anchor-id="minicondaminiforge">Miniconda/Miniforge</h2>
-<p>While Anaconda is one of the simplest ways to install Python, it can be quite heavy, as it comes with many programs and libraries that are often unnecessary. For this reason, we recommend using either Miniconda or Miniforge.</p>
-<p>Both Miniconda and Miniforge are lightweight installers for Conda. They provide a minimal setup, including only Conda, Python, and a few essential dependencies, giving you more control over what gets installed on your system and keeping your setup lean and efficient. Miniconda includes the default Conda package manager and channels, focusing on the official Conda repository. Miniforge, on the other hand, uses Conda-Forge as its default channel and comes pre-installed with Mamba, a faster and more efficient alternative to Conda for package management.</p>
-<p>Which one should you use? To simplify, if everything mentioned earlier sounds like jargon, Miniconda is a safe choice. However, if you want the fastest and typically best option, go with Miniforge.</p>
+<section id="miniconda" class="level2">
+<h2 class="anchored" data-anchor-id="miniconda">Miniconda</h2>
+<p>Miniconda is our favorite way to install Python, and for good reason! While you’ve probably heard of Anaconda – that feature-packed GUI many folks use to manage Python, packages, and environments – Miniconda is its sleek, lightweight counterpart.</p>
+<p>What makes Miniconda special? It skips all the extra GUI elements and pre-installed packages that come with Anaconda. The result? A much lighter installation that doesn’t weigh down your system! With Miniconda, you get just the essentials: Conda, Python, and a few critical dependencies. This minimal setup gives you greater control over what gets installed, keeping everything lean and efficient. Plus, it includes the default Conda package manager and channels, so you still have full access to the official Conda repository for all your package needs.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Miniconda</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Miniforge</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Windows</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Mac</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<p>To use Miniconda download the installer from <a href="https://www.anaconda.com/download/success">Miniconda</a> (remember to scroll down under Anaconda)</p>
-<p>The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).</p>
+<p>To use Miniconda download the installer from <a href="https://www.anaconda.com/download/success#miniconda">Miniconda</a> (remember to scroll down under Anaconda)</p>
+<p>The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments. To verify everything’s working properly, simply type <code>conda</code>. You’ll be greeted with a comprehensive list of available conda commands ready for you to explore and use (we will see below how to do so).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -15808,7 +15789,7 @@ Caution
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<p>To use Miniforge lead to <a href="https://conda-forge.org/miniforge/">Miniforge</a> and download the version right for your system. And start the installation process.</p>
+<p>To use Miniconda download the installer from <a href="https://www.anaconda.com/download/success#miniconda">Miniconda</a> (remember to scroll down under Anaconda)</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -15819,16 +15800,11 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There are multiple version you can download. The one you should download is at the end of the page: <strong>Miniforge3</strong></p>
+<p>⚠️ Important</p>
+<p><strong>Please make sure that you select the correct version for your system!!!</strong> Select the version depending if you have Apple Silicon or an Intel processor.</p>
 </div>
 </div>
-<p>The installation process is similar to that of Anaconda. Once the installation is complete, you will find the Anaconda Prompt among your programs. This prompt serves as your interface for installing Python packages and creating environments (we will see below how to do so).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://tommasoghilardi.github.io/DevStart/images/GettingStartedWithPython/prompt.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<p>One important thing about Miniforge is that you should use mamba instead of conda for faster performance. The commands remain exactly the same—just replace conda with mamba.</p>
+<p>Once the installation is complete, you’ll have the full power of Miniconda at your fingertips through your terminal! To verify everything’s working properly, simply open your terminal and type <code>conda</code>. You’ll be greeted with a comprehensive list of available conda commands ready for you to explore and use (we will see below how to do so).</p>
 </div>
 </div>
 </div>

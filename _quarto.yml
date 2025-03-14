@@ -87,10 +87,10 @@ website:
           - CONTENT/EyeTracking/FromFixationsToData.qmd
           - CONTENT/EyeTracking/PupilPreprocessing.qmd
           - CONTENT/EyeTracking/PupilDataAnalysis.qmd
-      # - section: "Stats"
-      #   contents:
-      #     - CONTENT/Stats/LinearModels.qmd
-      #     - CONTENT/Stats/InterpretingModelResults.qmd
+      - section: "Stats"
+        contents:
+          - CONTENT/Stats/LinearModels.qmd
+          - CONTENT/Stats/LinearMixedModels.qmd
       - section: "Workshops"
         href: https://tommasoghilardi.github.io/DevStart/Workshops/
         contents:
