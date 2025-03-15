@@ -1,5 +1,6 @@
 ---
 title: "Linear Models"
+date: "5/03/2025"
 author-meta: "Tommaso Ghilardi"
 description-meta: "Learn what a linear model is, how to run it and how to check its assumptions"
 keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
@@ -8,9 +9,6 @@ categories:
   - Stats
   - R
   - linear models
-  
-drafts: True
-draft-mode: linked  
 ---
 
 Welcome to the first tutorial on data analysis!!! Today we are going to talk about one of the most flexible statistical methods: Linear models.

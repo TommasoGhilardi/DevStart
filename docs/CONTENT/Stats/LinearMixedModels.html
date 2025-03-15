@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.47">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Tommaso Ghilardi">
-<meta name="description" content="Very short tutorial on how to what are and hwo to run Linear mixed effects models.">
+<meta name="dcterms.date" content="2026-03-03">
 <title>Linear mixed effect modesl – DevStart</title>
 <style>
 code{white-space: pre-wrap;}
@@ -121,7 +121,7 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script>
+</script><meta name="quarto:status" content="draft">
 <meta property="og:title" content="DevStart">
 <meta property="og:description" content="Getting started with developmental science">
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/images/ICON.png">
@@ -135,7 +135,7 @@ cookieconsent.run({
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -365,16 +365,17 @@ cookieconsent.run({
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Very short tutorial on how to what are and hwo to run Linear mixed effects models.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 3, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -1370,424 +1371,425 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Linear mixed effect modesl"</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Very short tutorial on how to what are and hwo to run Linear mixed effects models.</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> "Tommaso Ghilardi"</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - R</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - Stats</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - Mixed effects models</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="an">drafts:</span><span class="co"> True</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="an">draft-mode:</span><span class="co"> linked  </span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div style="display: flex; align-items: center;"&gt;</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div style="flex: 1; text-align: left;"&gt;</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;p&gt;Welcome to this introduction to Linear Mixed-effects Models (LMM)!! In this tutorial we will use R to run some simple LMM and we will try to understand together how to leverage these model for our analysis.</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="in">        LMMs are amazing tools that have saved our asses countless times during our PhDs and Postdocs. They'll probably continue to be our trusty companions forever.&lt;/p&gt;</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div style="flex: 0 0 auto; margin-left: 10px;"&gt;</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;iframe src="https://giphy.com/embed/ygCtKUnKEW5F6LruQd" width="100" height="100" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;p style="margin: 0;"&gt;&lt;a href="https://giphy.com/gifs/TheBearFX-ygCtKUnKEW5F6LruQd"&gt;&lt;/a&gt;&lt;/p&gt;</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>This tutorial offers a gentle introduction to running linear mixed-effects models without diving deep into the mathematical and statistical foundations. If you're interested in exploring those aspects further, plenty of online resources are available.</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>For the best experience, you should have already completed the <span class="co">[</span><span class="ot">**previous tutorial on linear models**</span><span class="co">](LinearModels.qmd)</span>. That foundation will make this tutorial much easier to follow and understand!</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>This tutorial introduces the statistical concept of Hierarchical Modeling, often called Mixed Effects Modeling. This approach shines when dealing with nested data—situations where observations are grouped in meaningful ways, like students within schools or measurements across individuals.</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>Sounds like a mouthful, right? Don’t worry! Let’s kick things off with something a little more fun: Simpson’s Paradox.</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>Simpson's Paradox is a statistical head-scratcher. It’s when a trend you see in your data suddenly flips—or even vanishes—when you split the data into groups. Ready to see it in action? Let’s dive in!</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>Imagine we’re looking at how years of experience impact salary at a university. Here’s some simulated data to make it fun.</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SimpsonParadox}</span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 12</span></span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 10</span></span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="in">library(easystats)</span></span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="in">library(patchwork)</span></span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="in">set.seed(1234)</span></span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a><span class="in">data &lt;- simulate_simpson(n = 10, groups = 5, r = 0.5,difference = 1.5) %&gt;% </span></span>
-<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(V2= (V2 +abs(min(V2)))*10000) %&gt;% </span></span>
-<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="in">  rename(Department = Group)</span></span>
-<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="in"># Lookup vector: map old values to new ones</span></span>
-<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="in">lookup &lt;- c(G_1 = "Informatics", G_2 = "English", </span></span>
-<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a><span class="in">            G_3 = "Sociology", G_4 = "Biology", G_5 = "Statistics")</span></span>
-<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a><span class="in"># Replace values using the lookup vector</span></span>
-<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="in">data$Department &lt;- lookup[as.character(data$Department)]</span></span>
-<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "15/03/2025"</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="an">author-meta:</span><span class="co"> "Tommaso Ghilardi"</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># description-meta: " A concise and practical tutorial on running linear mixed-effects models in R. Learn how to handle nested data structures, interpret model summaries, and compare models using real-life examples."</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># keywords-meta: "linear mixed-effects models, R, mixed models, hierarchical modeling, lme4, lmerTest, random effects, fixed effects, statistical analysis, data analysis, model comparison, AIC, Simpson's paradox, tutorial"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">  - R</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - Stats</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - Mixed effects models</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div style="display: flex; align-items: center;"&gt;</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div style="flex: 1; text-align: left;"&gt;</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;p&gt;Welcome to this introduction to Linear Mixed-effects Models (LMM)!! In this tutorial we will use R to run some simple LMM and we will try to understand together how to leverage these model for our analysis.</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="in">        LMMs are amazing tools that have saved our asses countless times during our PhDs and Postdocs. They'll probably continue to be our trusty companions forever.&lt;/p&gt;</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div style="flex: 0 0 auto; margin-left: 10px;"&gt;</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;iframe src="https://giphy.com/embed/ygCtKUnKEW5F6LruQd" width="100" height="100" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;p style="margin: 0;"&gt;&lt;a href="https://giphy.com/gifs/TheBearFX-ygCtKUnKEW5F6LruQd"&gt;&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>This tutorial offers a gentle introduction to running linear mixed-effects models without diving deep into the mathematical and statistical foundations. If you're interested in exploring those aspects further, plenty of online resources are available.</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>For the best experience, you should have already completed the <span class="co">[</span><span class="ot">**previous tutorial on linear models**</span><span class="co">](LinearModels.qmd)</span>. That foundation will make this tutorial much easier to follow and understand!</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>This tutorial introduces the statistical concept of Hierarchical Modeling, often called Mixed Effects Modeling. This approach shines when dealing with nested data—situations where observations are grouped in meaningful ways, like students within schools or measurements across individuals.</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>Sounds like a mouthful, right? Don’t worry! Let’s kick things off with something a little more fun: Simpson’s Paradox.</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>Simpson's Paradox is a statistical head-scratcher. It’s when a trend you see in your data suddenly flips—or even vanishes—when you split the data into groups. Ready to see it in action? Let’s dive in!</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>Imagine we’re looking at how years of experience impact salary at a university. Here’s some simulated data to make it fun.</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SimpsonParadox}</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 12</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 10</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="in">library(easystats)</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="in">library(patchwork)</span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a><span class="in">set.seed(1234)</span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a><span class="in">data &lt;- simulate_simpson(n = 10, groups = 5, r = 0.5,difference = 1.5) %&gt;% </span></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(V2= (V2 +abs(min(V2)))*10000) %&gt;% </span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="in">  rename(Department = Group)</span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="in"># Lookup vector: map old values to new ones</span></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a><span class="in">lookup &lt;- c(G_1 = "Informatics", G_2 = "English", </span></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="in">            G_3 = "Sociology", G_4 = "Biology", G_5 = "Statistics")</span></span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="in"># Replace values using the lookup vector</span></span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a><span class="in">data$Department &lt;- lookup[as.character(data$Department)]</span></span>
 <span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a><span class="in">one = ggplot(data, aes(x = V1, y = V2)) +</span></span>
-<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point()+</span></span>
-<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(method = 'lm')+</span></span>
-<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(y='Salary', x='Year of experience', title = "A. Linear model")+</span></span>
-<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_bw(base_size = 20)</span></span>
-<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a><span class="in">two = ggplot(data, aes(x = V1, y = V2)) +</span></span>
-<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point(aes(color = Department)) +</span></span>
-<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(aes(color = Department), method = "lm", alpha = 0.3) +</span></span>
-<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(method = "lm", alpha = 0.3)+</span></span>
-<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(y='Salary', x='Year of experience', title = "B. Linear model acounting for grouping structure")+</span></span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_bw(base_size = 20)+</span></span>
-<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = 'bottom')</span></span>
-<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a><span class="in">(one / two)</span></span>
-<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a>Take a look at the first plot. Whoa, wait a minute—this says the more years of experience you have, the less you get paid! What kind of backwards world is this? Before you march into HR demanding answers, let’s look a little closer.</span>
-<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a>Now, check out the second plot. Once we consider the departments—Informatics, English, Sociology, Biology, and Statistics—a different story emerges. Each department shows a positive trend between experience and salary. In other words, more experience does mean higher pay, as it should!</span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a>So what happened? The first plot ignored the hierarchical structure of the data. By lumping all departments together, it completely missed the real relationship hiding in plain sight. This is why Hierarchical Modeling is so powerful—it helps us avoid embarrassing statistical blunders like this one. It allows us to correctly analyze data with nested structures and uncover the real patterns.</span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a>**Now, this example is a bit of an extreme case.** In real life, you’re less likely to find such wildly opposite effects. However, the influence of grouping structures on your analysis is very real—and often subtle. Ignoring them can lead to misleading conclusions.</span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a>Ready to explore how Mixed Effects Modeling helps us account for these nested structures? Let’s dive in and get hands-on!</span>
-<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mixed effects models</span></span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a>So, why are they called **mixed effects models**? It’s because these models combine two types of effects: **fixed effects** and **random effects**....... And now you’re wondering what those are, don’t worry—I've got you! 😅</span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a>Remember how departments (Informatics, English, Sociology, etc.) completely changed the story about experience and salary? That’s exactly where fixed and random effects come in.</span>
-<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Fixed effects** capture the consistent, predictable trends in your data—like the relationship between experience and salary across all departments. These are the big-picture patterns you’re curious about and want to analyze.</span>
-<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Random effects**, on the other hand, account for the variability within groups—like how salaries differ between departments. You’re not deeply analyzing these differences, but you know they’re there, and ignoring them could mess up your results.</span>
-<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a>Without accounting for random effects, it’s like assuming every department is exactly the same—and we’ve already seen how misleading that can be!</span>
-<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a>**The model will estimate the fixed and random effects** but don’t worry—the model won’t get super complex. The estimates and p-values will primarily focus on the **fixed effects**, but it will account for the **random effects** in the background to make sure the results are accurate. In other words, random effects are variables that you know contribute to the variance in your model, and you want to account for them, but you’re not directly interested in obtaining a result about each one.</span>
-<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a>Got the gist? Great! Now enough with words...let’s dive into a real example and see these mixed effects in action!</span>
-<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Settings and data</span></span>
-<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a>In this section, we'll set up our working environment by loading the necessary libraries and importing the dataset. You'll likely already have this dataset available if you completed the previous linear models tutorial. If not, don't worry—you can easily download it using the link below:</span>
-<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a><span class="in">{{&lt; downloadthis ../../resources/Stats/Dataset.csv label="Dataset.csv" type="secondary" &gt;}}</span></span>
-<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Libraries}</span></span>
-<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a><span class="in">library(lme4)</span></span>
-<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmerTest)</span></span>
-<span id="cb22-119"><a href="#cb22-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-120"><a href="#cb22-120" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a><span class="in">library(easystats)</span></span>
-<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-124"><a href="#cb22-124" aria-hidden="true" tabindex="-1"></a>The <span class="in">`lme4`</span> package is the go-to library for running Linear Mixed Models (LMM) in R. To make your life easier, there's also the <span class="in">`lmerTest`</span> package, which enhances <span class="in">`lme4`</span> by allowing you to extract p-values and providing extra functions to better understand your models. In my opinion, you should always use <span class="in">`lmerTest`</span> alongside <span class="in">`lme4`</span>—it just makes everything smoother!</span>
-<span id="cb22-125"><a href="#cb22-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-126"><a href="#cb22-126" aria-hidden="true" tabindex="-1"></a>To run our Linear Mixed Effects Model, these are the key packages we'll use. On top of that, the <span class="in">`tidyverse`</span> suite will help with data wrangling and visualization, while <span class="in">`easystats`</span> will let us easily extract and summarize the important details from our models. Let’s get started!</span>
-<span id="cb22-127"><a href="#cb22-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-128"><a href="#cb22-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### Read the data</span></span>
-<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-132"><a href="#cb22-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">Dataset.csv"</span>)</span>
-<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a>After importing the data, we've ensured that Id is treated as a factor rather than a numerical column. The importance of this distinction will become clear as we progress through the tutorial!</span>
-<span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear Model</span></span>
-<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a>While we already seen how to run a linear model we will rerun it here as a comparison to the next steps. In case something is not clear about this <span class="in">`lm()`</span> please go back to the <span class="co">[</span><span class="ot">**previous tutorial on linear models**</span><span class="co">](LinearModels.qmd)</span>**.**</span>
-<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-145"><a href="#cb22-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Lm</span></span>
-<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb22-149"><a href="#cb22-149" aria-hidden="true" tabindex="-1"></a>mod_lm <span class="ot">=</span> <span class="fu">lm</span>(LookingTime <span class="sc">~</span> Event_trial<span class="sc">*</span>Event, <span class="at">data =</span> df)</span>
-<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_lm)</span>
-<span id="cb22-151"><a href="#cb22-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a>We won’t delve into the details of the model results in this tutorial, as we have already cover it in the previous one. However we want to point one thing about the data we run it on!!</span>
-<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
-<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-160"><a href="#cb22-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a>Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example...its a grouping variable</span>
-<span id="cb22-162"><a href="#cb22-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a>**Wait..but then we should have taken it into consideration!!!**</span>
-<span id="cb22-164"><a href="#cb22-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a>Instead there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....</span>
-<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a>Yes we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..</span>
-<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-169"><a href="#cb22-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mixed Effects</span></span>
-<span id="cb22-170"><a href="#cb22-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-171"><a href="#cb22-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Intercept</span></span>
-<span id="cb22-172"><a href="#cb22-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-173"><a href="#cb22-173" aria-hidden="true" tabindex="-1"></a>Alright, let’s start with **Random Intercepts**! What are they? Well, the name gives it away—they’re just intercepts…but with a twist! 🤔</span>
-<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-175"><a href="#cb22-175" aria-hidden="true" tabindex="-1"></a>If you recall your knowledge of linear models, you’ll remember that each model has **one intercept**—the point where the model crosses the y-axis (when x=0).</span>
-<span id="cb22-176"><a href="#cb22-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a>But what makes random intercepts special? They allow the model to have **different intercepts for each grouping variable**—in this case, the **Id**s. This means we’re letting the model assume that each subject may have a slightly different baseline performance.</span>
-<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-179"><a href="#cb22-179" aria-hidden="true" tabindex="-1"></a>Here’s the idea:</span>
-<span id="cb22-180"><a href="#cb22-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-181"><a href="#cb22-181" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>One person might naturally be a bit better.</span>
-<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-183"><a href="#cb22-183" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Someone else could be slightly worse.</span>
-<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>And me? Well, let’s just say I’m starting from rock bottom.</span>
-<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a>However, even though we’re starting from different baselines, **the rate of improvement over trials can still be consistent across subjects**.</span>
-<span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-189"><a href="#cb22-189" aria-hidden="true" tabindex="-1"></a>This approach helps us capture **variation in the starting performance**, acknowledging that people are inherently different but might still follow a similar overall pattern of improvement. It’s a simple yet powerful way to model individual differences!</span>
-<span id="cb22-190"><a href="#cb22-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a>Now, let’s look at how to include this in our mixed model.</span>
-<span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-193"><a href="#cb22-193" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
-<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a>To run a **linear mixed-effects model**, we’ll use the `lmer` function from the **lme4** package. it Functions very similarly to the `lm` function we used before: you pass a formula and a dataset, but with one important addition: specifying the **random intercept**.</span>
-<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a>The formula is nearly the same as a standard linear model, but we include <span class="in">`(1|subject_id)`</span> to tell the model that each subject should have its own unique intercept. This accounts for variations in baseline performance across individuals.</span>
-<span id="cb22-198"><a href="#cb22-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb22-200"><a href="#cb22-200" aria-hidden="true" tabindex="-1"></a>When specifying random intercepts (like <span class="in">`(1|Group)`</span>), your grouping variables must be factors! If a grouping variable is numeric, R will wrongly treat it as a continuous variable rather than discrete categories. Character variables are automatically fine, but numeric grouping variables must be explicitly converted using <span class="in">`factor()`</span>.</span>
-<span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r InterceptModel}</span></span>
-<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rintercept =lmer(LookingTime ~ Event_trial * Event+ (1|Id ), data= df,  na.action = na.exclude)</span></span>
-<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rintercept)</span></span>
-<span id="cb22-206"><a href="#cb22-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-207"><a href="#cb22-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-208"><a href="#cb22-208" aria-hidden="true" tabindex="-1"></a>Wow! Now the model is showing us something **new** compared to the simple linear model. We observe an **interaction between Event and Event_trial**. By letting the intercept vary for each subject, the model is able to capture nuances in the data that a standard linear model might miss.</span>
-<span id="cb22-209"><a href="#cb22-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-210"><a href="#cb22-210" aria-hidden="true" tabindex="-1"></a>To understand this interaction, let’s plot it and see how performance changes across trials for each condition.</span>
-<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-214"><a href="#cb22-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-215"><a href="#cb22-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb22-217"><a href="#cb22-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb22-219"><a href="#cb22-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
-<span id="cb22-220"><a href="#cb22-220" aria-hidden="true" tabindex="-1"></a>i_pred <span class="ot">=</span> <span class="fu">estimate_expectation</span>(mod_rintercept, <span class="at">include_random=</span>T)</span>
-<span id="cb22-221"><a href="#cb22-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-222"><a href="#cb22-222" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(i_pred, <span class="fu">aes</span>(<span class="at">x=</span> Event_trial, <span class="at">y=</span> Predicted, <span class="at">color=</span> Id, <span class="at">shape =</span> Event))<span class="sc">+</span></span>
-<span id="cb22-223"><a href="#cb22-223" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">y=</span> LookingTime, <span class="at">color=</span> Id), <span class="at">position=</span> <span class="fu">position_jitter</span>(<span class="at">width=</span><span class="fl">0.2</span>))<span class="sc">+</span></span>
-<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Predicted<span class="sc">-</span>SE, <span class="at">ymax=</span>Predicted<span class="sc">+</span>SE, <span class="at">fill =</span> Id),<span class="at">color=</span> <span class="st">'transparent'</span>, <span class="at">alpha=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
-<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Looking time'</span>, <span class="at">x=</span><span class="st">'# trial'</span>)<span class="sc">+</span></span>
-<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_modern</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>)<span class="sc">+</span></span>
-<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Event)</span>
-<span id="cb22-230"><a href="#cb22-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-231"><a href="#cb22-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a>As you can see here, each color represents a different subject, and we've divided the plot into two panels - one for each type of event - to make visualization simpler. Cool isn't it??.</span>
-<span id="cb22-233"><a href="#cb22-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-234"><a href="#cb22-234" aria-hidden="true" tabindex="-1"></a>Now, you might be thinking, *“This looks interesting, but my plot is going to be a mess with all these individual estimates!”* Well, don’t worry! While what we’ve plotted is how the data is modeled by our mixed-effects model, the random effects are actually used to make more accurate estimates—but the model still returns an overall estimate.</span>
-<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-236"><a href="#cb22-236" aria-hidden="true" tabindex="-1"></a>Think of it like this: the random effects allow the model to account for individual differences between subjects. But instead of just showing all the individual estimates in the plot, the model takes these individual estimates for each subject and returns the *average* of these estimates to give you a cleaner, more generalizable result.</span>
-<span id="cb22-237"><a href="#cb22-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-238"><a href="#cb22-238" aria-hidden="true" tabindex="-1"></a>we can plot the actual estimate of the model:</span>
-<span id="cb22-239"><a href="#cb22-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-240"><a href="#cb22-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotInterceptModelOverall}</span></span>
-<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb22-242"><a href="#cb22-242" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb22-243"><a href="#cb22-243" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
-<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
-<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a><span class="in">i_pred = estimate_expectation(mod_rintercept, include_random =F)</span></span>
-<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(i_pred, aes(x= Event_trial, y= Predicted))+</span></span>
-<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id, shape = Event), position= position_jitter(width=0.2))+</span></span>
-<span id="cb22-250"><a href="#cb22-250" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line(aes(group= Event),color= 'blue', lwd=1.4)+</span></span>
-<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, group= Event),color= 'transparent', alpha=0.1)+</span></span>
-<span id="cb22-252"><a href="#cb22-252" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
-<span id="cb22-253"><a href="#cb22-253" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_bw(base_size = 20)+</span></span>
-<span id="cb22-254"><a href="#cb22-254" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = 'none')+</span></span>
-<span id="cb22-255"><a href="#cb22-255" aria-hidden="true" tabindex="-1"></a><span class="in">  facet_wrap(~Event)</span></span>
-<span id="cb22-256"><a href="#cb22-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-257"><a href="#cb22-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-258"><a href="#cb22-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### Slope</span></span>
-<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a>Coool!!!!!!! So far, we’ve modeled a different intercept for each subject, which lets each subject have their own baseline level of performance. But here’s the catch: our model assumes that everyone improves over the trials in exactly the same way, with the same slope. That doesn’t sound quite right, does it? We know that some people may get better faster than others, or their learning might follow a different pattern.</span>
-<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-262"><a href="#cb22-262" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
-<span id="cb22-263"><a href="#cb22-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-264"><a href="#cb22-264" aria-hidden="true" tabindex="-1"></a>This is where we can model *random slopes* to capture these individual differences in learning rates. By adding <span class="in">`(0 + Event_trial | Id)`</span>, we’re telling the model that while the intercept (starting point) is the same for everyone, the rate at which each subject improves (the slope) can vary.</span>
-<span id="cb22-265"><a href="#cb22-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a>This way, we’re allowing each subject to have their own slope in addition to their own intercept, making the model more flexible and reflective of real-world variations in learning!</span>
-<span id="cb22-267"><a href="#cb22-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a>Any variable used as a random slope (before the <span class="in">`|`</span>) must also be included as a fixed effect in your model. The fixed effect estimates the overall effect, while the random slope captures how that effect varies across groups. Without the fixed effect, you're modeling deviations from zero instead of from an average, which rarely makes theoretical sense.</span>
-<span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-272"><a href="#cb22-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SlopeModel}</span></span>
-<span id="cb22-273"><a href="#cb22-273" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rslope =lmer(LookingTime ~ Event_trial * Event+ (0 + Event_trial | Id ), data= df)</span></span>
-<span id="cb22-274"><a href="#cb22-274" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rslope)</span></span>
-<span id="cb22-275"><a href="#cb22-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-276"><a href="#cb22-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-277"><a href="#cb22-277" aria-hidden="true" tabindex="-1"></a>The results aren't too different from the intercept-only model, but let's take a closer look at what we've actually modeled.</span>
-<span id="cb22-278"><a href="#cb22-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-279"><a href="#cb22-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotSlopeModel}</span></span>
-<span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
-<span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
-<span id="cb22-285"><a href="#cb22-285" aria-hidden="true" tabindex="-1"></a><span class="in">s_pred = estimate_expectation(mod_rslope, include_random =T)</span></span>
-<span id="cb22-286"><a href="#cb22-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(s_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+</span></span>
-<span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+</span></span>
-<span id="cb22-289"><a href="#cb22-289" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line()+</span></span>
-<span id="cb22-290"><a href="#cb22-290" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+</span></span>
-<span id="cb22-291"><a href="#cb22-291" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
-<span id="cb22-292"><a href="#cb22-292" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_modern(base_size = 20)+</span></span>
-<span id="cb22-293"><a href="#cb22-293" aria-hidden="true" tabindex="-1"></a><span class="in">    theme(legend.position = 'none')+</span></span>
-<span id="cb22-294"><a href="#cb22-294" aria-hidden="true" tabindex="-1"></a><span class="in">    facet_wrap(~Event)</span></span>
-<span id="cb22-295"><a href="#cb22-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-296"><a href="#cb22-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-297"><a href="#cb22-297" aria-hidden="true" tabindex="-1"></a><span class="fu">### Intercept + Slope</span></span>
-<span id="cb22-298"><a href="#cb22-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-299"><a href="#cb22-299" aria-hidden="true" tabindex="-1"></a>That plot does look nuts, and it’s a clear signal that something is off. Why? Because by modeling only the random slopes while keeping the intercepts fixed, we’re essentially forcing all subjects to start from the same baseline. That’s clearly unrealistic for most real-world data.</span>
-<span id="cb22-300"><a href="#cb22-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-301"><a href="#cb22-301" aria-hidden="true" tabindex="-1"></a>In real life, the intercept and slope often go hand-in-hand for each subject.</span>
-<span id="cb22-302"><a href="#cb22-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-303"><a href="#cb22-303" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
-<span id="cb22-304"><a href="#cb22-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-305"><a href="#cb22-305" aria-hidden="true" tabindex="-1"></a>To make the model more realistic, we can model both the random intercept and the random slope together. We simply modify the random effects part of the formula to <span class="in">`(trial_number | subject_id)`</span>.</span>
-<span id="cb22-306"><a href="#cb22-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-307"><a href="#cb22-307" aria-hidden="true" tabindex="-1"></a>Now, we are telling the model to estimate both a random intercept (baseline performance) and a random slope (rate of improvement). This captures the full variability in how each subject learns over time!</span>
-<span id="cb22-308"><a href="#cb22-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-309"><a href="#cb22-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r InterceptSlopeModel}</span></span>
-<span id="cb22-310"><a href="#cb22-310" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rinterraction = lmer(LookingTime ~ Event_trial * Event+ (1 + Event_trial | Id ), data= df)</span></span>
-<span id="cb22-311"><a href="#cb22-311" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rinterraction)</span></span>
-<span id="cb22-312"><a href="#cb22-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-313"><a href="#cb22-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-314"><a href="#cb22-314" aria-hidden="true" tabindex="-1"></a>Now, let’s visualize how the model is modeling the data:</span>
-<span id="cb22-315"><a href="#cb22-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-316"><a href="#cb22-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotInterceptSlopeModel}</span></span>
-<span id="cb22-317"><a href="#cb22-317" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb22-318"><a href="#cb22-318" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb22-319"><a href="#cb22-319" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb22-320"><a href="#cb22-320" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
-<span id="cb22-321"><a href="#cb22-321" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
-<span id="cb22-322"><a href="#cb22-322" aria-hidden="true" tabindex="-1"></a><span class="in">is_pred = estimate_expectation(mod_rinterraction, include_random =T)</span></span>
-<span id="cb22-323"><a href="#cb22-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-324"><a href="#cb22-324" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(is_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+</span></span>
-<span id="cb22-325"><a href="#cb22-325" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+</span></span>
-<span id="cb22-326"><a href="#cb22-326" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line()+</span></span>
-<span id="cb22-327"><a href="#cb22-327" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+</span></span>
-<span id="cb22-328"><a href="#cb22-328" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
-<span id="cb22-329"><a href="#cb22-329" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_modern(base_size = 20)+</span></span>
-<span id="cb22-330"><a href="#cb22-330" aria-hidden="true" tabindex="-1"></a><span class="in">    theme(legend.position = 'none')+</span></span>
-<span id="cb22-331"><a href="#cb22-331" aria-hidden="true" tabindex="-1"></a><span class="in">    facet_wrap(~Event)</span></span>
-<span id="cb22-332"><a href="#cb22-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-333"><a href="#cb22-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-334"><a href="#cb22-334" aria-hidden="true" tabindex="-1"></a>While is not super apparent from the data you can see that different subject have different slopes meaning that they all not grow at the same rate</span>
-<span id="cb22-335"><a href="#cb22-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-336"><a href="#cb22-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary of mixed models</span></span>
-<span id="cb22-337"><a href="#cb22-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-338"><a href="#cb22-338" aria-hidden="true" tabindex="-1"></a>Now that we've seen how to run mixed-effects models, it's time to focus on **interpreting the summary output**. While we’ve been building models, we haven’t delved into what the summary actually tells us or which parts of it deserve our attention. Let’s fix that!</span>
-<span id="cb22-339"><a href="#cb22-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-340"><a href="#cb22-340" aria-hidden="true" tabindex="-1"></a>To start, we’ll use our **final model** and inspect its summary. This will give us a chance to break it down step by step and understand the key information it provides. Here's how to check the summary:</span>
-<span id="cb22-341"><a href="#cb22-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-342"><a href="#cb22-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SummaryCheck}</span></span>
-<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rinterraction)</span></span>
-<span id="cb22-344"><a href="#cb22-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-345"><a href="#cb22-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-346"><a href="#cb22-346" aria-hidden="true" tabindex="-1"></a>The **Random effects** section in the model summary shows how variability is accounted for by the random effects. The **Groups** column indicates the grouping factor (e.g., subject), while the **Name** column lists the random effects (e.g., intercept and slope). The **Variance** column represents the variability for each random effect—higher values indicate greater variation in how the effect behaves across groups. The **Std.Dev.** column is simply the standard deviation of the variance, showing the spread in the same units as the data.</span>
-<span id="cb22-347"><a href="#cb22-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-348"><a href="#cb22-348" aria-hidden="true" tabindex="-1"></a>The **Corr** column reflects the correlation between random effects, telling us whether different aspects of the data (e.g., intercepts and slopes) tend to move together. A negative correlation would suggest that higher intercepts (starting points) are associated with smaller slopes (slower learning rates), while a positive correlation would suggest the opposite.</span>
-<span id="cb22-349"><a href="#cb22-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-350"><a href="#cb22-350" aria-hidden="true" tabindex="-1"></a>The **Residual** section shows the unexplained variability after accounting for the fixed and random effects.</span>
-<span id="cb22-351"><a href="#cb22-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-352"><a href="#cb22-352" aria-hidden="true" tabindex="-1"></a>**The key takeaway here is that random effects capture the variability in the data that can’t be explained by the fixed effects alone.** If the variance for a random effect is low, it suggests the random effect isn’t adding much to the model and may be unnecessary. On the other hand, high variance indicates that the random effect is important for capturing group-level differences and improving the model’s accuracy.</span>
-<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-354"><a href="#cb22-354" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model comparison</span></span>
-<span id="cb22-355"><a href="#cb22-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-356"><a href="#cb22-356" aria-hidden="true" tabindex="-1"></a>But how can we be sure the random effects are helping our model? One of the easiest ways is to check the variance explained by the random effects. As we said if the variance related to the random effects is too small, it probably isn’t contributing much to the model. If it’s high, it’s likely helping the model by capturing important variability in the data.</span>
-<span id="cb22-357"><a href="#cb22-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-358"><a href="#cb22-358" aria-hidden="true" tabindex="-1"></a>Another method is to compare the performance of different models. One of the best indices for this is the Akaike Information Criterion (AIC). AIC gives a relative measure of how well a model fits the data, while penalizing the number of parameters in the model. Lower AIC values indicate better models, as they balance goodness-of-fit with model complexity.</span>
-<span id="cb22-359"><a href="#cb22-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-360"><a href="#cb22-360" aria-hidden="true" tabindex="-1"></a>You can compare the AIC of different models using the following:</span>
-<span id="cb22-361"><a href="#cb22-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-364"><a href="#cb22-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-365"><a href="#cb22-365" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(mod_lm, mod_rintercept, mod_rslope, mod_rinterraction, <span class="at">metrics=</span><span class="st">'AIC'</span>)</span>
-<span id="cb22-366"><a href="#cb22-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-367"><a href="#cb22-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-368"><a href="#cb22-368" aria-hidden="true" tabindex="-1"></a>As you can see, the best model based on AIC is the one with both intercept and slope. This is a good way to check if and which random effect structure is necessary for our model.</span>
-<span id="cb22-369"><a href="#cb22-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-370"><a href="#cb22-370" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb22-371"><a href="#cb22-371" aria-hidden="true" tabindex="-1"></a>Never decide if your random effect structure is good by just looking at p-values! P-values are not necessarily related to how well the model fits your data. Always use model comparison and fit indices like AIC to guide your decision.</span>
-<span id="cb22-372"><a href="#cb22-372" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb22-373"><a href="#cb22-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-374"><a href="#cb22-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Formulary</span></span>
-<span id="cb22-375"><a href="#cb22-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-376"><a href="#cb22-376" aria-hidden="true" tabindex="-1"></a>In this tutorial, we introduced linear mixed-effects models. However, these models can be far more versatile and complex than what we've just explored. The <span class="in">`lme4`</span> package allows you to specify various models to suit diverse research scenarios. While we won’t dive into every possibility, here’s a handy reference for the different random effects structures you can specify</span>
-<span id="cb22-377"><a href="#cb22-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-378"><a href="#cb22-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb22-379"><a href="#cb22-379" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;table border="1" style="width: 100%; border-collapse: collapse;"&gt;</span></span>
-<span id="cb22-380"><a href="#cb22-380" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;thead&gt;</span></span>
-<span id="cb22-381"><a href="#cb22-381" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;th style="white-space: nowrap;"&gt;Formula&lt;/th&gt;</span></span>
-<span id="cb22-383"><a href="#cb22-383" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;th&gt;Description&lt;/th&gt;</span></span>
-<span id="cb22-384"><a href="#cb22-384" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-385"><a href="#cb22-385" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/thead&gt;</span></span>
-<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;tbody&gt;</span></span>
-<span id="cb22-387"><a href="#cb22-387" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-388"><a href="#cb22-388" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s)&lt;/td&gt;</span></span>
-<span id="cb22-389"><a href="#cb22-389" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random intercepts for unique level of the factor &lt;code&gt;s&lt;/code&gt;.&lt;/td&gt;</span></span>
-<span id="cb22-390"><a href="#cb22-390" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-391"><a href="#cb22-391" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-392"><a href="#cb22-392" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s) + (1|i)&lt;/td&gt;</span></span>
-<span id="cb22-393"><a href="#cb22-393" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random intercepts for each unique level of &lt;code&gt;s&lt;/code&gt; and for each unique level of &lt;code&gt;i&lt;/code&gt;.&lt;/td&gt;</span></span>
-<span id="cb22-394"><a href="#cb22-394" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-395"><a href="#cb22-395" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-396"><a href="#cb22-396" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s/i)&lt;/td&gt;</span></span>
-<span id="cb22-397"><a href="#cb22-397" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
-<span id="cb22-398"><a href="#cb22-398" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts for factor &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;i&lt;/code&gt;, where the random effects for &lt;code&gt;i&lt;/code&gt; are nested in &lt;code&gt;s&lt;/code&gt;. </span></span>
-<span id="cb22-399"><a href="#cb22-399" aria-hidden="true" tabindex="-1"></a><span class="in">        This expands to &lt;code&gt;(1|s) + (1|s:i)&lt;/code&gt;, i.e., a random intercept for each level of &lt;code&gt;s&lt;/code&gt;, and each unique combination of the levels of &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;i&lt;/code&gt;. </span></span>
-<span id="cb22-400"><a href="#cb22-400" aria-hidden="true" tabindex="-1"></a><span class="in">        Nested random effects are used in so-called multilevel models. For example, &lt;code&gt;s&lt;/code&gt; might refer to schools, and &lt;code&gt;i&lt;/code&gt; to classrooms within those schools.</span></span>
-<span id="cb22-401"><a href="#cb22-401" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
-<span id="cb22-402"><a href="#cb22-402" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-403"><a href="#cb22-403" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-404"><a href="#cb22-404" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a|s)&lt;/td&gt;</span></span>
-<span id="cb22-405"><a href="#cb22-405" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
-<span id="cb22-406"><a href="#cb22-406" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and random slopes for &lt;code&gt;a&lt;/code&gt;, for each level of &lt;code&gt;s&lt;/code&gt;. Correlations between the intercept and slope effects are also estimated. </span></span>
-<span id="cb22-407"><a href="#cb22-407" aria-hidden="true" tabindex="-1"></a><span class="in">        (Identical to &lt;code&gt;(a*b|s)&lt;/code&gt;.)</span></span>
-<span id="cb22-408"><a href="#cb22-408" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
-<span id="cb22-409"><a href="#cb22-409" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-410"><a href="#cb22-410" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-411"><a href="#cb22-411" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a*b|s)&lt;/td&gt;</span></span>
-<span id="cb22-412"><a href="#cb22-412" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
-<span id="cb22-413"><a href="#cb22-413" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and slopes for &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, and the &lt;code&gt;a:b&lt;/code&gt; interaction, for each level of &lt;code&gt;s&lt;/code&gt;. </span></span>
-<span id="cb22-414"><a href="#cb22-414" aria-hidden="true" tabindex="-1"></a><span class="in">        Correlations between all the random effects are estimated.</span></span>
-<span id="cb22-415"><a href="#cb22-415" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
-<span id="cb22-416"><a href="#cb22-416" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-417"><a href="#cb22-417" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-418"><a href="#cb22-418" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(0+a|s)&lt;/td&gt;</span></span>
-<span id="cb22-419"><a href="#cb22-419" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random slopes for &lt;code&gt;a&lt;/code&gt; for each level of &lt;code&gt;s&lt;/code&gt;, but no random intercepts.&lt;/td&gt;</span></span>
-<span id="cb22-420"><a href="#cb22-420" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-421"><a href="#cb22-421" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb22-422"><a href="#cb22-422" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a||s)&lt;/td&gt;</span></span>
-<span id="cb22-423"><a href="#cb22-423" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
-<span id="cb22-424"><a href="#cb22-424" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and random slopes for &lt;code&gt;a&lt;/code&gt;, for each level of &lt;code&gt;s&lt;/code&gt;, but no correlations between the random effects (i.e., they are set to 0). </span></span>
-<span id="cb22-425"><a href="#cb22-425" aria-hidden="true" tabindex="-1"></a><span class="in">        This expands to: &lt;code&gt;(0+a|s) + (1|s)&lt;/code&gt;.</span></span>
-<span id="cb22-426"><a href="#cb22-426" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
-<span id="cb22-427"><a href="#cb22-427" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb22-428"><a href="#cb22-428" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/tbody&gt;</span></span>
-<span id="cb22-429"><a href="#cb22-429" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/table&gt;</span></span>
-<span id="cb22-430"><a href="#cb22-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a><span class="in">one = ggplot(data, aes(x = V1, y = V2)) +</span></span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point()+</span></span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(method = 'lm')+</span></span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(y='Salary', x='Year of experience', title = "A. Linear model")+</span></span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_bw(base_size = 20)</span></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="in">two = ggplot(data, aes(x = V1, y = V2)) +</span></span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point(aes(color = Department)) +</span></span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(aes(color = Department), method = "lm", alpha = 0.3) +</span></span>
+<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(method = "lm", alpha = 0.3)+</span></span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(y='Salary', x='Year of experience', title = "B. Linear model acounting for grouping structure")+</span></span>
+<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_bw(base_size = 20)+</span></span>
+<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = 'bottom')</span></span>
+<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a><span class="in">(one / two)</span></span>
+<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a>Take a look at the first plot. Whoa, wait a minute—this says the more years of experience you have, the less you get paid! What kind of backwards world is this? Before you march into HR demanding answers, let’s look a little closer.</span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a>Now, check out the second plot. Once we consider the departments—Informatics, English, Sociology, Biology, and Statistics—a different story emerges. Each department shows a positive trend between experience and salary. In other words, more experience does mean higher pay, as it should!</span>
+<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a>So what happened? The first plot ignored the hierarchical structure of the data. By lumping all departments together, it completely missed the real relationship hiding in plain sight. This is why Hierarchical Modeling is so powerful—it helps us avoid embarrassing statistical blunders like this one. It allows us to correctly analyze data with nested structures and uncover the real patterns.</span>
+<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a>**Now, this example is a bit of an extreme case.** In real life, you’re less likely to find such wildly opposite effects. However, the influence of grouping structures on your analysis is very real—and often subtle. Ignoring them can lead to misleading conclusions.</span>
+<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a>Ready to explore how Mixed Effects Modeling helps us account for these nested structures? Let’s dive in and get hands-on!</span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mixed effects models</span></span>
+<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a>So, why are they called **mixed effects models**? It’s because these models combine two types of effects: **fixed effects** and **random effects**....... And now you’re wondering what those are, don’t worry—I've got you! 😅</span>
+<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a>Remember how departments (Informatics, English, Sociology, etc.) completely changed the story about experience and salary? That’s exactly where fixed and random effects come in.</span>
+<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Fixed effects** capture the consistent, predictable trends in your data—like the relationship between experience and salary across all departments. These are the big-picture patterns you’re curious about and want to analyze.</span>
+<span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Random effects**, on the other hand, account for the variability within groups—like how salaries differ between departments. You’re not deeply analyzing these differences, but you know they’re there, and ignoring them could mess up your results.</span>
+<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a>Without accounting for random effects, it’s like assuming every department is exactly the same—and we’ve already seen how misleading that can be!</span>
+<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a>**The model will estimate the fixed and random effects** but don’t worry—the model won’t get super complex. The estimates and p-values will primarily focus on the **fixed effects**, but it will account for the **random effects** in the background to make sure the results are accurate. In other words, random effects are variables that you know contribute to the variance in your model, and you want to account for them, but you’re not directly interested in obtaining a result about each one.</span>
+<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a>Got the gist? Great! Now enough with words...let’s dive into a real example and see these mixed effects in action!</span>
+<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Settings and data</span></span>
+<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a>In this section, we'll set up our working environment by loading the necessary libraries and importing the dataset. You'll likely already have this dataset available if you completed the previous linear models tutorial. If not, don't worry—you can easily download it using the link below:</span>
+<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a><span class="in">{{&lt; downloadthis ../../resources/Stats/Dataset.csv label="Dataset.csv" type="secondary" &gt;}}</span></span>
+<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Libraries}</span></span>
+<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a><span class="in">library(lme4)</span></span>
+<span id="cb22-119"><a href="#cb22-119" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmerTest)</span></span>
+<span id="cb22-120"><a href="#cb22-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a><span class="in">library(easystats)</span></span>
+<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-124"><a href="#cb22-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-125"><a href="#cb22-125" aria-hidden="true" tabindex="-1"></a>The <span class="in">`lme4`</span> package is the go-to library for running Linear Mixed Models (LMM) in R. To make your life easier, there's also the <span class="in">`lmerTest`</span> package, which enhances <span class="in">`lme4`</span> by allowing you to extract p-values and providing extra functions to better understand your models. In my opinion, you should always use <span class="in">`lmerTest`</span> alongside <span class="in">`lme4`</span>—it just makes everything smoother!</span>
+<span id="cb22-126"><a href="#cb22-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-127"><a href="#cb22-127" aria-hidden="true" tabindex="-1"></a>To run our Linear Mixed Effects Model, these are the key packages we'll use. On top of that, the <span class="in">`tidyverse`</span> suite will help with data wrangling and visualization, while <span class="in">`easystats`</span> will let us easily extract and summarize the important details from our models. Let’s get started!</span>
+<span id="cb22-128"><a href="#cb22-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Read the data</span></span>
+<span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">Dataset.csv"</span>)</span>
+<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a>After importing the data, we've ensured that Id is treated as a factor rather than a numerical column. The importance of this distinction will become clear as we progress through the tutorial!</span>
+<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear Model</span></span>
+<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a>While we already seen how to run a linear model we will rerun it here as a comparison to the next steps. In case something is not clear about this <span class="in">`lm()`</span> please go back to the <span class="co">[</span><span class="ot">**previous tutorial on linear models**</span><span class="co">](LinearModels.qmd)</span>**.**</span>
+<span id="cb22-143"><a href="#cb22-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Lm</span></span>
+<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb22-149"><a href="#cb22-149" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a>mod_lm <span class="ot">=</span> <span class="fu">lm</span>(LookingTime <span class="sc">~</span> Event_trial<span class="sc">*</span>Event, <span class="at">data =</span> df)</span>
+<span id="cb22-151"><a href="#cb22-151" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_lm)</span>
+<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a>We won’t delve into the details of the model results in this tutorial, as we have already cover it in the previous one. However we want to point one thing about the data we run it on!!</span>
+<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb22-160"><a href="#cb22-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-162"><a href="#cb22-162" aria-hidden="true" tabindex="-1"></a>Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example...its a grouping variable</span>
+<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-164"><a href="#cb22-164" aria-hidden="true" tabindex="-1"></a>**Wait..but then we should have taken it into consideration!!!**</span>
+<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a>Instead there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....</span>
+<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a>Yes we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..</span>
+<span id="cb22-169"><a href="#cb22-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-170"><a href="#cb22-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mixed Effects</span></span>
+<span id="cb22-171"><a href="#cb22-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-172"><a href="#cb22-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Intercept</span></span>
+<span id="cb22-173"><a href="#cb22-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a>Alright, let’s start with **Random Intercepts**! What are they? Well, the name gives it away—they’re just intercepts…but with a twist! 🤔</span>
+<span id="cb22-175"><a href="#cb22-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-176"><a href="#cb22-176" aria-hidden="true" tabindex="-1"></a>If you recall your knowledge of linear models, you’ll remember that each model has **one intercept**—the point where the model crosses the y-axis (when x=0).</span>
+<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a>But what makes random intercepts special? They allow the model to have **different intercepts for each grouping variable**—in this case, the **Id**s. This means we’re letting the model assume that each subject may have a slightly different baseline performance.</span>
+<span id="cb22-179"><a href="#cb22-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-180"><a href="#cb22-180" aria-hidden="true" tabindex="-1"></a>Here’s the idea:</span>
+<span id="cb22-181"><a href="#cb22-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>One person might naturally be a bit better.</span>
+<span id="cb22-183"><a href="#cb22-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Someone else could be slightly worse.</span>
+<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>And me? Well, let’s just say I’m starting from rock bottom.</span>
+<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a>However, even though we’re starting from different baselines, **the rate of improvement over trials can still be consistent across subjects**.</span>
+<span id="cb22-189"><a href="#cb22-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-190"><a href="#cb22-190" aria-hidden="true" tabindex="-1"></a>This approach helps us capture **variation in the starting performance**, acknowledging that people are inherently different but might still follow a similar overall pattern of improvement. It’s a simple yet powerful way to model individual differences!</span>
+<span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a>Now, let’s look at how to include this in our mixed model.</span>
+<span id="cb22-193"><a href="#cb22-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
+<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a>To run a **linear mixed-effects model**, we’ll use the `lmer` function from the **lme4** package. it Functions very similarly to the `lm` function we used before: you pass a formula and a dataset, but with one important addition: specifying the **random intercept**.</span>
+<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-198"><a href="#cb22-198" aria-hidden="true" tabindex="-1"></a>The formula is nearly the same as a standard linear model, but we include <span class="in">`(1|subject_id)`</span> to tell the model that each subject should have its own unique intercept. This accounts for variations in baseline performance across individuals.</span>
+<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-200"><a href="#cb22-200" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a>When specifying random intercepts (like <span class="in">`(1|Group)`</span>), your grouping variables must be factors! If a grouping variable is numeric, R will wrongly treat it as a continuous variable rather than discrete categories. Character variables are automatically fine, but numeric grouping variables must be explicitly converted using <span class="in">`factor()`</span>.</span>
+<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r InterceptModel}</span></span>
+<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rintercept =lmer(LookingTime ~ Event_trial * Event+ (1|Id ), data= df,  na.action = na.exclude)</span></span>
+<span id="cb22-206"><a href="#cb22-206" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rintercept)</span></span>
+<span id="cb22-207"><a href="#cb22-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-208"><a href="#cb22-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-209"><a href="#cb22-209" aria-hidden="true" tabindex="-1"></a>Wow! Now the model is showing us something **new** compared to the simple linear model. We observe an **interaction between Event and Event_trial**. By letting the intercept vary for each subject, the model is able to capture nuances in the data that a standard linear model might miss.</span>
+<span id="cb22-210"><a href="#cb22-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a>To understand this interaction, let’s plot it and see how performance changes across trials for each condition.</span>
+<span id="cb22-212"><a href="#cb22-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-215"><a href="#cb22-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb22-217"><a href="#cb22-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb22-219"><a href="#cb22-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb22-220"><a href="#cb22-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
+<span id="cb22-221"><a href="#cb22-221" aria-hidden="true" tabindex="-1"></a>i_pred <span class="ot">=</span> <span class="fu">estimate_expectation</span>(mod_rintercept, <span class="at">include_random=</span>T)</span>
+<span id="cb22-222"><a href="#cb22-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-223"><a href="#cb22-223" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(i_pred, <span class="fu">aes</span>(<span class="at">x=</span> Event_trial, <span class="at">y=</span> Predicted, <span class="at">color=</span> Id, <span class="at">shape =</span> Event))<span class="sc">+</span></span>
+<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">y=</span> LookingTime, <span class="at">color=</span> Id), <span class="at">position=</span> <span class="fu">position_jitter</span>(<span class="at">width=</span><span class="fl">0.2</span>))<span class="sc">+</span></span>
+<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Predicted<span class="sc">-</span>SE, <span class="at">ymax=</span>Predicted<span class="sc">+</span>SE, <span class="at">fill =</span> Id),<span class="at">color=</span> <span class="st">'transparent'</span>, <span class="at">alpha=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Looking time'</span>, <span class="at">x=</span><span class="st">'# trial'</span>)<span class="sc">+</span></span>
+<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_modern</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>)<span class="sc">+</span></span>
+<span id="cb22-230"><a href="#cb22-230" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Event)</span>
+<span id="cb22-231"><a href="#cb22-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-233"><a href="#cb22-233" aria-hidden="true" tabindex="-1"></a>As you can see here, each color represents a different subject, and we've divided the plot into two panels - one for each type of event - to make visualization simpler. Cool isn't it??.</span>
+<span id="cb22-234"><a href="#cb22-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a>Now, you might be thinking, *“This looks interesting, but my plot is going to be a mess with all these individual estimates!”* Well, don’t worry! While what we’ve plotted is how the data is modeled by our mixed-effects model, the random effects are actually used to make more accurate estimates—but the model still returns an overall estimate.</span>
+<span id="cb22-236"><a href="#cb22-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-237"><a href="#cb22-237" aria-hidden="true" tabindex="-1"></a>Think of it like this: the random effects allow the model to account for individual differences between subjects. But instead of just showing all the individual estimates in the plot, the model takes these individual estimates for each subject and returns the *average* of these estimates to give you a cleaner, more generalizable result.</span>
+<span id="cb22-238"><a href="#cb22-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-239"><a href="#cb22-239" aria-hidden="true" tabindex="-1"></a>we can plot the actual estimate of the model:</span>
+<span id="cb22-240"><a href="#cb22-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotInterceptModelOverall}</span></span>
+<span id="cb22-242"><a href="#cb22-242" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb22-243"><a href="#cb22-243" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
+<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
+<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a><span class="in">i_pred = estimate_expectation(mod_rintercept, include_random =F)</span></span>
+<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(i_pred, aes(x= Event_trial, y= Predicted))+</span></span>
+<span id="cb22-250"><a href="#cb22-250" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id, shape = Event), position= position_jitter(width=0.2))+</span></span>
+<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line(aes(group= Event),color= 'blue', lwd=1.4)+</span></span>
+<span id="cb22-252"><a href="#cb22-252" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, group= Event),color= 'transparent', alpha=0.1)+</span></span>
+<span id="cb22-253"><a href="#cb22-253" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
+<span id="cb22-254"><a href="#cb22-254" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_bw(base_size = 20)+</span></span>
+<span id="cb22-255"><a href="#cb22-255" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = 'none')+</span></span>
+<span id="cb22-256"><a href="#cb22-256" aria-hidden="true" tabindex="-1"></a><span class="in">  facet_wrap(~Event)</span></span>
+<span id="cb22-257"><a href="#cb22-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-258"><a href="#cb22-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a><span class="fu">### Slope</span></span>
+<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a>Coool!!!!!!! So far, we’ve modeled a different intercept for each subject, which lets each subject have their own baseline level of performance. But here’s the catch: our model assumes that everyone improves over the trials in exactly the same way, with the same slope. That doesn’t sound quite right, does it? We know that some people may get better faster than others, or their learning might follow a different pattern.</span>
+<span id="cb22-262"><a href="#cb22-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-263"><a href="#cb22-263" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
+<span id="cb22-264"><a href="#cb22-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-265"><a href="#cb22-265" aria-hidden="true" tabindex="-1"></a>This is where we can model *random slopes* to capture these individual differences in learning rates. By adding <span class="in">`(0 + Event_trial | Id)`</span>, we’re telling the model that while the intercept (starting point) is the same for everyone, the rate at which each subject improves (the slope) can vary.</span>
+<span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-267"><a href="#cb22-267" aria-hidden="true" tabindex="-1"></a>This way, we’re allowing each subject to have their own slope in addition to their own intercept, making the model more flexible and reflective of real-world variations in learning!</span>
+<span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a>Any variable used as a random slope (before the <span class="in">`|`</span>) must also be included as a fixed effect in your model. The fixed effect estimates the overall effect, while the random slope captures how that effect varies across groups. Without the fixed effect, you're modeling deviations from zero instead of from an average, which rarely makes theoretical sense.</span>
+<span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb22-272"><a href="#cb22-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-273"><a href="#cb22-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SlopeModel}</span></span>
+<span id="cb22-274"><a href="#cb22-274" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rslope =lmer(LookingTime ~ Event_trial * Event+ (0 + Event_trial | Id ), data= df)</span></span>
+<span id="cb22-275"><a href="#cb22-275" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rslope)</span></span>
+<span id="cb22-276"><a href="#cb22-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-277"><a href="#cb22-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-278"><a href="#cb22-278" aria-hidden="true" tabindex="-1"></a>The results aren't too different from the intercept-only model, but let's take a closer look at what we've actually modeled.</span>
+<span id="cb22-279"><a href="#cb22-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotSlopeModel}</span></span>
+<span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
+<span id="cb22-285"><a href="#cb22-285" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
+<span id="cb22-286"><a href="#cb22-286" aria-hidden="true" tabindex="-1"></a><span class="in">s_pred = estimate_expectation(mod_rslope, include_random =T)</span></span>
+<span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(s_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+</span></span>
+<span id="cb22-289"><a href="#cb22-289" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+</span></span>
+<span id="cb22-290"><a href="#cb22-290" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line()+</span></span>
+<span id="cb22-291"><a href="#cb22-291" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+</span></span>
+<span id="cb22-292"><a href="#cb22-292" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
+<span id="cb22-293"><a href="#cb22-293" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_modern(base_size = 20)+</span></span>
+<span id="cb22-294"><a href="#cb22-294" aria-hidden="true" tabindex="-1"></a><span class="in">    theme(legend.position = 'none')+</span></span>
+<span id="cb22-295"><a href="#cb22-295" aria-hidden="true" tabindex="-1"></a><span class="in">    facet_wrap(~Event)</span></span>
+<span id="cb22-296"><a href="#cb22-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-297"><a href="#cb22-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-298"><a href="#cb22-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Intercept + Slope</span></span>
+<span id="cb22-299"><a href="#cb22-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-300"><a href="#cb22-300" aria-hidden="true" tabindex="-1"></a>That plot does look nuts, and it’s a clear signal that something is off. Why? Because by modeling only the random slopes while keeping the intercepts fixed, we’re essentially forcing all subjects to start from the same baseline. That’s clearly unrealistic for most real-world data.</span>
+<span id="cb22-301"><a href="#cb22-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-302"><a href="#cb22-302" aria-hidden="true" tabindex="-1"></a>In real life, the intercept and slope often go hand-in-hand for each subject.</span>
+<span id="cb22-303"><a href="#cb22-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-304"><a href="#cb22-304" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model</span></span>
+<span id="cb22-305"><a href="#cb22-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-306"><a href="#cb22-306" aria-hidden="true" tabindex="-1"></a>To make the model more realistic, we can model both the random intercept and the random slope together. We simply modify the random effects part of the formula to <span class="in">`(trial_number | subject_id)`</span>.</span>
+<span id="cb22-307"><a href="#cb22-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-308"><a href="#cb22-308" aria-hidden="true" tabindex="-1"></a>Now, we are telling the model to estimate both a random intercept (baseline performance) and a random slope (rate of improvement). This captures the full variability in how each subject learns over time!</span>
+<span id="cb22-309"><a href="#cb22-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-310"><a href="#cb22-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r InterceptSlopeModel}</span></span>
+<span id="cb22-311"><a href="#cb22-311" aria-hidden="true" tabindex="-1"></a><span class="in">mod_rinterraction = lmer(LookingTime ~ Event_trial * Event+ (1 + Event_trial | Id ), data= df)</span></span>
+<span id="cb22-312"><a href="#cb22-312" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rinterraction)</span></span>
+<span id="cb22-313"><a href="#cb22-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-314"><a href="#cb22-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-315"><a href="#cb22-315" aria-hidden="true" tabindex="-1"></a>Now, let’s visualize how the model is modeling the data:</span>
+<span id="cb22-316"><a href="#cb22-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-317"><a href="#cb22-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r PlotInterceptSlopeModel}</span></span>
+<span id="cb22-318"><a href="#cb22-318" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb22-319"><a href="#cb22-319" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb22-320"><a href="#cb22-320" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-321"><a href="#cb22-321" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 8</span></span>
+<span id="cb22-322"><a href="#cb22-322" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 12</span></span>
+<span id="cb22-323"><a href="#cb22-323" aria-hidden="true" tabindex="-1"></a><span class="in">is_pred = estimate_expectation(mod_rinterraction, include_random =T)</span></span>
+<span id="cb22-324"><a href="#cb22-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-325"><a href="#cb22-325" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(is_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+</span></span>
+<span id="cb22-326"><a href="#cb22-326" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+</span></span>
+<span id="cb22-327"><a href="#cb22-327" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_line()+</span></span>
+<span id="cb22-328"><a href="#cb22-328" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+</span></span>
+<span id="cb22-329"><a href="#cb22-329" aria-hidden="true" tabindex="-1"></a><span class="in">    labs(y='Looking time', x='# trial')+</span></span>
+<span id="cb22-330"><a href="#cb22-330" aria-hidden="true" tabindex="-1"></a><span class="in">    theme_modern(base_size = 20)+</span></span>
+<span id="cb22-331"><a href="#cb22-331" aria-hidden="true" tabindex="-1"></a><span class="in">    theme(legend.position = 'none')+</span></span>
+<span id="cb22-332"><a href="#cb22-332" aria-hidden="true" tabindex="-1"></a><span class="in">    facet_wrap(~Event)</span></span>
+<span id="cb22-333"><a href="#cb22-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-334"><a href="#cb22-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-335"><a href="#cb22-335" aria-hidden="true" tabindex="-1"></a>While is not super apparent from the data you can see that different subject have different slopes meaning that they all not grow at the same rate</span>
+<span id="cb22-336"><a href="#cb22-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-337"><a href="#cb22-337" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary of mixed models</span></span>
+<span id="cb22-338"><a href="#cb22-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-339"><a href="#cb22-339" aria-hidden="true" tabindex="-1"></a>Now that we've seen how to run mixed-effects models, it's time to focus on **interpreting the summary output**. While we’ve been building models, we haven’t delved into what the summary actually tells us or which parts of it deserve our attention. Let’s fix that!</span>
+<span id="cb22-340"><a href="#cb22-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-341"><a href="#cb22-341" aria-hidden="true" tabindex="-1"></a>To start, we’ll use our **final model** and inspect its summary. This will give us a chance to break it down step by step and understand the key information it provides. Here's how to check the summary:</span>
+<span id="cb22-342"><a href="#cb22-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r SummaryCheck}</span></span>
+<span id="cb22-344"><a href="#cb22-344" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mod_rinterraction)</span></span>
+<span id="cb22-345"><a href="#cb22-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-346"><a href="#cb22-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-347"><a href="#cb22-347" aria-hidden="true" tabindex="-1"></a>The **Random effects** section in the model summary shows how variability is accounted for by the random effects. The **Groups** column indicates the grouping factor (e.g., subject), while the **Name** column lists the random effects (e.g., intercept and slope). The **Variance** column represents the variability for each random effect—higher values indicate greater variation in how the effect behaves across groups. The **Std.Dev.** column is simply the standard deviation of the variance, showing the spread in the same units as the data.</span>
+<span id="cb22-348"><a href="#cb22-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-349"><a href="#cb22-349" aria-hidden="true" tabindex="-1"></a>The **Corr** column reflects the correlation between random effects, telling us whether different aspects of the data (e.g., intercepts and slopes) tend to move together. A negative correlation would suggest that higher intercepts (starting points) are associated with smaller slopes (slower learning rates), while a positive correlation would suggest the opposite.</span>
+<span id="cb22-350"><a href="#cb22-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-351"><a href="#cb22-351" aria-hidden="true" tabindex="-1"></a>The **Residual** section shows the unexplained variability after accounting for the fixed and random effects.</span>
+<span id="cb22-352"><a href="#cb22-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a>**The key takeaway here is that random effects capture the variability in the data that can’t be explained by the fixed effects alone.** If the variance for a random effect is low, it suggests the random effect isn’t adding much to the model and may be unnecessary. On the other hand, high variance indicates that the random effect is important for capturing group-level differences and improving the model’s accuracy.</span>
+<span id="cb22-354"><a href="#cb22-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-355"><a href="#cb22-355" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model comparison</span></span>
+<span id="cb22-356"><a href="#cb22-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-357"><a href="#cb22-357" aria-hidden="true" tabindex="-1"></a>But how can we be sure the random effects are helping our model? One of the easiest ways is to check the variance explained by the random effects. As we said if the variance related to the random effects is too small, it probably isn’t contributing much to the model. If it’s high, it’s likely helping the model by capturing important variability in the data.</span>
+<span id="cb22-358"><a href="#cb22-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-359"><a href="#cb22-359" aria-hidden="true" tabindex="-1"></a>Another method is to compare the performance of different models. One of the best indices for this is the Akaike Information Criterion (AIC). AIC gives a relative measure of how well a model fits the data, while penalizing the number of parameters in the model. Lower AIC values indicate better models, as they balance goodness-of-fit with model complexity.</span>
+<span id="cb22-360"><a href="#cb22-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-361"><a href="#cb22-361" aria-hidden="true" tabindex="-1"></a>You can compare the AIC of different models using the following:</span>
+<span id="cb22-362"><a href="#cb22-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-365"><a href="#cb22-365" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-366"><a href="#cb22-366" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(mod_lm, mod_rintercept, mod_rslope, mod_rinterraction, <span class="at">metrics=</span><span class="st">'AIC'</span>)</span>
+<span id="cb22-367"><a href="#cb22-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-368"><a href="#cb22-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-369"><a href="#cb22-369" aria-hidden="true" tabindex="-1"></a>As you can see, the best model based on AIC is the one with both intercept and slope. This is a good way to check if and which random effect structure is necessary for our model.</span>
+<span id="cb22-370"><a href="#cb22-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-371"><a href="#cb22-371" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb22-372"><a href="#cb22-372" aria-hidden="true" tabindex="-1"></a>Never decide if your random effect structure is good by just looking at p-values! P-values are not necessarily related to how well the model fits your data. Always use model comparison and fit indices like AIC to guide your decision.</span>
+<span id="cb22-373"><a href="#cb22-373" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb22-374"><a href="#cb22-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-375"><a href="#cb22-375" aria-hidden="true" tabindex="-1"></a><span class="fu">## Formulary</span></span>
+<span id="cb22-376"><a href="#cb22-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-377"><a href="#cb22-377" aria-hidden="true" tabindex="-1"></a>In this tutorial, we introduced linear mixed-effects models. However, these models can be far more versatile and complex than what we've just explored. The <span class="in">`lme4`</span> package allows you to specify various models to suit diverse research scenarios. While we won’t dive into every possibility, here’s a handy reference for the different random effects structures you can specify</span>
+<span id="cb22-378"><a href="#cb22-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-379"><a href="#cb22-379" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb22-380"><a href="#cb22-380" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;table border="1" style="width: 100%; border-collapse: collapse;"&gt;</span></span>
+<span id="cb22-381"><a href="#cb22-381" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;thead&gt;</span></span>
+<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-383"><a href="#cb22-383" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;th style="white-space: nowrap;"&gt;Formula&lt;/th&gt;</span></span>
+<span id="cb22-384"><a href="#cb22-384" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;th&gt;Description&lt;/th&gt;</span></span>
+<span id="cb22-385"><a href="#cb22-385" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/thead&gt;</span></span>
+<span id="cb22-387"><a href="#cb22-387" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;tbody&gt;</span></span>
+<span id="cb22-388"><a href="#cb22-388" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-389"><a href="#cb22-389" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s)&lt;/td&gt;</span></span>
+<span id="cb22-390"><a href="#cb22-390" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random intercepts for unique level of the factor &lt;code&gt;s&lt;/code&gt;.&lt;/td&gt;</span></span>
+<span id="cb22-391"><a href="#cb22-391" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-392"><a href="#cb22-392" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-393"><a href="#cb22-393" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s) + (1|i)&lt;/td&gt;</span></span>
+<span id="cb22-394"><a href="#cb22-394" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random intercepts for each unique level of &lt;code&gt;s&lt;/code&gt; and for each unique level of &lt;code&gt;i&lt;/code&gt;.&lt;/td&gt;</span></span>
+<span id="cb22-395"><a href="#cb22-395" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-396"><a href="#cb22-396" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-397"><a href="#cb22-397" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(1|s/i)&lt;/td&gt;</span></span>
+<span id="cb22-398"><a href="#cb22-398" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
+<span id="cb22-399"><a href="#cb22-399" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts for factor &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;i&lt;/code&gt;, where the random effects for &lt;code&gt;i&lt;/code&gt; are nested in &lt;code&gt;s&lt;/code&gt;. </span></span>
+<span id="cb22-400"><a href="#cb22-400" aria-hidden="true" tabindex="-1"></a><span class="in">        This expands to &lt;code&gt;(1|s) + (1|s:i)&lt;/code&gt;, i.e., a random intercept for each level of &lt;code&gt;s&lt;/code&gt;, and each unique combination of the levels of &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;i&lt;/code&gt;. </span></span>
+<span id="cb22-401"><a href="#cb22-401" aria-hidden="true" tabindex="-1"></a><span class="in">        Nested random effects are used in so-called multilevel models. For example, &lt;code&gt;s&lt;/code&gt; might refer to schools, and &lt;code&gt;i&lt;/code&gt; to classrooms within those schools.</span></span>
+<span id="cb22-402"><a href="#cb22-402" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
+<span id="cb22-403"><a href="#cb22-403" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-404"><a href="#cb22-404" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-405"><a href="#cb22-405" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a|s)&lt;/td&gt;</span></span>
+<span id="cb22-406"><a href="#cb22-406" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
+<span id="cb22-407"><a href="#cb22-407" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and random slopes for &lt;code&gt;a&lt;/code&gt;, for each level of &lt;code&gt;s&lt;/code&gt;. Correlations between the intercept and slope effects are also estimated. </span></span>
+<span id="cb22-408"><a href="#cb22-408" aria-hidden="true" tabindex="-1"></a><span class="in">        (Identical to &lt;code&gt;(a*b|s)&lt;/code&gt;.)</span></span>
+<span id="cb22-409"><a href="#cb22-409" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
+<span id="cb22-410"><a href="#cb22-410" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-411"><a href="#cb22-411" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-412"><a href="#cb22-412" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a*b|s)&lt;/td&gt;</span></span>
+<span id="cb22-413"><a href="#cb22-413" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
+<span id="cb22-414"><a href="#cb22-414" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and slopes for &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, and the &lt;code&gt;a:b&lt;/code&gt; interaction, for each level of &lt;code&gt;s&lt;/code&gt;. </span></span>
+<span id="cb22-415"><a href="#cb22-415" aria-hidden="true" tabindex="-1"></a><span class="in">        Correlations between all the random effects are estimated.</span></span>
+<span id="cb22-416"><a href="#cb22-416" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
+<span id="cb22-417"><a href="#cb22-417" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-418"><a href="#cb22-418" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-419"><a href="#cb22-419" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(0+a|s)&lt;/td&gt;</span></span>
+<span id="cb22-420"><a href="#cb22-420" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;Random slopes for &lt;code&gt;a&lt;/code&gt; for each level of &lt;code&gt;s&lt;/code&gt;, but no random intercepts.&lt;/td&gt;</span></span>
+<span id="cb22-421"><a href="#cb22-421" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-422"><a href="#cb22-422" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb22-423"><a href="#cb22-423" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td style="white-space: nowrap;"&gt;(a||s)&lt;/td&gt;</span></span>
+<span id="cb22-424"><a href="#cb22-424" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;td&gt;</span></span>
+<span id="cb22-425"><a href="#cb22-425" aria-hidden="true" tabindex="-1"></a><span class="in">        Random intercepts and random slopes for &lt;code&gt;a&lt;/code&gt;, for each level of &lt;code&gt;s&lt;/code&gt;, but no correlations between the random effects (i.e., they are set to 0). </span></span>
+<span id="cb22-426"><a href="#cb22-426" aria-hidden="true" tabindex="-1"></a><span class="in">        This expands to: &lt;code&gt;(0+a|s) + (1|s)&lt;/code&gt;.</span></span>
+<span id="cb22-427"><a href="#cb22-427" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/td&gt;</span></span>
+<span id="cb22-428"><a href="#cb22-428" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb22-429"><a href="#cb22-429" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/tbody&gt;</span></span>
+<span id="cb22-430"><a href="#cb22-430" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/table&gt;</span></span>
+<span id="cb22-431"><a href="#cb22-431" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

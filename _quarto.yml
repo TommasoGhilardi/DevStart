@@ -8,6 +8,9 @@ execute:
   freeze: auto
 
 website:
+  drafts:
+    - CONTENT/Stats/LinearModels.qmd
+    - CONTENT/Stats/LinearMixedModels.qmd
 
   cookie-consent:
     type: implied
