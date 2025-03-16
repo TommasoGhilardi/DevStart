@@ -1,5 +1,5 @@
 ---
-title: "Linear mixed effect modesl"
+title: "Linear mixed effect models"
 date: "15/03/2025"
 
 author-meta: "Tommaso Ghilardi"
@@ -147,19 +147,19 @@ mod_lm = lm(LookingTime ~ Event_trial*Event, data = df)
 summary(mod_lm)
 ```
 
-We won’t delve into the details of the model results in this tutorial, as we have already cover it in the previous one. However we want to point one thing about the data we run it on!!
+We won’t delve into the details of the model results in this tutorial, as we have already cover it in the previous one. However we want to point out one thing about the data we run it on!!
 
 ```{r}
 str(df)
 ```
 
-Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example...its a grouping variable
+Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example... it's a grouping variable
 
 **Wait..but then we should have taken it into consideration!!!**
 
-Instead there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....
+Instead, there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....
 
-Yes we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..
+Yes, we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..
 
 ## Mixed Effects
 
@@ -324,7 +324,7 @@ ggplot(is_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+
     facet_wrap(~Event)
 ```
 
-While is not super apparent from the data you can see that different subject have different slopes meaning that they all not grow at the same rate
+While is not super apparent from the data you can see that different subjects have different slopes meaning that they do not all grow at the same rate
 
 ## Summary of mixed models
 
