@@ -1,0 +1,168 @@
+---
+title: "Generalised mixed-effect models"
+author-meta: "Francesco Poli"
+date: "16/03/2025" 
+#description-meta: "Discover how to handle non-normal data using Generalised Mixed-Effects Models. We’ll walk through model assumptions, choosing the right distribution family, and interpreting the results (including random effects)!" 
+
+categories:
+  - R
+  - Stats
+  - Mixed effects models
+---
+
+If you have followed all of our stats tutorial, you know that we kicked things off with [**linear models**](#) and then dove into the world of [**linear mixed-effect models**](#). Now, it’s time to expand our toolkit to **Generalised Mixed-Effects Models (GLMMs)**. In this tutorial, we’ll explore how to handle data that simply *doesn’t fit* the assumption of normality. Our star of the show!? **Reaction Time**. If you remember, our dataset does not only contain Looking Time as eye-tracking variable, but also saccadic reaction times! These indicate how quickly participants have looked at the stimuli when they appreared.
+
+Let's start by importing the packages we need, the dataset, and plotting the data. Plotting your data before running the analyses is always a good idea! You might spot weird distributions or outliers:
+
+```{r}
+
+# Load libraries
+library(easystats)
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+
+######################################################
+df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+#df = read.csv("C:/Users/fp02/OneDrive/Documenti/Devstart/resources/Stats/Dataset.csv")
+df$Id = factor(df$Id) # make sure subject_id is a factor
+df$Event_trial_scaled = scale(df$Event_trial) # scale the continuous variable
+
+# Histogram
+ggplot(df, aes(x = ReactionTime)) +
+  geom_histogram(bins = 30, fill = "lightblue", color = "black") +
+  theme_minimal(base_size = 14)
+# Boxplot by Event
+ggplot(df, aes(x = Event, y = ReactionTime)) +
+  geom_boxplot(alpha = 0.5, outlier.color = "darkred") +
+  theme_minimal(base_size = 14)
+```
+
+Do you notice anything off!?? Yup, that distribution is not really a Gaussian, is it!? Fitting a linear model won't probably work in this context, but just to be extra safe, let's run it. We will add main effects and random effects just as in the previous tutorial:
+
+```{r}
+mod_lm <- lmer(
+  ReactionTime ~ Event_trial_scaled * Event + (1 + Event_trial_scaled | Id),
+  data = df
+)
+```
+
+Now, before even looking at the summary, it's always a good idea to check assumptions first. For that, we can use the function check_model() as we explained in the tutorial on linear models (link):
+
+```{r}
+#| label: PlotCheck
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 11
+#| fig-width: 14
+check_model(mod_lm)
+```
+
+Oh the normality of the residuals is all over the place!!! That's probably because our data is not normally distributed... What can we do? Well, luckily for us, we can resort to distributions that are different from the gaussian. But which distribution should we use? The more you get familiarised with distributions, the more you will learn to recognise them. But since we're not black belt of statistics yet, let's use the Cullen and Frey graph instead! For this, we need to install the fitdistrplus package:
+
+```{r}
+#| fig-dpi: 300
+#| fig-height: 6
+#| fig-width: 7
+#install.packages("fitdistrplus")
+library(fitdistrplus)
+# first we need to remove NAs:
+RTs = as.vector(na.omit(df$ReactionTime))
+# then we can plot
+descdist(RTs, discrete = FALSE, boot = 500)
+```
+
+We can see that our data could either be a beta distribution (It is in the gray area) or a gamma distribution (it is near the dashed line). The bootstrap is generating extra simulations that can help our decision. Given how they tent to follow the dashed line, we can go for a gamma distribution!
+
+::: callout-caution
+Beware! this plot only shows 7 or 8 distributions, and many more exist! For example, do you know what a bernoulli or a binary distribution are? If not we advise you check out <https://distribution-explorer.github.io/index.html>
+:::
+
+We can now update our mixed effect model, making it generalised! All this means is that we specify a distributon different from a gaussian:
+
+```{r}
+# Fit a GLMM with Gamma distribution
+mod_gamma <- glmer(
+  ReactionTime ~ Event_trial_scaled * Event + (1 + Event_trial_scaled| Id),
+  data   = df,
+  family = Gamma(link = "log")
+)
+
+```
+
+::: callout-note
+You might have noticed we added link = "log" in our model: that's a link function! A link function puts your independent variables on the right scale for your data. For a Gamma model, we often use a **log link** because our outcome can only be **positive**. By taking the exponent of the independent variables and their beta coefficients, the predicted values are **always above zero**—perfect for modeling things like reaction times or any strictly positive measure.
+:::
+
+Now that we have run the model, let's do our checks:
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-dpi: 300
+#| fig-height: 11
+#| fig-width: 14
+
+check_model(mod_gamma)
+```
+
+Oh, so much better!! Once we are confident that the assumptions are respected, we can interpret the results:
+
+```{r}
+summary(mod_gamma)
+```
+
+Wow these results are so strong! We can see the interaction between trial number and Event is significant. When interactions are significant, we should look at those rather than at the main effects. To better understand what's going on, we can plot the interaction:
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-height: 8
+#| fig-width: 12
+is_pred <- estimate_expectation(mod_gamma, include_random = FALSE)
+
+# 2. Plot the interaction between Event_trial_scaled and Event
+ggplot(is_pred, aes(x = Event_trial_scaled, 
+                    y = Predicted, 
+                    color = Event, 
+                    group = Event)) +
+  geom_line(size = 1.2) + 
+  geom_ribbon(aes(ymin = Predicted - SE, ymax = Predicted + SE, fill = Event),
+              alpha = 0.2, color = "transparent") +
+  labs(y = "Reaction Time (Predicted)", x = "Scaled Trial #") +
+  theme_minimal(base_size = 16)
+
+```
+
+Reaction times decrease much more across trials for the reward than for the no reward condition! However, we don't have a complete picture yet. For example, we do not know whether the the decrease in reaction times across trials is significant only for the reward condition or also for the no reward condition. To find out, we can estimate the slopes as we did in the previous tutorial \[add link\]:
+
+\[add with same structure as in previous tutorial\]
+
+Although we've been focusing on the main effects, remember that we also had random intercepts and slopes in our model! We can have a look at the random effects as well:
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-height: 8
+#| fig-width: 12
+is_pred = estimate_expectation(mod_gamma, include_random =T)
+
+ggplot(is_pred, aes(x= Event_trial_scaled, y= Predicted, color= Id, shape = Event))+
+    geom_point(data = df, aes(y= ReactionTime, color= Id), position= position_jitter(width=0.2))+
+    geom_line()+
+    geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+
+    labs(y='Reaction time', x='# trial')+
+    theme_modern(base_size = 20)+
+    theme(legend.position = 'none')+
+    facet_wrap(~Event)
+
+```
+
+The variability is impressive! For example, looking at the no reward condition, we can see that Reaction times are getting slower over time for some infants, but they are getting faster for others! These participants are probably loosing interest in the no reward condition, because they learn across time that nothing interesting is going to appear on the screen after the cue! It's also really interesting to see how, from the group level estimates, it seemed that the no reward effect was simply weaker than the reward effect, while there's something more going on: there seem to be more variability in the no reward condition, with a subgroup of infants being especially unintrested in this specific condition only!
+
+Aren't generalised mixed-effect models pretty cool!?? We get to pick the distribution that better resembles the data and we get to model random effects, and these things really improve the fit of our model! We often get to have stronger main effects (which is very often the main thing we are interested in) and we get the insane bonus of looking at individual differences and unique patterns that we would otherwise completely miss!
+
+We hope you'll get to use GLMMs a lot in your research, and that they will help you find super cool results just like we did here!!!!
