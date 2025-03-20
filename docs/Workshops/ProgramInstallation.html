@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -333,6 +333,20 @@ Caution
 <p>Conda will think and download stuff for a while!! Do not worry if you see a lot of lines popping up! Give conda time and confirm if prompted. After a while, hopefully you will see that everything went well and now you have a nice psychopy environment with PsychoPy in it!!</p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Installing PsychoPy on macOS with a silicon chipset (especially the latest models, such as the M4) can be challenging due to complex dependency issues. If you are using a silicon-based Mac, it might be best to skip this installation step and use the standalone <a href="#psychopy-standalone">Psychopy Standalone</a> version, which tends to be more reliable.</p>
+<p>However, if you prefer to try the installation process, feel free to proceed and let us know if you manage to get it working. Should the installation fail, please refer to the flowchart and switch to the <a href="#psychopy-standalone">Psychopy Standalone</a></p>
+</div>
+</div>
 <p>Open again your terminal and type:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> psychopy python=3.8 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Conda will ask you to confirm with a <code>y</code> and will create a new environment called psychopy with Python 3.8.</p>
