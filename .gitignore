@@ -1,5 +1,17 @@
-/.quarto/
-/_site/
-.Rproj.user
+# R/RStudio
+.Rhistory
+.RData
+.Rproj.user/
 
-.vscode
+# Quarto
+.quarto/
+_freeze/
+
+# VS Code (optional)
+.vscode/
+
+# Ignore top-level site_libs folder
+/site_libs/
+
+# But keep docs/site_libs tracked
+!docs/site_libs/
