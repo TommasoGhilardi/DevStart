@@ -3,6 +3,8 @@
 /*------------------------------------*/
 /*-- scss:defaults --*/
 
+
+
 // Font Families
 $font-family-sans-serif: "Roboto", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
 $font-family-monospace: "Fira Mono", "Menlo", "Andale Mono", monospace;
@@ -84,6 +86,17 @@ $grid-column-gutter-width: 1.5rem;
 /*------------------------------------*/
 /*-- scss:rules --*/
 
+// Global link styling
+a {
+  color: #007777;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #00b3b3;
+}
+
+
 // Ensure <strong> and <b> render as bold
 strong, b {
     font-weight: bold !important;
@@ -150,13 +163,18 @@ strong, b {
 
         li a.active,
         li a:hover {
+            /* Original styling:
             color: var(--sidebar-active-color);
             border-left: 3px solid var(--sidebar-active-color);
+            padding-left: 15px;
+            */
+            /* Override for active/hover TOC links: */
+            color: #027a7a;
+            border-left: 3px solid #027a7a;
             padding-left: 15px;
         }
     }
 }
-
 
 /*------------------------------------*/
 /* 💻 Code Block and Output Styling   */
@@ -258,4 +276,26 @@ pre code {
 
 body main > header div.keywords {
     display: none;
+}
+
+
+
+
+
+
+
+
+
+/* Override TOC active/hover styles */
+#quarto-margin-sidebar ul li a.active,
+#quarto-margin-sidebar ul li a:hover,
+#quarto-content .margin-sidebar ul li a.active,
+#quarto-content .margin-sidebar ul li a:hover,
+#quarto-sidebar #TOC ul li a.active,
+#quarto-sidebar #TOC ul li a:hover,
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  color: #027a7a !important;
+  border-left: 3px solid #027a7a !important;
+  padding-left: 15px !important;
 }
