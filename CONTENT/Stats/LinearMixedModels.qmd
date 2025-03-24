@@ -131,9 +131,10 @@ To run our Linear Mixed Effects Model, these are the key packages we'll use. On 
 ```{r}
 df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
 df$Id = factor(df$Id) # make sure subject_id is a factor
+df$StandardTrialN = standardize(df$Event_trial) # create standardize trial column
 ```
 
-After importing the data, we've ensured that Id is treated as a factor rather than a numerical column. The importance of this distinction will become clear as we progress through the tutorial!
+After importing the data, we've ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of Event_trial.
 
 ## Linear Model
 
@@ -143,7 +144,7 @@ While we already seen how to run a linear model we will rerun it here as a compa
 #| label: Lm
 #| message: false
 #| warning: false
-mod_lm = lm(LookingTime ~ Event_trial*Event, data = df)
+mod_lm = lm(LookingTime ~ StandardTrialN*Event, data = df)
 summary(mod_lm)
 ```
 
@@ -196,11 +197,11 @@ When specifying random intercepts (like `(1|Group)`), your grouping variables mu
 :::
 
 ```{r InterceptModel}
-mod_rintercept =lmer(LookingTime ~ Event_trial * Event+ (1|Id ), data= df,  na.action = na.exclude)
+mod_rintercept =lmer(LookingTime ~ StandardTrialN * Event+ (1|Id ), data= df,  na.action = na.exclude)
 summary(mod_rintercept)
 ```
 
-Wow! Now the model is showing us something **new** compared to the simple linear model. We observe an **interaction between Event and Event_trial**. By letting the intercept vary for each subject, the model is able to capture nuances in the data that a standard linear model might miss.
+Wow! Now the model is showing us something **new** compared to the simple linear model. We observe an **interaction between Event and StandardTrialN**. By letting the intercept vary for each subject, the model is able to capture nuances in the data that a standard linear model might miss.
 
 To understand this interaction, let’s plot it and see how performance changes across trials for each condition.
 
@@ -212,7 +213,7 @@ To understand this interaction, let’s plot it and see how performance changes 
 #| fig-width: 12
 i_pred = estimate_expectation(mod_rintercept, include_random=T)
 
-ggplot(i_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+
+ggplot(i_pred, aes(x= StandardTrialN, y= Predicted, color= Id, shape = Event))+
     geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+
     geom_line()+
     geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+
@@ -238,7 +239,7 @@ we can plot the actual estimate of the model:
 #| fig-width: 12
 i_pred = estimate_expectation(mod_rintercept, include_random =F)
 
-ggplot(i_pred, aes(x= Event_trial, y= Predicted))+
+ggplot(i_pred, aes(x= StandardTrialN, y= Predicted))+
     geom_point(data = df, aes(y= LookingTime, color= Id, shape = Event), position= position_jitter(width=0.2))+
     geom_line(aes(group= Event),color= 'blue', lwd=1.4)+
     geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, group= Event),color= 'transparent', alpha=0.1)+
@@ -254,7 +255,7 @@ Coool!!!!!!! So far, we’ve modeled a different intercept for each subject, whi
 
 #### Model
 
-This is where we can model *random slopes* to capture these individual differences in learning rates. By adding `(0 + Event_trial | Id)`, we’re telling the model that while the intercept (starting point) is the same for everyone, the rate at which each subject improves (the slope) can vary.
+This is where we can model *random slopes* to capture these individual differences in learning rates. By adding `(0 + StandardTrialN | Id)`, we’re telling the model that while the intercept (starting point) is the same for everyone, the rate at which each subject improves (the slope) can vary.
 
 This way, we’re allowing each subject to have their own slope in addition to their own intercept, making the model more flexible and reflective of real-world variations in learning!
 
@@ -263,7 +264,7 @@ Any variable used as a random slope (before the `|`) must also be included as a 
 :::
 
 ```{r SlopeModel}
-mod_rslope =lmer(LookingTime ~ Event_trial * Event+ (0 + Event_trial | Id ), data= df)
+mod_rslope =lmer(LookingTime ~ StandardTrialN * Event+ (0 + StandardTrialN | Id ), data= df)
 summary(mod_rslope)
 ```
 
@@ -277,7 +278,7 @@ The results aren't too different from the intercept-only model, but let's take a
 #| fig-width: 12
 s_pred = estimate_expectation(mod_rslope, include_random =T)
 
-ggplot(s_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+
+ggplot(s_pred, aes(x= StandardTrialN, y= Predicted, color= Id, shape = Event))+
     geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+
     geom_line()+
     geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+
@@ -300,7 +301,7 @@ To make the model more realistic, we can model both the random intercept and the
 Now, we are telling the model to estimate both a random intercept (baseline performance) and a random slope (rate of improvement). This captures the full variability in how each subject learns over time!
 
 ```{r InterceptSlopeModel}
-mod_rinterraction = lmer(LookingTime ~ Event_trial * Event+ (1 + Event_trial | Id ), data= df)
+mod_rinterraction = lmer(LookingTime ~ StandardTrialN * Event+ (1 + StandardTrialN | Id ), data= df)
 summary(mod_rinterraction)
 ```
 
@@ -314,7 +315,7 @@ Now, let’s visualize how the model is modeling the data:
 #| fig-width: 12
 is_pred = estimate_expectation(mod_rinterraction, include_random =T)
 
-ggplot(is_pred, aes(x= Event_trial, y= Predicted, color= Id, shape = Event))+
+ggplot(is_pred, aes(x= StandardTrialN, y= Predicted, color= Id, shape = Event))+
     geom_point(data = df, aes(y= LookingTime, color= Id), position= position_jitter(width=0.2))+
     geom_line()+
     geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+
