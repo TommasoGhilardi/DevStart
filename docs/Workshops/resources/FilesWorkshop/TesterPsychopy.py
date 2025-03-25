@@ -1,5 +1,4 @@
 from psychopy import visual, core
-import tobii_research
 # Create a window with size 400x400
 win = visual.Window(
     size=(600, 400),
