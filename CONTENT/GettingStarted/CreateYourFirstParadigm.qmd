@@ -259,20 +259,28 @@ win.close()  # let's close the window at the end of the trial
 
 ## ISI
 
-Amazing, we've got two trials! But, these trials are back-to-back, which isn't typically what we want. More often, we prefer a brief gap between trials, known as the Inter Stimulus Interval (ISI). We could introduce this interval by simply adding a `core.wait(1)`, which would pause the script for a second. However, I'd like to introduce you to an alternative method to wait for this second, which will be useful in future tutorials.
+We've now completed a trial, but having trials run back-to-back is often not ideal. Typically, we insert a brief pause between trials—this is called the Inter-Stimulus Interval (ISI).One common way to implement an ISI is to use a simple wait function, for example:
 
-To implement this ISI, we'll create a psychopy `core.Clock()`. Once initiated, this clock begins to keep track of time, allowing us to check how much time has elapsed since the clock started at any given moment. We'll then use a `while` loop to monitor the elapsed time and break this loop once a second has passed.
+```{python}
+core.wait(1)
+```
 
-The `while` loop is a loop that will keep doing the same thing over and over again as long as a certain condition is true, here the passing of 1s.
+This is straightforward, but in some cases you might want more control over the timing. For example, if you need to account for any slight delays during a trial, you can use a clock to measure elapsed time.
+
+To implement this ISI, we'll create a PsychoPy `core.Clock()`. Once initiated, this clock starts keeping track of time, letting us know how much time has elapsed. After kicking off the clock, we can do some other tasks, then wait for the remaining time to reach our 1-second ISI.
 
 ```{python}
 ### ISI
-clock = core.Clock() # start clock
-while clock.getTime() < 1:
-    pass
+clock = core.Clock()  # start the clock
+
+print('Here we can do other stuff')
+
+core.wait(1 - clock.getTime()) # wait for remaining time
 ```
 
-Perfect we can now add this at the end of our trials!!
+Perfect—this method essentially waits for 1 second just like a simple `core.wait(1)`. But here's the cool part: since we're using the clock, we can run other code in the meantime without stopping everything entirely. This flexibility will be super handy in future tutorials—you'll see!
+
+Let's add this at the end of our trials!!
 
 ## Stop the experiment
 
@@ -386,9 +394,8 @@ for trial in Trials:
     win.flip()    # we re-flip at the end to clean the window
 
     ### ISI
-    clock = core.Clock() # start clock
-    while clock.getTime() < 1:
-        pass
+    clock = core.Clock()  # start the clock
+    core.wait(1 - clock.getTime()) # wait for remaining time
       
     ### Check for closing experiment
     keys = event.getKeys() # collect list of pressed keys
