@@ -312,18 +312,6 @@ cookieconsent.run({
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearMixedModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear mixed effect modesl</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -483,7 +471,7 @@ Note
 <section id="importing-the-functions" class="level3">
 <h3 class="anchored" data-anchor-id="importing-the-functions">Importing the functions</h3>
 <p>We’ll now import the required libraries and custom functions. First, we’ll set the working directory to where our stimuli and the psychopy_tobii_infant folder are located. This allows Python to access these resources. Once set, we can easily import the necessary libraries and the custom functions from psychopy_tobii_infant for our eye-tracking experiment.</p>
-<div id="d02984c3" class="cell" data-execution_count="1">
+<div id="c870e1a7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual, sound</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -498,7 +486,7 @@ Note
 <h3 class="anchored" data-anchor-id="settings">Settings</h3>
 <p>Before running our calibration we need to prepare a few things!</p>
 <p>First, we create a nice window. As we explained before, this is the canvas where we will draw our stimuli.</p>
-<div id="915c3101" class="cell" data-execution_count="2">
+<div id="d5e512bc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>winsize <span class="op">=</span> [<span class="dv">1920</span>, <span class="dv">1080</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> visual.Window(winsize, fullscr<span class="op">=</span><span class="va">True</span>, allowGUI<span class="op">=</span><span class="va">False</span>,screen <span class="op">=</span> <span class="dv">1</span>, color <span class="op">=</span> <span class="st">"#a6a6a6"</span>, unit<span class="op">=</span><span class="st">'pix'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -511,7 +499,7 @@ Note
 </figure>
 </div>
 <p>Let’s find them and put the in a list.</p>
-<div id="9a0fae40" class="cell" data-execution_count="3">
+<div id="deef6f9c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visual stimuli</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>CALISTIMS <span class="op">=</span> glob.glob(<span class="st">"CalibrationStim</span><span class="ch">\\</span><span class="st">*.png"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -523,7 +511,7 @@ Note
 </div>
 <p>Perfect we have found all the stimuli that we need.</p>
 <p>Now we will use the TobiiInfantController that we have imported before to connect to the eye-tracker. It is extremely simple:</p>
-<div id="e9b990bf" class="cell" data-execution_count="4">
+<div id="70ab0615" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>EyeTracker <span class="op">=</span> TobiiInfantController(win)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect we now even have our eye-tracker!!</p>
@@ -540,7 +528,7 @@ Note
 <p>But how to do it?? We can eyeball it but it’s not going to be easy. Luckily we can get some help!!</p>
 <p>Using <code>EyeTracker.show_status()</code> we can see the eyes of the participant in relation to the screen. Therefore we can move either the eye-tracker or the infant to make sure the gaze is parallel to the screen. Sounds good doesn’t it??!!?? However, most of the times infants won’t look at the screen if nothing interesting is presented on it. Thus we need to capture their attention!!!!!</p>
 <p>We can use the video we imported before. We set it to autodraw (each time the window is flipped a new frame will be drawn automatically) and the we start it by calling <code>play()</code>.</p>
-<div id="a9f675ce" class="cell" data-execution_count="5">
+<div id="1e7c6b6b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set video playing</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VideoGrabber.setAutoDraw(<span class="va">True</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>VideoGrabber.play()</span>
@@ -556,7 +544,7 @@ Note
 </div>
 <p>In the center of the screen you will see the video we imported. In this case, a video of funny dancing fruits. But more importantly, at the top we can see the eyes of our participant. We need to make sure that we actually see the eyes and that they are centered in the screen. In addition is important to notice that under the eye position there is a green bar. The black line on it represents the distance of the participant head from the eye-tracker (the more on the right, the further from the screen; the more on the left, the closer to it). Ideally the black line should be in the center (overlapping the white thick line). This would indicate that the head of the participant is at an ideal distance (usually 65cm).</p>
 <p>Once we are satisfied with the position of the eye-tracker and the infant we can press <code>spacebar</code> to proceed to the next step!! Before doing that we will stop the presentation of</p>
-<div id="48f0aaf1" class="cell" data-execution_count="6">
+<div id="251dd496" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stop the attention grabber</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>VideoGrabber.setAutoDraw(<span class="va">False</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>VideoGrabber.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -567,15 +555,15 @@ Note
 <p>Ok, now that we are happy with the setup let’s actually run the calibration. It only takes two steps.</p>
 <p>First, we need to define the amount and the position of the points where we will present our stimuli. In infant studies we usually rely on 5 points. Four on the corners of the screen and one in the center.</p>
 <p>The easiest way to define them is by using Psychopy’s normalized unit.</p>
-<div id="bdf34545" class="cell" data-execution_count="7">
+<div id="9b49663e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CALINORMP <span class="op">=</span> [(<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>), (<span class="op">-</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.4</span>), (<span class="fl">0.0</span>, <span class="fl">0.0</span>), (<span class="fl">0.4</span>, <span class="fl">0.4</span>), (<span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we usually like to work in pixel units, we could define them in pixels or just transform our <code>CALINORMP</code> using the dimension of our window.</p>
-<div id="6e567102" class="cell" data-execution_count="8">
+<div id="62134dd4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CALIPOINTS <span class="op">=</span> [(x <span class="op">*</span> winsize[<span class="dv">0</span>], y <span class="op">*</span> winsize[<span class="dv">1</span>]) <span class="cf">for</span> x, y <span class="kw">in</span> CALINORMP]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perfect! Now we run our calibration by running</p>
-<div id="c8d2e231" class="cell" data-execution_count="9">
+<div id="c190389d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>success <span class="op">=</span> controller.run_calibration(CALIPOINTS, CALISTIMS, audio <span class="op">=</span> Sound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ok, but what is going to happen??? After running this line we will start our calibration. Using the numbers on our keyboard (use 1~9 (depending on the number of calibration points) to present) we will show 1 of the <code>.png</code> stimuli that we have listed in <code>CALISTIMS</code> in the selected position. The presentation of the cartoon will be accompanied by the sound passed with <code>Sound</code>. The cartoon will start to zoom in and out in the attempt to capture the attention of the infant.</p>
@@ -610,7 +598,7 @@ Tip
 <p>Well done!! Calibration is done!!!!</p>
 <p>Now we can start with our eye-tracking study!</p>
 <p>Here below the entire code.</p>
-<div id="530c3539" class="cell" data-execution_count="10">
+<div id="3072dfc3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> psychopy <span class="im">import</span> visual, sound</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>

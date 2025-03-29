@@ -85,7 +85,7 @@ Here a small comparison of the two formats:
 #| message: false
 #| warning: false
 #| include: false
-#| layout: 1,1
+##| layout: 1,1
 library(tidyverse)
 # Create a small eyetracking dataset in long format
 long_data <- tibble(

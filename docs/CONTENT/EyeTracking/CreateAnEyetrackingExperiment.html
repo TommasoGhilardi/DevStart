@@ -312,18 +312,6 @@ cookieconsent.run({
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearMixedModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear mixed effect modesl</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -451,7 +439,7 @@ Caution
 <p>So how does this library work, how do we connect to the eye-tracker and collect our data? Very good questions!</p>
 <p>The <code>tobii_research</code> documentation is quite extensive and describes in detail a lot of functions and data classes that are very useful. However, we don’t need much to start our experiment.</p>
 <p>First we need to identify all the eye trackers connected to our computer. Yes, plural, <code>tobii_research</code> will return a list of all the eye trackers connected to our computer. 99.99999999% of the time you will only have 1 eye tracker connected, so we can just select the first (and usually only) eye tracker found.</p>
-<div id="a0a8b61c" class="cell" data-execution_count="1">
+<div id="19e4fad9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import tobii_research library</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobii_research <span class="im">as</span> tr</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -477,7 +465,7 @@ Caution
 <li><p>the <code>left_eye.gaze_point.validity</code>, this is a value that tells us whether we think the recognition is ok or not</p></li>
 </ul>
 <p>Here is our callback function:</p>
-<div id="006f3c05" class="cell" data-execution_count="2">
+<div id="35d115c7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the data we are interested in</span></span>
@@ -492,7 +480,7 @@ Caution
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    rv <span class="op">=</span> gaze_data.right_eye.gaze_point.validity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How we said, this function will be called every time tobii has a new data-point. COOL!! Now we need to tell tobii to run this function we have created. This is very simple, we can just do the following:</p>
-<div id="b2475ab3" class="cell" data-execution_count="3">
+<div id="43cd865e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the callback function</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Eyetracker.subscribe_to(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -504,7 +492,7 @@ Caution
 <p>Luckily there is a simple way we can achieve this. We can set a text string that our callback function can access and include in our data. To make sure that our callback function can access this variable we will use the <code>global</code> keyword. This makes sure that we can read/modify a variable that exists outside of the function.</p>
 <p>In this way, each time the callback function will be run, it will also have access to the trigger variable. We save the trigger to the <code>ev</code> variable and we set it back to an empty string <code>""</code> .</p>
 <p>This means that we can set the trigger to whatever string we want and when we set it it will be picked up by the callback function.</p>
-<div id="b57db880" class="cell" data-execution_count="4">
+<div id="360b0ede" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -547,7 +535,7 @@ Caution
 <p>For this reason, we typically adjust the data to position the origin in the bottom left corner. This can be achieved by subtracting the gaze coordinates from the maximum window height size.</p>
 <p>In addition to the origin point issue, the gaze coordinates are reported between 0 and 1. It’s often more convenient to handle data in pixels, so we can transform our data into pixels. This is done by multiplying the obtained coordinates by the pixel dimensions of our screen.</p>
 <p>Lastly, we also modify the time column. Tobii provides data in microseconds, but such precision isn’t necessary for our purposes, so we convert it to milliseconds by dividing by 1000.</p>
-<div id="7c5747bb" class="cell" data-execution_count="5">
+<div id="2ee99072" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaze_data_callback(gaze_data):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> trigger</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> winsize</span>
@@ -585,7 +573,7 @@ Caution
 <p>What is the solution you ask? A mixed approach!!!!!!!<br>
 We can store our data in a list and save it during the less important parts of the study, for example the Inter Stimulus Interval (the time between a trial and another). So let’s write a function to do exactly that.</p>
 <p>Lets first create an empty list that we will fill with out data from the callback function. As before, we make sure that our callback function can access this list and append the new data we will use the <code>global</code> keyword.</p>
-<div id="653ccf4e" class="cell" data-execution_count="6">
+<div id="b041a1cf" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list we will append our data to</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gaze_data_buffer <span class="op">=</span> []</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -618,7 +606,7 @@ We can store our data in a list and save it during the less important parts of t
 <p>Now the gaze_data_buffer will be filled with the data we extract. Let’s save this list then.</p>
 <p>We will first make a copy of the list, and then empty the original list. In this way, we have our data stored, while the original list is empty and can be filled with new data.</p>
 <p>After creating a copy, we use <code>pandas</code> to transform the list into a data frame and save it to a csv file. Using <code>mode = 'a'</code> we tell pandas to append the new data to the existing .csv. If this is the first time we are trying to save the data the .csv does not yet exist, so pandas will create a new csv instead.</p>
-<div id="4b61dfef" class="cell" data-execution_count="7">
+<div id="c41daa61" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_buffer_to_file(<span class="bu">buffer</span>, output_path):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a copy of the buffer and clear it</span></span>
@@ -654,7 +642,7 @@ We can store our data in a list and save it during the less important parts of t
 <section id="import-and-functions" class="level3">
 <h3 class="anchored" data-anchor-id="import-and-functions">Import and functions</h3>
 <p>To start, let’s import the libraries and define the two functions that we create before</p>
-<div id="09a389ab" class="cell" data-execution_count="8">
+<div id="b33c8ed3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -719,7 +707,7 @@ We can store our data in a list and save it during the less important parts of t
 <section id="load-the-stimuli" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-stimuli">Load the stimuli</h3>
 <p>Now we are going to set a few settings, such as the screen size, create a Psychopy window, load the stimuli and then prepare the trial definition. This is exactly the same as we did in the previous Psychopy tutorial.</p>
-<div id="a2caabed" class="cell" data-execution_count="9">
+<div id="723c0341" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Load and prepare stimuli</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the directory of our experiment</span></span>
@@ -755,7 +743,7 @@ We can store our data in a list and save it during the less important parts of t
 <section id="start-recording" class="level3">
 <h3 class="anchored" data-anchor-id="start-recording">Start recording</h3>
 <p>Now we are ready to look for the eye-trackers connected to the computer and select the first one that we find. Once we have selected it, we will launch our callback function to start collecting data.</p>
-<div id="fcb5dab4" class="cell" data-execution_count="10">
+<div id="697a1343" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Record the data</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all connected eye trackers</span></span>
@@ -772,7 +760,7 @@ We can store our data in a list and save it during the less important parts of t
 <h3 class="anchored" data-anchor-id="present-our-stimuli">Present our stimuli</h3>
 <p>The eye-tracking is running! Let’s show our participant something!</p>
 <p>As you can see below, after each time we flip our window (remember: flipping means we actually show what we drew), we set the trigger variable to a string that identifies the specific stimulus we are presenting. This will be picked up our callback function.</p>
-<div id="786a8ae9" class="cell" data-execution_count="11">
+<div id="bfd4b311" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%% Trials</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> Trials:</span>
@@ -824,7 +812,7 @@ We can store our data in a list and save it during the less important parts of t
 </div>
 <p>As we said before in <a href="#save-the-data">Save the data</a>, it is best to save the data during our study to avoid any potential data loss. And it is better to do this when there are things of minor interest, such as an ISI. If you remember, in the previous tutorial: <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html">Getting started with Psychopy</a>, we created the ISI in a different way than just a <code>clock.wait()</code> and we said that this different method would come in handy later on. This is the moment!</p>
 <p>Our <strong>ISI</strong> starts the clock and checks when 1 second has passed after starting this clock. Why is this important? Because we can save the data after starting the clock. Since the time that it will take will be variable, we will be simply check how much time has passed after saving the data and wait (using the <code>while clock.getTime() &lt; 1:  pass</code> code) until 1 second has fully passed. This will ensure that we will wait for 1 second in total considering the saving of the data.</p>
-<div id="b43189f4" class="cell" data-execution_count="12">
+<div id="a7b84ec3" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">### ISI</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> core.Clock()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>write_buffer_to_file(gaze_data_buffer, <span class="st">'DATA</span><span class="ch">\\</span><span class="st">RAW</span><span class="ch">\\</span><span class="st">'</span><span class="op">+</span> Sub <span class="op">+</span><span class="st">'.csv'</span>)</span>
@@ -849,7 +837,7 @@ If saving the data takes more than 1 second, your&nbsp;ISI&nbsp;will also be lon
 <section id="stop-recording" class="level3">
 <h3 class="anchored" data-anchor-id="stop-recording">Stop recording</h3>
 <p>We’re almost there! We have imported our functions, started collecting data, sent the triggers, and saved the data. The last step will be stop data collection (or python will keep getting an endless amount of data from the eye tracker!). Do do that, We simply unsubscribe from the eye tracker to which we had subscribed to start of data collection:</p>
-<div id="57708f3c" class="cell" data-execution_count="13">
+<div id="969717b5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>win.close()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Eyetracker.unsubscribe_from(tr.EYETRACKER_GAZE_DATA, gaze_data_callback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

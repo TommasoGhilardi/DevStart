@@ -11,7 +11,11 @@
       "/CONTENT/EyeTracking/FromFixationsToData.html",
       "/CONTENT/EyeTracking/EyetrackingCalibration.html",
       "/CONTENT/EyeTracking/PupilPreprocessing.html",
-      "/CONTENT/EyeTracking/PupilDataAnalysis.html"
+      "/CONTENT/EyeTracking/PupilDataAnalysis.html",
+      "/CONTENT/Stats/LinearModels.html",
+      "/CONTENT/Stats/LinearMixedModels.html",
+      "/CONTENT/Stats/GeneralisedModels.html",
+      "/CONTENT/Stats/ModelEstimates.html"
     ]
   }
 ]

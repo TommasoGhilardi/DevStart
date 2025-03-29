@@ -13,6 +13,7 @@ website:
     - CONTENT/Stats/LinearMixedModels.qmd
     - CONTENT/Stats/ModelEstimates.qmd
     - CONTENT/Stats/GeneralisedModels.qmd
+  draft-mode: visible
 
   cookie-consent:
     type: implied

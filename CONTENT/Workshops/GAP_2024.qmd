@@ -8,6 +8,9 @@ author-meta: Tommaso Ghilardi
 description-meta: "Data and resource for the workshop at GAP 2024"
 keywords-meta: "PsychoPy, Python, eye-tracking, tobii, tobii_research, experimental psychology, tutorial, experiment, DevStart, developmental science, workshop"
 categories: Workhsop
+
+jupyter:
+  kernel: "python3"
 ---
 
 Hello hello!!! This page has been created to provide support and resources for the tutorial that will take place during the [Bridging the Technological Gap Workshop](https://www.eva.mpg.de/de/comparative-cultural-psychology/events/2024-btg2/).
@@ -83,6 +86,7 @@ Below, you'll find a code example that adapts our [Create an eye-tracking experi
 -   We're saving triggers to our eye-tracking data and also saving the frame index at each sample (as a continuous number column).
 
 ```{python}
+#| engine-path: "C:/Users/tomma/miniforge3/envs/working/pythonw.exe"
 
 import os
 import glob
