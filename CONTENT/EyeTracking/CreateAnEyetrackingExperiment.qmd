@@ -247,7 +247,7 @@ def write_buffer_to_file(buffer, output_path):
     # Check if the file exists
     file_exists = os.path.isfile(output_path)
     
-    # Write the DataFrame to an HDF5 file
+    # Write the DataFrame to a csv file
     out.to_csv(output_path, mode='a', index =False, header = not file_exists)
 ```
 
@@ -321,7 +321,7 @@ def write_buffer_to_file(buffer, output_path):
     # Check if the file exists
     file_exists = os.path.isfile(output_path)
     
-    # Write the DataFrame to an HDF5 file
+    # Write the DataFrame to a csv file
     out.to_csv(output_path, mode='a', index =False, header = not file_exists)
 ```
 
@@ -526,7 +526,7 @@ def write_buffer_to_file(buffer, output_path):
     # Check if the file exists
     file_exists = os.path.isfile(output_path)
     
-    # Write the DataFrame to an HDF5 file
+    # Write the DataFrame to a csv file
     out.to_csv(output_path, mode='a', index =False, header = not file_exists)
     
     
