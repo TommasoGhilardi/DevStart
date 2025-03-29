@@ -347,7 +347,7 @@ fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200
 circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
 square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
 winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-loosing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
+losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
@@ -355,7 +355,7 @@ losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
-rewards = [winning, loosing] # put both rewards in a list
+rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 # Create list of trials in which 0 means winning and 1 means losing
@@ -474,7 +474,7 @@ Note that we also closed the Psychopy window, so that the stimulus presentation 
 
 Great job getting to here!! it want easy but you did it. Here is all the code we made together.
 
-``` python
+```{python}
 import os
 import glob
 import pandas as pd
@@ -544,7 +544,7 @@ fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200
 circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
 square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
 winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-loosing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
+losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
 
 # Load sound
 winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
@@ -552,7 +552,7 @@ losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
-rewards = [winning, loosing] # put both rewards in a list
+rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
 # Create list of trials in which 0 means winning and 1 means losing
