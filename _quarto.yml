@@ -11,6 +11,8 @@ website:
   drafts:
     - CONTENT/Stats/LinearModels.qmd
     - CONTENT/Stats/LinearMixedModels.qmd
+    - CONTENT/Stats/ModelEstimates.qmd
+    - CONTENT/Stats/GeneralisedModels.qmd
 
   cookie-consent:
     type: implied
@@ -94,6 +96,8 @@ website:
         contents:
           - CONTENT/Stats/LinearModels.qmd
           - CONTENT/Stats/LinearMixedModels.qmd
+          - CONTENT/Stats/ModelEstimates.qmd
+          - CONTENT/Stats/GeneralisedModels.qmd
       - section: "Workshops"
         href: https://tommasoghilardi.github.io/DevStart/Workshops/
         contents:

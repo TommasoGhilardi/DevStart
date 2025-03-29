@@ -2,7 +2,7 @@
 title: "Linear Models"
 date: "5/03/2025"
 author-meta: "Tommaso Ghilardi"
-description-meta: "Learn what a linear model is, how to run it and how to check its assumptions"
+description-meta: "Learn what a linear model is, how to run it and how to check its assumptions with a simple tutorial"
 keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
 
 categories:
@@ -35,7 +35,7 @@ What's truly fascinating about linear models is their versatility. They start of
 
 Think of linear models as the foundation of a house. ![](/images/Stats/Lm/House.png){fig-align="right" style="float:left; margin-right:10px;margin-bottom:10px;" width="150"}
 
-You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, or additive models), you can build anything from a cozy cottage to a multi-story mansion.
+You can start with a basic structure, but with some clever modifications (like mixed effect models, generalized linear models, quadratic models or additive models), you can build anything from a cozy cottage to a multi-story mansion.
 
 In essence, linear models offer a perfect balance: they're accessible enough for beginners to grasp, yet powerful enough to satisfy the needs of advanced researchers. As we dive deeper into this topic, you'll see just how these seemingly simple tools can unlock complex insights in your data.
 
@@ -64,13 +64,13 @@ You can see that the data is really simple! We have 4 columns:
 
 -   `Event` represent which condition we were in
 
--   `Event_trial` the passing number of trials
+-   `Event_trial` the sequential number of trials in the experiment
 
 -   `ReactionTime` how quickly participants reacted to the stimuli. We will ignore this variable for now
 
 -   `LookingTime`the variable of interest for today, the one that we want to model
 
-::: callout-important
+:::::: callout-important
 ## Long format
 
 One important information that we need to keep in mind is that to run `lm()` (and most models!!) in R we need the data in a long format and not a wide format.
@@ -79,14 +79,77 @@ In long format, each row represents a single observation. Variables are organize
 
 Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time-points. While this can be visually appealing for humans, it's not optimal for our linear modeling needs.
 
-If your data is currently in wide format, don't worry! R provides tools like the [tidyr](https://tidyr.tidyverse.org/index.html) package with functions such as [pivot_longer()](https://tidyr.tidyverse.org/reference/pivot_longer.html) to easily convert your data from wide to long format.
+Here a small comparison of the two formats:
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+#| layout: 1,1
+library(tidyverse)
+# Create a small eyetracking dataset in long format
+long_data <- tibble(
+  Id = rep(c("1", "2", "3"), each = 6),
+  Event = rep(rep(c("Reward", "NoReward"), each = 3), 3),
+  Event_trial = rep(1:3, 6),
+  LookingTime = c(
+    # P01 - Reward condition
+    1450, 1420, 1390,
+    # P01 - NoReward condition
+    1380, 1350, 1320,
+    # P02 - Reward condition
+    1480, 1460, 1410,
+    # P02 - NoReward condition
+    1390, 1370, 1340,
+    # P03 - Reward condition
+    1520, 1490, 1450,
+    # P03 - NoReward condition
+    1410, 1380, 1350
+  )
+)
+
+wide_data <- long_data %>%
+  pivot_wider(
+    id_cols = Id,
+    names_from = c(Event, Event_trial),
+    values_from = LookingTime,
+    names_sep = "_Trial"
+  )
+
+
+head(wide_data)
+head(long_data, 8)
+
+```
+
+::::: columns
+::: {.column width="35%"}
+### Long Format
+
+```{r}
+#| echo: false
+head(long_data, 8)
+```
 :::
+
+::: {.column width="59%"}
+### Wide Format
+
+```{r}
+#| echo: false
+wide_data
+```
+:::
+:::::
+
+If your data is currently in wide format, don't worry! R provides tools like the [tidyr](https://tidyr.tidyverse.org/index.html) package with functions such as [pivot_longer()](https://tidyr.tidyverse.org/reference/pivot_longer.html) to easily convert your data from wide to long format.
+::::::
 
 ## Formula
 
 To run models in R we usually use formulas! Sounds complex doesn't it?!? Well it is not, let me guide you through it.
 
-In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the one we're interested in studying. In this case, it's the `LookingTime` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to model the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables we believe may influence our dependent variable. To test whether `Event_trial` predicts LookingTime, we can use the formula:
+In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the outcome we collected and we're interested in studying. In this case, it's the `LookingTime` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to predict the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables (predictors) we believe may influence our dependent variable. To test whether `Event_trial` predicts LookingTime, we can use the formula:
 
 -   `LookingTime ~ Event_trial`. This basic structure allows us to examine a single predictor.
 
@@ -383,7 +446,7 @@ ggplot() +
   )
 ```
 
-## Interaction
+### Interaction
 
 Alright, now we're getting to the final step! Let's talk about the interaction between `Event_trial` and `Event`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
 
@@ -487,6 +550,58 @@ I hope that by now you got a decent understanding on how to interpret what a lin
 
 **But wait, we're not done yet!** Now it's time to check whether our model actually meets the assumptions of linear regression. Remember those plots we generated earlier? Let's make sure our statistical foundation is solid before we draw any final conclusions!
 
+# Centering Predictors
+
+We've seen how both continuous and categorical predictors are set to 0 in the intercept, and then we interpret the model output based on the difference between these reference levels.
+
+**But here's the thing** - sometimes comparing to 0 for a continuous variable doesn't make much sense! Imagine we're talking about body weight as a predictor. A weight of 0 would be... well, pretty weird as a comparison level, right? 🤔 This is one of the main reasons why it's often suggested to center continuous predictors. By centering (subtracting the mean from each value), we transform our values so they have a mean of 0! This means the intercept, being at 0, will actually reflect the mean of the predictor rather than some arbitrary or impossible value.
+
+Z-scoring takes this one step further by not only centering the data (subtracting the mean) but also scaling it by dividing by the standard deviation. This standardizes your variables to have a mean of 0 and a standard deviation of 1. The big advantage? It puts all your predictors on the same scale, making their coefficients directly comparable in terms of effect size.
+
+In practice, it's mostly suggested that you just go straight to z-scoring your continuous predictors as a simple one-size-fits-all approach. It gives you all the benefits of centering plus standardized coefficients that are easier to compare across different predictors!
+
+On top of making it easier to interpret your model results, it will also help your model fit!! We won't dwell too much on the statistical reasons, but these transformations reduce multicollinearity, stabilize coefficient estimates (especially for interactions), and improve model convergence. Your model just works better and makes more intuitive sense! 🚀
+
+## Run the model
+
+Ok, this sounds fair right? Before running a model we can just standardize the values of our predictors (in our case Event_trial). Yeah..but how to? Our favorite way is to use the `standardize()` function from the the [easystats](https://easystats.github.io/easystats/) library.
+
+::: callout-note
+[**Easystats**](https://easystats.github.io/easystats/)
+
+Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://easystats.github.io/report/index.html), [**correlation**](https://easystats.github.io/correlation/index.html), [**modelbased**](https://easystats.github.io/modelbased/index.html), [**bayestestR**](https://easystats.github.io/bayestestR/index.html), [**effectsize**](https://easystats.github.io/effectsize/index.html), [**see**](https://easystats.github.io/see/index.html), [**parameters**](https://easystats.github.io/parameters/index.html), [**performance**](https://easystats.github.io/performance/), [**insight**](https://easystats.github.io/insight/index.html), [**datawizard**](https://easystats.github.io/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats** with `library(easystats)`.
+
+In this tutorial here we will use the function from the packages [**datawizard**](https://easystats.github.io/datawizard/index.html)and [**performance**](https://easystats.github.io/performance/)(in the [Model checks] sections)**.**
+
+-   [**datawizard**](https://easystats.github.io/datawizard/index.html) allows to manipulate, clean, transform, and prepare your data
+
+-   [**performance**](https://easystats.github.io/performance/) is a package to check model performance metrics.
+:::
+
+So now we import `easystats` and we use the function `standardize()`
+
+```{r}
+#| message: false
+#| warning: false
+library(easystats)
+df$StandardTrialN = standardize(df$Event_trial)
+head(df)
+```
+
+We have created like this a new column `StandardTrialN` with the standardized values of the Event_trial and now we can run the model again
+
+```{r}
+#| label: RunStandardLm
+#| message: false
+#| warning: false
+mod_lm = lm(LookingTime ~ StandardTrialN*Event, data = df)
+summary(mod_lm)
+```
+
+As you can see the estimates are different!!! Because as we mentioned the reference level and the scale are different now. However do not panic, even if some values are different the relations are the same, we still have negative estimate for the time variable (here StandardTrialN and before Event_trial) and positive for the Reward condition. Also the p-values are the same!
+
+So there you have it - standardizing your predictors makes your model both more interpretable and more robust, all while keeping the fundamental relationships in your data intact. It's one of those simple steps that can make a big difference in your statistical journey! 🌟
+
 # Model checks
 
 So now we have run our model and seen the summary... That's great but how can we know that our model actually is ok?? Linear models, like most statistical techniques require some data assumption to be run. These assumption need to be met otherwise even if our model could be showing amazing results it won't be valid.
@@ -507,17 +622,7 @@ What are these assumptions?? Well they depend a lot on the model you are running
 
 Again this is not a theoretical tutorial. So we won't go into details as which are the assumptions (please read some of the link provided tho!!) but we will show you how to actually check these assumptions.
 
-There is a super easy and convenient way we usually check these assumptions. Using the [easystats](https://easystats.github.io/easystats/) library.
-
-::: callout-note
-[**Easystats**](https://easystats.github.io/easystats/)
-
-Easystats is a collection of R packages that includes tools dedicated to the post-processing of statistical models. It is made of all these packages: [**report**](https://easystats.github.io/report/index.html), [**correlation**](https://easystats.github.io/correlation/index.html), [**modelbased**](https://easystats.github.io/modelbased/index.html), [**bayestestR**](https://easystats.github.io/bayestestR/index.html), [**effectsize**](https://easystats.github.io/effectsize/index.html), [**see**](https://easystats.github.io/see/index.html), [**parameters**](https://easystats.github.io/parameters/index.html), [**performance**](https://easystats.github.io/performance/), [**insight**](https://easystats.github.io/insight/index.html), [**datawizard**](https://easystats.github.io/datawizard/index.html). We will extensively use all these package in our tutorials. The cool thing is that you can import all of them by just simply importing the collection **Easystats** with `library(easystats)`.
-
-In this tutorial here we will use the function from the package [**performance**](https://easystats.github.io/performance/)**.** This is a package to check model performance metrices. However instead of importing **performance** we will import **Easystats** that will import all of the packages mentioned above.
-:::
-
-So now we import `easystats` and we use the function [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) to indeed check the model assumptions.
+There is a super easy and convenient way we usually check these assumptions. Using the [easystats](https://easystats.github.io/easystats/) library we can run the function [`check_model()`](https://easystats.github.io/performance/reference/check_model.html) to indeed check the model assumptions.
 
 ```{r}
 #| label: PlotCheck
@@ -526,7 +631,6 @@ So now we import `easystats` and we use the function [`check_model()`](https://e
 #| fig-dpi: 300
 #| fig-height: 11
 #| fig-width: 14
-library(easystats)
 check_model(mod_lm)
 ```
 

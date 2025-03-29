@@ -1,0 +1,498 @@
+---
+title: "ModelEstimates"
+author: "Tommaso Ghilardi"
+
+date: "23/03/2025"
+description-meta: "Learn how to extract multiple information from your models. From estimate means, contrast and slopes!"
+keywords-meta: "R, lm, Linear models, statistics, analysis, psychology, tutorial, experiment, DevStart, developmental science"
+
+categories:
+  - Stats
+  - R
+  - linear models
+---
+
+If you are here it means you have already gone trough our tutorial on: [Linear models](LinearModels.qmd), [Linear mixed effect models](LinearMixedModels.qmd) and [Generalized linear models](GeneralisedModels.qmd). Well done!! You are nearly there my young stats padawan. ![](/images/Stats/ModelEstimates/Padawan.png){style="margin-right:10px;margin-bottom:10px;" width="144"}
+
+::: callout-note
+In this tutorial we will rely heavily on the modelbased package functions. Modelbased is part of the easystats package collection that we love and already introduced!!
+
+The modelbased package provides lots of documentation and vignettes about its functions. We strongly suggest you visit the package website if you want to learn more tricks about model estimates.
+
+Here we won't have the time to cover all the amazing possibilities of the package, but we will try our best to give you an introduction to the process.
+
+We also want to mention that modelbased is not the only option for this kind of estimates. There are different packages like emmeans and marginaleffects (these two are actually called in the background by modelbased).
+:::
+
+# Beyond p-values: Understanding Your Effects
+
+One of the coolest and most important aspects of linear models (in my opinion!) isn't just the p-values you get for each predictor. Don't get me wrong—those are important and tell you where there is an effect. But after knowing *where* the effect is, the exciting part is trying to understand *what* our effect actually is. In other words, how can it be described?
+
+Here come the **PREDICTIONS.**
+
+But.. what are predictions?? They're essentially what our model "thinks" should happen under certain conditions!
+
+The main idea is that
+
+The main idea is that:
+
+1.  **We collect our data** - This includes all our eye-tracking measurements with their natural variability and noise
+
+2.  **We fit our model** - We create a mathematical equation that best captures the relationship between our variables
+
+3.  **We use this equation to make predictions** - This is the powerful part! We can now:
+
+    -   predict values for conditions we've tested in our experiment
+
+    -   predict values for conditions that fall within the range of our data but weren't explicitly tested
+
+Sounds a little confusing ...but really cool right?? Let's dive in, everything will be clearer!!
+
+## Model
+
+First thing firts, what do we need?? Well a model...
+
+I'll be brief here as you should already be familiar with this. Before diving in we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model.
+
+```{r}
+#| label: Run model
+#| echo: true
+#| message: false
+#| warning: false
+library(lme4)
+library(lmerTest)
+library(easystats)
+library(tidyverse)
+
+df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+df$Id = factor(df$Id) # make sure subject_id is a factor
+df$StandardTrialN = standardize(df$Event_trial) # create standardize trial column
+
+mod = lmer(LookingTime ~ StandardTrialN * Event+ (1 + StandardTrialN | Id ), data= df)
+summary(mod)
+```
+
+This is not a tutorial about the model itself—you've already done that, right? 😉 The only thing to keep in mind is that in our model we have main effect of the predictors and their interaction.
+
+## Predictions
+
+Now we can extract the predictions from our model. We want to see what our model predicts the values of Looking time would be for each row of our dataframe. Here is where the [**Easystats**](https://easystats.github.io/easystats/) package (specifically the [**modelbased**](https://easystats.github.io/modelbased/index.html) sub-package) comes to the rescue with the function `estimate_expectation()`.
+
+```{r}
+#| label: Predictions
+#| message: false
+#| warning: false
+Pred = estimate_expectation(mod)
+head(Pred)
+```
+
+Look!! The function gave us a new dataframe with all the levels of Event and of StandardTrialN and ID that we had in our dataframe. OKOK I will agree....this looks so similar to the original dataframe we had...so why even bother???? Can't we just use the original dataframe?? Well because the predictions represent what our model thinks the data *should* look like based on the patterns it discovered, after accounting for random effects and noise!
+
+Let's visualize the difference between the raw data and the predictions
+
+```{r}
+#| label: PlotRawPredicted
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 5.5
+#| fig-width: 7
+ggplot() +
+  geom_point(data = Pred, aes(x = StandardTrialN, y = Predicted, color = "Predicted"), size = 3, alpha = 0.5) +
+  geom_point(data = df, aes(x = StandardTrialN, y = LookingTime, color = "Observed"), size = 1) +
+  scale_color_manual(values = c("Predicted" = "#018080", "Observed" = "black")) +
+  labs(y = "Looking time", x = "Standardized trial number", color = "") +
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+As you can see the raw data and the predicted data are very similar but not the same!! The predictions represent our model's "best guess" at what the looking times should be based on the fixed effects (StandardTrialN and Event) and random effects (individual participant differences). This smooths out some of the noise in the original data and gives us a clearer picture of the underlying patterns!
+
+## Predictions for reference values
+
+So far, we've extracted predictions based on our raw data. While useful for comparing model predictions with actual observations, this approach has limitations when we want to visualize and understand core patterns.
+
+When visualizing model results using predictions from every observation:
+
+-   Each participant would have their own line
+
+-   Individual variations would create visual clutter
+
+-   The main effects could get lost in the noise
+
+We need a way to highlight the key patterns our model has discovered! Here comes the `by` argument to the rescue!!! The `by` argument allows us to create predictions on a reference subset of predictor values, focusing only on the variables we're interested in exploring.
+
+### Factors
+
+```{r}
+estimate_expectation(mod, by = 'Event')
+```
+
+This gives us predictions for each level of the Event factor while:
+
+-   Setting StandardTrialN to its mean value
+
+-   Setting random effects to zero (removing participant-specific variation)
+
+The result? A clean representation of the "typical" looking time for each Event type, perfect for visualizing the main effect!
+
+::: callout-tip
+In this examples (and the next ones), we explored a very simple case. We just passed the predictors we were interested in, and the function gave us all the levels of that predictor. However, we can also specify exactly which level we want instead of having the function automatically return all the ones it thinks are relevant. There are different ways to do this - the simplest is:
+
+```{r}
+#| warning: false
+estimate_expectation(mod, by = 'Event == Reward')
+```
+
+Remember to learn more at the [modelbased website](https://easystats.github.io/modelbased/articles/estimate_slopes.html) !!
+:::
+
+### Continuous
+
+When we pass a continuous variable to the `by` argument, the function automatically extracts a range of values across that predictor. We can control how many values to sample using the `length` parameter. For example, setting `length=3` will give us predictions at just three points along the range of our continuous variable, while a larger value would provide a more detailed sampling.
+
+```{r}
+#| warning: false
+estimate_expectation(mod, by = 'StandardTrialN', length=3)
+estimate_expectation(mod, by = 'StandardTrialN', length=6)
+```
+
+As you can see from function messages, the function can't meaningfully "average" a categorical variable like Event, so it uses its reference level (NoReward in our case) for making predictions.
+
+### Factor x Continuous
+
+Want to see how factors and continuous variables interact? Simply include both in the `by` argument:
+
+```{r}
+#| warning: false
+estimate_expectation(mod, by = c('StandardTrialN','Event'), length=6)
+```
+
+This creates predictions for all combinations of Event levels and StandardTrialN values - perfect for visualizing interaction effects!
+
+::: callout-tip
+In this tutorial we focused on the `estimate_expectation()` function. However, modelbased offers additional functions that return similar things but with slightly different defaults and behaviors.
+
+For example, if we run `estimate_relation(mod)`, instead of returning predictions based on the values in our original dataframe, it will automatically return predictions on a reference grid of all predictors. This is equivalent to running `estimate_expectation(mod, by = c('StandardTrialN','Event'))` that we saw before.
+
+These functions accomplish very similar tasks but may be more convenient depending on what you're trying to do. The different function names reflect their slightly different default behaviors, saving you time when you need different types of predictions. Don't be intimidated by these differences - explore them further at the [modelbased website](https://easystats.github.io/modelbased/articles/estimate_slopes.html) to learn them better.
+:::
+
+::: callout-important
+All these predictions allow for simple direct plotting. These are ggplot objects that can be customized by adding other arguments (like changing the theme). Note that there's a limit to how well these automatic plots handle complexity - with too many predictors, you might need to create custom plots instead.
+
+```{r}
+#| label: PlotPred
+#| warning: false
+#| fig-height: 5.5
+#| fig-width: 8
+plot(
+  estimate_expectation(mod, by = c('StandardTrialN','Event'), length=10))+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+:::
+
+I hope you now have a solid grasp of predictions and how to extract them at specific predictor levels! This powerful approach gives you the flexibility to explore and visualize your eye-tracking data in meaningful ways.
+
+# Estimate means
+
+Let's now explore a different yet related function: `estimate_means()`.
+
+As its name suggests, `estimate_means()` allows you to extract estimated means from your model. But what does this actually mean? (Yes, lots of "means" in this explanation!)
+
+This function:
+
+1.  Generates predictions for all the reference levels of a model's predictors
+
+2.  Averages these predictions to keep only the predictors we are interested in
+
+Think of it as a streamlined way to answer the question: "What is the average looking time for each level of my factor, according to my model?" Let's see it in action!!
+
+```{r}
+Est_means = estimate_means(mod, by= 'Event')
+print(Est_means)
+```
+
+Now you might be thinking: "Wait, these look like the same values we saw before! Are you explaining the same thing?" Well, yes and no. While the results look similar in this particular case, the underlying process is different.
+
+The difference becomes clearer with this example:
+
+```{r}
+estimate_means(mod, by = 'StandardTrialN', length=6)
+```
+
+Check the information message! This is fundamentally different from before. Previously, the `estimate_expectation()` function was setting Event to its reference level. **Now instead, the function extracts predictions for all levels of Event and then averages across them!** So these predictions represent the effect of StandardTrialN averaged across both Reward and NoReward conditions, giving you a more comprehensive view.
+
+So while the results sometimes are similar with the `estimate_expectation()` the functions are doing different things!
+
+## Plot
+
+The `estimate_means()` function also comes with its own built-in plotting capability, automatically generating a clean ggplot visualization of your estimated means.
+
+```{r}
+#| label: PlotEstMean
+#| message: false
+#| warning: false
+#| fig-height: 5.5
+#| fig-width: 8
+plot(Est_means)+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+This creates a simple yet informative ggplot showing our estimated means with confidence intervals. Of course, we can also use the dataframe that the function returns to create more customized and refined plots if needed.
+
+# Estimate contrasts
+
+We've successfully extracted the estimated means for our predictors - awesome job! 🎉
+
+But there's something important missing. While we now know the estimated looking times for each level, we don't yet have formal statistical comparisons between these levels. For example, is the difference between mean values in Reward condition and NoReward condition statistically significant?
+
+This is where `estimate_contrasts()` comes to the rescue! Let's see it in action:
+
+```{r}
+#| label: ContrastCategorical
+#| warning: false
+Contrast = estimate_contrasts(mod, contrast = 'Event')
+print(Contrast)
+```
+
+What we're doing here is simple but powerful:
+
+1.  We pass our model to the function
+
+2.  We specify which predictor we want to compare (Event)
+
+3.  The function returns the difference between the means of the predictors with statistical tests
+
+The results show us that the difference between Reward and NoReward is positive (meaning looking time is higher for Reward) and the p-value indicates this difference is statistically significant! All of this in just one line of code - how convenient!
+
+::: callout-note
+In this example, Event has only 2 levels (Reward and NoReward), so we already knew these levels differed significantly from examining our model summary. However, `estimate_contrast()` gives us something more valuable: the **pairwise** difference between all the levels of the selected predictors with their
+
+This function becomes particularly powerful when dealing with predictors that have multiple levels. Imagine having a predictor with 10 different levels (such as various stimulus types or experimental conditions) - `estimate_contrast()` would automatically calculate all possible pairwise comparisons between these levels, saving you considerable time and effort.
+
+Remember that if you have multiple levels in predictors you will need to adjust the *p-value* for multiple comparisons. You can do that by passing the argument `p_adjust = 'hochberg'` to the function. With this the contrasts will be adjusted for multiple comparisons. There are different adjustment methods - [check the function arguments](https://easystats.github.io/modelbased/reference/estimate_contrasts.html).
+
+Here we give a small example using a dataset that is included with R:
+
+```{r}
+#| message: false
+#| warning: false
+contast_model_example = lm(Sepal.Length ~ Species, data = iris)
+estimate_contrasts(contast_model_example, contrast = 'Species',p_adjust = 'hochberg')
+```
+
+See?? We have all the comparison between the available level of Species
+:::
+
+## Plot
+
+`estimate_contrast()` has a plotting function as well! However, it's slightly more complex as the plot function requires both our estimated **contrasts** and **means**. If we pass both, the plot will show which level is different from the other using lighthouse plots - visualizations that highlight significant differences between groups.
+
+```{r}
+#| label: PlotContrasts
+#| message: false
+#| warning: false
+#| fig-height: 5.5
+#| fig-width: 8
+plot(Contrast, Est_means)+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+## Factor x Continuous
+
+While `estimate_contrast()` is usually very useful for checking differences between levels of a categorical variable, it can also be used to estimate contrasts for continuous variables. However, where in our opinion the function really shines is when examining interactions between categorical and continuous predictors like we have in our model!!!
+
+```{r}
+#| label: SlopeFactorContinuos
+#| warning: false
+#| fig-height: 10
+#| fig-width: 10
+#| paged-print: false
+ContrastbyTrial = estimate_contrasts(mod, contrast = 'Event', by = 'StandardTrialN', p_adjust = 'hochberg')
+ContrastbyTrial
+```
+
+::: callout-important
+While we've been using `contrast` to specify one predictor and `by` for another, `estimate_contrasts()` is more flexible than we've shown. The `contrast =` argument can accept multiple predictors, calculating contrasts between all combinations of their levels. You can also mix and match with multiple predictors in `contrast =` while still using the `by =` argument to see how these combined contrasts change across levels of another variable. While this generates many comparisons at once (which isn't always desirable), it can be valuable for exploring complex interaction patterns in your data.
+
+**The word is your contrast!**
+:::
+
+This gives us the contrast between the levels of Event for a set of values of StandardTrialN. So we can check whether the difference between Reward and NoReward actually changes over the course of trials!! I'll plot it to make it simpler to understand:
+
+```{r}
+#| label: PlotContrastInteraction
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 6
+#| fig-width: 8.5
+ContrastbyTrial |> 
+  mutate(Contrast = paste(Level1, "-", Level2)) |> 
+  ggplot(aes(x = StandardTrialN , y = Difference, color = Contrast))+
+  geom_hline(yintercept = 0, linetype = 'dashed')+
+  geom_pointrange(aes(ymin = CI_low, ymax = CI_high))+
+  labs(y = 'Difference: Reward - NoReward')+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+This plot shows that the two levels are always significantly different from each other (the confidence intervals never touch the dashed zero line) and that the difference is always positive - looking time for Reward is consistently higher than for NoReward across all trial numbers. SUUPER COOL EH!!! I agree!!
+
+## Contrast of slopes
+
+OK now we know the difference between levels of Event and also how this difference may change over time... the last step? We could check whether the slopes of StandardTrialN is different between the two conditions!
+
+To do so, we can again use the `estimate_contrast()` function but inverting the arguments we used last time. So StandardTrialN moves to the contrast argument and Event goes to the by argument. Super easy:
+
+```{r}
+#| label: ContrastFactorContinuos
+#| message: false
+#| warning: false
+estimate_contrasts(mod, contrast = 'StandardTrialN', by = 'Event')
+```
+
+This shows us that the effect of StandardTrialN is actually different between the two levels. This is something we already knew from the model summary (remember the significant interaction term?), but this approach gives us the precise difference between the two slopes while averaging over all other possible effects. This becomes particularly valuable when working with more complex models that have multiple predictors and interactions.
+
+# Estimate slope
+
+I know we've covered a lot of ground already, but there's one more important function worth introducing: `estimate_slope()`. While `estimate_contrast()` allows the comparison between means, `estimate_slope()`,is designed for slopes. As the name suggests, it calculates the averages of coefficients (slopes) in your outcome variable for each unit increase in your predictor. This helps you, for example, to understand how quickly looking time changes across trials..
+
+```{r}
+#| label: EstSlope
+#| warning: false
+estimate_slopes(mod, trend = 'StandardTrialN')
+```
+
+This tells us that the average effect of StandardTrialN is -50.46 (negative) and it is significantly different from 0. This means the looking time doesn't remain constant across trials but significantly decreases as trials progress.
+
+::: callout-important
+You may be thinking... "Wait, isn't this information already in the model summary? Why do I need `estimate_slopes()`?" If you are asking yourself this question, think back to the [Linear models](LinearModels.qmd) tutorial!!
+
+**What the model summary shows:** The coefficient for StandardTrialN in the summary (-67.118) represents the slope specifically for the NoReward condition. This is because in linear models, coefficients are in relation to the intercept, which is where all predictors are 0. For categorical variables, 0 means the reference level (NoReward in this case).
+
+**What estimate_slopes() shows:** The value from `estimate_slopes()` (-50.46) gives us the average slope across both Event types (Reward and NoReward).
+
+This is why the two values don't match! One is the slope for a specific condition, while the other is the average slope across all conditions. Super COOL right??
+:::
+
+We can also check if there are difference in slopes
+
+## Factor x Continuous
+
+Similar to the estimate_contrast function, estimate_slopes really shines when exploring interactions between continuous and categorical variables.
+
+Remember! Our model indicated an interaction between StandardTrialN and Event, which means the rate of change (slope) should differ between the two Event types. However, from just knowing there's an interaction, we can't determine exactly what these slopes are doing. One condition might show a steeper decline than the other, one might be flat while the other decreases, or they might even go in opposite directions. The model just tells us they're different, not how they're different (or at least is not so simple)n
+
+To visualize exactly how these slopes differ, we can include Event with the by argument:
+
+```{r}
+Slopes = estimate_slopes(mod, trend = 'StandardTrialN', by = 'Event')
+Slopes
+```
+
+Now we get the average effect for both Events. So we see that both of the lines significantly decrease!
+
+We can also plot it with:
+
+```{r}
+plot(Slopes)+
+  geom_hline(yintercept = 0, linetype = 'dashed')+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+Here we see that the slopes for both Event types are negative (below zero) and statistically significant (confidence intervals don't cross the dashed zero line). This confirms that looking time reliably decreases as trials progress, regardless of whether it's a Reward or NoReward event.
+
+# Complex plotting
+
+We've covered a lot in this tutorial, and I know you might be getting tired! But let me add one final important skill: creating custom visualizations of your model predictions.
+
+As we've seen throughout this tutorial, most functions in the modelbased package include handy plotting capabilities that generate nice ggplots. These built-in plots are great for quick visualization and are easily customizable.
+
+**But...** there is always a but... sometimes you'll need more control, especially when you want to combine multiple effects in a single visualization, or your model has complex interactions.
+
+When built-in plotting functions aren't enough, we need to generate our own visualizations. But what should we plot? The raw data? Of course not! As you've learned throughout this tutorial... we should plot **PREDICTIONS**! While `estimate_relation()` is useful, I want to show you an even more flexible approach by breaking down how `estimate_relation()` works. This way, you'll be prepared for any visualization challenge, even with the most complex models.
+
+## Datagrid
+
+The first step in custom plotting is creating the right reference grid for your predictions. We'll use the `get_datagrid()` function, which takes your model as its first argument and the `by =` parameter to specify which predictors you want in your visualization.
+
+Let's extract a reference grid for our StandardTrialN \* Event interaction:
+
+```{r}
+get_datagrid(mod, by = c('Event', 'StandardTrialN'))
+```
+
+Looking at the output, you'll see we get both levels of Event (Reward and NoReward) and a range of values for StandardTrialN (10 values by default spanning the range of our data). Notice that the Id column is set to 0. This is how the function indicates that random effects aren't included—we're focusing on the fixed effects that represent the "average response" across all subjects.
+
+::: callout-caution
+Different models declare non-level for the random effects in different ways, but datagrid will adapt to the specific model you are running. Just do not be scared if the values are not 0.
+:::
+
+The datagrid is where we can really flex our customization muscles. Instead of accepting the default values, we can request specific levels of a factor, custom ranges for continuous variables, or statistical landmarks of continuous variables.
+
+For example, instead of the default range of values, we could request `'StandardTrialN = [quartiles]'` which would give us the lower-hinge, median, and upper-hinge of the continuous variable. Cool, right? There are many functions and statistical aspects we can extract - check the documentation of `get_datagrid()` for the full range of possibilities.
+
+Let's create a more sophisticated datagrid to demonstrate:
+
+```{r}
+Grid = get_datagrid(mod, by = c('Event', 'StandardTrialN = [fivenum]'))
+head(as.data.frame(Grid), n=20 )
+```
+
+What we've done here is request both levels of Event, the five-number summary for StandardTrialN (minimum, lower-hinge, median, upper-hinge, maximum), and all different subjects by setting `include_random = TRUE`. Why would we want such a complex grid? Well first thing first to make it copmlex...... and aso we want to see what is happening for each subject!! Let's now use this grid......
+
+## Prediction on grid
+
+Now that we have our grid, we can pass it to the `get_predicted()` function. This will give us all the predictions on the grid!!
+
+```{r}
+#| label: Predict
+#| message: false
+#| warning: false
+get_predicted(mod, Grid, ci = T)
+```
+
+As you notice, this gives us a vector of predictions, but we also need the confidence intervals to make a proper plot. As the message mentions, those are 'hidden' and need to be accessed using `as.data.frame()`.
+
+```{r}
+#| label: PredictCI
+#| message: false
+#| warning: false
+Pred = as.data.frame(get_predicted(mod, Grid, ci = T))
+head(Pred)
+```
+
+Now we can merge the two to have a final dataframe that has all the information:
+
+```{r}
+#| label: Combine
+#| message: false
+#| warning: false
+db = bind_cols(Grid, Pred)
+head(db)
+```
+
+## Plot
+
+Now we have our dataframe we can do whatever we want with it. Let's plot it:
+
+```{r}
+#| label: PlotGrid
+#| message: false
+#| warning: false
+#| fig-height: 8
+#| fig-width: 10
+ggplot(db, aes(x = StandardTrialN, y = Predicted, color = Event, fill = Event ))+
+  geom_ribbon(aes(ymin = Predicted-SE, ymax = Predicted+SE), alpha = .4)+
+  geom_line(lwd = 1.2 )+
+  theme_classic(base_size = 20)+
+  theme(legend.position = 'bottom')
+```
+
+Well, you did it! You've survived the wild jungle of model-based estimation! By breaking down the prediction process into customizable steps, you've gained complete control over how to extract and visualize the patterns in your eye-tracking data. Whether you use the convenient built-in functions or create custom plots from scratch, you now have the tools to answer sophisticated research questions and present your findings beautifully. Happy modeling!
