@@ -456,7 +456,7 @@ To put it simply:
 
 -   For **NoReward** events, **LookingTime** decreases by 7.5 units per trial (that's our main `TrialN` coefficient)
 
--   The interaction coefficient (let's say it's 0.13) tells us how this slope changes for **Reward** events
+-   The interaction coefficient (0.13) tells us how this slope changes for **Reward** events
 
 So for **Reward** events, the slope would be: -7.5 + 0.13 = -7.37 units per trial.
 

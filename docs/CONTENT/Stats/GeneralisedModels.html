@@ -120,7 +120,7 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><meta name="quarto:status" content="draft">
+</script>
 <meta property="og:title" content="DevStart">
 <meta property="og:description" content="Getting started with developmental science">
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/images/ICON.png">
@@ -134,7 +134,7 @@ cookieconsent.run({
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -412,10 +412,10 @@ Why distribution matters
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read the data</span></span>
-<span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"..\\..\\resources\\Stats\\Dataset.csv"</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../../resources/Stats/Dataset.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">Id</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Id</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">Event_trial_scaled</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Event_trial</span><span class="op">)</span> <span class="co"># standardize the continuous variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">df</span><span class="op">$</span><span class="va">StandardTrialN</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">TrialN</span><span class="op">)</span> <span class="co"># standardize the continuous variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Step one in ANY statistical analysis: <strong>look at your data</strong>! Let’s create a histogram with a density curve to see what we’re working with:</p>
 <div class="cell">
@@ -459,7 +459,7 @@ Why distribution matters
 <p>Following what we have learned in the previous tutorial we will fit a linear mixed effect model including a random intercept and random slope:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mod_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span></span>
-<span>  <span class="va">ReactionTime</span> <span class="op">~</span> <span class="va">Event_trial_scaled</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Event_trial_scaled</span> <span class="op">|</span> <span class="va">Id</span><span class="op">)</span>,</span>
+<span>  <span class="va">ReactionTime</span> <span class="op">~</span> <span class="va">StandardTrialN</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">StandardTrialN</span> <span class="op">|</span> <span class="va">Id</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">df</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -523,7 +523,7 @@ Caution
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit a GLMM with Gamma distribution</span></span>
 <span><span class="va">mod_gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html">glmer</a></span><span class="op">(</span></span>
-<span>  <span class="va">ReactionTime</span> <span class="op">~</span> <span class="va">Event_trial_scaled</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Event_trial_scaled</span><span class="op">|</span> <span class="va">Id</span><span class="op">)</span>,</span>
+<span>  <span class="va">ReactionTime</span> <span class="op">~</span> <span class="va">StandardTrialN</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">StandardTrialN</span><span class="op">|</span> <span class="va">Id</span><span class="op">)</span>,</span>
 <span>  data   <span class="op">=</span> <span class="va">df</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -577,8 +577,7 @@ Important
 <pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
   Approximation) [glmerMod]
  Family: Gamma  ( log )
-Formula: ReactionTime ~ Event_trial_scaled * Event + (1 + Event_trial_scaled |  
-    Id)
+Formula: ReactionTime ~ StandardTrialN * Event + (1 + StandardTrialN |      Id)
    Data: df
 
      AIC      BIC   logLik deviance df.resid 
@@ -589,26 +588,26 @@ Scaled residuals:
 -2.10383 -0.55231  0.00207  0.56421  2.67485 
 
 Random effects:
- Groups   Name               Variance Std.Dev. Corr
- Id       (Intercept)        0.006482 0.08051      
-          Event_trial_scaled 0.003207 0.05663  0.26
- Residual                    0.007262 0.08522      
+ Groups   Name           Variance Std.Dev. Corr
+ Id       (Intercept)    0.006482 0.08051      
+          StandardTrialN 0.003207 0.05663  0.26
+ Residual                0.007262 0.08522      
 Number of obs: 660, groups:  Id, 20
 
 Fixed effects:
-                                Estimate Std. Error t value Pr(&gt;|z|)    
-(Intercept)                     5.442146   0.072155  75.423  &lt; 2e-16 ***
-Event_trial_scaled             -0.283501   0.038504  -7.363  1.8e-13 ***
-EventReward                     0.446262   0.006024  74.081  &lt; 2e-16 ***
-Event_trial_scaled:EventReward  0.200902   0.006031  33.311  &lt; 2e-16 ***
+                            Estimate Std. Error t value Pr(&gt;|z|)    
+(Intercept)                 5.442146   0.072155  75.423  &lt; 2e-16 ***
+StandardTrialN             -0.283501   0.038504  -7.363  1.8e-13 ***
+EventReward                 0.446262   0.006024  74.081  &lt; 2e-16 ***
+StandardTrialN:EventReward  0.200902   0.006031  33.311  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Correlation of Fixed Effects:
-            (Intr) Evnt__ EvntRw
-Evnt_trl_sc  0.315              
+            (Intr) StndTN EvntRw
+StandrdTrlN  0.315              
 EventReward -0.062 -0.059       
-Evnt_tr_:ER -0.032 -0.112  0.345</code></pre>
+StndrdTN:ER -0.032 -0.112  0.345</code></pre>
 </div>
 </div>
 <p>OMG, these results are AMAZING!!! 🎉 Look at that interaction between trial number and Event - it’s significant! This is super important to note because when we have significant interactions, we need to focus on understanding THOSE rather than looking at the main effects in isolation.</p>
@@ -616,8 +615,8 @@ Evnt_tr_:ER -0.032 -0.112  0.345</code></pre>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">is_pred</span> <span class="op">&lt;-</span> <span class="fu">estimate_expectation</span><span class="op">(</span><span class="va">mod_gamma</span>, include_random<span class="op">=</span><span class="cn">F</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># 2. Plot the interaction between Event_trial_scaled and Event</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">is_pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Event_trial_scaled</span>, </span>
+<span><span class="co"># 2. Plot the interaction between StandardTrialN and Event</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">is_pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">StandardTrialN</span>, </span>
 <span>                    y <span class="op">=</span> <span class="va">Predicted</span>, </span>
 <span>                    color <span class="op">=</span> <span class="va">Event</span>, </span>
 <span>                    group <span class="op">=</span> <span class="va">Event</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -637,35 +636,22 @@ Evnt_tr_:ER -0.032 -0.112  0.345</code></pre>
 </div>
 <p>Reaction times decrease much more across trials for the reward than for the no reward condition! However, we don’t have a complete picture yet. For example, we do not know whether the decrease in reaction times across trials is significant only for the reward condition or also for the no reward condition. To find out, we can estimate the slopes as we did in the previous tutorial: <a href="../../CONTENT/Stats/ModelEstimates.html">ModelEstimates.qmd</a></p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_slopes</span><span class="op">(</span><span class="va">mod_gamma</span>, trend <span class="op">=</span> <span class="st">'Event'</span>, by <span class="op">=</span> <span class="st">'Event_trial_scaled'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_slopes</span><span class="op">(</span><span class="va">mod_gamma</span>, trend <span class="op">=</span> <span class="st">'Event'</span>, by <span class="op">=</span> <span class="st">'StandardTrialN'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimated Marginal Effects
 
-Event_trial_scaled | Comparison        |  Slope |    SE |           95% CI
---------------------------------------------------------------------------
--1.65              | Reward - NoReward |  46.99 |  5.41 | [ 36.39,  57.59]
--1.28              | Reward - NoReward |  72.46 |  6.13 | [ 60.45,  84.47]
--0.92              | Reward - NoReward |  95.17 |  7.03 | [ 81.39, 108.96]
--0.55              | Reward - NoReward | 115.44 |  8.13 | [ 99.50, 131.38]
--0.18              | Reward - NoReward | 133.60 |  9.53 | [114.92, 152.29]
-0.18               | Reward - NoReward | 149.96 | 11.31 | [127.79, 172.14]
-0.55               | Reward - NoReward | 164.78 | 13.50 | [138.31, 191.25]
-0.92               | Reward - NoReward | 178.29 | 16.09 | [146.75, 209.82]
-1.28               | Reward - NoReward | 190.68 | 19.04 | [153.36, 228.00]
-1.65               | Reward - NoReward | 202.11 | 22.31 | [158.39, 245.83]
-
-Event_trial_scaled |     t |      p
------------------------------------
--1.65              |  8.69 | &lt; .001
--1.28              | 11.83 | &lt; .001
--0.92              | 13.53 | &lt; .001
--0.55              | 14.19 | &lt; .001
--0.18              | 14.01 | &lt; .001
-0.18               | 13.25 | &lt; .001
-0.55               | 12.20 | &lt; .001
-0.92               | 11.08 | &lt; .001
-1.28               | 10.01 | &lt; .001
-1.65               |  9.06 | &lt; .001
+StandardTrialN | Comparison        |  Slope |    SE |           95% CI |     t |      p
+---------------------------------------------------------------------------------------
+-1.65          | Reward - NoReward |  46.99 |  5.41 | [ 36.39,  57.59] |  8.69 | &lt; .001
+-1.28          | Reward - NoReward |  72.46 |  6.13 | [ 60.45,  84.47] | 11.83 | &lt; .001
+-0.92          | Reward - NoReward |  95.17 |  7.03 | [ 81.39, 108.96] | 13.53 | &lt; .001
+-0.55          | Reward - NoReward | 115.44 |  8.13 | [ 99.50, 131.38] | 14.19 | &lt; .001
+-0.18          | Reward - NoReward | 133.60 |  9.53 | [114.92, 152.29] | 14.01 | &lt; .001
+0.18           | Reward - NoReward | 149.96 | 11.31 | [127.79, 172.14] | 13.25 | &lt; .001
+0.55           | Reward - NoReward | 164.78 | 13.50 | [138.31, 191.25] | 12.20 | &lt; .001
+0.92           | Reward - NoReward | 178.29 | 16.09 | [146.75, 209.82] | 11.08 | &lt; .001
+1.28           | Reward - NoReward | 190.68 | 19.04 | [153.36, 228.00] | 10.01 | &lt; .001
+1.65           | Reward - NoReward | 202.11 | 22.31 | [158.39, 245.83] |  9.06 | &lt; .001
 
 Marginal effects estimated for Event</code></pre>
 </div>
@@ -675,7 +661,7 @@ Marginal effects estimated for Event</code></pre>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">is_pred_random</span> <span class="op">=</span> <span class="fu">estimate_expectation</span><span class="op">(</span><span class="va">mod_gamma</span>, include_random <span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">is_pred_random</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">Event_trial_scaled</span>, y<span class="op">=</span> <span class="va">Predicted</span>, color<span class="op">=</span> <span class="va">Id</span>, shape <span class="op">=</span> <span class="va">Event</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">is_pred_random</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">StandardTrialN</span>, y<span class="op">=</span> <span class="va">Predicted</span>, color<span class="op">=</span> <span class="va">Id</span>, shape <span class="op">=</span> <span class="va">Event</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span> <span class="va">ReactionTime</span>, color<span class="op">=</span> <span class="va">Id</span><span class="op">)</span>, position<span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html">position_jitter</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="va">Predicted</span><span class="op">-</span><span class="va">SE</span>, ymax<span class="op">=</span><span class="va">Predicted</span><span class="op">+</span><span class="va">SE</span>, fill <span class="op">=</span> <span class="va">Id</span><span class="op">)</span>,color<span class="op">=</span> <span class="st">'transparent'</span>, alpha<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">+</span></span>
@@ -1211,10 +1197,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
 <span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data</span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">Dataset.csv"</span>)</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"../../resources/Stats/Dataset.csv"</span>)</span>
 <span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Event_trial_scaled <span class="ot">=</span> <span class="fu">scale</span>(df<span class="sc">$</span>Event_trial) <span class="co"># standardize the continuous variable</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>StandardTrialN <span class="ot">=</span> <span class="fu">scale</span>(df<span class="sc">$</span>TrialN) <span class="co"># standardize the continuous variable</span></span>
 <span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>Step one in ANY statistical analysis: **look at your data**! Let's create a histogram with a density curve to see what we're working with:</span>
@@ -1269,7 +1255,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>mod_lm <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>  ReactionTime <span class="sc">~</span> Event_trial_scaled <span class="sc">*</span> Event <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Event_trial_scaled <span class="sc">|</span> Id),</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>  ReactionTime <span class="sc">~</span> StandardTrialN <span class="sc">*</span> Event <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> StandardTrialN <span class="sc">|</span> Id),</span>
 <span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df</span>
 <span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -1331,7 +1317,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a GLMM with Gamma distribution</span></span>
 <span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>mod_gamma <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
-<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a>  ReactionTime <span class="sc">~</span> Event_trial_scaled <span class="sc">*</span> Event <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Event_trial_scaled<span class="sc">|</span> Id),</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a>  ReactionTime <span class="sc">~</span> StandardTrialN <span class="sc">*</span> Event <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> StandardTrialN<span class="sc">|</span> Id),</span>
 <span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a>  <span class="at">data   =</span> df,</span>
 <span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">"log"</span>)</span>
 <span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1391,8 +1377,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-234"><a href="#cb16-234" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
 <span id="cb16-235"><a href="#cb16-235" aria-hidden="true" tabindex="-1"></a>is_pred <span class="ot">&lt;-</span> <span class="fu">estimate_expectation</span>(mod_gamma, <span class="at">include_random=</span>F)</span>
 <span id="cb16-236"><a href="#cb16-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Plot the interaction between Event_trial_scaled and Event</span></span>
-<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(is_pred, <span class="fu">aes</span>(<span class="at">x =</span> Event_trial_scaled, </span>
+<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Plot the interaction between StandardTrialN and Event</span></span>
+<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(is_pred, <span class="fu">aes</span>(<span class="at">x =</span> StandardTrialN, </span>
 <span id="cb16-239"><a href="#cb16-239" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> Predicted, </span>
 <span id="cb16-240"><a href="#cb16-240" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> Event, </span>
 <span id="cb16-241"><a href="#cb16-241" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> Event)) <span class="sc">+</span></span>
@@ -1411,7 +1397,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-256"><a href="#cb16-256" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Estimate slopes</span></span>
 <span id="cb16-257"><a href="#cb16-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb16-258"><a href="#cb16-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_slopes</span>(mod_gamma, <span class="at">trend =</span> <span class="st">'Event'</span>, <span class="at">by =</span> <span class="st">'Event_trial_scaled'</span>)</span>
+<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_slopes</span>(mod_gamma, <span class="at">trend =</span> <span class="st">'Event'</span>, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>)</span>
 <span id="cb16-260"><a href="#cb16-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-261"><a href="#cb16-261" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>add with same structure as in previous tutorial<span class="sc">\]</span></span>
@@ -1427,7 +1413,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-274"><a href="#cb16-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
 <span id="cb16-275"><a href="#cb16-275" aria-hidden="true" tabindex="-1"></a>is_pred_random <span class="ot">=</span> <span class="fu">estimate_expectation</span>(mod_gamma, <span class="at">include_random =</span>T)</span>
 <span id="cb16-276"><a href="#cb16-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(is_pred_random, <span class="fu">aes</span>(<span class="at">x=</span> Event_trial_scaled, <span class="at">y=</span> Predicted, <span class="at">color=</span> Id, <span class="at">shape =</span> Event))<span class="sc">+</span></span>
+<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(is_pred_random, <span class="fu">aes</span>(<span class="at">x=</span> StandardTrialN, <span class="at">y=</span> Predicted, <span class="at">color=</span> Id, <span class="at">shape =</span> Event))<span class="sc">+</span></span>
 <span id="cb16-278"><a href="#cb16-278" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">y=</span> ReactionTime, <span class="at">color=</span> Id), <span class="at">position=</span> <span class="fu">position_jitter</span>(<span class="at">width=</span><span class="fl">0.2</span>))<span class="sc">+</span></span>
 <span id="cb16-279"><a href="#cb16-279" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()<span class="sc">+</span></span>
 <span id="cb16-280"><a href="#cb16-280" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Predicted<span class="sc">-</span>SE, <span class="at">ymax=</span>Predicted<span class="sc">+</span>SE, <span class="at">fill =</span> Id),<span class="at">color=</span> <span class="st">'transparent'</span>, <span class="at">alpha=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>

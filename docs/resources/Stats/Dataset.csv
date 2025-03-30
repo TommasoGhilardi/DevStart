@@ -1,4 +1,4 @@
-Id,Event,Event_trial,ReactionTime,LookingTime
+Id,Event,TrialN,ReactionTime,LookingTime
 1,NoReward,1,344.124257472753,1139.81016964208
 1,NoReward,2,361.938910790016,1156.41396839733
 1,NoReward,3,406.349903928927,1073.54683179224

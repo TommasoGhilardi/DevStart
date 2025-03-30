@@ -8,11 +8,8 @@ execute:
   freeze: auto
 
 website:
-  drafts:
-    - CONTENT/Stats/LinearModels.qmd
-    - CONTENT/Stats/LinearMixedModels.qmd
-    - CONTENT/Stats/ModelEstimates.qmd
-    - CONTENT/Stats/GeneralisedModels.qmd
+  # drafts:
+  #   - CONTENT/Stats/LinearModels.qmd
   draft-mode: visible
 
   cookie-consent:

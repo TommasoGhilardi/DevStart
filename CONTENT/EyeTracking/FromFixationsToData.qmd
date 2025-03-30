@@ -4,8 +4,11 @@ date: "09/07/2024"
 execute:
   eval: true
 
+python:
+  conda: "working"  
 jupyter:
   kernel: "python3"
+
 
 author-meta: "Tommaso Ghilardi"
 description-meta: "Learn how to extract different eye-tracking measures from the collected data"
@@ -17,8 +20,10 @@ categories:
 
 In the previous two tutorials we [collected some eye-tracking data](/CONTENT/EyeTracking/CreateAnEyetrackingExperiment.qmd) and then we [used I2MC to extract the fixations](/CONTENT/EyeTracking/I2MC_tutorial.qmd) from that data. Let's load the data we recorded and pre-processed in the previous tutorial. We will import some libraries and read the raw data and the output from I2MC.
 
-```{python, setup}
+```{python}
+#| label: setup
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,7 +33,6 @@ import matplotlib.patches as patches
 
 # Screen resolution
 screensize = (1920, 1080) 
-
 
 #%% Settings and reading data
 
@@ -191,7 +195,7 @@ Having identified the moments when the targets were presented, we can now establ
 ```{python}
 # Find the fixations that we care about
 pre  = -750
-post = 400
+post = 2000
 
 for i,c in enumerate(Targets):
     

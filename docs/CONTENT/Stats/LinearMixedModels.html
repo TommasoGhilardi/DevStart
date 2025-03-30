@@ -122,7 +122,7 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><meta name="quarto:status" content="draft">
+</script>
 <meta property="og:title" content="DevStart">
 <meta property="og:description" content="Getting started with developmental science">
 <meta property="og:image" content="https://tommasoghilardi.github.io/DevStart/CONTENT/Stats/images/ICON.png">
@@ -136,7 +136,7 @@ cookieconsent.run({
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -491,11 +491,11 @@ Note
 <p>To run our Linear Mixed Effects Model, these are the key packages we’ll use. On top of that, the <code>tidyverse</code> suite will help with data wrangling and visualization, while <code>easystats</code> will let us easily extract and summarize the important details from our models. Let’s get started!</p>
 <section id="read-the-data" class="level3"><h3 class="anchored" data-anchor-id="read-the-data">Read the data</h3>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"..\\..\\resources\\Stats\\Dataset.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../../resources/Stats/Dataset.csv"</span><span class="op">)</span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">Id</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Id</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">StandardTrialN</span> <span class="op">=</span> <span class="fu">standardize</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Event_trial</span><span class="op">)</span> <span class="co"># create standardize trial column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">df</span><span class="op">$</span><span class="va">StandardTrialN</span> <span class="op">=</span> <span class="fu">standardize</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">TrialN</span><span class="op">)</span> <span class="co"># create standardize trial column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>After importing the data, we’ve ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of Event_trial.</p>
+<p>After importing the data, we’ve ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of TrialN.</p>
 </section></section><section id="linear-model" class="level2"><h2 class="anchored" data-anchor-id="linear-model">Linear Model</h2>
 <p>While we already seen how to run a linear model we will rerun it here as a comparison to the next steps. In case something is not clear about this <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> please go back to the <a href="../../CONTENT/Stats/LinearModels.html"><strong>previous tutorial on linear models</strong></a><strong>.</strong></p>
 <div class="cell">
@@ -532,7 +532,7 @@ F-statistic: 11.87 on 3 and 656 DF,  p-value: 1.417e-07</code></pre>
 <pre><code>'data.frame':   800 obs. of  6 variables:
  $ Id            : Factor w/ 20 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ Event         : chr  "NoReward" "NoReward" "NoReward" "NoReward" ...
- $ Event_trial   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ TrialN        : int  1 2 3 4 5 6 7 8 9 10 ...
  $ ReactionTime  : num  344 362 406 395 382 ...
  $ LookingTime   : num  1140 1156 1074 1107 991 ...
  $ StandardTrialN: 'dw_transformer' num  -1.646 -1.473 -1.3 -1.127 -0.953 ...
@@ -1521,12 +1521,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Read the data</span></span>
 <span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">resources</span><span class="sc">\\</span><span class="st">Stats</span><span class="sc">\\</span><span class="st">Dataset.csv"</span>)</span>
+<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"../../resources/Stats/Dataset.csv"</span>)</span>
 <span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>StandardTrialN <span class="ot">=</span> <span class="fu">standardize</span>(df<span class="sc">$</span>Event_trial) <span class="co"># create standardize trial column</span></span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>StandardTrialN <span class="ot">=</span> <span class="fu">standardize</span>(df<span class="sc">$</span>TrialN) <span class="co"># create standardize trial column</span></span>
 <span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a>After importing the data, we've ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of Event_trial.</span>
+<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a>After importing the data, we've ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of TrialN.</span>
 <span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear Model</span></span>
 <span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a></span>
