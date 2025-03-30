@@ -1,0 +1,340 @@
+/* css styles */
+
+/* HIDE KEYWORDS */
+body main > header div.keywords {
+  display: none; /* Hides the keywords */
+}
+
+
+
+/* BOLD */
+
+/* Force bold text rendering */
+b, strong {
+  font-weight: 700 !important; /* Explicitly set bold font weight */
+}
+
+/* For headings (h1, h2, etc.) */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important; /* Ensure headings render bold */
+}
+
+/* For general text with bold class */
+.text-bold {
+  font-weight: 700 !important; /* Use this class for custom bold text */
+}
+
+/* Optional: Fallback for missing font-weight in the font family */
+body {
+  font-family: "YourFontName", sans-serif; /* Ensure your font supports bold */
+  font-weight: 400; /* Set normal weight for body */
+}
+
+
+
+
+
+/* COLOR LINKS */
+
+/* Subtitle Styling */
+.subtitle a {
+  color: #008080; /* Change link color */
+  text-decoration: none; /* Remove underline (optional) */
+}
+
+.subtitle a:hover {
+  color: #00b3b3; /* Optional: Change color on hover for better interactivity */
+  text-decoration: underline; /* Add underline on hover (optional) */
+}
+
+:root {
+    --bs-link-color-rgb: 0, 112, 112;
+    --bs-link-hover-color-rgb: 0, 168, 168;
+}
+
+
+
+
+/* TEXT JUSTIFICATION */
+
+/* General text justification */
+body {
+  text-align: justify;
+}
+
+/* Keep headings left-aligned */
+h1, h2, h3, h4, h5, h6 {
+  text-align: left;
+}
+
+/* Prevent ToC (inside #quarto-margin-sidebar) from being justified */
+#quarto-margin-sidebar,
+#TOC,
+#TOC ul,
+#TOC a {
+  text-align: left !important; /* Override global text justification */
+}
+
+
+
+
+/* HOME SQUARE */
+
+/* General Section Styling */
+.responsive-section {
+  border: 5px solid #343a40;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: #fff; /* Add your desired background color */
+}
+
+/* Text Content Styling */
+.text-content {
+  flex: 1;
+  padding-right: 10px;
+  min-width: 250px;
+  text-align: left; /* Left-align the entire text block */
+}
+
+.title {
+  font-size: clamp(1.4em, 5vw, 3.5em);
+  font-weight: bold;
+  color: #343a40;
+  line-height: 1.2;
+  text-align: left; /* Left-align title text by default */
+}
+
+/* Centered styling for 'for' */
+.small-italic.centered-for {
+  font-size: 0.6em; /* Make 'for' smaller */
+  font-style: italic; /* Italicize 'for' */
+  display: block; /* Display 'for' as a block element */
+  text-align: center; /* Center-align only 'for' */
+  margin: 0.5em 0; /* Add some vertical spacing */
+}
+
+/* Subtitle Styling */
+.subtitle {
+  font-size: clamp(1em, 3vw, 1.5em);
+  color: #343a40;
+  text-align: left;
+  white-space: normal;
+}
+
+/* Image Styling */
+.image-content {
+  flex-shrink: 0;
+  max-width: 24em;
+  width: 30%;
+  min-width: 150px;
+  text-align: center;
+  padding: 5px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responsive-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .image-content {
+    display: none;
+  }
+
+  .text-content {
+    padding-right: 0;
+    text-align: center;
+
+    .title {
+      font-size: clamp(1.2em, 4vw, 3em);
+    }
+
+    .subtitle {
+      font-size: clamp(0.8em, 2.5vw, 1.2em);
+    }
+  }
+}
+
+
+
+
+/* PILL */
+
+/* Badge Container to Center the Badge */
+.badge-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  padding: 2em; /* Add padding around the badge container for spacing */
+}
+
+/* Larger Badge Styling */
+.big-badge {
+  font-size: 1em; /* Base font size for the badge */
+  padding: 1em 2em; /* Add padding to make the badge larger */
+  text-align: center; /* Center-align text inside the badge */
+  line-height: 0.75; /* Add more spacing between lines */
+  border: 2px solid #c0c0c0; /* Slightly darker border color (gray shade) */
+  border-radius: 50px; /* Maintain rounded-pill shape */
+}
+
+/* Styling for the first line */
+.big-text {
+  font-size: 1.5em; /* Larger font size for the first line */
+  font-weight: bold; /* Optional: make it bold */
+  display: block; /* Ensure it's treated as a block for proper spacing */
+}
+
+/* Styling for the second line */
+.small-text {
+  font-size: 1em; /* Smaller font size for the second line */
+  font-weight: normal; /* Optional: ensure it's not bold */
+  display: block; /* Ensure it's treated as a block for proper spacing */
+}
+
+
+
+
+
+/* PROFILE CARD */
+.profile-container {
+    display: grid;  /* Use CSS Grid for better layout control */
+    grid-template-columns: repeat(3, 1fr);  /* Create 3 equal columns */
+    gap: 20px;  /* Add gap to space out the cards */
+    margin: 20px;  /* Add some margin for spacing around the container */
+    align-items: stretch;  /* Ensure all cards are stretched to the tallest */
+}
+
+.profile-card {
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;  /* Spread content evenly for uniform height */
+    border-radius: 4px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);  /* Add shadow for visual depth */
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Make sure cards take up full height of their container */
+}
+
+.profile-link {
+    text-decoration: none;  /* Remove underline from links */
+    color: inherit;  /* Inherit text color so that it doesn't change */
+    display: block;  /* Make the link cover the entire card */
+    height: 100%;  /* Ensure the link covers the full height of the card */
+    width: 100%;  /* Ensure the link covers the full width of the card */
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.3);  /* Stronger shadow on hover */
+}
+
+.profile-icon {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px 0 10px 0;
+    white-space: nowrap;  /* Prevent wrapping */
+    text-align: center;
+}
+
+.profile-position {
+    font-size: 14px;
+    color: #777;
+    text-align: center;  /* Align text in the center for consistency */
+    width: 100%;  /* Use full width */
+    margin-top: 10px;  /* Add some margin to control spacing */
+    align-self: flex-start; /* Align the position text to the top */
+}
+
+
+/* Media query for tablets and small screens */
+@media screen and (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: repeat(2, 1fr);  /* Show 2 columns on medium screens */
+    }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 480px) {
+    .profile-container {
+        grid-template-columns: 1fr;  /* Show 1 column on small screens */
+    }
+}
+
+
+
+
+
+/* IMAGES FOOTER */
+/* Container for the images */
+.responsive-image-container {
+  display: flex;
+  justify-content: space-evenly; /* Evenly distribute images */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+/* Responsive Images */
+.responsive-image {
+  height: 116px; /* Ensures all images have the same height */
+  width: auto; /* Maintains aspect ratio */
+}
+
+/* Responsive Design: When the screen is smaller */
+@media (max-width: 768px) {
+  .responsive-image-container {
+    flex-direction: column; /* Stack images vertically */
+    align-items: center;
+  }
+  .responsive-image {
+    height: auto; /* Allow flexible height on small screens */
+    max-height: 116px; /* Prevents images from getting too tall */
+    max-width: 80%; /* Ensures images don’t overflow */
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Footer Icon Styling */
+.nav-link i {
+  font-size: 2em; /* Increase the size of the icon */
+  color: inherit; /* Maintain the inherited color or set a specific color */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.nav-link:hover i {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  color: #00b3b3; /* Optional: Change color on hover */
+}
+
