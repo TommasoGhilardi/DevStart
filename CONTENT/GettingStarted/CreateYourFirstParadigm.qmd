@@ -38,10 +38,8 @@ First things first, let's import the relevant libraries and define the path to w
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-
-from psychopy import core, event, visual, prefs
-prefs.hardware['audioLib'] = ['PTB']
-from psychopy import sound
+from pathlib import Path
+from psychopy import core, event, visual,sound
 ```
 
 ## Stimuli:
@@ -73,37 +71,58 @@ On top of these visual stimuli, we will also import two sounds that will help us
 When importing a visual stimulus we need to pass to the importing function in which window it will be displayed. In our case, we will pass all of them the "win" window that we just created.
 :::
 
-::: callout-warning
+:::: callout-warning
 ## PATHS
 
 When working with file paths in Python, it's important to remember that Windows and macOS/Linux use different conventions for their file paths:
 
-1.  **Windows Paths:**
+::: panel-tabset
+## Windows
 
-    -   Windows file paths typically use backslashes (`\`). However, in Python, a backslash is used as an escape character. To handle this, you have two options:
+Windows file paths typically use backslashes (`\`). However, in Python, a backslash is used as an escape character. To handle this, you have two options:
 
-        -   Use double backslashes to avoid Python interpreting the backslash as an escape character:
+-   Use double backslashes to avoid Python interpreting the backslash as an escape character:
 
-            ``` python
-            'C:\\Users\\tomma\\Desktop'
-            ```
+    ``` python
+    'C:\\Users\\tomma\\Desktop'
+    ```
 
-        -   Alternatively, use a raw string by prefixing the path with `r`, which tells Python to treat backslashes as literal characters:
+-   Alternatively, use a raw string by prefixing the path with `r`, which tells Python to treat backslashes as literal characters:
 
-            ``` python
-            r'C:\Users\tomma\Desktop'
-            ```
+    ``` python
+    r'C:\Users\tomma\Desktop'
+    ```
 
-2.  **macOS/Linux Paths:**
+## Mac
 
-    -   macOS and Linux use forward slashes (`/`) for their file paths, which are also compatible with Python's string handling. You can use the path directly. There's no need for double slashes or raw strings in macOS/Linux paths.
+macOS and Linux use forward slashes (`/`) for their file paths, which are also compatible with Python's string handling. You can use the path directly. There's no need for double slashes or raw strings in macOS/Linux paths.
 
-        ``` python
-        '/Users/tomma/Desktop'
-        ```
-
-Always use the appropriate path format for your operating system to ensure your Python scripts work smoothly across different platforms. **We'll follow this rule in all our scripts, so keep it in mind – it's a key detail for error-free scripting!**
+``` python
+'/Users/tomma/Desktop'
+```
 :::
+
+### Modern Solution
+
+Python 3.4+ includes the `pathlib` module which provides a more intuitive, object-oriented approach to working with file paths that works across all operating systems:
+
+```{python}
+from pathlib import Path
+
+# Create a path object
+base_dir = Path('C:/Users/tomma/Desktop')  # Works on Windows too!
+
+# Join paths with the / operator
+full_path = base_dir / 'project' / 'data.csv'
+
+# Convert to string if needed for other libraries
+str_path = str(full_path)
+```
+
+Using `pathlib` offers several advantages: cross-platform compatibility with automatic correct separators, intuitive path joining with the `/` operator, built-in methods for file operations (like `.exists()` and `.glob()`), and no need to handle backslash escaping.
+
+For this tutorial series, we'll use `pathlib` for better cross-platform compatibility, but it's good to understand both approaches!
+::::
 
 ```{python}
 #%% Load and prepare stimuli
@@ -111,17 +130,19 @@ Always use the appropriate path format for your operating system to ensure your 
 # Setting the directory of our experiment
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
+# Now create a Path object for the stimuli directory
+stimuli_dir = Path('EXP') / 'Stimuli'
 
-# Load images
-fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
-winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(250,0))
-losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-250,0))
+# Load images 
+fixation = visual.ImageStim(win, image=str(stimuli_dir / 'fixation.png'), size=(200, 200))
+circle = visual.ImageStim(win, image=str(stimuli_dir / 'circle.png'), size=(200, 200))
+square = visual.ImageStim(win, image=str(stimuli_dir / 'square.png'), size=(200, 200))
+winning = visual.ImageStim(win, image=str(stimuli_dir / 'winning.png'), size=(200, 200), pos=(250, 0))
+losing = visual.ImageStim(win, image=str(stimuli_dir / 'loosing.png'), size=(200, 200), pos=(-250, 0))
 
-# Load sound
-winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
-losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
+# Load sound 
+winning_sound = sound.Sound(str(stimuli_dir / 'winning.wav'))
+losing_sound = sound.Sound(str(stimuli_dir / 'loosing.wav'))
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
@@ -331,15 +352,17 @@ If you are testing this script on your laptop and do not want to lose the abilit
 ```{python}
 # Import some libraries from PsychoPy and others
 import os
-
-from psychopy import core, event, visual, prefs
-prefs.hardware['audioLib'] = ['PTB']
-from psychopy import sound
+from pathlib import Path
+from psychopy import core, event, visual, sound
 
 #%% Load and prepare stimuli
 
-# Setting directory of our experiment
+# Setting the directory of our experiment
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+
+# Now create a Path object for the stimuli directory
+stimuli_dir = Path('EXP') / 'Stimuli'
+
 
 # Winsize
 winsize = (1920, 1080)
@@ -347,23 +370,24 @@ winsize = (1920, 1080)
 # create a window
 win = visual.Window(size = winsize, fullscr=False, units="pix", pos =(0,30), screen=1)
 
-# Load images
-fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
-winning  = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
 
-# Load sound
-winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
-losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
+# Load images 
+fixation = visual.ImageStim(win, image=str(stimuli_dir / 'fixation.png'), size=(200, 200))
+circle = visual.ImageStim(win, image=str(stimuli_dir / 'circle.png'), size=(200, 200))
+square = visual.ImageStim(win, image=str(stimuli_dir / 'square.png'), size=(200, 200))
+winning = visual.ImageStim(win, image=str(stimuli_dir / 'winning.png'), size=(200, 200), pos=(250, 0))
+losing = visual.ImageStim(win, image=str(stimuli_dir / 'loosing.png'), size=(200, 200), pos=(-250, 0))
+
+# Load sound 
+winning_sound = sound.Sound(str(stimuli_dir / 'winning.wav'))
+losing_sound = sound.Sound(str(stimuli_dir / 'loosing.wav'))
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
 rewards = [winning, losing] # put both rewards in a list
 sounds = [winning_sound,losing_sound] # put both sounds in a list
 
-# Create list of trials in which 0 means winning and 1 means losing
+# Create a list of trials in which 0 means winning and 1 means losing
 Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 

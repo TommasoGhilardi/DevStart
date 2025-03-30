@@ -271,7 +271,9 @@ To start, let's import the libraries and define the two functions that we create
 
 ```{python}
 import os
-import glob
+# Import some libraries from PsychoPy and others
+import os
+from pathlib import Path
 import pandas as pd
 
 # Import some libraries from PsychoPy
@@ -335,6 +337,8 @@ Now we are going to set a few settings, such as the screen size, create a Psycho
 # Setting the directory of our experiment
 os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
 
+# Now create a Path object for the stimuli directory
+stimuli_dir = Path('EXP') / 'Stimuli'
 
 # Winsize
 winsize = (1920, 1080)
@@ -342,16 +346,16 @@ winsize = (1920, 1080)
 # create a window
 win = visual.Window(size = winsize,fullscr=True, units="pix", pos =(0,30), screen=1)
 
-# Load images
-fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
-winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
+# Load images 
+fixation = visual.ImageStim(win, image=str(stimuli_dir / 'fixation.png'), size=(200, 200))
+circle = visual.ImageStim(win, image=str(stimuli_dir / 'circle.png'), size=(200, 200))
+square = visual.ImageStim(win, image=str(stimuli_dir / 'square.png'), size=(200, 200))
+winning = visual.ImageStim(win, image=str(stimuli_dir / 'winning.png'), size=(200, 200), pos=(250, 0))
+losing = visual.ImageStim(win, image=str(stimuli_dir / 'loosing.png'), size=(200, 200), pos=(-250, 0))
 
-# Load sound
-winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
-losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
+# Load sound 
+winning_sound = sound.Sound(str(stimuli_dir / 'winning.wav'))
+losing_sound = sound.Sound(str(stimuli_dir / 'loosing.wav'))
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
@@ -449,7 +453,7 @@ Our **ISI** starts the clock and checks when 1 second has passed after starting 
 ```{python}
 ### ISI
 clock = core.Clock()
-write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
+write_buffer_to_file(gaze_data_buffer, Path('DATA') / 'RAW' / (Sub + '.csv'))
 while clock.getTime() < 1:
     pass
 ```
@@ -476,7 +480,7 @@ Great job getting to here!! it want easy but you did it. Here is all the code we
 
 ```{python}
 import os
-import glob
+from pathlib import Path
 import pandas as pd
 
 # Import some libraries from PsychoPy
@@ -533,22 +537,28 @@ def write_buffer_to_file(buffer, output_path):
     
 #%% Load and prepare stimuli
 
+# Setting the directory of our experiment
+os.chdir(r'C:\Users\tomma\OneDrive - Birkbeck, University of London\TomassoGhilardi\PersonalProj\BCCCD')
+
+# Now create a Path object for the stimuli directory
+stimuli_dir = Path('EXP') / 'Stimuli'
+
 # Winsize
 winsize = (1920, 1080)
 
 # create a window
 win = visual.Window(size = winsize,fullscr=True, units="pix", pos =(0,30), screen=1)
 
-# Load images
-fixation = visual.ImageStim(win, image='EXP\\Stimuli\\fixation.png', size = (200, 200))
-circle   = visual.ImageStim(win, image='EXP\\Stimuli\\circle.png', size = (200, 200))
-square   = visual.ImageStim(win, image='EXP\\Stimuli\\square.png', size = (200, 200))
-winning   = visual.ImageStim(win, image='EXP\\Stimuli\\winning.png', size = (200, 200), pos=(560,0))
-losing  = visual.ImageStim(win, image='EXP\\Stimuli\\loosing.png', size = (200, 200), pos=(-560,0))
+# Load images 
+fixation = visual.ImageStim(win, image=str(stimuli_dir / 'fixation.png'), size=(200, 200))
+circle = visual.ImageStim(win, image=str(stimuli_dir / 'circle.png'), size=(200, 200))
+square = visual.ImageStim(win, image=str(stimuli_dir / 'square.png'), size=(200, 200))
+winning = visual.ImageStim(win, image=str(stimuli_dir / 'winning.png'), size=(200, 200), pos=(250, 0))
+losing = visual.ImageStim(win, image=str(stimuli_dir / 'loosing.png'), size=(200, 200), pos=(-250, 0))
 
-# Load sound
-winning_sound = sound.Sound('EXP\\Stimuli\\winning.wav')
-losing_sound = sound.Sound('EXP\\Stimuli\\loosing.wav')
+# Load sound 
+winning_sound = sound.Sound(str(stimuli_dir / 'winning.wav'))
+losing_sound = sound.Sound(str(stimuli_dir / 'loosing.wav'))
 
 # List of stimuli
 cues = [circle, square] # put both cues in a list
@@ -562,7 +572,7 @@ Trials = [0, 1, 0, 0, 1, 0, 1, 1, 0, 1 ]
 
 #%% Record the data
 
-# Defin the subject
+# Defin the subject name
 Sub = 'S001'
 
 # Find all connected eye trackers
@@ -619,7 +629,7 @@ for trial in Trials:
     ### ISI
     win.flip()    # we re-flip at the end to clean the window
     clock = core.Clock()
-    write_buffer_to_file(gaze_data_buffer, 'DATA\\RAW\\'+ Sub +'.csv')
+    write_buffer_to_file(gaze_data_buffer, Path('DATA') / 'RAW' / (Sub + '.csv'))
     while clock.getTime() < 1:
         pass
     

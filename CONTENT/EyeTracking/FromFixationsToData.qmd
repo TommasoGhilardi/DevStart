@@ -30,13 +30,16 @@ import matplotlib.patches as patches
 screensize = (1920, 1080) 
 
 
-#%% Read and prepare data
+#%% Settings and reading data
+
+# Define paths using pathlib
+base_path = Path('../../resources/FromFixationToData/DATA')
 
 # The fixation data extracted from I2MC
-Fixations = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\i2mc_output\\Adult1\\Adult1.csv')
+Fixations = pd.read_csv(base_path / 'i2mc_output' / 'Adult1' / 'Adult1.csv')
 
 # The original RAW data
-Raw_data = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\RAW\\Adult1.csv')
+Raw_data = pd.read_csv(base_path / 'RAW' / 'Adult1.csv')
 ```
 
 What can we do with just the raw data and the fixations? Not much I am afraid. But we can use these fixations to extract some more meaningful indexes.
@@ -183,7 +186,7 @@ Let's start by finding the moment in which the target appeared:
 Targets = Raw_data.loc[(Raw_data['Event'] == 'Reward') | (Raw_data['Event'] == 'NoReward'), ['time', 'Event']].values
 ```
 
-Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we're going to add two new columns to our fixation dataframe: `Event` and `Event_trial`. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.
+Having identified the moments when the targets were presented, we can now establish a time window around each of these instances. To accomplish this, we will iterate over the identified times and select all the fixations that occur within the defined window. To make things clearer, we're going to add two new columns to our fixation dataframe: `Event` and `TrialN`. These will help us know which event each fixation is linked to, and which specific trial it belongs to. Plus, we're going to add another column called `Onset` to the fixations dataframe. This will let us store the onset times of specific events, making our analysis down the line a whole lot simpler.
 
 ```{python}
 # Find the fixations that we care about
@@ -197,7 +200,7 @@ for i,c in enumerate(Targets):
     
     # Fill the rows with have found with more info
     Fixations.loc[mask, 'Event'] = c[1]
-    Fixations.loc[mask, 'Event_trial'] = i
+    Fixations.loc[mask, 'TrialN'] = i
     Fixations.loc[mask, 'Onset'] =  c[0]
 ```
 
@@ -282,11 +285,11 @@ Saccadic latency can be negative!!. This indicates that participants were able t
 
 We have all these latency values, but we only want the first/fastest of each trial. How can we extract this information easily? We will use groupby. Groupby allows us to perform specific functions/commands on grouped sections of a data frame.
 
-Here we will groupby by Events and Event_trials and for each of these grouped pieces of dataframe we will extract the smallest (`min()`) value of latency.
+Here we will groupby by Events and TrialN and for each of these grouped pieces of dataframe we will extract the smallest (`min()`) value of latency.
 
 ```{python}
 # We extract the first fixation of our dataframe for each event
-SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['Latency'].min().reset_index()
+SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'TrialN'])['Latency'].min().reset_index()
 ```
 
 Here we have our **Saccadic latency**!!!
@@ -299,7 +302,7 @@ import seaborn as sns # import seaborn
 plt.figure()
 
 # Scatterplot
-ax = sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
+ax = sns.scatterplot(data=SaccadicLatency, x="TrialN", y="Latency", hue='Event')
 
 # Place the legend 
 sns.move_legend(ax,loc="upper left")
@@ -312,11 +315,11 @@ plt.show()
 
 While our paradigm was designed with saccadic latency in mind, for the purposes of this tutorial we will also be looking at the extraction of looking time. Looking time is a measure that tells us how much our participant was looking in either of the two AOIs at each trial.
 
-We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by `Event`, `Event_trial` and `Looked_AOI`. For each of the grouped dataframes, we will extract the `sum()` of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.
+We have already extracted all the information we need, we just need to do the final steps. We will again use groupby to group our dataframe by `Event`, `TrialN` and `Looked_AOI`. For each of the grouped dataframes, we will extract the `sum()` of each fixation duration. This will tell us how much the participant looked at each of the two AOIs for each trial.
 
 ```{python}
 # Using groupby we can extract the sum of the duration of the fixation for each reward and trial
-LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
+LookingTime = Target_fixations.groupby(['Event', 'TrialN', 'Looked_AOI'], as_index=False)['dur'].sum()
 ```
 
 Again, we can now visualize the data. For example, we can plot whether looking time to rewarding vs. non-rewarding stimuli:
@@ -375,12 +378,14 @@ def find_area_for_point(point, areas):
 
 #%% Settings and reading data
 
+# Define paths using pathlib
+base_path = Path('../../resources/FromFixationToData/DATA')
+
 # The fixation data extracted from I2MC
-Fixations = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\i2mc_output\\Adult1\\Adult1.csv')
+Fixations = pd.read_csv(base_path / 'i2mc_output' / 'Adult1' / 'Adult1.csv')
 
 # The original RAW data
-Raw_data = pd.read_csv('..\\..\\resources\\FromFixationToData\\DATA\\RAW\\Adult1.csv')
-
+Raw_data = pd.read_csv(base_path / 'RAW' / 'Adult1.csv')
 
 
 #%% Areas of interest
@@ -417,7 +422,7 @@ for i,c in enumerate(Targets):
     
     # Fill the rows with have found with more info
     Fixations.loc[mask, 'Event'] = c[1]
-    Fixations.loc[mask, 'Event_trial'] = i
+    Fixations.loc[mask, 'TrialN'] = i
     Fixations.loc[mask, 'Onset'] =  c[0]
     
 # We can drop the NANs to have only the fixations that interest us!!!!
@@ -458,13 +463,13 @@ Correct_Target_fixations = Target_fixations[Target_fixations['Correct_Aoi'] == T
 Correct_Target_fixations['Latency'] = Correct_Target_fixations['Onset'] - Correct_Target_fixations['startT']
 
 # We extract the first fixation of our dataframe for each event
-SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'Event_trial'])['Latency'].min().reset_index()
+SaccadicLatency = Correct_Target_fixations.groupby(['Event', 'TrialN'])['Latency'].min().reset_index()
 
 ### PLOT
 plt.figure()
 
 # Scatterplot
-ax = sns.scatterplot(data=SaccadicLatency, x="Event_trial", y="Latency", hue='Event')
+ax = sns.scatterplot(data=SaccadicLatency, x="TrialN", y="Latency", hue='Event')
 
 # Place the legend 
 sns.move_legend(ax,loc="upper left")
@@ -477,7 +482,7 @@ plt.show()
 #%% Looking time
 
 # Using groupby we can extract the sum of the duration of the fixation for each reward and trial
-LookingTime = Target_fixations.groupby(['Event', 'Event_trial', 'Looked_AOI'], as_index=False)['dur'].sum()
+LookingTime = Target_fixations.groupby(['Event', 'TrialN', 'Looked_AOI'], as_index=False)['dur'].sum()
 
 ### PLOT
 plt.figure()
