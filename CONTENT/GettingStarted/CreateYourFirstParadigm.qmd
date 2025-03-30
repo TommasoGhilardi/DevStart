@@ -104,7 +104,7 @@ macOS and Linux use forward slashes (`/`) for their file paths, which are also c
 
 ### Modern Solution
 
-Python 3.4+ includes the `pathlib` module which provides a more intuitive, object-oriented approach to working with file paths that works across all operating systems:
+Python 3.4+ includes the `pathlib` module which provides a more intuitive, object-oriented approach to working with file paths that works across all operating systems. Once you create a Path object, the most powerful feature of pathlib is the ability to use the forward slash / operator to join paths together. This makes constructing file paths much more intuitive and readable:
 
 ```{python}
 from pathlib import Path
@@ -119,9 +119,13 @@ full_path = base_dir / 'project' / 'data.csv'
 str_path = str(full_path)
 ```
 
-Using `pathlib` offers several advantages: cross-platform compatibility with automatic correct separators, intuitive path joining with the `/` operator, built-in methods for file operations (like `.exists()` and `.glob()`), and no need to handle backslash escaping.
+The `/` operator works just like you'd expect when writing file paths: it simply joins path components together, automatically handling separators correctly for your operating system. This means:
 
-For this tutorial series, we'll use `pathlib` for better cross-platform compatibility, but it's good to understand both approaches!
+1.  No need to remember to use different separators on different systems (`\` on Windows vs. `/` on Mac)
+
+2.  No issues with escape characters in strings (the `\` in Windows paths normally needs escaping in Python strings)
+
+For our tutorial, we'll use `pathlib` for better cross-platform compatibility, but it's good to understand both approaches!
 ::::
 
 ```{python}
