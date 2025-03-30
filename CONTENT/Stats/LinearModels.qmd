@@ -54,7 +54,7 @@ You can download the data that we will use in this tutorial from here:
 Once downloaded we need to import it in our R session. Here we read our csv and we print a small preview of it.
 
 ```{r}
-df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+df = read.csv("../../resources/Stats/Dataset.csv")
 head(df)
 ```
 
@@ -64,7 +64,7 @@ You can see that the data is really simple! We have 4 columns:
 
 -   `Event` represent which condition we were in
 
--   `Event_trial` the sequential number of trials in the experiment
+-   `TrialN` the sequential number of trials in the experiment
 
 -   `ReactionTime` how quickly participants reacted to the stimuli. We will ignore this variable for now
 
@@ -75,7 +75,7 @@ You can see that the data is really simple! We have 4 columns:
 
 One important information that we need to keep in mind is that to run `lm()` (and most models!!) in R we need the data in a long format and not a wide format.
 
-In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example `LookingTime`) has 1 row for observation but the other columns usually have repeated entries ( e.g. `Id` , `Event_trial`, `Event`)
+In long format, each row represents a single observation. Variables are organized in columns, with one column for the variable names and another for the values. This means that the column you want to model (in the example `LookingTime`) has 1 row for observation but the other columns usually have repeated entries ( e.g. `Id` , `TrialN`, `Event`)
 
 Wide format, on the other hand, has each row representing a subject or group, with multiple columns for different variables or time-points. While this can be visually appealing for humans, it's not optimal for our linear modeling needs.
 
@@ -91,7 +91,7 @@ library(tidyverse)
 long_data <- tibble(
   Id = rep(c("1", "2", "3"), each = 6),
   Event = rep(rep(c("Reward", "NoReward"), each = 3), 3),
-  Event_trial = rep(1:3, 6),
+  TrialN = rep(1:3, 6),
   LookingTime = c(
     # P01 - Reward condition
     1450, 1420, 1390,
@@ -111,7 +111,7 @@ long_data <- tibble(
 wide_data <- long_data %>%
   pivot_wider(
     id_cols = Id,
-    names_from = c(Event, Event_trial),
+    names_from = c(Event, TrialN),
     values_from = LookingTime,
     names_sep = "_Trial"
   )
@@ -149,25 +149,25 @@ If your data is currently in wide format, don't worry! R provides tools like the
 
 To run models in R we usually use formulas! Sounds complex doesn't it?!? Well it is not, let me guide you through it.
 
-In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the outcome we collected and we're interested in studying. In this case, it's the `LookingTime` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to predict the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables (predictors) we believe may influence our dependent variable. To test whether `Event_trial` predicts LookingTime, we can use the formula:
+In R, model formulas follow a specific structure. On the left side of the formula, we place our dependent variable - the outcome we collected and we're interested in studying. In this case, it's the `LookingTime` column. Next, we use the tilde symbol `~`. This tilde tells R that we want to predict the variable on the left using the variables on the right side of the formula. On the right side, we list the independent variables (predictors) we believe may influence our dependent variable. To test whether `TrialN` predicts LookingTime, we can use the formula:
 
--   `LookingTime ~ Event_trial`. This basic structure allows us to examine a single predictor.
+-   `LookingTime ~ TrialN`. This basic structure allows us to examine a single predictor.
 
 We can extend this model by adding another variable, such as `Event`, to see if it also predicts LookingTime:
 
--   `LookingTime ~ Event_trial + Event`. This formulation tells the model to assess whether either `Event_trial` and `Event` predicts `LookingTime`, treating them as independent predictors.
+-   `LookingTime ~ TrialN + Event`. This formulation tells the model to assess whether either `TrialN` and `Event` predicts `LookingTime`, treating them as independent predictors.
 
 To examine the interaction between these variables, we use a slightly different syntax:
 
--   `LookingTime ~ Event_trial : Event`. This instructs the model to evaluate whether the interaction between the two variables predicts `LookingTime`.
+-   `LookingTime ~ TrialN : Event`. This instructs the model to evaluate whether the interaction between the two variables predicts `LookingTime`.
 
 It's important to note that using `:` only tests the interaction, not the individual effects of each variable. To include both main effects and their interaction, we can use the formula:
 
--   `LookingTime ~ Event_trial + Event + Event_trial:Event`.
+-   `LookingTime ~ TrialN + Event + TrialN:Event`.
 
 R offers a shorthand for this complete model using the `*` operator. The formula:
 
--   `LookingTime ~ Event_trial * Event` is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.
+-   `LookingTime ~ TrialN * Event` is equivalent to the longer version above, testing both main effects and the interaction in a more concise format.
 
 These formulas are for simple linear models. Different types of models add small and different pieces to this basic structure. We will see in the next tutorial how to handle these "add-ons". Now that we have seen how to make a proper formula let's use it in our model!!
 
@@ -183,13 +183,13 @@ After fitting the model we extract the summary of it. This is how we will get al
 #| label: RunLm
 #| message: false
 #| warning: false
-mod_lm = lm(LookingTime ~ Event_trial*Event, data = df)
+mod_lm = lm(LookingTime ~ TrialN*Event, data = df)
 summary(mod_lm)
 ```
 
 Woohoo! This was super simple!! 🎉 We can use the output of the model to understand whether the variables are predicting LookingTime. The magic number we're looking for is the p-value, hiding in the last column of the **Coefficients section**. If the p-value is below 0.05, we've got ourselves an effect! If it's above, sadly we don't. [**AND YES, EVEN IF IT'S 0.051!!!**]{.underline} Rules are rules in the p-value game!
 
-What goodies can we spot here? First, our **Intercept** is significant (don't worry, we'll decode this mysterious value later!). Even more exciting, we've got a significant effect of **Event_trial** – our continuous variable – (p = 0.0113) and a significant effect of **Event** (p = 0.0114). Double win! However, the interaction between Event_trial and Event is playing hard to get with that p = 0.9715. That's nowhere near significant!
+What goodies can we spot here? First, our **Intercept** is significant (don't worry, we'll decode this mysterious value later!). Even more exciting, we've got a significant effect of **TrialN** – our continuous variable – (p = 0.0113) and a significant effect of **Event** (p = 0.0114). Double win! However, the interaction between TrialN and Event is playing hard to get with that p = 0.9715. That's nowhere near significant!
 
 This is already pretty cool, right?!? But here's the deal - when looking at model outputs, people often get hypnotized by p-values. **However, there's MUCH more to unpack in a model summary!** The full story of our data is waiting to be discovered in the complete model output. Let's dive in together and crack this statistical puzzle!
 
@@ -241,13 +241,13 @@ Let's go together through the most challenging information:
 
 The intercept often confuses people who approach linear models for the first time. What exactly is it? 🤔
 
-The (Intercept) represents the reference levels where all our predictors (`Event_trial` and `Event`) are **0**. While `Event_trial` is easy to understand when it's 0 (`Event_trial` 0 in our case would be the first trial), you may be scratching your head thinking...how can `Event` be 0? It's a categorical variable, it can't be 0!!!! `Event_trial == 0`...sure....but `Event`??
+The (Intercept) represents the reference levels where all our predictors (`TrialN` and `Event`) are **0**. While `TrialN` is easy to understand when it's 0 (`TrialN` 0 in our case would be the first trial), you may be scratching your head thinking...how can `Event` be 0? It's a categorical variable, it can't be 0!!!! `TrialN == 0`...sure....but `Event`??
 
 You are absolutely right! When a model encounters a categorical variable, it cleverly selects the first level of such variable as the reference level. If you take another look at our model summary, you can see that there's information for the **Reward** level of the `Event` variable but nothing about the **NoReward** level. This is because the **NoReward** level has been selected by the model as the reference level and is thus represented in the intercept value! 💡
 
 So our intercept (1390.1) actually represents the predicted **LookingTime** when:
 
-1.  We're on the first trial (`Event_trial` = 0)
+1.  We're on the first trial (`TrialN` = 0)
 
 2.  We're in the **NoReward** condition
 
@@ -323,7 +323,7 @@ As you can see, the intercept is pretty straightforward—it gives us the estima
 
 ### Event
 
-Awesome! Now that we've got the intercept down, let's take a look at the rest of the model output. We'll skip over the **Event_trial** variable for now and focus on what's happening with the **Event**.
+Awesome! Now that we've got the intercept down, let's take a look at the rest of the model output. We'll skip over the **TrialN** variable for now and focus on what's happening with the **Event**.
 
 At first, the results for `Event [Reward]` might look like they're giving us the value of looking time for the **Reward**. Super easy, right?!?
 
@@ -377,16 +377,16 @@ ggplot() +
   )
 ```
 
-### Event_trial
+### TrialN
 
-So, interpreting the coefficients for categorical variables wasn't too tricky, right? But what about continuous variables like `Event_trial`?
+So, interpreting the coefficients for categorical variables wasn't too tricky, right? But what about continuous variables like `TrialN`?
 
 No worries, it's actually pretty straightforward! The coefficient for a continuous variable represents the slope, or the incline, of the line for that variable.
 
-In simpler terms, it shows how much the outcome (in this case, `LookingTime`) changes for each unit increase in the continuous variable (`Event_trial`). So, in our case the coefficient for `Event_trial` is -7.5, this means that for each unit increase in `Event_trial`, the LookingTime is expected to decrease by 7.5 units (assuming all other variables stay the same).
+In simpler terms, it shows how much the outcome (in this case, `LookingTime`) changes for each unit increase in the continuous variable (`TrialN`). So, in our case the coefficient for `TrialN` is -7.5, this means that for each unit increase in `TrialN`, the LookingTime is expected to decrease by 7.5 units (assuming all other variables stay the same).
 
 ::: callout-important
-Remember!! This coefficient represents the effect of `Event_trial` specifically when `Event` is at its reference level (**NoReward**). In other words, this -7.5 decrease in LookingTime per trial applies specifically to the **NoReward** condition!
+Remember!! This coefficient represents the effect of `TrialN` specifically when `Event` is at its reference level (**NoReward**). In other words, this -7.5 decrease in LookingTime per trial applies specifically to the **NoReward** condition!
 :::
 
 Even easier..let's plot again!
@@ -400,7 +400,7 @@ Even easier..let's plot again!
 #| fig-width: 10
 slope_EventTrial <- model_p[2,2]
 
-# Some hypothetical Event_trial values
+# Some hypothetical TrialN values
 time_values <- seq(-1, 20, by = 2)
 
 # Create a small data frame for the main (NoReward) line
@@ -448,13 +448,13 @@ ggplot() +
 
 ### Interaction
 
-Alright, now we're getting to the final step! Let's talk about the interaction between `Event_trial` and `Event`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
+Alright, now we're getting to the final step! Let's talk about the interaction between `TrialN` and `Event`! Now, we're not just dealing with a single factor or continuous variable, but looking at how they interact with each other. Don't worry—if you understood the previous steps, this will be a breeze!
 
-We'll take it step by step and look at the interaction in our model parameters. The interaction term between `Event_trial` and `Event [Reward]` tells us how the relationship between `Event_trial` and `LookingTime` changes when we switch from the reference Event (**NoReward**) to the **Reward** condition.
+We'll take it step by step and look at the interaction in our model parameters. The interaction term between `TrialN` and `Event [Reward]` tells us how the relationship between `TrialN` and `LookingTime` changes when we switch from the reference Event (**NoReward**) to the **Reward** condition.
 
 To put it simply:
 
--   For **NoReward** events, **LookingTime** decreases by 7.5 units per trial (that's our main `Event_trial` coefficient)
+-   For **NoReward** events, **LookingTime** decreases by 7.5 units per trial (that's our main `TrialN` coefficient)
 
 -   The interaction coefficient (let's say it's 0.13) tells us how this slope changes for **Reward** events
 
@@ -463,10 +463,10 @@ So for **Reward** events, the slope would be: -7.5 + 0.13 = -7.37 units per tria
 What does this mean in real terms? If the interaction coefficient is positive (like in our example), it means participants' looking time decreases more slowly during **Reward** trials compared to **NoReward** trials – the estimate is slightly less negative.
 
 ::: callout-important
-In this model the interaction effect is extremely small and not significant. This means that there is actually no difference in how the Event_trial predicted Looking time in either NoReward or Reward! Looking time decreases at basically the same rate regardless of which event type we're looking at!!!
+In this model the interaction effect is extremely small and not significant. This means that there is actually no difference in how the TrialN predicted Looking time in either NoReward or Reward! Looking time decreases at basically the same rate regardless of which event type we're looking at!!!
 :::
 
-While there is no significant difference, let's plot the estimated effects for **Event_trial** for both Reward and **NoReward** conditions to visualize this relationship!
+While there is no significant difference, let's plot the estimated effects for **TrialN** for both Reward and **NoReward** conditions to visualize this relationship!
 
 ```{r}
 #| echo: false
@@ -487,7 +487,7 @@ intercept_Reward_se <- model_p[3,3]
 slope_EventTrial <- model_p[2,2]  # Slope for Event Trial
 slope_Interaction <- model_p[4,2] # Interaction effect
 
-# Some hypothetical Event_trial values
+# Some hypothetical TrialN values
 time_values <- seq(-1, 20, by = .05)
 # index <- which.min(abs(time_values - (-0.15)))
 
@@ -543,7 +543,7 @@ ggplot()+
 ::: callout-important
 Do you notice any difference in how the slopes between the two conditions? Probably not! If you examine the model summary, you'll see the interaction effect is very small and not statistically significant.
 
-This tells us that Event_trial predicts Looking time similarly in both **NoReward** and Reward conditions. In other words, looking time decreases at essentially the same rate regardless of which event type participants observed.
+This tells us that TrialN predicts Looking time similarly in both **NoReward** and Reward conditions. In other words, looking time decreases at essentially the same rate regardless of which event type participants observed.
 :::
 
 I hope that by now you got a decent understanding on how to interpret what a linear model is telling you!! Different kinds of models will add small pieces of information here and there, but the main information will still be there. Thus, if you got here, you are a step closer to becoming a stats genius!!! 🧠📊
@@ -564,7 +564,7 @@ On top of making it easier to interpret your model results, it will also help yo
 
 ## Run the model
 
-Ok, this sounds fair right? Before running a model we can just standardize the values of our predictors (in our case Event_trial). Yeah..but how to? Our favorite way is to use the `standardize()` function from the the [easystats](https://easystats.github.io/easystats/) library.
+Ok, this sounds fair right? Before running a model we can just standardize the values of our predictors (in our case TrialN). Yeah..but how to? Our favorite way is to use the `standardize()` function from the the [easystats](https://easystats.github.io/easystats/) library.
 
 ::: callout-note
 [**Easystats**](https://easystats.github.io/easystats/)
@@ -584,11 +584,11 @@ So now we import `easystats` and we use the function `standardize()`
 #| message: false
 #| warning: false
 library(easystats)
-df$StandardTrialN = standardize(df$Event_trial)
+df$StandardTrialN = standardize(df$TrialN)
 head(df)
 ```
 
-We have created like this a new column `StandardTrialN` with the standardized values of the Event_trial and now we can run the model again
+We have created like this a new column `StandardTrialN` with the standardized values of the TrialN and now we can run the model again
 
 ```{r}
 #| label: RunStandardLm
@@ -598,7 +598,7 @@ mod_lm = lm(LookingTime ~ StandardTrialN*Event, data = df)
 summary(mod_lm)
 ```
 
-As you can see the estimates are different!!! Because as we mentioned the reference level and the scale are different now. However do not panic, even if some values are different the relations are the same, we still have negative estimate for the time variable (here StandardTrialN and before Event_trial) and positive for the Reward condition. Also the p-values are the same!
+As you can see the estimates are different!!! Because as we mentioned the reference level and the scale are different now. However do not panic, even if some values are different the relations are the same, we still have negative estimate for the time variable (here StandardTrialN and before TrialN) and positive for the Reward condition. Also the p-values are the same!
 
 So there you have it - standardizing your predictors makes your model both more interpretable and more robust, all while keeping the fundamental relationships in your data intact. It's one of those simple steps that can make a big difference in your statistical journey! 🌟
 

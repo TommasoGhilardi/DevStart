@@ -34,10 +34,10 @@ library(lme4)
 library(lmerTest)
 
 # Read the data
-df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+df = read.csv("../../resources/Stats/Dataset.csv")
 
 df$Id = factor(df$Id) # make sure subject_id is a factor
-df$Event_trial_scaled = scale(df$Event_trial) # standardize the continuous variable
+df$StandardTrialN = scale(df$TrialN) # standardize the continuous variable
 ```
 
 Step one in ANY statistical analysis: **look at your data**! Let's create a histogram with a density curve to see what we're working with:
@@ -92,7 +92,7 @@ Following what we have learned in the previous tutorial we will fit a linear mix
 #| message: false
 #| warning: false
 mod_lm <- lmer(
-  ReactionTime ~ Event_trial_scaled * Event + (1 + Event_trial_scaled | Id),
+  ReactionTime ~ StandardTrialN * Event + (1 + StandardTrialN | Id),
   data = df
 )
 ```
@@ -154,7 +154,7 @@ All this means is that we specify a distribution different from a gaussian and i
 #| warning: false
 # Fit a GLMM with Gamma distribution
 mod_gamma <- glmer(
-  ReactionTime ~ Event_trial_scaled * Event + (1 + Event_trial_scaled| Id),
+  ReactionTime ~ StandardTrialN * Event + (1 + StandardTrialN| Id),
   data   = df,
   family = Gamma(link = "log")
 )
@@ -214,8 +214,8 @@ The interaction tells us that the effect of trial number on reaction time DEPEND
 #| fig-width: 12
 is_pred <- estimate_expectation(mod_gamma, include_random=F)
 
-# 2. Plot the interaction between Event_trial_scaled and Event
-ggplot(is_pred, aes(x = Event_trial_scaled, 
+# 2. Plot the interaction between StandardTrialN and Event
+ggplot(is_pred, aes(x = StandardTrialN, 
                     y = Predicted, 
                     color = Event, 
                     group = Event)) +
@@ -234,7 +234,7 @@ Reaction times decrease much more across trials for the reward than for the no r
 #| label: Estimate slopes
 #| message: false
 #| warning: false
-estimate_slopes(mod_gamma, trend = 'Event', by = 'Event_trial_scaled')
+estimate_slopes(mod_gamma, trend = 'Event', by = 'StandardTrialN')
 ```
 
 \[add with same structure as in previous tutorial\]
@@ -250,7 +250,7 @@ Although we've been focusing on the main effects, remember that we also had rand
 #| fig-width: 12
 is_pred_random = estimate_expectation(mod_gamma, include_random =T)
 
-ggplot(is_pred_random, aes(x= Event_trial_scaled, y= Predicted, color= Id, shape = Event))+
+ggplot(is_pred_random, aes(x= StandardTrialN, y= Predicted, color= Id, shape = Event))+
     geom_point(data = df, aes(y= ReactionTime, color= Id), position= position_jitter(width=0.2))+
     geom_line()+
     geom_ribbon(aes(ymin=Predicted-SE, ymax=Predicted+SE, fill = Id),color= 'transparent', alpha=0.1)+

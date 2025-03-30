@@ -64,9 +64,9 @@ library(lmerTest)
 library(easystats)
 library(tidyverse)
 
-df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+df = read.csv("../../resources/Stats/Dataset.csv")
 df$Id = factor(df$Id) # make sure subject_id is a factor
-df$StandardTrialN = standardize(df$Event_trial) # create standardize trial column
+df$StandardTrialN = standardize(df$TrialN) # create standardize trial column
 
 mod = lmer(LookingTime ~ StandardTrialN * Event+ (1 + StandardTrialN | Id ), data= df)
 summary(mod)

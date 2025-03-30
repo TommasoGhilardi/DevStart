@@ -129,12 +129,12 @@ To run our Linear Mixed Effects Model, these are the key packages we'll use. On 
 ### Read the data
 
 ```{r}
-df = read.csv("..\\..\\resources\\Stats\\Dataset.csv")
+df = read.csv("../../resources/Stats/Dataset.csv")
 df$Id = factor(df$Id) # make sure subject_id is a factor
-df$StandardTrialN = standardize(df$Event_trial) # create standardize trial column
+df$StandardTrialN = standardize(df$TrialN) # create standardize trial column
 ```
 
-After importing the data, we've ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of Event_trial.
+After importing the data, we've ensured that Id is treated as a factor rather than a numerical column and that we have a standardized column of TrialN.
 
 ## Linear Model
 
