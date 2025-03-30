@@ -10,17 +10,18 @@ ReactionTime = vroom::vroom("CONTENT\\Simulation\\simulatedLognormal.csv") |>
   rename(ReactionTime = reaction_time,
          Id = subject_id,
          Event = categorical_condition,
-         Event_trial = trial_number) |> 
-  select(Id, Event, Event_trial, ReactionTime)
+         TrialN = trial_number) |> 
+  mutate(Event = fct_rev(Event)) |> 
+  select(Id, Event, TrialN, ReactionTime)
   
 LookingTime = vroom::vroom("CONTENT\\Simulation\\simulatedNormal.csv") |> 
   rename(LookingTime = dependent_variable,
          Id = subject_id,
          Event = categorical_condition,
-         Event_trial = trial_number) |> 
-  select(Id, Event, Event_trial, LookingTime)
+         TrialN = trial_number) |> 
+  select(Id, Event, TrialN, LookingTime)
 
-Df = left_join(ReactionTime, LookingTime, by = c("Id", "Event", "Event_trial")) |> 
+Df = left_join(ReactionTime, LookingTime, by = c("Id", "Event", "TrialN")) |> 
   mutate(Event = fct_recode(Event, NoReward = "Hammer", Reward = "Spoon"))
 Df[is.na(Df$ReactionTime ),]$LookingTime = NA
 
@@ -31,10 +32,10 @@ write_csv(Df, "resources\\Stats\\Dataset.csv")
 # Models ------------------------------------------------------------------
 
 
-mod_l = lmer(LookingTime ~ Event * Event_trial + (1 + Event_trial | Id), data = Df)
+mod_l = lmer(LookingTime ~ Event * TrialN + (1 + TrialN | Id), data = Df)
 
 # Mixed-Effects Model using Gamma distribution
-Df$Stand_TrialN = datawizard::standardise(Df$Event_trial)
+Df$Stand_TrialN = datawizard::standardise(Df$TrialN)
 mod_gam = glmer(ReactionTime ~ Event * Stand_TrialN + 
                   (1 + Stand_TrialN | Id),
                 family = Gamma(link = 'log'), data = Df)
@@ -61,8 +62,11 @@ D1 + D2
 ggsave("CONTENT\\Simulation\\CombinedDensity.png", width = 20, height = 20, dpi  = 300)
 
 
-plot(estimate_relation(mod_l), by = c('Event_trial', 'Event'))
-plot(estimate_relation(mod_l), by = c('Event', 'Event_trial'))
+plot(estimate_relation(mod_l), by = c('TrialN', 'Event'))
+plot(estimate_relation(mod_l), by = c('Event', 'TrialN'))
 
 
-plot(estimate_expectation(mod_l, by = c('Event_trial', 'Event'), transform = T))
+plot(estimate_expectation(mod_l, by = c('TrialN', 'Event'), transform = T))
+
+
+
