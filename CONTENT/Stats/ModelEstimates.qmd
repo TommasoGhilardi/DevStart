@@ -12,10 +12,10 @@ categories:
   - linear models
 ---
 
-If you are here it means you have already gone trough our tutorial on: [Linear models](LinearModels.qmd), [Linear mixed effect models](LinearMixedModels.qmd) and [Generalized linear models](GeneralisedModels.qmd). Well done!! You are nearly there my young stats padawan. ![](/images/Stats/ModelEstimates/Padawan.png){style="margin-right:10px;margin-bottom:10px;" width="144"}
+If you are here, it means you have already gone through our tutorial on: [Linear models](LinearModels.qmd), [Linear mixed effect models](LinearMixedModels.qmd) and [Generalized linear models](GeneralisedModels.qmd). Well done!! You are nearly there, my young stats padawan. ![](/images/Stats/ModelEstimates/Padawan.png){style="margin-right:10px;margin-bottom:10px;" width="144"}
 
 ::: callout-note
-In this tutorial we will rely heavily on the modelbased package functions. Modelbased is part of the easystats package collection that we love and already introduced!!
+In this tutorial, we will rely heavily on the modelbased package functions. Modelbased is part of the easystats package collection that we love and have already introduced!!
 
 The modelbased package provides lots of documentation and vignettes about its functions. We strongly suggest you visit the package website if you want to learn more tricks about model estimates.
 
@@ -32,8 +32,6 @@ Here come the **PREDICTIONS.**
 
 But.. what are predictions?? They're essentially what our model "thinks" should happen under certain conditions!
 
-The main idea is that
-
 The main idea is that:
 
 1.  **We collect our data** - This includes all our eye-tracking measurements with their natural variability and noise
@@ -46,13 +44,13 @@ The main idea is that:
 
     -   predict values for conditions that fall within the range of our data but weren't explicitly tested
 
-Sounds a little confusing ...but really cool right?? Let's dive in, everything will be clearer!!
+Sounds a little confusing... but really cool right?? Let's dive in, everything will be clearer!!
 
 ## Model
 
-First thing firts, what do we need?? Well a model...
+First things first, what do we need?? Well, a model...
 
-I'll be brief here as you should already be familiar with this. Before diving in we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model.
+I'll be brief here as you should already be familiar with this. Before diving in, we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model.
 
 ```{r}
 #| label: Run model
@@ -72,7 +70,7 @@ mod = lmer(LookingTime ~ StandardTrialN * Event+ (1 + StandardTrialN | Id ), dat
 summary(mod)
 ```
 
-This is not a tutorial about the model itself—you've already done that, right? 😉 The only thing to keep in mind is that in our model we have main effect of the predictors and their interaction.
+This is not a tutorial about the model itself—you've already done that, right? 😉 The only thing to keep in mind is that in our model, we have main effects of the predictors and their interaction.
 
 ## Predictions
 
@@ -106,7 +104,7 @@ ggplot() +
   theme(legend.position = 'bottom')
 ```
 
-As you can see the raw data and the predicted data are very similar but not the same!! The predictions represent our model's "best guess" at what the looking times should be based on the fixed effects (StandardTrialN and Event) and random effects (individual participant differences). This smooths out some of the noise in the original data and gives us a clearer picture of the underlying patterns!
+As you can see, the raw data and the predicted data are very similar but not the same!! The predictions represent our model's "best guess" at what the looking times should be based on the fixed effects (StandardTrialN and Event) and random effects (individual participant differences). This smooths out some of the noise in the original data and gives us a simpler picture of the underlying patterns!
 
 ## Predictions for reference values
 
@@ -114,7 +112,7 @@ So far, we've extracted predictions based on our raw data. While useful for comp
 
 When visualizing model results using predictions from every observation:
 
--   Each participant would have their own line
+-   Each participant would have their line
 
 -   Individual variations would create visual clutter
 
@@ -137,7 +135,7 @@ This gives us predictions for each level of the Event factor while:
 The result? A clean representation of the "typical" looking time for each Event type, perfect for visualizing the main effect!
 
 ::: callout-tip
-In this examples (and the next ones), we explored a very simple case. We just passed the predictors we were interested in, and the function gave us all the levels of that predictor. However, we can also specify exactly which level we want instead of having the function automatically return all the ones it thinks are relevant. There are different ways to do this - the simplest is:
+In these examples (and the next ones), we explored a very simple case. We just passed the predictors we were interested in, and the function gave us all the levels of that predictor. However, we can also specify exactly which level we want instead of having the function automatically return all the ones it thinks are relevant. There are different ways to do this - the simplest is:
 
 ```{r}
 #| warning: false
@@ -171,7 +169,7 @@ estimate_expectation(mod, by = c('StandardTrialN','Event'), length=6)
 This creates predictions for all combinations of Event levels and StandardTrialN values - perfect for visualizing interaction effects!
 
 ::: callout-tip
-In this tutorial we focused on the `estimate_expectation()` function. However, modelbased offers additional functions that return similar things but with slightly different defaults and behaviors.
+In this tutorial, we focused on the `estimate_expectation()` function. However, modelbased offers additional functions that return similar things but with slightly different defaults and behaviors.
 
 For example, if we run `estimate_relation(mod)`, instead of returning predictions based on the values in our original dataframe, it will automatically return predictions on a reference grid of all predictors. This is equivalent to running `estimate_expectation(mod, by = c('StandardTrialN','Event'))` that we saw before.
 
@@ -360,7 +358,7 @@ This shows us that the effect of StandardTrialN is actually different between th
 
 # Estimate slope
 
-I know we've covered a lot of ground already, but there's one more important function worth introducing: `estimate_slope()`. While `estimate_contrast()` allows the comparison between means, `estimate_slope()`,is designed for slopes. As the name suggests, it calculates the averages of coefficients (slopes) in your outcome variable for each unit increase in your predictor. This helps you, for example, to understand how quickly looking time changes across trials..
+I know we've covered a lot of ground already, but there's one more important function worth introducing: `estimate_slope()`. While `estimate_contrast()` allows the comparison between means, `estimate_slope()`, is designed for slopes. As the name suggests, it calculates the averages of coefficients (slopes) in your outcome variable for each unit increase in your predictor. This helps you, for example, to understand how quickly looking time changes across trials..
 
 ```{r}
 #| label: EstSlope
@@ -380,13 +378,13 @@ You may be thinking... "Wait, isn't this information already in the model summar
 This is why the two values don't match! One is the slope for a specific condition, while the other is the average slope across all conditions. Super COOL right??
 :::
 
-We can also check if there are difference in slopes
+We can also check if there are differences in slopes
 
 ## Factor x Continuous
 
 Similar to the estimate_contrast function, estimate_slopes really shines when exploring interactions between continuous and categorical variables.
 
-Remember! Our model indicated an interaction between StandardTrialN and Event, which means the rate of change (slope) should differ between the two Event types. However, from just knowing there's an interaction, we can't determine exactly what these slopes are doing. One condition might show a steeper decline than the other, one might be flat while the other decreases, or they might even go in opposite directions. The model just tells us they're different, not how they're different (or at least is not so simple)n
+Remember! Our model indicated an interaction between StandardTrialN and Event, which means the rate of change (slope) should differ between the two Event types. However, from just knowing there's an interaction, we can't determine exactly what these slopes are doing. One condition might show a steeper decline than the other, one might be flat while the other decreases, or they might even go in opposite directions. The model just tells us they're different, not how they're different (or at least it is not so simple)
 
 To visualize exactly how these slopes differ, we can include Event with the by argument:
 
@@ -445,7 +443,7 @@ Grid = get_datagrid(mod, by = c('Event', 'StandardTrialN = [fivenum]'))
 head(as.data.frame(Grid), n=20 )
 ```
 
-What we've done here is request both levels of Event, the five-number summary for StandardTrialN (minimum, lower-hinge, median, upper-hinge, maximum), and all different subjects by setting `include_random = TRUE`. Why would we want such a complex grid? Well first thing first to make it copmlex...... and aso we want to see what is happening for each subject!! Let's now use this grid......
+What we've done here is request both levels of Event, the five-number summary for StandardTrialN (minimum, lower-hinge, median, upper-hinge, maximum), and all different subjects by setting `include_random = TRUE`. Why would we want such a complex grid? Well, first things first to make it complex...... and also we want to see what is happening for each subject!! Let's now use this grid......
 
 ## Prediction on grid
 
