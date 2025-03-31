@@ -13,7 +13,7 @@ categories:
 
 Python is one of the most popular programming languages in general. In data science, it competes with Matlab and R for first place on the podium.
 
-In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python this is the one we recommend for its simplicity and flexibility.
+In our everyday we often use python to pre-process and analyze the data. In this tutorial we will explain our preferred way of installing python and managing its libraries. There are several ways to install python, this is the one we recommend for its simplicity and flexibility.
 
 # Installing Python
 
@@ -82,7 +82,7 @@ conda create --name working python
 Press `y` when asked and after few seconds we will have out new `working` environment. Now we want to tell our Anaconda prompt that we want to work on our brand new `working` environment. To do so let's write:
 
 ``` bash
-conda activate wokring
+conda activate working
 ```
 
 You’ll notice that the name on the left side of the command prompt has changed from `base` to `working`. This indicates that everything you do in the Anaconda Prompt now will apply to the `working` environment.
