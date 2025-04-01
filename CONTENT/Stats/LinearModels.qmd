@@ -49,7 +49,7 @@ So, if you notice something that doesn't seem quite perfect at this stage, don't
 
 You can download the data that we will use in this tutorial from here:
 
-{{< downloadthis ../../resources/Stats/Dataset.csv label="Dataset.csv" type="secondary" >}}
+{{< downloadthis ../../resources/Stats/Dataset.csv label="Dataset.csv" dname="Dataset.csv" type="secondary" >}}
 
 Once downloaded we need to import it in our R session. Here we read our csv and we print a small preview of it.
 
