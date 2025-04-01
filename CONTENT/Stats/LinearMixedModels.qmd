@@ -1,5 +1,5 @@
 ---
-title: "Linear mixed effect modesl"
+title: "Linear mixed effect models"
 date: "15/03/2025"
 
 author-meta: "Tommaso Ghilardi"
@@ -15,7 +15,7 @@ categories:
 ```{=html}
 <div style="display: flex; align-items: center;">
     <div style="flex: 1; text-align: left;">
-        <p>Welcome to this introduction to Linear Mixed-effects Models (LMM)!! In this tutorial we will use R to run some simple LMM and we will try to understand together how to leverage these model for our analysis.
+        <p>Welcome to this introduction to Linear Mixed-effects Models (LMM)!! In this tutorial, we will use R to run some simple LMMs, and we will try to understand together how to leverage these models for our analysis.
         LMMs are amazing tools that have saved our asses countless times during our PhDs and Postdocs. They'll probably continue to be our trusty companions forever.</p>
     </div>
     <div style="flex: 0 0 auto; margin-left: 10px;">
@@ -138,7 +138,7 @@ After importing the data, we've ensured that Id is treated as a factor rather th
 
 ## Linear Model
 
-While we already seen how to run a linear model we will rerun it here as a comparison to the next steps. In case something is not clear about this `lm()` please go back to the [**previous tutorial on linear models**](LinearModels.qmd)**.**
+While we have already seen how to run a linear model, we will rerun it here as a comparison to the next steps. In case something is not clear about this `lm()`, please go back to the [**previous tutorial on linear models**](LinearModels.qmd)**.**
 
 ```{r}
 #| label: Lm
@@ -148,19 +148,19 @@ mod_lm = lm(LookingTime ~ StandardTrialN*Event, data = df)
 summary(mod_lm)
 ```
 
-We won’t delve into the details of the model results in this tutorial, as we have already cover it in the previous one. However we want to point one thing about the data we run it on!!
+We won’t delve into the details of the model results in this tutorial, as we have already covered it in the previous one. However, we want to point out one thing about the data we run it on!!
 
 ```{r}
 str(df)
 ```
 
-Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example...its a grouping variable
+Wait a minute! Look at our data - we have an **Id** column! 👀 This column tells us which participant each trial belongs to. As each subject experienced all trial conditions, we have multiple data points per person. This is similar to the departments in the previous example... it's a grouping variable
 
 **Wait..but then we should have taken it into consideration!!!**
 
-Instead there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....
+Instead, there was nothing about **Id** in our `lm()`...there is nothing in the formula about **Id**....
 
-Yes we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..
+Yes, we did not account for this grouping structure...let's fix that!! But how do we do so? Well, at this point it's obvious...with Mixed effects models!! Let's dive in..
 
 ## Mixed Effects
 
@@ -325,7 +325,7 @@ ggplot(is_pred, aes(x= StandardTrialN, y= Predicted, color= Id, shape = Event))+
     facet_wrap(~Event)
 ```
 
-While is not super apparent from the data you can see that different subject have different slopes meaning that they all not grow at the same rate
+While it is not super apparent from the data, you can see that different subjects have different slopes, meaning that they do not all grow at the same rate
 
 ## Summary of mixed models
 
@@ -347,7 +347,7 @@ The **Residual** section shows the unexplained variability after accounting for 
 
 ## Model comparison
 
-But how can we be sure the random effects are helping our model? One of the easiest ways is to check the variance explained by the random effects. As we said if the variance related to the random effects is too small, it probably isn’t contributing much to the model. If it’s high, it’s likely helping the model by capturing important variability in the data.
+But how can we be sure the random effects are helping our model? One of the easiest ways is to check the variance explained by the random effects. As we said, if the variance related to the random effects is too small, it probably isn’t contributing much to the model. If it’s high, it’s likely helping the model by capturing important variability in the data.
 
 Another method is to compare the performance of different models. One of the best indices for this is the Akaike Information Criterion (AIC). AIC gives a relative measure of how well a model fits the data, while penalizing the number of parameters in the model. Lower AIC values indicate better models, as they balance goodness-of-fit with model complexity.
 
