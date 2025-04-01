@@ -25,6 +25,15 @@ Df = left_join(ReactionTime, LookingTime, by = c("Id", "Event", "TrialN")) |>
   mutate(Event = fct_recode(Event, NoReward = "Hammer", Reward = "Spoon"))
 Df[is.na(Df$ReactionTime ),]$LookingTime = NA
 
+# SES
+Df = Df %>%
+group_by(Id) %>%
+  mutate(SES = sample(c("low", "medium", "high"), 1)) %>%
+  ungroup()
+
+ggplot(Df, aes(x = SES))+
+  geom_density()
+
 
 write_csv(Df, "resources\\Stats\\Dataset.csv")
 
