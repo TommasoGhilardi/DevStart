@@ -63,8 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../CONTENT/Stats/GeneralisedModels.html" rel="next">
-<link href="../../CONTENT/Stats/LinearMixedModels.html" rel="prev">
 <link href="../../resources/ICON.png" rel="icon" type="image/png">
 <script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
@@ -133,225 +131,22 @@ cookieconsent.run({
 <meta name="twitter:site" content="@DevSciStart">
 <meta name="twitter:card" content="summary">
 </head>
-<body class="nav-sidebar floating">
+<body>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/Stats/LinearModels.html">Stats</a></li><li class="breadcrumb-item"><a href="../../CONTENT/Stats/ModelEstimates.html">ModelEstimates</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/LOGO.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../../"></a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://x.com/DevSciStart" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
-    <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-<li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart">
-            Source Code
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/TommasoGhilardi/DevStart/issues">
-            Report a Bug
-            </a>
-          </li>
-      </ul>
-</div>
-    <a href="../../CONTENT/ContentList.html" title="Content listing" class="quarto-navigation-tool px-1" aria-label="Content listing"><i class="bi bi-menu-up"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to DevStart</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Getting started:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/GettingStarted/GettingStartedWithPython.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Starting with Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/GettingStarted/GettingStartedWithPsychopy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Starting with PsychoPy</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Creating an experiment:</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/GettingStarted/CreateYourFirstParadigm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create your first paradigm</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Eye-tracking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/Intro_eyetracking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to eye-tracking</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/CreateAnEyetrackingExperiment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create an eye-tracking experiment</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/EyetrackingCalibration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calibrating eye-tracking</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/I2MC_tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using I2MC for robust fixation extraction</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/FromFixationsToData.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">From fixations to measures</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/PupilPreprocessing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pupil data pre-processing</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/EyeTracking/PupilDataAnalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pupil Data Analysis</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Stats</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/LinearMixedModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear mixed effect models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/ModelEstimates.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">ModelEstimates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../CONTENT/Stats/GeneralisedModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Generalised mixed-effect models</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="https://tommasoghilardi.github.io/DevStart/Workshops/" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workshops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="https://tommasoghilardi.github.io/DevStart/Workshops/" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Eye-Tracking Workshop for Developmental Scientists</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="https://tommasoghilardi.github.io/DevStart/Workshops/PreviousWokshops/BTG2024.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BTG 2024</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-    </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="4"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#model" id="toc-model" class="nav-link active" data-scroll-target="#model">Model</a></li>
-  <li>
-<a href="#beyond-p-values-understanding-your-effects" id="toc-beyond-p-values-understanding-your-effects" class="nav-link" data-scroll-target="#beyond-p-values-understanding-your-effects">Beyond p-values: Understanding Your Effects</a>
+<li>
+<a href="#beyond-p-values-understanding-your-effects" id="toc-beyond-p-values-understanding-your-effects" class="nav-link active" data-scroll-target="#beyond-p-values-understanding-your-effects">Beyond p-values: Understanding Your Effects</a>
   <ul class="collapse">
-<li><a href="#what-are-predictions-anyway" id="toc-what-are-predictions-anyway" class="nav-link" data-scroll-target="#what-are-predictions-anyway">What Are Predictions, Anyway?</a></li>
+<li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions">Predictions</a></li>
   <li>
 <a href="#predictions-for-reference-values" id="toc-predictions-for-reference-values" class="nav-link" data-scroll-target="#predictions-for-reference-values">Predictions for reference values</a>
   <ul class="collapse">
@@ -361,14 +156,13 @@ cookieconsent.run({
   <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
   </ul>
 </li>
+  <li><a href="#the-question" id="toc-the-question" class="nav-link" data-scroll-target="#the-question">The question !!</a></li>
   </ul>
 </li>
-  <li><a href="#but." id="toc-but." class="nav-link" data-scroll-target="#but.">BUT….</a></li>
   <li>
 <a href="#estimate-means" id="toc-estimate-means" class="nav-link" data-scroll-target="#estimate-means">Estimate means</a>
   <ul class="collapse">
 <li><a href="#plot-1" id="toc-plot-1" class="nav-link" data-scroll-target="#plot-1">Plot</a></li>
-  <li><a href="#continuous-1" id="toc-continuous-1" class="nav-link" data-scroll-target="#continuous-1">Continuous</a></li>
   </ul>
 </li>
   <li>
@@ -396,7 +190,7 @@ cookieconsent.run({
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../CONTENT/Stats/LinearModels.html">Stats</a></li><li class="breadcrumb-item"><a href="../../CONTENT/Stats/ModelEstimates.html">ModelEstimates</a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">ModelEstimates</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">Stats</div>
@@ -429,87 +223,8 @@ cookieconsent.run({
 
 
 </header><p>Welcome back, stats adventurer! 👋 If you are here, it means you have already gone through our tutorial on: <a href="../../CONTENT/Stats/LinearModels.html">Linear models</a>, <a href="../../CONTENT/Stats/LinearMixedModels.html">Linear mixed effect models</a> and <a href="../../CONTENT/Stats/GeneralisedModels.html">Generalized linear models</a>. Well done!! You are nearly there, my young stats padawan. <img src="../..\images/Stats/ModelEstimates/Padawan.png" class="img-fluid" style="margin-right:10px;margin-bottom:10px;" width="144"></p>
-<p>In this tutorial, we’re going to take our analysis skills to the next level. One of the coolest and most important aspects of linear models (in my opinion!) isn’t just the p-values you get for each predictor. Don’t get me wrong—those are important and tell you where there is an effect. But after knowing <em>where</em> the effect is, the exciting part is trying to understand <em>what</em> our effect actually is. In other words, how can it be described?</p>
+<p>In this tutorial, we’re going to take our analysis skills to the next level. We’ll move beyond simply hunting for significant p-values and discover how to extract rich, meaningful information from our models. While we’ll be using a linear mixed effects model as our example, the techniques we’ll explore can be applied to many different types of models (with some adjustments, of course!).</p>
 <p>Be ready!! We’ll explore how to extract and interpret predictions from your model, before learning how to transform these predictions into meaningful statistical insights that tell the complete story of your eyetracking data.</p>
-<section id="model" class="level1"><h1>Model</h1>
-<p>First let’s re-run our model. I’ll be brief here as you should already be familiar with this. Before diving in, we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model. <strong>One difference between this model and our previous tutorial’s model</strong> is that we’ve included an additional interaction with SES (Socio-Economic Status). This variable is a factor with 3 levels: high, medium, and low. This more complex model will be useful to fully experience the model’s predictions and estimates.</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/easystats/">easystats</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../../resources/Stats/Dataset.csv"</span><span class="op">)</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">Id</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Id</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">SES</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">SES</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">Event</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Event</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
-<span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">StandardTrialN</span> <span class="op">=</span> <span class="fu">standardize</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">TrialN</span><span class="op">)</span> <span class="co"># create standardize trial column</span></span>
-<span></span>
-<span><span class="va">mod</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">LookingTime</span> <span class="op">~</span> <span class="va">StandardTrialN</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">*</span> <span class="va">SES</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">StandardTrialN</span> <span class="op">|</span> <span class="va">Id</span> <span class="op">)</span>, data<span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
-<span><span class="fu">parameters</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Fixed Effects
-
-Parameter                                        | Coefficient |     SE
------------------------------------------------------------------------
-(Intercept)                                      |     1291.47 |  73.59
-StandardTrialN                                   |      -68.78 |  19.27
-Event [Reward]                                   |      123.67 |   4.63
-SES [low]                                        |       42.66 | 151.64
-SES [medium]                                     |      -88.10 | 170.02
-StandardTrialN × Event [Reward]                  |       26.50 |   4.61
-StandardTrialN × SES [low]                       |       -2.53 |  39.53
-StandardTrialN × SES [medium]                    |       17.96 |  44.71
-Event [Reward] × SES [low]                       |        8.78 |   8.45
-Event [Reward] × SES [medium]                    |        5.20 |  11.79
-(StandardTrialN × Event [Reward]) × SES [low]    |        2.35 |   8.66
-(StandardTrialN × Event [Reward]) × SES [medium] |       -9.68 |  11.52
-
-Parameter                                        |             95% CI | t(644) |      p
----------------------------------------------------------------------------------------
-(Intercept)                                      | [1146.96, 1435.98] |  17.55 | &lt; .001
-StandardTrialN                                   | [-106.62,  -30.94] |  -3.57 | &lt; .001
-Event [Reward]                                   | [ 114.57,  132.77] |  26.69 | &lt; .001
-SES [low]                                        | [-255.12,  340.44] |   0.28 | 0.779 
-SES [medium]                                     | [-421.96,  245.77] |  -0.52 | 0.605 
-StandardTrialN × Event [Reward]                  | [  17.44,   35.56] |   5.74 | &lt; .001
-StandardTrialN × SES [low]                       | [ -80.15,   75.09] |  -0.06 | 0.949 
-StandardTrialN × SES [medium]                    | [ -69.84,  105.76] |   0.40 | 0.688 
-Event [Reward] × SES [low]                       | [  -7.82,   25.37] |   1.04 | 0.299 
-Event [Reward] × SES [medium]                    | [ -17.95,   28.35] |   0.44 | 0.659 
-(StandardTrialN × Event [Reward]) × SES [low]    | [ -14.66,   19.35] |   0.27 | 0.787 
-(StandardTrialN × Event [Reward]) × SES [medium] | [ -32.31,   12.95] |  -0.84 | 0.401 
-
-# Random Effects
-
-Parameter                          | Coefficient
-------------------------------------------------
-SD (Intercept: Id)                 |      264.96
-SD (StandardTrialN: Id)            |       68.05
-Cor (Intercept~StandardTrialN: Id) |        0.57
-SD (Residual)                      |       40.43</code></pre>
-</div>
-</div>
-</section><section id="beyond-p-values-understanding-your-effects" class="level1"><h1>Beyond p-values: Understanding Your Effects</h1>
-<p>Now that we have our model up and running, let’s ask ourselves a seemingly simple question that will guide our entire tutorial: What are the expected looking times for Rewarding versus NoRewarding events according to our model?</p>
-<p>Looking at the model output above, you might be scratching your head. With all those coefficients, interactions, and reference levels, calculating these values manually would require adding up multiple estimates correctly - a tedious and error-prone process. You’d need to carefully sum the intercept with various coefficient estimates, accounting for interactions and reference levels.</p>
-<p>There must be a simpler way to extract this information, right?</p>
-<p>Absolutely! This is where <strong>PREDICTIONS</strong> come to our rescue.</p>
-<p>But.. what are predictions?? They’re essentially what our model “thinks” should happen under certain conditions!</p>
-<p>The main idea is that:</p>
-<ol type="1">
-<li><p><strong>We collect our data</strong> - This includes all our eye-tracking measurements with their natural variability and noise</p></li>
-<li><p><strong>We fit our model</strong> - We create a mathematical equation that best captures the relationship between our variables</p></li>
-<li>
-<p><strong>We use this equation to make predictions</strong> - This is the powerful part! We can now:</p>
-<ul>
-<li><p>predict values for conditions we’ve tested in our experiment</p></li>
-<li><p>predict values for conditions that fall within the range of our data but weren’t explicitly tested</p></li>
-</ul>
-</li>
-</ol>
-<p>Sounds a little confusing… but really cool right?? Let’s dive in, everything will be clearer!!</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -526,7 +241,132 @@ Note
 <p>We also want to mention that modelbased is not the only option for this kind of estimates. There are different packages like emmeans and marginaleffects (these two are actually called in the background by modelbased).</p>
 </div>
 </div>
-<section id="what-are-predictions-anyway" class="level2"><h2 class="anchored" data-anchor-id="what-are-predictions-anyway">What Are Predictions, Anyway?</h2>
+<section id="beyond-p-values-understanding-your-effects" class="level1"><h1>Beyond p-values: Understanding Your Effects</h1>
+<p>One of the coolest and most important aspects of linear models (in my opinion!) isn’t just the p-values you get for each predictor. Don’t get me wrong—those are important and tell you where there is an effect. But after knowing <em>where</em> the effect is, the exciting part is trying to understand <em>what</em> our effect actually is. In other words, how can it be described?</p>
+<p>Here come the <strong>PREDICTIONS.</strong></p>
+<p>But.. what are predictions?? They’re essentially what our model “thinks” should happen under certain conditions!</p>
+<p>The main idea is that:</p>
+<ol type="1">
+<li><p><strong>We collect our data</strong> - This includes all our eye-tracking measurements with their natural variability and noise</p></li>
+<li><p><strong>We fit our model</strong> - We create a mathematical equation that best captures the relationship between our variables</p></li>
+<li>
+<p><strong>We use this equation to make predictions</strong> - This is the powerful part! We can now:</p>
+<ul>
+<li><p>predict values for conditions we’ve tested in our experiment</p></li>
+<li><p>predict values for conditions that fall within the range of our data but weren’t explicitly tested</p></li>
+</ul>
+</li>
+</ol>
+<p>Sounds a little confusing… but really cool right?? Let’s dive in, everything will be clearer!!</p>
+<section id="model" class="level2"><h2 class="anchored" data-anchor-id="model">Model</h2>
+<p>First things first, what do we need?? Well, a model…</p>
+<p>I’ll be brief here as you should already be familiar with this. Before diving in, we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model. <strong>One difference between this model and our previous tutorial’s model</strong> is that we’ve included an additional interaction with SES (Socio-Economic Status). This variable is a factor with 3 levels: high, medium, and low. This more complex model will be useful to fully experience the model’s predictions and estimates.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/easystats/">easystats</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../../resources/Stats/Dataset.csv"</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">Id</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Id</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">SES</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">SES</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">Event</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Event</span><span class="op">)</span> <span class="co"># make sure subject_id is a factor</span></span>
+<span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">StandardTrialN</span> <span class="op">=</span> <span class="fu">standardize</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">TrialN</span><span class="op">)</span> <span class="co"># create standardize trial column</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">LookingTime</span> <span class="op">~</span> <span class="va">StandardTrialN</span> <span class="op">*</span> <span class="va">Event</span> <span class="op">*</span> <span class="va">SES</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">StandardTrialN</span> <span class="op">|</span> <span class="va">Id</span> <span class="op">)</span>, data<span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+lmerModLmerTest]
+Formula: LookingTime ~ StandardTrialN * Event * SES + (1 + StandardTrialN |  
+    Id)
+   Data: df
+
+REML criterion at convergence: 6878.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.04879 -0.67383 -0.02851  0.66657  2.80082 
+
+Random effects:
+ Groups   Name           Variance Std.Dev. Corr
+ Id       (Intercept)    70204    264.96       
+          StandardTrialN  4631     68.05   0.57
+ Residual                 1635     40.43       
+Number of obs: 660, groups:  Id, 20
+
+Fixed effects:
+                                     Estimate Std. Error       df t value
+(Intercept)                          1291.468     73.591   17.070  17.549
+StandardTrialN                        -68.784     19.270   18.052  -3.569
+EventReward                           123.668      4.633  615.085  26.692
+SESlow                                 42.661    151.645   17.040   0.281
+SESmedium                             -88.096    170.022   17.098  -0.518
+StandardTrialN:EventReward             26.503      4.614  615.252   5.744
+StandardTrialN:SESlow                  -2.530     39.526   17.693  -0.064
+StandardTrialN:SESmedium               17.958     44.713   18.396   0.402
+EventReward:SESlow                      8.777      8.450  614.839   1.039
+EventReward:SESmedium                   5.200     11.791  615.228   0.441
+StandardTrialN:EventReward:SESlow       2.346      8.658  615.056   0.271
+StandardTrialN:EventReward:SESmedium   -9.678     11.523  615.232  -0.840
+                                     Pr(&gt;|t|)    
+(Intercept)                          2.33e-12 ***
+StandardTrialN                        0.00218 ** 
+EventReward                           &lt; 2e-16 ***
+SESlow                                0.78185    
+SESmedium                             0.61100    
+StandardTrialN:EventReward           1.46e-08 ***
+StandardTrialN:SESlow                 0.94968    
+StandardTrialN:SESmedium              0.69259    
+EventReward:SESlow                    0.29939    
+EventReward:SESmedium                 0.65939    
+StandardTrialN:EventReward:SESlow     0.78653    
+StandardTrialN:EventReward:SESmedium  0.40128    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+                         (Intr) StndTN EvntRw SESlow SESmdm StTN:ER
+StandrdTrlN               0.562                                    
+EventReward              -0.044 -0.088                             
+SESlow                   -0.485 -0.273  0.022                      
+SESmedium                -0.433 -0.243  0.019  0.210               
+StndrdTN:ER              -0.023 -0.167  0.368  0.011  0.010        
+StndrdTrlN:SESl          -0.274 -0.488  0.043  0.562  0.119  0.081 
+StndrdTrlN:SESm          -0.242 -0.431  0.038  0.117  0.562  0.072 
+EvntRwrd:SESl             0.024  0.048 -0.548 -0.035 -0.011 -0.202 
+EvntRwrd:SESm             0.017  0.034 -0.393 -0.008 -0.053 -0.145 
+StndrdTrlN:EvntRwrd:SESl  0.012  0.089 -0.196 -0.014 -0.005 -0.533 
+StndrdTrlN:EvntRwrd:SESm  0.009  0.067 -0.147 -0.004 -0.033 -0.400 
+                         StndrdTrlN:SESl StndrdTrlN:SESm EvntRwrd:SESl
+StandrdTrlN                                                           
+EventReward                                                           
+SESlow                                                                
+SESmedium                                                             
+StndrdTN:ER                                                           
+StndrdTrlN:SESl                                                       
+StndrdTrlN:SESm           0.210                                       
+EvntRwrd:SESl            -0.055          -0.021                       
+EvntRwrd:SESm            -0.017          -0.121           0.215       
+StndrdTrlN:EvntRwrd:SESl -0.140          -0.038           0.252       
+StndrdTrlN:EvntRwrd:SESm -0.033          -0.192           0.081       
+                         EvntRwrd:SESm StndrdTrlN:EvntRwrd:SESl
+StandrdTrlN                                                    
+EventReward                                                    
+SESlow                                                         
+SESmedium                                                      
+StndrdTN:ER                                                    
+StndrdTrlN:SESl                                                
+StndrdTrlN:SESm                                                
+EvntRwrd:SESl                                                  
+EvntRwrd:SESm                                                  
+StndrdTrlN:EvntRwrd:SESl  0.077                                
+StndrdTrlN:EvntRwrd:SESm  0.472         0.213                  </code></pre>
+</div>
+</div>
+<p>This is not a tutorial about the model results—you should be already able to understand it, don’t you? 😉</p>
+</section><section id="predictions" class="level2"><h2 class="anchored" data-anchor-id="predictions">Predictions</h2>
 <p>Now we can extract the predictions from our model. We want to see what our model predicts the values of Looking time would be for each row of our dataframe. Here is where the <a href="https://easystats.github.io/easystats/"><strong>Easystats</strong></a> package (specifically the <a href="https://easystats.github.io/modelbased/index.html"><strong>modelbased</strong></a> sub-package) comes to the rescue with the function <code>estimate_expectation()</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Pred</span> <span class="op">=</span> <span class="fu">estimate_expectation</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
@@ -551,17 +391,21 @@ Variable predicted: LookingTime</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotRawPredicted-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotRawPredicted-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>As you can see, the raw data and the predicted data are very similar but not the same!! The predictions represent our model’s “best guess” at what the looking times should be based on the fixed effects (StandardTrialN, Event and SES) and random effects (individual participant differences). This smooths out some of the noise in the original data and gives us a simpler picture of the underlying patterns!</p>
-<p>This is cool indeed… but how can this help me?? Let’s remember our question about Events….</p>
 </section><section id="predictions-for-reference-values" class="level2"><h2 class="anchored" data-anchor-id="predictions-for-reference-values">Predictions for reference values</h2>
-<p>These predictions are fascinating, but how do they help us answer our original question about Event types? Let’s pull ourselves back to our main goal - understanding the difference in looking times between Rewarding and NoRewarding events.</p>
-<p>With our prediction tools in hand, we can now directly extract the specific information we need without getting lost in coefficient calculations or being overwhelmed by the full dataset. The beauty of predictions is that they transform complex statistical relationships into concrete, interpretable values that directly address our research questions.</p>
-<p>This is where the powerful <code>by</code> argument comes into play. It allows us to create focused predictions for specific variables of interest, making our analysis more targeted and interpretable.</p>
+<p>So far, we’ve extracted predictions based on our raw data. While useful for comparing model predictions with actual observations, this approach has limitations when we want to visualize and understand core patterns.</p>
+<p>When visualizing model results using predictions from every observation:</p>
+<ul>
+<li><p>Each participant would have their line</p></li>
+<li><p>Individual variations would create visual clutter</p></li>
+<li><p>The main effects could get lost in the noise</p></li>
+</ul>
+<p>We need a way to highlight the key patterns our model has discovered! Here comes the <code>by</code> argument to the rescue!!! The <code>by</code> argument allows us to create predictions on a reference subset of predictor values, focusing only on the variables we’re interested in exploring.</p>
 <section id="factors" class="level3"><h3 class="anchored" data-anchor-id="factors">Factors</h3>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_expectation</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">'Event'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -583,7 +427,7 @@ Predictors controlled: StandardTrialN (-0.17), SES (high)</code></pre>
 <li><p>Setting StandardTrialN to its mean value</p></li>
 <li><p>SES is set to “high”. This is because the function can’t meaningfully “average” a categorical variable like SES, so it uses its reference level (“high” in our case) for making predictions.</p></li>
 </ul>
-<p>This is already better!!! LOOK we have 1 value for each Event level!! Amazing</p>
+<p>The result? A representation of looking time for each Event type, perfect for visualizing the main effect!</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -619,7 +463,7 @@ Predictors controlled: StandardTrialN (-0.17)</code></pre>
 </div>
 </div>
 </section><section id="continuous" class="level3"><h3 class="anchored" data-anchor-id="continuous">Continuous</h3>
-<p>What we have done for the Event can also be done for a continuos vairable!! When we pass a continuous variable to the <code>by</code> argument, the function automatically extracts a range of values across that predictor. We can control how many values to sample using the <code>length</code> parameter. For example, setting <code>length=3</code> will give us predictions at just three points along the range of our continuous variable, while a larger value would provide a more detailed sampling.</p>
+<p>When we pass a continuous variable to the <code>by</code> argument, the function automatically extracts a range of values across that predictor. We can control how many values to sample using the <code>length</code> parameter. For example, setting <code>length=3</code> will give us predictions at just three points along the range of our continuous variable, while a larger value would provide a more detailed sampling.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_expectation</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">'StandardTrialN'</span>, length<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -736,7 +580,7 @@ Predictors controlled: SES (high)</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotPred-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotPred-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -755,12 +599,14 @@ Important
 <p>In this plot the predictions are extracted with the SES (socioeconomic status) being held at its high level! In a model with multiple predictors, predictions are always made with the other predictors fixed at specific values (typically their mean or reference level). Always be aware of what values other variables are being held at when interpreting your plots.</p>
 </div>
 </div>
-</section></section></section><section id="but." class="level1"><h1>BUT….</h1>
+</section></section><section id="the-question" class="level2"><h2 class="anchored" data-anchor-id="the-question">The question !!</h2>
 <p>OK, I hope by this point you have a solid grasp of predictions and how to extract them at specific predictor levels! But wait - did you notice something interesting in the messages that <code>modelbased</code> has been giving us?</p>
-<p>The values we’ve extracted for the Event variable are always referenced to one specific level of SES. For example, when we look at the effect of Reward vs.&nbsp;NoReward events, we’re seeing this effect specifically when SES is at its high level</p>
-<p><strong>But what if that’s not what we want?</strong> What if we want to know the effect of Event <strong>overall</strong>, not just at a specific level of SES? What if we want to understand the “main effect” of Event, averaging across all SES levels? Is it even possible to average a categorical predictor??</p>
+<p>The values we’ve extracted for the Event variable are always referenced to one specific level of SES. For example, when we look at the effect of Reward vs.&nbsp;NoReward events, we’re seeing this effect specifically when SES is at its High level (or whatever reference level was used).</p>
+<p><strong>But what if that’s not what we want?</strong> What if we want to know the effect of Event <strong>overall</strong>, not just at a specific level of SES? What if we want to understand the “main effect” of Event, averaging across all SES levels?</p>
 <p>This is where <code>estimate_means()</code> comes to the rescue! 💪</p>
-</section><section id="estimate-means" class="level1"><h1>Estimate means</h1>
+<p>I hope you now have a solid grasp of predictions and how to extract them at specific predictor levels! This powerful approach gives you the flexibility to explore and visualize your eye-tracking data in meaningful ways.</p>
+</section></section><section id="estimate-means" class="level1"><h1>Estimate means</h1>
+<p>Let’s now explore a different yet related function: <code>estimate_means()</code>.</p>
 <p>As its name suggests, <code>estimate_means()</code> allows you to extract estimated means from your model. But what does this actually mean? (Yes, lots of “means” in this explanation!)</p>
 <p>This function:</p>
 <ol type="1">
@@ -784,39 +630,10 @@ Predictors modulated: Event
 Predictors averaged: StandardTrialN (-0.17), SES, Id</code></pre>
 </div>
 </div>
-<p>Notice the information message! This approach is fundamentally different from what we did before. Previously, with <code>estimate_expectation()</code>, we were setting SES to its reference level (“high”). <strong>Now instead, the function extracts predictions for all levels of SES and then averages across them!</strong> These results represent the effect of Event type averaged across all SES conditions, giving you a more comprehensive view of how Event influences looking behavior.<br>
-THIS IS WHAT WE WANTED!!! 🎉🎉🎉</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>One key difference between <code>estimate_expectation()</code> and <code>estimate_means()</code> is how they handle the random effect structure. By default, <code>estimate_means()</code> averages over all levels of the random effects, as noted in the function’s message. This gives us an average effect of the predictor for an average subject - exactly what we need when trying to understand overall patterns in our data. To learn more about these nuances, check the comprehensive <a href="https://easystats.github.io/modelbased/articles/mixed_models.html">vignette</a>in the modelbased package.</p>
-</div>
-</div>
-<section id="plot-1" class="level2"><h2 class="anchored" data-anchor-id="plot-1">Plot</h2>
-<p>The <code>estimate_means()</code> function also comes with its own built-in plotting capability, automatically generating a clean ggplot visualization of your estimated means.</p>
+<p>Now you might be thinking: “Wait, these look like the same values we saw before! Are you explaining the same thing?” Well, yes and no. While the results look similar in this particular case, the underlying process is different.</p>
+<p>The difference becomes clearer with this example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Est_means</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotEstMean-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This creates a simple yet informative ggplot showing our estimated means with confidence intervals. Of course, we can also use the dataframe that the function returns to create more customized and refined plots if needed.</p>
-</section><section id="continuous-1" class="level2"><h2 class="anchored" data-anchor-id="continuous-1">Continuous</h2>
-<p>As we have seen before for predictions, we can also pass a continuous predictor to our <code>by=</code> argument. In this case, <code>estimate_means()</code> gives us the averaged values across the range of the continuous predictor.</p>
-<div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_means</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">'StandardTrialN'</span>, length<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_means</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">'StandardTrialN'</span>, length<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimated Marginal Means
 
@@ -834,9 +651,25 @@ Predictors modulated: StandardTrialN
 Predictors averaged: Event, SES, Id</code></pre>
 </div>
 </div>
+<p>Check the information message! This is fundamentally different from before. Previously, the <code>estimate_expectation()</code> function was setting Event to its reference level. <strong>Now instead, the function extracts predictions for all levels of Event and then averages across them!</strong> So these predictions represent the effect of StandardTrialN averaged across both Reward and NoReward conditions, giving you a more comprehensive view.</p>
+<p>So while the results sometimes are similar with the <code>estimate_expectation()</code> the functions are doing different things!</p>
+<section id="plot-1" class="level2"><h2 class="anchored" data-anchor-id="plot-1">Plot</h2>
+<p>The <code>estimate_means()</code> function also comes with its own built-in plotting capability, automatically generating a clean ggplot visualization of your estimated means.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Est_means</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotEstMean-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This creates a simple yet informative ggplot showing our estimated means with confidence intervals. Of course, we can also use the dataframe that the function returns to create more customized and refined plots if needed.</p>
 </section></section><section id="estimate-contrasts" class="level1"><h1>Estimate contrasts</h1>
 <p>We’ve successfully extracted the estimated means for our predictors - awesome job! 🎉</p>
-<p><strong>But there’s something important missing</strong>. While we now know the estimated looking times for each level, we don’t yet have formal statistical comparisons between these levels. For example, is the difference between mean values in Reward condition and NoReward condition statistically significant?</p>
+<p>But there’s something important missing. While we now know the estimated looking times for each level, we don’t yet have formal statistical comparisons between these levels. For example, is the difference between mean values in Reward condition and NoReward condition statistically significant?</p>
 <p>This is where <code>estimate_contrasts()</code> comes to the rescue! Let’s see it in action:</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Contrast</span> <span class="op">=</span> <span class="fu">estimate_contrasts</span><span class="op">(</span><span class="va">mod</span>, contrast <span class="op">=</span> <span class="st">'Event'</span><span class="op">)</span></span>
@@ -872,27 +705,27 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>In this example, Event has only 2 levels (Reward and NoReward), so we already knew these levels differed significantly from examining our model summary. However, <code>estimate_contrast()</code> gives us something more valuable: the <strong>pairwise</strong> difference between all the levels of the selected predictors with their</p>
-<p>This function becomes particularly powerful when dealing with predictors that have multiple levels. With a predictor like <strong>SES</strong> (3 levels) - <code>estimate_contrast()</code> would automatically calculate all possible pairwise comparisons between these levels.</p>
+<p>This function becomes particularly powerful when dealing with predictors that have multiple levels. Imagine having a predictor with 10 different levels (such as various stimulus types or experimental conditions) - <code>estimate_contrast()</code> would automatically calculate all possible pairwise comparisons between these levels, saving you considerable time and effort.</p>
 <p>Remember that if you have multiple levels in predictors you will need to adjust the <em>p-value</em> for multiple comparisons. You can do that by passing the argument <code>p_adjust = 'hochberg'</code> to the function. With this the contrasts will be adjusted for multiple comparisons. There are different adjustment methods - <a href="https://easystats.github.io/modelbased/reference/estimate_contrasts.html">check the function arguments</a>.</p>
-<p>Let’s run it on SES!!</p>
+<p>Here we give a small example using a dataset that is included with R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_contrasts</span><span class="op">(</span><span class="va">mod</span>, contrast <span class="op">=</span> <span class="st">'SES'</span>,p_adjust <span class="op">=</span> <span class="st">'hochberg'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">contast_model_example</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu">estimate_contrasts</span><span class="op">(</span><span class="va">contast_model_example</span>, contrast <span class="op">=</span> <span class="st">'Species'</span>,p_adjust <span class="op">=</span> <span class="st">'hochberg'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Marginal Contrasts Analysis
 
-Level1 | Level2 | Difference |     SE |            95% CI | t(644) |     p
---------------------------------------------------------------------------
-low    | high   |      47.27 | 147.98 | [-243.30, 337.85] |   0.32 | 0.749
-medium | high   |     -87.67 | 165.80 | [-413.24, 237.89] |  -0.53 | 0.749
-medium | low    |    -134.95 | 197.68 | [-523.13, 253.24] |  -0.68 | 0.749
+Level1     | Level2     | Difference |   SE |       95% CI | t(147) |      p
+----------------------------------------------------------------------------
+versicolor | setosa     |       0.93 | 0.10 | [0.73, 1.13] |   9.03 | &lt; .001
+virginica  | setosa     |       1.58 | 0.10 | [1.38, 1.79] |  15.37 | &lt; .001
+virginica  | versicolor |       0.65 | 0.10 | [0.45, 0.86] |   6.33 | &lt; .001
 
-Variable predicted: LookingTime
-Predictors contrasted: SES
-Predictors averaged: StandardTrialN (-0.17), Event, Id
+Variable predicted: Sepal.Length
+Predictors contrasted: Species
 p-value adjustment method: Hochberg (1988)</code></pre>
 </div>
 </div>
-<p>See?? We have all the comparison between the available level of SES</p>
+<p>See?? We have all the comparison between the available level of Species</p>
 </div>
 </div>
 <section id="plot-2" class="level2"><h2 class="anchored" data-anchor-id="plot-2">Plot</h2>
@@ -903,7 +736,7 @@ p-value adjustment method: Hochberg (1988)</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotContrasts-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotContrasts-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -966,7 +799,7 @@ Important
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotContrastInteraction-1.png" class="img-fluid figure-img" width="816"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotContrastInteraction-1.png" class="img-fluid figure-img" width="816"></p>
 </figure>
 </div>
 </div>
@@ -992,8 +825,7 @@ p-values are uncorrected.</code></pre>
 </div>
 <p>This shows us that the effect of StandardTrialN is actually different between the two levels. This is something we already knew from the model summary (remember the significant interaction term?), but this approach gives us the precise difference between the two slopes while averaging over all other possible effects. This becomes particularly valuable when working with more complex models that have multiple predictors and interactions.</p>
 </section></section><section id="estimate-slope" class="level1"><h1>Estimate slope</h1>
-<p>I know we’ve covered a lot of ground already, but there’s one more important function worth introducing: <code>estimate_slope()</code>. While <code>estimate_means()</code> allows us to extract the means of predictions, <code>estimate_slope()</code> is designed specifically for understanding rates of change.</p>
-<p>As the name suggests, this function calculates the change in your outcome variable for each unit increase in your predictor. For continuous predictors like our <code>StandardTrialN</code>, this helps us understand how quickly looking time changes across trials.</p>
+<p>I know we’ve covered a lot of ground already, but there’s one more important function worth introducing: <code>estimate_slope()</code>. While <code>estimate_contrast()</code> allows the comparison between means, <code>estimate_slope()</code>, is designed for slopes. As the name suggests, it calculates the averages of coefficients (slopes) in your outcome variable for each unit increase in your predictor. This helps you, for example, to understand how quickly looking time changes across trials..</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">estimate_slopes</span><span class="op">(</span><span class="va">mod</span>, trend <span class="op">=</span> <span class="st">'StandardTrialN'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1053,7 +885,7 @@ Type of slope was dY/dX</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1189,7 +1021,7 @@ Maintained constant: SES</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ModelEstimates_files/figure-html/PlotGrid-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="backup_files/figure-html/PlotGrid-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1669,17 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../../CONTENT/Stats/LinearMixedModels.html" class="pagination-link" aria-label="Linear mixed effect models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear mixed effect models</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../CONTENT/Stats/GeneralisedModels.html" class="pagination-link" aria-label="Generalised mixed-effect models">
-        <span class="nav-page-text">Generalised mixed-effect models</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb49" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "ModelEstimates"</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Tommaso Ghilardi"</span></span>
@@ -1696,72 +1518,72 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>Welcome back, stats adventurer! 👋 If you are here, it means you have already gone through our tutorial on: <span class="co">[</span><span class="ot">Linear models</span><span class="co">](LinearModels.qmd)</span>, <span class="co">[</span><span class="ot">Linear mixed effect models</span><span class="co">](LinearMixedModels.qmd)</span> and <span class="co">[</span><span class="ot">Generalized linear models</span><span class="co">](GeneralisedModels.qmd)</span>. Well done!! You are nearly there, my young stats padawan. <span class="al">![](/images/Stats/ModelEstimates/Padawan.png)</span>{style="margin-right:10px;margin-bottom:10px;" width="144"}</span>
 <span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>In this tutorial, we're going to take our analysis skills to the next level. One of the coolest and most important aspects of linear models (in my opinion!) isn't just the p-values you get for each predictor. Don't get me wrong—those are important and tell you where there is an effect. But after knowing *where* the effect is, the exciting part is trying to understand *what* our effect actually is. In other words, how can it be described?</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>In this tutorial, we're going to take our analysis skills to the next level. We'll move beyond simply hunting for significant p-values and discover how to extract rich, meaningful information from our models. While we'll be using a linear mixed effects model as our example, the techniques we'll explore can be applied to many different types of models (with some adjustments, of course!).</span>
 <span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>Be ready!! We'll explore how to extract and interpret predictions from your model, before learning how to transform these predictions into meaningful statistical insights that tell the complete story of your eyetracking data.</span>
 <span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>First let's re-run our model. I'll be brief here as you should already be familiar with this. Before diving in, we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model. **One difference between this model and our previous tutorial's model** is that we've included an additional interaction with SES (Socio-Economic Status). This variable is a factor with 3 levels: high, medium, and low. This more complex model will be useful to fully experience the model's predictions and estimates.</span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Run model</span></span>
-<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>In this tutorial, we will rely heavily on the modelbased package functions. Modelbased is part of the easystats package collection that we love and have already introduced!!</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>The modelbased package provides lots of documentation and vignettes about its functions. We strongly suggest you visit the package website if you want to learn more tricks about model estimates.</span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>Here we won't have the time to cover all the amazing possibilities of the package, but we will try our best to give you an introduction to the process.</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>We also want to mention that modelbased is not the only option for this kind of estimates. There are different packages like emmeans and marginaleffects (these two are actually called in the background by modelbased).</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="fu"># Beyond p-values: Understanding Your Effects</span></span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>One of the coolest and most important aspects of linear models (in my opinion!) isn't just the p-values you get for each predictor. Don't get me wrong—those are important and tell you where there is an effect. But after knowing *where* the effect is, the exciting part is trying to understand *what* our effect actually is. In other words, how can it be described?</span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>Here come the **PREDICTIONS.**</span>
 <span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"../../resources/Stats/Dataset.csv"</span>)</span>
-<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>SES <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>SES) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Event <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Event) <span class="co"># make sure subject_id is a factor</span></span>
-<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>StandardTrialN <span class="ot">=</span> <span class="fu">standardize</span>(df<span class="sc">$</span>TrialN) <span class="co"># create standardize trial column</span></span>
-<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lmer</span>(LookingTime <span class="sc">~</span> StandardTrialN <span class="sc">*</span> Event <span class="sc">*</span> SES <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> StandardTrialN <span class="sc">|</span> Id ), <span class="at">data=</span> df)</span>
-<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a><span class="fu">parameters</span>(mod)</span>
-<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># Beyond p-values: Understanding Your Effects</span></span>
-<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a>Now that we have our model up and running, let's ask ourselves a seemingly simple question that will guide our entire tutorial: What are the expected looking times for Rewarding versus NoRewarding events according to our model?</span>
-<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a>Looking at the model output above, you might be scratching your head. With all those coefficients, interactions, and reference levels, calculating these values manually would require adding up multiple estimates correctly - a tedious and error-prone process. You'd need to carefully sum the intercept with various coefficient estimates, accounting for interactions and reference levels.</span>
-<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a>There must be a simpler way to extract this information, right?</span>
-<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a>Absolutely! This is where **PREDICTIONS** come to our rescue.</span>
-<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a>But.. what are predictions?? They're essentially what our model "thinks" should happen under certain conditions!</span>
-<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-60"><a href="#cb49-60" aria-hidden="true" tabindex="-1"></a>The main idea is that:</span>
-<span id="cb49-61"><a href="#cb49-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**We collect our data** - This includes all our eye-tracking measurements with their natural variability and noise</span>
-<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**We fit our model** - We create a mathematical equation that best captures the relationship between our variables</span>
-<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-66"><a href="#cb49-66" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**We use this equation to make predictions** - This is the powerful part! We can now:</span>
-<span id="cb49-67"><a href="#cb49-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>predict values for conditions we've tested in our experiment</span>
-<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>predict values for conditions that fall within the range of our data but weren't explicitly tested</span>
-<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a>Sounds a little confusing... but really cool right?? Let's dive in, everything will be clearer!!</span>
-<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb49-75"><a href="#cb49-75" aria-hidden="true" tabindex="-1"></a>In this tutorial, we will rely heavily on the modelbased package functions. Modelbased is part of the easystats package collection that we love and have already introduced!!</span>
-<span id="cb49-76"><a href="#cb49-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-77"><a href="#cb49-77" aria-hidden="true" tabindex="-1"></a>The modelbased package provides lots of documentation and vignettes about its functions. We strongly suggest you visit the package website if you want to learn more tricks about model estimates.</span>
-<span id="cb49-78"><a href="#cb49-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-79"><a href="#cb49-79" aria-hidden="true" tabindex="-1"></a>Here we won't have the time to cover all the amazing possibilities of the package, but we will try our best to give you an introduction to the process.</span>
-<span id="cb49-80"><a href="#cb49-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-81"><a href="#cb49-81" aria-hidden="true" tabindex="-1"></a>We also want to mention that modelbased is not the only option for this kind of estimates. There are different packages like emmeans and marginaleffects (these two are actually called in the background by modelbased).</span>
-<span id="cb49-82"><a href="#cb49-82" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>But.. what are predictions?? They're essentially what our model "thinks" should happen under certain conditions!</span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>The main idea is that:</span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**We collect our data** - This includes all our eye-tracking measurements with their natural variability and noise</span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**We fit our model** - We create a mathematical equation that best captures the relationship between our variables</span>
+<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**We use this equation to make predictions** - This is the powerful part! We can now:</span>
+<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>predict values for conditions we've tested in our experiment</span>
+<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>predict values for conditions that fall within the range of our data but weren't explicitly tested</span>
+<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a>Sounds a little confusing... but really cool right?? Let's dive in, everything will be clearer!!</span>
+<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model</span></span>
+<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a>First things first, what do we need?? Well, a model...</span>
+<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a>I'll be brief here as you should already be familiar with this. Before diving in, we import relevant libraries, read the data, set categorical variables as factors, standardize the continuous variables, and finally run our model. **One difference between this model and our previous tutorial's model** is that we've included an additional interaction with SES (Socio-Economic Status). This variable is a factor with 3 levels: high, medium, and low. This more complex model will be useful to fully experience the model's predictions and estimates.</span>
+<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-61"><a href="#cb49-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Run model</span></span>
+<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-66"><a href="#cb49-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb49-67"><a href="#cb49-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span>
+<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"../../resources/Stats/Dataset.csv"</span>)</span>
+<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Id <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Id) <span class="co"># make sure subject_id is a factor</span></span>
+<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>SES <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>SES) <span class="co"># make sure subject_id is a factor</span></span>
+<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Event <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>Event) <span class="co"># make sure subject_id is a factor</span></span>
+<span id="cb49-75"><a href="#cb49-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-76"><a href="#cb49-76" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>StandardTrialN <span class="ot">=</span> <span class="fu">standardize</span>(df<span class="sc">$</span>TrialN) <span class="co"># create standardize trial column</span></span>
+<span id="cb49-77"><a href="#cb49-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-78"><a href="#cb49-78" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lmer</span>(LookingTime <span class="sc">~</span> StandardTrialN <span class="sc">*</span> Event <span class="sc">*</span> SES <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> StandardTrialN <span class="sc">|</span> Id ), <span class="at">data=</span> df)</span>
+<span id="cb49-79"><a href="#cb49-79" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb49-80"><a href="#cb49-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-81"><a href="#cb49-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-82"><a href="#cb49-82" aria-hidden="true" tabindex="-1"></a>This is not a tutorial about the model results—you should be already able to understand it, don't you? 😉</span>
 <span id="cb49-83"><a href="#cb49-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-84"><a href="#cb49-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## What Are Predictions, Anyway?</span></span>
+<span id="cb49-84"><a href="#cb49-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictions</span></span>
 <span id="cb49-85"><a href="#cb49-85" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-86"><a href="#cb49-86" aria-hidden="true" tabindex="-1"></a>Now we can extract the predictions from our model. We want to see what our model predicts the values of Looking time would be for each row of our dataframe. Here is where the <span class="co">[</span><span class="ot">**Easystats**</span><span class="co">](https://easystats.github.io/easystats/)</span> package (specifically the <span class="co">[</span><span class="ot">**modelbased**</span><span class="co">](https://easystats.github.io/modelbased/index.html)</span> sub-package) comes to the rescue with the function <span class="in">`estimate_expectation()`</span>.</span>
 <span id="cb49-87"><a href="#cb49-87" aria-hidden="true" tabindex="-1"></a></span>
@@ -1795,200 +1617,200 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb49-119"><a href="#cb49-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-120"><a href="#cb49-120" aria-hidden="true" tabindex="-1"></a>As you can see, the raw data and the predicted data are very similar but not the same!! The predictions represent our model's "best guess" at what the looking times should be based on the fixed effects (StandardTrialN, Event and SES) and random effects (individual participant differences). This smooths out some of the noise in the original data and gives us a simpler picture of the underlying patterns!</span>
 <span id="cb49-121"><a href="#cb49-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-122"><a href="#cb49-122" aria-hidden="true" tabindex="-1"></a>This is cool indeed... but how can this help me?? Let's remember our question about Events....</span>
+<span id="cb49-122"><a href="#cb49-122" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictions for reference values</span></span>
 <span id="cb49-123"><a href="#cb49-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-124"><a href="#cb49-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictions for reference values</span></span>
+<span id="cb49-124"><a href="#cb49-124" aria-hidden="true" tabindex="-1"></a>So far, we've extracted predictions based on our raw data. While useful for comparing model predictions with actual observations, this approach has limitations when we want to visualize and understand core patterns.</span>
 <span id="cb49-125"><a href="#cb49-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-126"><a href="#cb49-126" aria-hidden="true" tabindex="-1"></a>These predictions are fascinating, but how do they help us answer our original question about Event types? Let's pull ourselves back to our main goal - understanding the difference in looking times between Rewarding and NoRewarding events.</span>
+<span id="cb49-126"><a href="#cb49-126" aria-hidden="true" tabindex="-1"></a>When visualizing model results using predictions from every observation:</span>
 <span id="cb49-127"><a href="#cb49-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-128"><a href="#cb49-128" aria-hidden="true" tabindex="-1"></a>With our prediction tools in hand, we can now directly extract the specific information we need without getting lost in coefficient calculations or being overwhelmed by the full dataset. The beauty of predictions is that they transform complex statistical relationships into concrete, interpretable values that directly address our research questions.</span>
+<span id="cb49-128"><a href="#cb49-128" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Each participant would have their line</span>
 <span id="cb49-129"><a href="#cb49-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-130"><a href="#cb49-130" aria-hidden="true" tabindex="-1"></a>This is where the powerful <span class="in">`by`</span> argument comes into play. It allows us to create focused predictions for specific variables of interest, making our analysis more targeted and interpretable.</span>
+<span id="cb49-130"><a href="#cb49-130" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Individual variations would create visual clutter</span>
 <span id="cb49-131"><a href="#cb49-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-132"><a href="#cb49-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Factors</span></span>
+<span id="cb49-132"><a href="#cb49-132" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The main effects could get lost in the noise</span>
 <span id="cb49-133"><a href="#cb49-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-136"><a href="#cb49-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-137"><a href="#cb49-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: true</span></span>
-<span id="cb49-138"><a href="#cb49-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: true</span></span>
-<span id="cb49-139"><a href="#cb49-139" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'Event'</span>)</span>
-<span id="cb49-140"><a href="#cb49-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-141"><a href="#cb49-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-142"><a href="#cb49-142" aria-hidden="true" tabindex="-1"></a>This gives us predictions for each level of the Event and SES factor while:</span>
-<span id="cb49-143"><a href="#cb49-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-144"><a href="#cb49-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Setting StandardTrialN to its mean value</span>
+<span id="cb49-134"><a href="#cb49-134" aria-hidden="true" tabindex="-1"></a>We need a way to highlight the key patterns our model has discovered! Here comes the <span class="in">`by`</span> argument to the rescue!!! The <span class="in">`by`</span> argument allows us to create predictions on a reference subset of predictor values, focusing only on the variables we're interested in exploring.</span>
+<span id="cb49-135"><a href="#cb49-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-136"><a href="#cb49-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Factors</span></span>
+<span id="cb49-137"><a href="#cb49-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-140"><a href="#cb49-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-141"><a href="#cb49-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: true</span></span>
+<span id="cb49-142"><a href="#cb49-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: true</span></span>
+<span id="cb49-143"><a href="#cb49-143" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'Event'</span>)</span>
+<span id="cb49-144"><a href="#cb49-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb49-145"><a href="#cb49-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-146"><a href="#cb49-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>SES is set to "high". This is because the function can't meaningfully "average" a categorical variable like SES, so it uses its reference level ("high" in our case) for making predictions.</span>
+<span id="cb49-146"><a href="#cb49-146" aria-hidden="true" tabindex="-1"></a>This gives us predictions for each level of the Event and SES factor while:</span>
 <span id="cb49-147"><a href="#cb49-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-148"><a href="#cb49-148" aria-hidden="true" tabindex="-1"></a>This is already better!!! LOOK we have 1 value for each Event level!! Amazing</span>
+<span id="cb49-148"><a href="#cb49-148" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Setting StandardTrialN to its mean value</span>
 <span id="cb49-149"><a href="#cb49-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-150"><a href="#cb49-150" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb49-151"><a href="#cb49-151" aria-hidden="true" tabindex="-1"></a>In these examples (and the next ones), we explored a very simple case. We just passed the predictors we were interested in, and the function gave us all the levels of that predictor. However, we can also specify exactly which level we want instead of having the function automatically return all the ones it thinks are relevant. There are different ways to do this - the simplest is:</span>
-<span id="cb49-152"><a href="#cb49-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-155"><a href="#cb49-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-156"><a href="#cb49-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-157"><a href="#cb49-157" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Event = 'NoReward'"</span>, <span class="st">"SES"</span>))</span>
-<span id="cb49-158"><a href="#cb49-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-159"><a href="#cb49-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-160"><a href="#cb49-160" aria-hidden="true" tabindex="-1"></a>Remember to learn more at the <span class="co">[</span><span class="ot">modelbased website</span><span class="co">](https://easystats.github.io/modelbased/articles/estimate_slopes.html)</span> !!</span>
-<span id="cb49-161"><a href="#cb49-161" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-162"><a href="#cb49-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-163"><a href="#cb49-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### Continuous</span></span>
-<span id="cb49-164"><a href="#cb49-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-165"><a href="#cb49-165" aria-hidden="true" tabindex="-1"></a>What we have done for the Event can also be done for a continuos vairable!! When we pass a continuous variable to the <span class="in">`by`</span> argument, the function automatically extracts a range of values across that predictor. We can control how many values to sample using the <span class="in">`length`</span> parameter. For example, setting <span class="in">`length=3`</span> will give us predictions at just three points along the range of our continuous variable, while a larger value would provide a more detailed sampling.</span>
+<span id="cb49-150"><a href="#cb49-150" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>SES is set to "high". This is because the function can't meaningfully "average" a categorical variable like SES, so it uses its reference level ("high" in our case) for making predictions.</span>
+<span id="cb49-151"><a href="#cb49-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-152"><a href="#cb49-152" aria-hidden="true" tabindex="-1"></a>The result? A representation of looking time for each Event type, perfect for visualizing the main effect!</span>
+<span id="cb49-153"><a href="#cb49-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-154"><a href="#cb49-154" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb49-155"><a href="#cb49-155" aria-hidden="true" tabindex="-1"></a>In these examples (and the next ones), we explored a very simple case. We just passed the predictors we were interested in, and the function gave us all the levels of that predictor. However, we can also specify exactly which level we want instead of having the function automatically return all the ones it thinks are relevant. There are different ways to do this - the simplest is:</span>
+<span id="cb49-156"><a href="#cb49-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-159"><a href="#cb49-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-160"><a href="#cb49-160" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-161"><a href="#cb49-161" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Event = 'NoReward'"</span>, <span class="st">"SES"</span>))</span>
+<span id="cb49-162"><a href="#cb49-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-163"><a href="#cb49-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-164"><a href="#cb49-164" aria-hidden="true" tabindex="-1"></a>Remember to learn more at the <span class="co">[</span><span class="ot">modelbased website</span><span class="co">](https://easystats.github.io/modelbased/articles/estimate_slopes.html)</span> !!</span>
+<span id="cb49-165"><a href="#cb49-165" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb49-166"><a href="#cb49-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-169"><a href="#cb49-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-170"><a href="#cb49-170" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">3</span>)</span>
-<span id="cb49-171"><a href="#cb49-171" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">6</span>)</span>
-<span id="cb49-172"><a href="#cb49-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-173"><a href="#cb49-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-174"><a href="#cb49-174" aria-hidden="true" tabindex="-1"></a><span class="fu">### Factor x Continuous</span></span>
-<span id="cb49-175"><a href="#cb49-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-176"><a href="#cb49-176" aria-hidden="true" tabindex="-1"></a>Want to see how factors and continuous variables interact? Simply include both in the <span class="in">`by`</span> argument:</span>
+<span id="cb49-167"><a href="#cb49-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### Continuous</span></span>
+<span id="cb49-168"><a href="#cb49-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-169"><a href="#cb49-169" aria-hidden="true" tabindex="-1"></a>When we pass a continuous variable to the <span class="in">`by`</span> argument, the function automatically extracts a range of values across that predictor. We can control how many values to sample using the <span class="in">`length`</span> parameter. For example, setting <span class="in">`length=3`</span> will give us predictions at just three points along the range of our continuous variable, while a larger value would provide a more detailed sampling.</span>
+<span id="cb49-170"><a href="#cb49-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-173"><a href="#cb49-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-174"><a href="#cb49-174" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">3</span>)</span>
+<span id="cb49-175"><a href="#cb49-175" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">6</span>)</span>
+<span id="cb49-176"><a href="#cb49-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb49-177"><a href="#cb49-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-180"><a href="#cb49-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-181"><a href="#cb49-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-182"><a href="#cb49-182" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'StandardTrialN'</span>,<span class="st">'Event'</span>), <span class="at">length=</span><span class="dv">6</span>)</span>
-<span id="cb49-183"><a href="#cb49-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-184"><a href="#cb49-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-185"><a href="#cb49-185" aria-hidden="true" tabindex="-1"></a>This creates predictions for all combinations of Event levels and StandardTrialN values - perfect for visualizing interaction effects!</span>
-<span id="cb49-186"><a href="#cb49-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-187"><a href="#cb49-187" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb49-188"><a href="#cb49-188" aria-hidden="true" tabindex="-1"></a>In this tutorial, we focused on the <span class="in">`estimate_expectation()`</span> function. However, modelbased offers additional functions that return similar things but with slightly different defaults and behaviors.</span>
-<span id="cb49-189"><a href="#cb49-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-190"><a href="#cb49-190" aria-hidden="true" tabindex="-1"></a>For example, if we run <span class="in">`estimate_relation(mod)`</span>, instead of returning predictions based on the values in our original dataframe, it will automatically return predictions on a reference grid of all predictors. This is equivalent to running <span class="in">`estimate_expectation(mod, by = c('StandardTrialN','Event'))`</span> that we saw before.</span>
-<span id="cb49-191"><a href="#cb49-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-192"><a href="#cb49-192" aria-hidden="true" tabindex="-1"></a>These functions accomplish very similar tasks but may be more convenient depending on what you're trying to do. The different function names reflect their slightly different default behaviors, saving you time when you need different types of predictions. Don't be intimidated by these differences - explore them further at the <span class="co">[</span><span class="ot">modelbased website</span><span class="co">](https://easystats.github.io/modelbased/articles/estimate_slopes.html)</span> to learn them better.</span>
-<span id="cb49-193"><a href="#cb49-193" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-194"><a href="#cb49-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-195"><a href="#cb49-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
-<span id="cb49-196"><a href="#cb49-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-197"><a href="#cb49-197" aria-hidden="true" tabindex="-1"></a>All these predictions allow for simple direct plotting. These are ggplot objects that can be customized by adding other arguments (like we are doing here where we are changing the theme ). Note that there's a limit to how well these automatic plots handle complexity - with too many predictors, you might need to create custom plots instead.</span>
+<span id="cb49-178"><a href="#cb49-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### Factor x Continuous</span></span>
+<span id="cb49-179"><a href="#cb49-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-180"><a href="#cb49-180" aria-hidden="true" tabindex="-1"></a>Want to see how factors and continuous variables interact? Simply include both in the <span class="in">`by`</span> argument:</span>
+<span id="cb49-181"><a href="#cb49-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-184"><a href="#cb49-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-185"><a href="#cb49-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-186"><a href="#cb49-186" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'StandardTrialN'</span>,<span class="st">'Event'</span>), <span class="at">length=</span><span class="dv">6</span>)</span>
+<span id="cb49-187"><a href="#cb49-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-188"><a href="#cb49-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-189"><a href="#cb49-189" aria-hidden="true" tabindex="-1"></a>This creates predictions for all combinations of Event levels and StandardTrialN values - perfect for visualizing interaction effects!</span>
+<span id="cb49-190"><a href="#cb49-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-191"><a href="#cb49-191" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb49-192"><a href="#cb49-192" aria-hidden="true" tabindex="-1"></a>In this tutorial, we focused on the <span class="in">`estimate_expectation()`</span> function. However, modelbased offers additional functions that return similar things but with slightly different defaults and behaviors.</span>
+<span id="cb49-193"><a href="#cb49-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-194"><a href="#cb49-194" aria-hidden="true" tabindex="-1"></a>For example, if we run <span class="in">`estimate_relation(mod)`</span>, instead of returning predictions based on the values in our original dataframe, it will automatically return predictions on a reference grid of all predictors. This is equivalent to running <span class="in">`estimate_expectation(mod, by = c('StandardTrialN','Event'))`</span> that we saw before.</span>
+<span id="cb49-195"><a href="#cb49-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-196"><a href="#cb49-196" aria-hidden="true" tabindex="-1"></a>These functions accomplish very similar tasks but may be more convenient depending on what you're trying to do. The different function names reflect their slightly different default behaviors, saving you time when you need different types of predictions. Don't be intimidated by these differences - explore them further at the <span class="co">[</span><span class="ot">modelbased website</span><span class="co">](https://easystats.github.io/modelbased/articles/estimate_slopes.html)</span> to learn them better.</span>
+<span id="cb49-197"><a href="#cb49-197" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb49-198"><a href="#cb49-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-201"><a href="#cb49-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-202"><a href="#cb49-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotPred</span></span>
-<span id="cb49-203"><a href="#cb49-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-204"><a href="#cb49-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5.5</span></span>
-<span id="cb49-205"><a href="#cb49-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb49-206"><a href="#cb49-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-207"><a href="#cb49-207" aria-hidden="true" tabindex="-1"></a>Est_plot <span class="ot">=</span> <span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'StandardTrialN'</span>,<span class="st">'Event'</span>), <span class="at">length=</span><span class="dv">10</span>)</span>
-<span id="cb49-208"><a href="#cb49-208" aria-hidden="true" tabindex="-1"></a>Est_plot</span>
-<span id="cb49-209"><a href="#cb49-209" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Est_plot )<span class="sc">+</span></span>
-<span id="cb49-210"><a href="#cb49-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb49-211"><a href="#cb49-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
-<span id="cb49-212"><a href="#cb49-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-213"><a href="#cb49-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-214"><a href="#cb49-214" aria-hidden="true" tabindex="-1"></a>In this plot, we can see the predicted values for looking time for the two Events changing over the StandardTrialN. The lines represent our model's best estimates, while the shaded areas show the confidence intervals around these estimates.</span>
-<span id="cb49-215"><a href="#cb49-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-216"><a href="#cb49-216" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb49-217"><a href="#cb49-217" aria-hidden="true" tabindex="-1"></a>In this plot the predictions are extracted with the SES (socioeconomic status) being held at its high level! In a model with multiple predictors, predictions are always made with the other predictors fixed at specific values (typically their mean or reference level). Always be aware of what values other variables are being held at when interpreting your plots.</span>
-<span id="cb49-218"><a href="#cb49-218" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-199"><a href="#cb49-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
+<span id="cb49-200"><a href="#cb49-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-201"><a href="#cb49-201" aria-hidden="true" tabindex="-1"></a>All these predictions allow for simple direct plotting. These are ggplot objects that can be customized by adding other arguments (like we are doing here where we are changing the theme ). Note that there's a limit to how well these automatic plots handle complexity - with too many predictors, you might need to create custom plots instead.</span>
+<span id="cb49-202"><a href="#cb49-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-205"><a href="#cb49-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-206"><a href="#cb49-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotPred</span></span>
+<span id="cb49-207"><a href="#cb49-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-208"><a href="#cb49-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5.5</span></span>
+<span id="cb49-209"><a href="#cb49-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb49-210"><a href="#cb49-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-211"><a href="#cb49-211" aria-hidden="true" tabindex="-1"></a>Est_plot <span class="ot">=</span> <span class="fu">estimate_expectation</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'StandardTrialN'</span>,<span class="st">'Event'</span>), <span class="at">length=</span><span class="dv">10</span>)</span>
+<span id="cb49-212"><a href="#cb49-212" aria-hidden="true" tabindex="-1"></a>Est_plot</span>
+<span id="cb49-213"><a href="#cb49-213" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Est_plot )<span class="sc">+</span></span>
+<span id="cb49-214"><a href="#cb49-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb49-215"><a href="#cb49-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
+<span id="cb49-216"><a href="#cb49-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-217"><a href="#cb49-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-218"><a href="#cb49-218" aria-hidden="true" tabindex="-1"></a>In this plot, we can see the predicted values for looking time for the two Events changing over the StandardTrialN. The lines represent our model's best estimates, while the shaded areas show the confidence intervals around these estimates.</span>
 <span id="cb49-219"><a href="#cb49-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-220"><a href="#cb49-220" aria-hidden="true" tabindex="-1"></a><span class="fu"># BUT....</span></span>
-<span id="cb49-221"><a href="#cb49-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-222"><a href="#cb49-222" aria-hidden="true" tabindex="-1"></a>OK, I hope by this point you have a solid grasp of predictions and how to extract them at specific predictor levels! But wait - did you notice something interesting in the messages that <span class="in">`modelbased`</span> has been giving us?</span>
+<span id="cb49-220"><a href="#cb49-220" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb49-221"><a href="#cb49-221" aria-hidden="true" tabindex="-1"></a>In this plot the predictions are extracted with the SES (socioeconomic status) being held at its high level! In a model with multiple predictors, predictions are always made with the other predictors fixed at specific values (typically their mean or reference level). Always be aware of what values other variables are being held at when interpreting your plots.</span>
+<span id="cb49-222"><a href="#cb49-222" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb49-223"><a href="#cb49-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-224"><a href="#cb49-224" aria-hidden="true" tabindex="-1"></a>The values we've extracted for the Event variable are always referenced to one specific level of SES. For example, when we look at the effect of Reward vs. NoReward events, we're seeing this effect specifically when SES is at its high level</span>
+<span id="cb49-224"><a href="#cb49-224" aria-hidden="true" tabindex="-1"></a><span class="fu">## The question !!</span></span>
 <span id="cb49-225"><a href="#cb49-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-226"><a href="#cb49-226" aria-hidden="true" tabindex="-1"></a>**But what if that's not what we want?** What if we want to know the effect of Event **overall**, not just at a specific level of SES? What if we want to understand the "main effect" of Event, averaging across all SES levels? Is it even possible to average a categorical predictor??</span>
+<span id="cb49-226"><a href="#cb49-226" aria-hidden="true" tabindex="-1"></a>OK, I hope by this point you have a solid grasp of predictions and how to extract them at specific predictor levels! But wait - did you notice something interesting in the messages that <span class="in">`modelbased`</span> has been giving us?</span>
 <span id="cb49-227"><a href="#cb49-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-228"><a href="#cb49-228" aria-hidden="true" tabindex="-1"></a>This is where <span class="in">`estimate_means()`</span> comes to the rescue! 💪</span>
+<span id="cb49-228"><a href="#cb49-228" aria-hidden="true" tabindex="-1"></a>The values we've extracted for the Event variable are always referenced to one specific level of SES. For example, when we look at the effect of Reward vs. NoReward events, we're seeing this effect specifically when SES is at its High level (or whatever reference level was used).</span>
 <span id="cb49-229"><a href="#cb49-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-230"><a href="#cb49-230" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimate means</span></span>
+<span id="cb49-230"><a href="#cb49-230" aria-hidden="true" tabindex="-1"></a>**But what if that's not what we want?** What if we want to know the effect of Event **overall**, not just at a specific level of SES? What if we want to understand the "main effect" of Event, averaging across all SES levels?</span>
 <span id="cb49-231"><a href="#cb49-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-232"><a href="#cb49-232" aria-hidden="true" tabindex="-1"></a>As its name suggests, <span class="in">`estimate_means()`</span> allows you to extract estimated means from your model. But what does this actually mean? (Yes, lots of "means" in this explanation!)</span>
+<span id="cb49-232"><a href="#cb49-232" aria-hidden="true" tabindex="-1"></a>This is where <span class="in">`estimate_means()`</span> comes to the rescue! 💪</span>
 <span id="cb49-233"><a href="#cb49-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-234"><a href="#cb49-234" aria-hidden="true" tabindex="-1"></a>This function:</span>
+<span id="cb49-234"><a href="#cb49-234" aria-hidden="true" tabindex="-1"></a>I hope you now have a solid grasp of predictions and how to extract them at specific predictor levels! This powerful approach gives you the flexibility to explore and visualize your eye-tracking data in meaningful ways.</span>
 <span id="cb49-235"><a href="#cb49-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-236"><a href="#cb49-236" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Generates predictions for all the reference levels of a model's predictors</span>
+<span id="cb49-236"><a href="#cb49-236" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimate means</span></span>
 <span id="cb49-237"><a href="#cb49-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-238"><a href="#cb49-238" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Averages these predictions to keep only the predictors we are interested in</span>
+<span id="cb49-238"><a href="#cb49-238" aria-hidden="true" tabindex="-1"></a>Let's now explore a different yet related function: <span class="in">`estimate_means()`</span>.</span>
 <span id="cb49-239"><a href="#cb49-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-240"><a href="#cb49-240" aria-hidden="true" tabindex="-1"></a>Think of it as a streamlined way to answer the question: "What is the average looking time for each level of my factor, according to my model?" Let's see it in action!!</span>
+<span id="cb49-240"><a href="#cb49-240" aria-hidden="true" tabindex="-1"></a>As its name suggests, <span class="in">`estimate_means()`</span> allows you to extract estimated means from your model. But what does this actually mean? (Yes, lots of "means" in this explanation!)</span>
 <span id="cb49-241"><a href="#cb49-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-244"><a href="#cb49-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-245"><a href="#cb49-245" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EstMeansFactor</span></span>
-<span id="cb49-246"><a href="#cb49-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-247"><a href="#cb49-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-248"><a href="#cb49-248" aria-hidden="true" tabindex="-1"></a>Est_means <span class="ot">=</span> <span class="fu">estimate_means</span>(mod, <span class="at">by=</span> <span class="st">'Event'</span>)</span>
-<span id="cb49-249"><a href="#cb49-249" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Est_means)</span>
-<span id="cb49-250"><a href="#cb49-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-251"><a href="#cb49-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-252"><a href="#cb49-252" aria-hidden="true" tabindex="-1"></a>Notice the information message! This approach is fundamentally different from what we did before. Previously, with <span class="in">`estimate_expectation()`</span>, we were setting SES to its reference level ("high"). **Now instead, the function extracts predictions for all levels of SES and then averages across them!** These results represent the effect of Event type averaged across all SES conditions, giving you a more comprehensive view of how Event influences looking behavior.\</span>
-<span id="cb49-253"><a href="#cb49-253" aria-hidden="true" tabindex="-1"></a>THIS IS WHAT WE WANTED!!! 🎉🎉🎉</span>
-<span id="cb49-254"><a href="#cb49-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-255"><a href="#cb49-255" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb49-256"><a href="#cb49-256" aria-hidden="true" tabindex="-1"></a>One key difference between <span class="in">`estimate_expectation()`</span> and <span class="in">`estimate_means()`</span> is how they handle the random effect structure. By default, <span class="in">`estimate_means()`</span> averages over all levels of the random effects, as noted in the function's message. This gives us an average effect of the predictor for an average subject - exactly what we need when trying to understand overall patterns in our data. To learn more about these nuances, check the comprehensive <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://easystats.github.io/modelbased/articles/mixed_models.html)</span>in the modelbased package.</span>
-<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-242"><a href="#cb49-242" aria-hidden="true" tabindex="-1"></a>This function:</span>
+<span id="cb49-243"><a href="#cb49-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-244"><a href="#cb49-244" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Generates predictions for all the reference levels of a model's predictors</span>
+<span id="cb49-245"><a href="#cb49-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-246"><a href="#cb49-246" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Averages these predictions to keep only the predictors we are interested in</span>
+<span id="cb49-247"><a href="#cb49-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-248"><a href="#cb49-248" aria-hidden="true" tabindex="-1"></a>Think of it as a streamlined way to answer the question: "What is the average looking time for each level of my factor, according to my model?" Let's see it in action!!</span>
+<span id="cb49-249"><a href="#cb49-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-252"><a href="#cb49-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-253"><a href="#cb49-253" aria-hidden="true" tabindex="-1"></a>Est_means <span class="ot">=</span> <span class="fu">estimate_means</span>(mod, <span class="at">by=</span> <span class="st">'Event'</span>)</span>
+<span id="cb49-254"><a href="#cb49-254" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Est_means)</span>
+<span id="cb49-255"><a href="#cb49-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-256"><a href="#cb49-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a>Now you might be thinking: "Wait, these look like the same values we saw before! Are you explaining the same thing?" Well, yes and no. While the results look similar in this particular case, the underlying process is different.</span>
 <span id="cb49-258"><a href="#cb49-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-259"><a href="#cb49-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
+<span id="cb49-259"><a href="#cb49-259" aria-hidden="true" tabindex="-1"></a>The difference becomes clearer with this example:</span>
 <span id="cb49-260"><a href="#cb49-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-261"><a href="#cb49-261" aria-hidden="true" tabindex="-1"></a>The <span class="in">`estimate_means()`</span> function also comes with its own built-in plotting capability, automatically generating a clean ggplot visualization of your estimated means.</span>
-<span id="cb49-262"><a href="#cb49-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-265"><a href="#cb49-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-266"><a href="#cb49-266" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotEstMean</span></span>
-<span id="cb49-267"><a href="#cb49-267" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-268"><a href="#cb49-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-269"><a href="#cb49-269" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5.5</span></span>
-<span id="cb49-270"><a href="#cb49-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb49-271"><a href="#cb49-271" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Est_means)<span class="sc">+</span></span>
-<span id="cb49-272"><a href="#cb49-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb49-273"><a href="#cb49-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
-<span id="cb49-274"><a href="#cb49-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-275"><a href="#cb49-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-276"><a href="#cb49-276" aria-hidden="true" tabindex="-1"></a>This creates a simple yet informative ggplot showing our estimated means with confidence intervals. Of course, we can also use the dataframe that the function returns to create more customized and refined plots if needed.</span>
-<span id="cb49-277"><a href="#cb49-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-278"><a href="#cb49-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Continuous</span></span>
-<span id="cb49-279"><a href="#cb49-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-280"><a href="#cb49-280" aria-hidden="true" tabindex="-1"></a>As we have seen before for predictions, we can also pass a continuous predictor to our <span class="in">`by=`</span> argument. In this case, <span class="in">`estimate_means()`</span> gives us the averaged values across the range of the continuous predictor.</span>
-<span id="cb49-281"><a href="#cb49-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-284"><a href="#cb49-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-285"><a href="#cb49-285" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EstMeansContinuos</span></span>
-<span id="cb49-286"><a href="#cb49-286" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-287"><a href="#cb49-287" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-288"><a href="#cb49-288" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_means</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">6</span>)</span>
-<span id="cb49-289"><a href="#cb49-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-290"><a href="#cb49-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-291"><a href="#cb49-291" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimate contrasts</span></span>
-<span id="cb49-292"><a href="#cb49-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-293"><a href="#cb49-293" aria-hidden="true" tabindex="-1"></a>We've successfully extracted the estimated means for our predictors - awesome job! 🎉</span>
-<span id="cb49-294"><a href="#cb49-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-295"><a href="#cb49-295" aria-hidden="true" tabindex="-1"></a>**But there's something important missing**. While we now know the estimated looking times for each level, we don't yet have formal statistical comparisons between these levels. For example, is the difference between mean values in Reward condition and NoReward condition statistically significant?</span>
-<span id="cb49-296"><a href="#cb49-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-297"><a href="#cb49-297" aria-hidden="true" tabindex="-1"></a>This is where <span class="in">`estimate_contrasts()`</span> comes to the rescue! Let's see it in action:</span>
-<span id="cb49-298"><a href="#cb49-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-301"><a href="#cb49-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-302"><a href="#cb49-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ContrastCategorical</span></span>
-<span id="cb49-303"><a href="#cb49-303" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-304"><a href="#cb49-304" aria-hidden="true" tabindex="-1"></a>Contrast <span class="ot">=</span> <span class="fu">estimate_contrasts</span>(mod, <span class="at">contrast =</span> <span class="st">'Event'</span>)</span>
-<span id="cb49-305"><a href="#cb49-305" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Contrast)</span>
-<span id="cb49-306"><a href="#cb49-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-307"><a href="#cb49-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-308"><a href="#cb49-308" aria-hidden="true" tabindex="-1"></a>What we're doing here is simple but powerful:</span>
-<span id="cb49-309"><a href="#cb49-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-310"><a href="#cb49-310" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>We pass our model to the function</span>
-<span id="cb49-311"><a href="#cb49-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-312"><a href="#cb49-312" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>We specify which predictor we want to compare (Event)</span>
-<span id="cb49-313"><a href="#cb49-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-314"><a href="#cb49-314" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>The function returns the difference between the means of the predictors with statistical tests</span>
-<span id="cb49-315"><a href="#cb49-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-316"><a href="#cb49-316" aria-hidden="true" tabindex="-1"></a>The results show us that the difference between Reward and NoReward is positive (meaning looking time is higher for Reward) and the p-value indicates this difference is statistically significant! All of this in just one line of code - how convenient!</span>
-<span id="cb49-317"><a href="#cb49-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-318"><a href="#cb49-318" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb49-319"><a href="#cb49-319" aria-hidden="true" tabindex="-1"></a>In this example, Event has only 2 levels (Reward and NoReward), so we already knew these levels differed significantly from examining our model summary. However, <span class="in">`estimate_contrast()`</span> gives us something more valuable: the **pairwise** difference between all the levels of the selected predictors with their</span>
-<span id="cb49-320"><a href="#cb49-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-321"><a href="#cb49-321" aria-hidden="true" tabindex="-1"></a>This function becomes particularly powerful when dealing with predictors that have multiple levels. With a predictor like **SES** (3 levels) - <span class="in">`estimate_contrast()`</span> would automatically calculate all possible pairwise comparisons between these levels.</span>
-<span id="cb49-322"><a href="#cb49-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-323"><a href="#cb49-323" aria-hidden="true" tabindex="-1"></a>Remember that if you have multiple levels in predictors you will need to adjust the *p-value* for multiple comparisons. You can do that by passing the argument <span class="in">`p_adjust = 'hochberg'`</span> to the function. With this the contrasts will be adjusted for multiple comparisons. There are different adjustment methods - <span class="co">[</span><span class="ot">check the function arguments</span><span class="co">](https://easystats.github.io/modelbased/reference/estimate_contrasts.html)</span>.</span>
-<span id="cb49-324"><a href="#cb49-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-325"><a href="#cb49-325" aria-hidden="true" tabindex="-1"></a>Let's run it on SES!!</span>
-<span id="cb49-326"><a href="#cb49-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-329"><a href="#cb49-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-330"><a href="#cb49-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-331"><a href="#cb49-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-332"><a href="#cb49-332" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_contrasts</span>(mod, <span class="at">contrast =</span> <span class="st">'SES'</span>,<span class="at">p_adjust =</span> <span class="st">'hochberg'</span>)</span>
+<span id="cb49-263"><a href="#cb49-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-264"><a href="#cb49-264" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_means</span>(mod, <span class="at">by =</span> <span class="st">'StandardTrialN'</span>, <span class="at">length=</span><span class="dv">6</span>)</span>
+<span id="cb49-265"><a href="#cb49-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-266"><a href="#cb49-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-267"><a href="#cb49-267" aria-hidden="true" tabindex="-1"></a>Check the information message! This is fundamentally different from before. Previously, the <span class="in">`estimate_expectation()`</span> function was setting Event to its reference level. **Now instead, the function extracts predictions for all levels of Event and then averages across them!** So these predictions represent the effect of StandardTrialN averaged across both Reward and NoReward conditions, giving you a more comprehensive view.</span>
+<span id="cb49-268"><a href="#cb49-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-269"><a href="#cb49-269" aria-hidden="true" tabindex="-1"></a>So while the results sometimes are similar with the <span class="in">`estimate_expectation()`</span> the functions are doing different things!</span>
+<span id="cb49-270"><a href="#cb49-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-271"><a href="#cb49-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
+<span id="cb49-272"><a href="#cb49-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-273"><a href="#cb49-273" aria-hidden="true" tabindex="-1"></a>The <span class="in">`estimate_means()`</span> function also comes with its own built-in plotting capability, automatically generating a clean ggplot visualization of your estimated means.</span>
+<span id="cb49-274"><a href="#cb49-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-277"><a href="#cb49-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-278"><a href="#cb49-278" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotEstMean</span></span>
+<span id="cb49-279"><a href="#cb49-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-280"><a href="#cb49-280" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-281"><a href="#cb49-281" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5.5</span></span>
+<span id="cb49-282"><a href="#cb49-282" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb49-283"><a href="#cb49-283" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Est_means)<span class="sc">+</span></span>
+<span id="cb49-284"><a href="#cb49-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb49-285"><a href="#cb49-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
+<span id="cb49-286"><a href="#cb49-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-287"><a href="#cb49-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-288"><a href="#cb49-288" aria-hidden="true" tabindex="-1"></a>This creates a simple yet informative ggplot showing our estimated means with confidence intervals. Of course, we can also use the dataframe that the function returns to create more customized and refined plots if needed.</span>
+<span id="cb49-289"><a href="#cb49-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-290"><a href="#cb49-290" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimate contrasts</span></span>
+<span id="cb49-291"><a href="#cb49-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-292"><a href="#cb49-292" aria-hidden="true" tabindex="-1"></a>We've successfully extracted the estimated means for our predictors - awesome job! 🎉</span>
+<span id="cb49-293"><a href="#cb49-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-294"><a href="#cb49-294" aria-hidden="true" tabindex="-1"></a>But there's something important missing. While we now know the estimated looking times for each level, we don't yet have formal statistical comparisons between these levels. For example, is the difference between mean values in Reward condition and NoReward condition statistically significant?</span>
+<span id="cb49-295"><a href="#cb49-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-296"><a href="#cb49-296" aria-hidden="true" tabindex="-1"></a>This is where <span class="in">`estimate_contrasts()`</span> comes to the rescue! Let's see it in action:</span>
+<span id="cb49-297"><a href="#cb49-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-300"><a href="#cb49-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-301"><a href="#cb49-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ContrastCategorical</span></span>
+<span id="cb49-302"><a href="#cb49-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-303"><a href="#cb49-303" aria-hidden="true" tabindex="-1"></a>Contrast <span class="ot">=</span> <span class="fu">estimate_contrasts</span>(mod, <span class="at">contrast =</span> <span class="st">'Event'</span>)</span>
+<span id="cb49-304"><a href="#cb49-304" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Contrast)</span>
+<span id="cb49-305"><a href="#cb49-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-306"><a href="#cb49-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-307"><a href="#cb49-307" aria-hidden="true" tabindex="-1"></a>What we're doing here is simple but powerful:</span>
+<span id="cb49-308"><a href="#cb49-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-309"><a href="#cb49-309" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>We pass our model to the function</span>
+<span id="cb49-310"><a href="#cb49-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-311"><a href="#cb49-311" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>We specify which predictor we want to compare (Event)</span>
+<span id="cb49-312"><a href="#cb49-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-313"><a href="#cb49-313" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>The function returns the difference between the means of the predictors with statistical tests</span>
+<span id="cb49-314"><a href="#cb49-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-315"><a href="#cb49-315" aria-hidden="true" tabindex="-1"></a>The results show us that the difference between Reward and NoReward is positive (meaning looking time is higher for Reward) and the p-value indicates this difference is statistically significant! All of this in just one line of code - how convenient!</span>
+<span id="cb49-316"><a href="#cb49-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-317"><a href="#cb49-317" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb49-318"><a href="#cb49-318" aria-hidden="true" tabindex="-1"></a>In this example, Event has only 2 levels (Reward and NoReward), so we already knew these levels differed significantly from examining our model summary. However, <span class="in">`estimate_contrast()`</span> gives us something more valuable: the **pairwise** difference between all the levels of the selected predictors with their</span>
+<span id="cb49-319"><a href="#cb49-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-320"><a href="#cb49-320" aria-hidden="true" tabindex="-1"></a>This function becomes particularly powerful when dealing with predictors that have multiple levels. Imagine having a predictor with 10 different levels (such as various stimulus types or experimental conditions) - <span class="in">`estimate_contrast()`</span> would automatically calculate all possible pairwise comparisons between these levels, saving you considerable time and effort.</span>
+<span id="cb49-321"><a href="#cb49-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-322"><a href="#cb49-322" aria-hidden="true" tabindex="-1"></a>Remember that if you have multiple levels in predictors you will need to adjust the *p-value* for multiple comparisons. You can do that by passing the argument <span class="in">`p_adjust = 'hochberg'`</span> to the function. With this the contrasts will be adjusted for multiple comparisons. There are different adjustment methods - <span class="co">[</span><span class="ot">check the function arguments</span><span class="co">](https://easystats.github.io/modelbased/reference/estimate_contrasts.html)</span>.</span>
+<span id="cb49-323"><a href="#cb49-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-324"><a href="#cb49-324" aria-hidden="true" tabindex="-1"></a>Here we give a small example using a dataset that is included with R:</span>
+<span id="cb49-325"><a href="#cb49-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-328"><a href="#cb49-328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-329"><a href="#cb49-329" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-330"><a href="#cb49-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-331"><a href="#cb49-331" aria-hidden="true" tabindex="-1"></a>contast_model_example <span class="ot">=</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
+<span id="cb49-332"><a href="#cb49-332" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_contrasts</span>(contast_model_example, <span class="at">contrast =</span> <span class="st">'Species'</span>,<span class="at">p_adjust =</span> <span class="st">'hochberg'</span>)</span>
 <span id="cb49-333"><a href="#cb49-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb49-334"><a href="#cb49-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-335"><a href="#cb49-335" aria-hidden="true" tabindex="-1"></a>See?? We have all the comparison between the available level of SES</span>
+<span id="cb49-335"><a href="#cb49-335" aria-hidden="true" tabindex="-1"></a>See?? We have all the comparison between the available level of Species</span>
 <span id="cb49-336"><a href="#cb49-336" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb49-337"><a href="#cb49-337" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-338"><a href="#cb49-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
@@ -2064,144 +1886,142 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb49-416"><a href="#cb49-416" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-417"><a href="#cb49-417" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimate slope</span></span>
 <span id="cb49-418"><a href="#cb49-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-419"><a href="#cb49-419" aria-hidden="true" tabindex="-1"></a>I know we've covered a lot of ground already, but there's one more important function worth introducing: <span class="in">`estimate_slope()`</span>. While <span class="in">`estimate_means()`</span> allows us to extract the means of predictions, <span class="in">`estimate_slope()`</span> is designed specifically for understanding rates of change.</span>
+<span id="cb49-419"><a href="#cb49-419" aria-hidden="true" tabindex="-1"></a>I know we've covered a lot of ground already, but there's one more important function worth introducing: <span class="in">`estimate_slope()`</span>. While <span class="in">`estimate_contrast()`</span> allows the comparison between means, <span class="in">`estimate_slope()`</span>, is designed for slopes. As the name suggests, it calculates the averages of coefficients (slopes) in your outcome variable for each unit increase in your predictor. This helps you, for example, to understand how quickly looking time changes across trials..</span>
 <span id="cb49-420"><a href="#cb49-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-421"><a href="#cb49-421" aria-hidden="true" tabindex="-1"></a>As the name suggests, this function calculates the change in your outcome variable for each unit increase in your predictor. For continuous predictors like our <span class="in">`StandardTrialN`</span>, this helps us understand how quickly looking time changes across trials.</span>
-<span id="cb49-422"><a href="#cb49-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-425"><a href="#cb49-425" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-426"><a href="#cb49-426" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EstSlope</span></span>
-<span id="cb49-427"><a href="#cb49-427" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-428"><a href="#cb49-428" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_slopes</span>(mod, <span class="at">trend =</span> <span class="st">'StandardTrialN'</span>)</span>
-<span id="cb49-429"><a href="#cb49-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-423"><a href="#cb49-423" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-424"><a href="#cb49-424" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EstSlope</span></span>
+<span id="cb49-425"><a href="#cb49-425" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-426"><a href="#cb49-426" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_slopes</span>(mod, <span class="at">trend =</span> <span class="st">'StandardTrialN'</span>)</span>
+<span id="cb49-427"><a href="#cb49-427" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-428"><a href="#cb49-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-429"><a href="#cb49-429" aria-hidden="true" tabindex="-1"></a>This tells us that the average effect of StandardTrialN is -50.46 (negative) and it is significantly different from 0. This means the looking time doesn't remain constant across trials but significantly decreases as trials progress.</span>
 <span id="cb49-430"><a href="#cb49-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-431"><a href="#cb49-431" aria-hidden="true" tabindex="-1"></a>This tells us that the average effect of StandardTrialN is -50.46 (negative) and it is significantly different from 0. This means the looking time doesn't remain constant across trials but significantly decreases as trials progress.</span>
-<span id="cb49-432"><a href="#cb49-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-433"><a href="#cb49-433" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb49-434"><a href="#cb49-434" aria-hidden="true" tabindex="-1"></a>You may be thinking... "Wait, isn't this information already in the model summary? Why do I need <span class="in">`estimate_slopes()`</span>?" If you are asking yourself this question, think back to the <span class="co">[</span><span class="ot">Linear models</span><span class="co">](LinearModels.qmd)</span> tutorial!!</span>
+<span id="cb49-431"><a href="#cb49-431" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb49-432"><a href="#cb49-432" aria-hidden="true" tabindex="-1"></a>You may be thinking... "Wait, isn't this information already in the model summary? Why do I need <span class="in">`estimate_slopes()`</span>?" If you are asking yourself this question, think back to the <span class="co">[</span><span class="ot">Linear models</span><span class="co">](LinearModels.qmd)</span> tutorial!!</span>
+<span id="cb49-433"><a href="#cb49-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-434"><a href="#cb49-434" aria-hidden="true" tabindex="-1"></a>**What the model summary shows:** The coefficient for StandardTrialN in the summary (-67.118) represents the slope specifically for the NoReward condition. This is because in linear models, coefficients are in relation to the intercept, which is where all predictors are 0. For categorical variables, 0 means the reference level (NoReward in this case).</span>
 <span id="cb49-435"><a href="#cb49-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-436"><a href="#cb49-436" aria-hidden="true" tabindex="-1"></a>**What the model summary shows:** The coefficient for StandardTrialN in the summary (-67.118) represents the slope specifically for the NoReward condition. This is because in linear models, coefficients are in relation to the intercept, which is where all predictors are 0. For categorical variables, 0 means the reference level (NoReward in this case).</span>
+<span id="cb49-436"><a href="#cb49-436" aria-hidden="true" tabindex="-1"></a>**What estimate_slopes() shows:** The value from <span class="in">`estimate_slopes()`</span> (-50.46) gives us the average slope across both Event types (Reward and NoReward).</span>
 <span id="cb49-437"><a href="#cb49-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-438"><a href="#cb49-438" aria-hidden="true" tabindex="-1"></a>**What estimate_slopes() shows:** The value from <span class="in">`estimate_slopes()`</span> (-50.46) gives us the average slope across both Event types (Reward and NoReward).</span>
-<span id="cb49-439"><a href="#cb49-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-440"><a href="#cb49-440" aria-hidden="true" tabindex="-1"></a>This is why the two values don't match! One is the slope for a specific condition, while the other is the average slope across all conditions. Super COOL right??</span>
-<span id="cb49-441"><a href="#cb49-441" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-438"><a href="#cb49-438" aria-hidden="true" tabindex="-1"></a>This is why the two values don't match! One is the slope for a specific condition, while the other is the average slope across all conditions. Super COOL right??</span>
+<span id="cb49-439"><a href="#cb49-439" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-440"><a href="#cb49-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-441"><a href="#cb49-441" aria-hidden="true" tabindex="-1"></a>We can also check if there are differences in slopes</span>
 <span id="cb49-442"><a href="#cb49-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-443"><a href="#cb49-443" aria-hidden="true" tabindex="-1"></a>We can also check if there are differences in slopes</span>
+<span id="cb49-443"><a href="#cb49-443" aria-hidden="true" tabindex="-1"></a><span class="fu">## Factor x Continuous</span></span>
 <span id="cb49-444"><a href="#cb49-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-445"><a href="#cb49-445" aria-hidden="true" tabindex="-1"></a><span class="fu">## Factor x Continuous</span></span>
+<span id="cb49-445"><a href="#cb49-445" aria-hidden="true" tabindex="-1"></a>Similar to the estimate_contrast function, estimate_slopes really shines when exploring interactions between continuous and categorical variables.</span>
 <span id="cb49-446"><a href="#cb49-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-447"><a href="#cb49-447" aria-hidden="true" tabindex="-1"></a>Similar to the estimate_contrast function, estimate_slopes really shines when exploring interactions between continuous and categorical variables.</span>
+<span id="cb49-447"><a href="#cb49-447" aria-hidden="true" tabindex="-1"></a>Remember! Our model indicated an interaction between StandardTrialN and Event, which means the rate of change (slope) should differ between the two Event types. However, from just knowing there's an interaction, we can't determine exactly what these slopes are doing. One condition might show a steeper decline than the other, one might be flat while the other decreases, or they might even go in opposite directions. The model just tells us they're different, not how they're different (or at least it is not so simple)</span>
 <span id="cb49-448"><a href="#cb49-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-449"><a href="#cb49-449" aria-hidden="true" tabindex="-1"></a>Remember! Our model indicated an interaction between StandardTrialN and Event, which means the rate of change (slope) should differ between the two Event types. However, from just knowing there's an interaction, we can't determine exactly what these slopes are doing. One condition might show a steeper decline than the other, one might be flat while the other decreases, or they might even go in opposite directions. The model just tells us they're different, not how they're different (or at least it is not so simple)</span>
+<span id="cb49-449"><a href="#cb49-449" aria-hidden="true" tabindex="-1"></a>To visualize exactly how these slopes differ, we can include Event with the by argument:</span>
 <span id="cb49-450"><a href="#cb49-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-451"><a href="#cb49-451" aria-hidden="true" tabindex="-1"></a>To visualize exactly how these slopes differ, we can include Event with the by argument:</span>
-<span id="cb49-452"><a href="#cb49-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-455"><a href="#cb49-455" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-456"><a href="#cb49-456" aria-hidden="true" tabindex="-1"></a>Slopes <span class="ot">=</span> <span class="fu">estimate_slopes</span>(mod, <span class="at">trend =</span> <span class="st">'StandardTrialN'</span>, <span class="at">by =</span> <span class="st">'Event'</span>)</span>
-<span id="cb49-457"><a href="#cb49-457" aria-hidden="true" tabindex="-1"></a>Slopes</span>
-<span id="cb49-458"><a href="#cb49-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-453"><a href="#cb49-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-454"><a href="#cb49-454" aria-hidden="true" tabindex="-1"></a>Slopes <span class="ot">=</span> <span class="fu">estimate_slopes</span>(mod, <span class="at">trend =</span> <span class="st">'StandardTrialN'</span>, <span class="at">by =</span> <span class="st">'Event'</span>)</span>
+<span id="cb49-455"><a href="#cb49-455" aria-hidden="true" tabindex="-1"></a>Slopes</span>
+<span id="cb49-456"><a href="#cb49-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-457"><a href="#cb49-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-458"><a href="#cb49-458" aria-hidden="true" tabindex="-1"></a>Now we get the average effect for both Events. So we see that both of the lines significantly decrease!</span>
 <span id="cb49-459"><a href="#cb49-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-460"><a href="#cb49-460" aria-hidden="true" tabindex="-1"></a>Now we get the average effect for both Events. So we see that both of the lines significantly decrease!</span>
+<span id="cb49-460"><a href="#cb49-460" aria-hidden="true" tabindex="-1"></a>We can also plot it with:</span>
 <span id="cb49-461"><a href="#cb49-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-462"><a href="#cb49-462" aria-hidden="true" tabindex="-1"></a>We can also plot it with:</span>
-<span id="cb49-463"><a href="#cb49-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-466"><a href="#cb49-466" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-467"><a href="#cb49-467" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Slopes)<span class="sc">+</span></span>
-<span id="cb49-468"><a href="#cb49-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>)<span class="sc">+</span></span>
-<span id="cb49-469"><a href="#cb49-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb49-470"><a href="#cb49-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
-<span id="cb49-471"><a href="#cb49-471" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-464"><a href="#cb49-464" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-465"><a href="#cb49-465" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Slopes)<span class="sc">+</span></span>
+<span id="cb49-466"><a href="#cb49-466" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>)<span class="sc">+</span></span>
+<span id="cb49-467"><a href="#cb49-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb49-468"><a href="#cb49-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
+<span id="cb49-469"><a href="#cb49-469" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-470"><a href="#cb49-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-471"><a href="#cb49-471" aria-hidden="true" tabindex="-1"></a>Here we see that the slopes for both Event types are negative (below zero) and statistically significant (confidence intervals don't cross the dashed zero line). This confirms that looking time reliably decreases as trials progress, regardless of whether it's a Reward or NoReward event.</span>
 <span id="cb49-472"><a href="#cb49-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-473"><a href="#cb49-473" aria-hidden="true" tabindex="-1"></a>Here we see that the slopes for both Event types are negative (below zero) and statistically significant (confidence intervals don't cross the dashed zero line). This confirms that looking time reliably decreases as trials progress, regardless of whether it's a Reward or NoReward event.</span>
+<span id="cb49-473"><a href="#cb49-473" aria-hidden="true" tabindex="-1"></a><span class="fu"># Complex plotting</span></span>
 <span id="cb49-474"><a href="#cb49-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-475"><a href="#cb49-475" aria-hidden="true" tabindex="-1"></a><span class="fu"># Complex plotting</span></span>
+<span id="cb49-475"><a href="#cb49-475" aria-hidden="true" tabindex="-1"></a>We've covered a lot in this tutorial, and I know you might be getting tired! But let me add one final important skill: creating custom visualizations of your model predictions.</span>
 <span id="cb49-476"><a href="#cb49-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-477"><a href="#cb49-477" aria-hidden="true" tabindex="-1"></a>We've covered a lot in this tutorial, and I know you might be getting tired! But let me add one final important skill: creating custom visualizations of your model predictions.</span>
+<span id="cb49-477"><a href="#cb49-477" aria-hidden="true" tabindex="-1"></a>As we've seen throughout this tutorial, most functions in the modelbased package include handy plotting capabilities that generate nice ggplots. These built-in plots are great for quick visualization and are easily customizable.</span>
 <span id="cb49-478"><a href="#cb49-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-479"><a href="#cb49-479" aria-hidden="true" tabindex="-1"></a>As we've seen throughout this tutorial, most functions in the modelbased package include handy plotting capabilities that generate nice ggplots. These built-in plots are great for quick visualization and are easily customizable.</span>
+<span id="cb49-479"><a href="#cb49-479" aria-hidden="true" tabindex="-1"></a>**But...** there is always a but... sometimes you'll need more control, especially when you want to combine multiple effects in a single visualization, or your model has complex interactions.</span>
 <span id="cb49-480"><a href="#cb49-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-481"><a href="#cb49-481" aria-hidden="true" tabindex="-1"></a>**But...** there is always a but... sometimes you'll need more control, especially when you want to combine multiple effects in a single visualization, or your model has complex interactions.</span>
+<span id="cb49-481"><a href="#cb49-481" aria-hidden="true" tabindex="-1"></a>When built-in plotting functions aren't enough, we need to generate our own visualizations. But what should we plot? The raw data? Of course not! As you've learned throughout this tutorial... we should plot **PREDICTIONS**! While <span class="in">`estimate_relation()`</span> is useful, I want to show you an even more flexible approach by breaking down how <span class="in">`estimate_relation()`</span> works. This way, you'll be prepared for any visualization challenge, even with the most complex models.</span>
 <span id="cb49-482"><a href="#cb49-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-483"><a href="#cb49-483" aria-hidden="true" tabindex="-1"></a>When built-in plotting functions aren't enough, we need to generate our own visualizations. But what should we plot? The raw data? Of course not! As you've learned throughout this tutorial... we should plot **PREDICTIONS**! While <span class="in">`estimate_relation()`</span> is useful, I want to show you an even more flexible approach by breaking down how <span class="in">`estimate_relation()`</span> works. This way, you'll be prepared for any visualization challenge, even with the most complex models.</span>
+<span id="cb49-483"><a href="#cb49-483" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datagrid</span></span>
 <span id="cb49-484"><a href="#cb49-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-485"><a href="#cb49-485" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datagrid</span></span>
+<span id="cb49-485"><a href="#cb49-485" aria-hidden="true" tabindex="-1"></a>The first step in custom plotting is creating the right reference grid for your predictions. We'll use the <span class="in">`get_datagrid()`</span> function, which takes your model as its first argument and the <span class="in">`by =`</span> parameter to specify which predictors you want in your visualization.</span>
 <span id="cb49-486"><a href="#cb49-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-487"><a href="#cb49-487" aria-hidden="true" tabindex="-1"></a>The first step in custom plotting is creating the right reference grid for your predictions. We'll use the <span class="in">`get_datagrid()`</span> function, which takes your model as its first argument and the <span class="in">`by =`</span> parameter to specify which predictors you want in your visualization.</span>
+<span id="cb49-487"><a href="#cb49-487" aria-hidden="true" tabindex="-1"></a>Let's extract a reference grid for our StandardTrialN <span class="sc">\*</span> Event interaction:</span>
 <span id="cb49-488"><a href="#cb49-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-489"><a href="#cb49-489" aria-hidden="true" tabindex="-1"></a>Let's extract a reference grid for our StandardTrialN <span class="sc">\*</span> Event interaction:</span>
-<span id="cb49-490"><a href="#cb49-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-493"><a href="#cb49-493" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-494"><a href="#cb49-494" aria-hidden="true" tabindex="-1"></a><span class="fu">get_datagrid</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'Event'</span>, <span class="st">'StandardTrialN'</span>))</span>
-<span id="cb49-495"><a href="#cb49-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-491"><a href="#cb49-491" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-492"><a href="#cb49-492" aria-hidden="true" tabindex="-1"></a><span class="fu">get_datagrid</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'Event'</span>, <span class="st">'StandardTrialN'</span>))</span>
+<span id="cb49-493"><a href="#cb49-493" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-494"><a href="#cb49-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-495"><a href="#cb49-495" aria-hidden="true" tabindex="-1"></a>Looking at the output, you'll see we get both levels of Event (Reward and NoReward) and a range of values for StandardTrialN (10 values by default spanning the range of our data). Notice that the Id column is set to 0. This is how the function indicates that random effects aren't included—we're focusing on the fixed effects that represent the "average response" across all subjects.</span>
 <span id="cb49-496"><a href="#cb49-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-497"><a href="#cb49-497" aria-hidden="true" tabindex="-1"></a>Looking at the output, you'll see we get both levels of Event (Reward and NoReward) and a range of values for StandardTrialN (10 values by default spanning the range of our data). Notice that the Id column is set to 0. This is how the function indicates that random effects aren't included—we're focusing on the fixed effects that represent the "average response" across all subjects.</span>
-<span id="cb49-498"><a href="#cb49-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-499"><a href="#cb49-499" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb49-500"><a href="#cb49-500" aria-hidden="true" tabindex="-1"></a>Different models declare non-level for the random effects in different ways, but datagrid will adapt to the specific model you are running. Just do not be scared if the values are not 0.</span>
-<span id="cb49-501"><a href="#cb49-501" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-497"><a href="#cb49-497" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb49-498"><a href="#cb49-498" aria-hidden="true" tabindex="-1"></a>Different models declare non-level for the random effects in different ways, but datagrid will adapt to the specific model you are running. Just do not be scared if the values are not 0.</span>
+<span id="cb49-499"><a href="#cb49-499" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-500"><a href="#cb49-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-501"><a href="#cb49-501" aria-hidden="true" tabindex="-1"></a>The datagrid is where we can really flex our customization muscles. Instead of accepting the default values, we can request specific levels of a factor, custom ranges for continuous variables, or statistical landmarks of continuous variables.</span>
 <span id="cb49-502"><a href="#cb49-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-503"><a href="#cb49-503" aria-hidden="true" tabindex="-1"></a>The datagrid is where we can really flex our customization muscles. Instead of accepting the default values, we can request specific levels of a factor, custom ranges for continuous variables, or statistical landmarks of continuous variables.</span>
+<span id="cb49-503"><a href="#cb49-503" aria-hidden="true" tabindex="-1"></a>For example, instead of the default range of values, we could request <span class="in">`'StandardTrialN = [quartiles]'`</span> which would give us the lower-hinge, median, and upper-hinge of the continuous variable. Cool, right? There are many functions and statistical aspects we can extract - check the documentation of <span class="in">`get_datagrid()`</span> for the full range of possibilities.</span>
 <span id="cb49-504"><a href="#cb49-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-505"><a href="#cb49-505" aria-hidden="true" tabindex="-1"></a>For example, instead of the default range of values, we could request <span class="in">`'StandardTrialN = [quartiles]'`</span> which would give us the lower-hinge, median, and upper-hinge of the continuous variable. Cool, right? There are many functions and statistical aspects we can extract - check the documentation of <span class="in">`get_datagrid()`</span> for the full range of possibilities.</span>
+<span id="cb49-505"><a href="#cb49-505" aria-hidden="true" tabindex="-1"></a>Let's create a more sophisticated datagrid to demonstrate:</span>
 <span id="cb49-506"><a href="#cb49-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-507"><a href="#cb49-507" aria-hidden="true" tabindex="-1"></a>Let's create a more sophisticated datagrid to demonstrate:</span>
-<span id="cb49-508"><a href="#cb49-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-511"><a href="#cb49-511" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-512"><a href="#cb49-512" aria-hidden="true" tabindex="-1"></a>Grid <span class="ot">=</span> <span class="fu">get_datagrid</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'Event'</span>, <span class="st">'StandardTrialN = [fivenum]'</span>))</span>
-<span id="cb49-513"><a href="#cb49-513" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">as.data.frame</span>(Grid), <span class="at">n=</span><span class="dv">20</span> )</span>
-<span id="cb49-514"><a href="#cb49-514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-509"><a href="#cb49-509" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-510"><a href="#cb49-510" aria-hidden="true" tabindex="-1"></a>Grid <span class="ot">=</span> <span class="fu">get_datagrid</span>(mod, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'Event'</span>, <span class="st">'StandardTrialN = [fivenum]'</span>))</span>
+<span id="cb49-511"><a href="#cb49-511" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">as.data.frame</span>(Grid), <span class="at">n=</span><span class="dv">20</span> )</span>
+<span id="cb49-512"><a href="#cb49-512" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-513"><a href="#cb49-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-514"><a href="#cb49-514" aria-hidden="true" tabindex="-1"></a>What we've done here is request both levels of Event, the five-number summary for StandardTrialN (minimum, lower-hinge, median, upper-hinge, maximum), and all different subjects by setting <span class="in">`include_random = TRUE`</span>. Why would we want such a complex grid? Well, first things first to make it complex...... and also we want to see what is happening for each subject!! Let's now use this grid......</span>
 <span id="cb49-515"><a href="#cb49-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-516"><a href="#cb49-516" aria-hidden="true" tabindex="-1"></a>What we've done here is request both levels of Event, the five-number summary for StandardTrialN (minimum, lower-hinge, median, upper-hinge, maximum), and all different subjects by setting <span class="in">`include_random = TRUE`</span>. Why would we want such a complex grid? Well, first things first to make it complex...... and also we want to see what is happening for each subject!! Let's now use this grid......</span>
+<span id="cb49-516"><a href="#cb49-516" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction on grid</span></span>
 <span id="cb49-517"><a href="#cb49-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-518"><a href="#cb49-518" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction on grid</span></span>
+<span id="cb49-518"><a href="#cb49-518" aria-hidden="true" tabindex="-1"></a>Now that we have our grid, we can pass it to the <span class="in">`get_predicted()`</span> function. This will give us all the predictions on the grid!!</span>
 <span id="cb49-519"><a href="#cb49-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-520"><a href="#cb49-520" aria-hidden="true" tabindex="-1"></a>Now that we have our grid, we can pass it to the <span class="in">`get_predicted()`</span> function. This will give us all the predictions on the grid!!</span>
-<span id="cb49-521"><a href="#cb49-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-524"><a href="#cb49-524" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-525"><a href="#cb49-525" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Predict</span></span>
-<span id="cb49-526"><a href="#cb49-526" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-527"><a href="#cb49-527" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-528"><a href="#cb49-528" aria-hidden="true" tabindex="-1"></a><span class="fu">get_predicted</span>(mod, Grid, <span class="at">ci =</span> T)</span>
-<span id="cb49-529"><a href="#cb49-529" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-522"><a href="#cb49-522" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-523"><a href="#cb49-523" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Predict</span></span>
+<span id="cb49-524"><a href="#cb49-524" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-525"><a href="#cb49-525" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-526"><a href="#cb49-526" aria-hidden="true" tabindex="-1"></a><span class="fu">get_predicted</span>(mod, Grid, <span class="at">ci =</span> T)</span>
+<span id="cb49-527"><a href="#cb49-527" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-528"><a href="#cb49-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-529"><a href="#cb49-529" aria-hidden="true" tabindex="-1"></a>As you notice, this gives us a vector of predictions, but we also need the confidence intervals to make a proper plot. As the message mentions, those are 'hidden' and need to be accessed using <span class="in">`as.data.frame()`</span>.</span>
 <span id="cb49-530"><a href="#cb49-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-531"><a href="#cb49-531" aria-hidden="true" tabindex="-1"></a>As you notice, this gives us a vector of predictions, but we also need the confidence intervals to make a proper plot. As the message mentions, those are 'hidden' and need to be accessed using <span class="in">`as.data.frame()`</span>.</span>
-<span id="cb49-532"><a href="#cb49-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-535"><a href="#cb49-535" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-536"><a href="#cb49-536" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PredictCI</span></span>
-<span id="cb49-537"><a href="#cb49-537" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-538"><a href="#cb49-538" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-539"><a href="#cb49-539" aria-hidden="true" tabindex="-1"></a>Pred <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">get_predicted</span>(mod, Grid, <span class="at">ci =</span> T))</span>
-<span id="cb49-540"><a href="#cb49-540" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Pred)</span>
-<span id="cb49-541"><a href="#cb49-541" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-533"><a href="#cb49-533" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-534"><a href="#cb49-534" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PredictCI</span></span>
+<span id="cb49-535"><a href="#cb49-535" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-536"><a href="#cb49-536" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-537"><a href="#cb49-537" aria-hidden="true" tabindex="-1"></a>Pred <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">get_predicted</span>(mod, Grid, <span class="at">ci =</span> T))</span>
+<span id="cb49-538"><a href="#cb49-538" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Pred)</span>
+<span id="cb49-539"><a href="#cb49-539" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-540"><a href="#cb49-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-541"><a href="#cb49-541" aria-hidden="true" tabindex="-1"></a>Now we can merge the two to have a final dataframe that has all the information:</span>
 <span id="cb49-542"><a href="#cb49-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-543"><a href="#cb49-543" aria-hidden="true" tabindex="-1"></a>Now we can merge the two to have a final dataframe that has all the information:</span>
-<span id="cb49-544"><a href="#cb49-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-547"><a href="#cb49-547" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-548"><a href="#cb49-548" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Combine</span></span>
-<span id="cb49-549"><a href="#cb49-549" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-550"><a href="#cb49-550" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-551"><a href="#cb49-551" aria-hidden="true" tabindex="-1"></a>db <span class="ot">=</span> <span class="fu">bind_cols</span>(Grid, Pred)</span>
-<span id="cb49-552"><a href="#cb49-552" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(db)</span>
-<span id="cb49-553"><a href="#cb49-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-545"><a href="#cb49-545" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-546"><a href="#cb49-546" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Combine</span></span>
+<span id="cb49-547"><a href="#cb49-547" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-548"><a href="#cb49-548" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-549"><a href="#cb49-549" aria-hidden="true" tabindex="-1"></a>db <span class="ot">=</span> <span class="fu">bind_cols</span>(Grid, Pred)</span>
+<span id="cb49-550"><a href="#cb49-550" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(db)</span>
+<span id="cb49-551"><a href="#cb49-551" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-552"><a href="#cb49-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-553"><a href="#cb49-553" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
 <span id="cb49-554"><a href="#cb49-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-555"><a href="#cb49-555" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
+<span id="cb49-555"><a href="#cb49-555" aria-hidden="true" tabindex="-1"></a>Now we have our dataframe we can do whatever we want with it. Let's plot it:</span>
 <span id="cb49-556"><a href="#cb49-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-557"><a href="#cb49-557" aria-hidden="true" tabindex="-1"></a>Now we have our dataframe we can do whatever we want with it. Let's plot it:</span>
-<span id="cb49-558"><a href="#cb49-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-561"><a href="#cb49-561" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-562"><a href="#cb49-562" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotGrid</span></span>
-<span id="cb49-563"><a href="#cb49-563" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb49-564"><a href="#cb49-564" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb49-565"><a href="#cb49-565" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb49-566"><a href="#cb49-566" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
-<span id="cb49-567"><a href="#cb49-567" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(db, <span class="fu">aes</span>(<span class="at">x =</span> StandardTrialN, <span class="at">y =</span> Predicted, <span class="at">color =</span> Event, <span class="at">fill =</span> Event ))<span class="sc">+</span></span>
-<span id="cb49-568"><a href="#cb49-568" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Predicted<span class="sc">-</span>SE, <span class="at">ymax =</span> Predicted<span class="sc">+</span>SE), <span class="at">alpha =</span> .<span class="dv">4</span>)<span class="sc">+</span></span>
-<span id="cb49-569"><a href="#cb49-569" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="fl">1.2</span> )<span class="sc">+</span></span>
-<span id="cb49-570"><a href="#cb49-570" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb49-571"><a href="#cb49-571" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
-<span id="cb49-572"><a href="#cb49-572" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-573"><a href="#cb49-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-574"><a href="#cb49-574" aria-hidden="true" tabindex="-1"></a>Well, you did it! You've survived the wild jungle of model-based estimation! By breaking down the prediction process into customizable steps, you've gained complete control over how to extract and visualize the patterns in your eye-tracking data. Whether you use the convenient built-in functions or create custom plots from scratch, you now have the tools to answer sophisticated research questions and present your findings beautifully. Happy modeling!</span>
+<span id="cb49-559"><a href="#cb49-559" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-560"><a href="#cb49-560" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PlotGrid</span></span>
+<span id="cb49-561"><a href="#cb49-561" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb49-562"><a href="#cb49-562" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-563"><a href="#cb49-563" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb49-564"><a href="#cb49-564" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb49-565"><a href="#cb49-565" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(db, <span class="fu">aes</span>(<span class="at">x =</span> StandardTrialN, <span class="at">y =</span> Predicted, <span class="at">color =</span> Event, <span class="at">fill =</span> Event ))<span class="sc">+</span></span>
+<span id="cb49-566"><a href="#cb49-566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Predicted<span class="sc">-</span>SE, <span class="at">ymax =</span> Predicted<span class="sc">+</span>SE), <span class="at">alpha =</span> .<span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb49-567"><a href="#cb49-567" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="fl">1.2</span> )<span class="sc">+</span></span>
+<span id="cb49-568"><a href="#cb49-568" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb49-569"><a href="#cb49-569" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
+<span id="cb49-570"><a href="#cb49-570" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-571"><a href="#cb49-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-572"><a href="#cb49-572" aria-hidden="true" tabindex="-1"></a>Well, you did it! You've survived the wild jungle of model-based estimation! By breaking down the prediction process into customizable steps, you've gained complete control over how to extract and visualize the patterns in your eye-tracking data. Whether you use the convenient built-in functions or create custom plots from scratch, you now have the tools to answer sophisticated research questions and present your findings beautifully. Happy modeling!</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -2212,7 +2032,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
-    <a class="nav-link active" href="https://github.com/TommasoGhilardi/DevStart" aria-current="page">
+    <a class="nav-link" href="https://github.com/TommasoGhilardi/DevStart">
       <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
     </a>

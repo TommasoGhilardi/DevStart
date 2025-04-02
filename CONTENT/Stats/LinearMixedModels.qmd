@@ -5,7 +5,7 @@ date: "15/03/2025"
 author-meta: "Tommaso Ghilardi"
 # description-meta: " A concise and practical tutorial on running linear mixed-effects models in R. Learn how to handle nested data structures, interpret model summaries, and compare models using real-life examples."
 # keywords-meta: "linear mixed-effects models, R, mixed models, hierarchical modeling, lme4, lmerTest, random effects, fixed effects, statistical analysis, data analysis, model comparison, AIC, Simpson's paradox, tutorial"
-
+code-overflow: scroll
 categories:
   - R
   - Stats
